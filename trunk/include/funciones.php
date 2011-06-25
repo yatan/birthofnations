@@ -103,28 +103,14 @@ function sql($sql)
 
 function enviar_mail($destino, $nick, $id)
 {
-	
+
+select_lang();
 
 // subject
-$titulo = 'Activaci√≥n cuenta Birth of Nations';
+$titulo = $dicc['activacion_titulo'];
 
 // message
-$mensaje = "
-<html>
-<head>
-  <title>Activaci&oacute;n cuenta Birth of Nations</title>
-</head>
-<body>
-  <p><strong>Bienvenido</strong> $nick a Birth of Nations, pero antes es necesario que actives la cuenta para poder jugar. Solo necesitas hacer click en el siguiente link para activar la cuenta.</p>
-  <p>Usuario registrado: $nick</p>
-  <p><a href='http://birthofnations.com/activar.php?id=$id&nick=$nick'>http://birthofnations.com/activar.php?id=$id&nick=$nick</a></p>
-  <p>&nbsp;</p>
-  <p>Si no te has registrado en Birth of Nations, simplemente ignora el correo.</p>
-  <p>Atte. El equipo de BirthofNations</p>
-  <p>http://birthofnations.com/</p>
-
-</body>
-</html>";
+$mensaje = $dicc['activacion_mensaje'];
 
 // Para enviar un correo HTML mail, la cabecera Content-type debe fijarse
 $cabeceras  = 'MIME-Version: 1.0' . "\r\n";
@@ -163,7 +149,13 @@ mysql_query("INSERT INTO smf_members (member_name, date_registered, real_name, p
 
 }
 
-
+function select_lang ()
+{
+    //Cualquier metodo que vaya aqui para elegir el idioma Y cargar el archivo. De momento solo hay espaÒol
+    
+    include_once("../i18n/es-ES.php");
+    
+}
 
 ?>
 
