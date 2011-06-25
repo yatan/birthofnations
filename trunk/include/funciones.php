@@ -1,7 +1,7 @@
 <?
 
 include_once("config.php");
-
+include_once("include/config.php");
 /*
 
 Script con varias funciones:
@@ -11,6 +11,10 @@ online(): Muestra si el servidor mysql esta disponible o no
 sql($sql): Ejecuta la sentencia sql, si da error muestra mensaje de error con die()
  *         devuelve un array con los valores obtenidos si hay mas de 1,
  *			o el valor sin array si solo devuelve 1 valor
+ enviar_mail($destino, $nick, $id)
+ *        Envia un correo para activar la cuenta --EN DESARROLLO--
+ anadir_foro($usuario, $password, $email)
+ *         Añade un usuario al foro smf
 
 */
 
@@ -96,6 +100,69 @@ function sql($sql)
     return $table;
 	}
 	
+
+function enviar_mail($destino, $nick, $id)
+{
+	
+
+// subject
+$titulo = 'Activación cuenta Birth of Nations';
+
+// message
+$mensaje = "
+<html>
+<head>
+  <title>Activaci&oacute;n cuenta Birth of Nations</title>
+</head>
+<body>
+  <p><strong>Bienvenido</strong> $nick a Birth of Nations, pero antes es necesario que actives la cuenta para poder jugar. Solo necesitas hacer click en el siguiente link para activar la cuenta.</p>
+  <p>Usuario registrado: $nick</p>
+  <p><a href='http://birthofnations.com/activar.php?id=$id&nick=$nick'>http://birthofnations.com/activar.php?id=$id&nick=$nick</a></p>
+  <p>&nbsp;</p>
+  <p>Si no te has registrado en Birth of Nations, simplemente ignora el correo.</p>
+  <p>Atte. El equipo de BirthofNations</p>
+  <p>http://birthofnations.com/</p>
+
+</body>
+</html>";
+
+// Para enviar un correo HTML mail, la cabecera Content-type debe fijarse
+$cabeceras  = 'MIME-Version: 1.0' . "\r\n";
+$cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+
+// Cabeceras adicionales
+$cabeceras .= 'From: BirthofNations <admin@birthofnations.com>' . "\r\n";
+
+// Mail it
+mail($destino, $titulo, $mensaje, $cabeceras);
+	
+	
+	
+	
+}
+
+
+function anadir_foro($usuario, $password, $email)
+{
+    
+$server= $GLOBALS["server"];
+$forouser=$GLOBALS["forouser"];; /* Usuario DB foro smf */
+$foropass=$GLOBALS["foropass"];; /* Password DB foro smf */
+$forodb=$GLOBALS["forodb"];; /* DB foro smf */
+    
+$link2=mysql_connect($server, $forouser, $foropass);
+
+mysql_select_db($forodb, $link2);
+
+
+$salt = substr(md5(mt_rand()), 0, 4);
+$contrasena = sha1(strtolower($usuario) . $password);
+$hora = time();
+
+mysql_query("INSERT INTO smf_members (member_name, date_registered, real_name, passwd, email_address, password_salt) VALUES ('$usuario', '$hora', '$usuario', '$contrasena', '$email', '$salt')");
+
+}
+
 
 
 ?>
