@@ -1,6 +1,28 @@
 @charset "utf-8";
 /* CSS Document */
+body {
+	width:800px;
+	background-image: url(../images/bg.gif);
+	background-repeat: repeat-x;
+	margin-top: 5px;
+	margin-right: 90px;
+	margin-bottom: 90px;
+	margin-left: 90px;
+	text-align: center;
+}
 
+#contenido {
+	
+	
+}
+
+#top {
+	background-image: url(../images/titulo.png);
+	background-repeat: no-repeat center top;
+	width: 498px;
+	height: 99px;
+	margin-left:50%;
+}
 
 #pie {
 	/*margin: 0 0 15px 0;*/
