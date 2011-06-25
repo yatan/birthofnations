@@ -54,8 +54,19 @@ and open the template in the editor.
 	<? include("registro.php"); ?>
 	</div>
 	
+        <br><br>
+        
+        <div id="login" style="margin-left:50%;">
+            <form action="login.php" method="POST">
+                <h2>Login</h2>
+                <label for="nick">Nick:<input type="text" name="nick"></label>
+                <label for="pass">Password:<input type="password" name="pass"></label>
+                <input type="submit">
+            </form>
+        </div>
+        
 	<div id="pie"> 
-		<center>Estado mysql: <? online(); ?></center> 
+		<center>Estado mysql: <? online(); ?> Copyright 2011 Batamanta Team</center> 
 	</div> 
   </body>
 </html>
