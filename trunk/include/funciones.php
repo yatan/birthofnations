@@ -151,9 +151,9 @@ mysql_query("INSERT INTO smf_members (member_name, date_registered, real_name, p
 
 function select_lang ()
 {
-    //Cualquier metodo que vaya aqui para elegir el idioma Y cargar el archivo. De momento solo hay español
+    //Cualquier metodo que vaya aqui para elegir el idioma Y cargar el archivo. De momento solo hay espaï¿½ol
     
-    include_once("../i18n/es-ES.php");
+    include_once("../i18n/es_ES.php");
     
 }
 
