@@ -107,10 +107,10 @@ function enviar_mail($destino, $nick, $id)
 select_lang();
 
 // subject
-$titulo = $dicc['activacion_titulo'];
+$titulo = $mail_activation['activacion_titulo'];
 
 // message
-$mensaje = $dicc['activacion_mensaje'];
+$mensaje = $mail_activation['activacion_mensaje'];
 
 // Para enviar un correo HTML mail, la cabecera Content-type debe fijarse
 $cabeceras  = 'MIME-Version: 1.0' . "\r\n";
@@ -151,7 +151,7 @@ mysql_query("INSERT INTO smf_members (member_name, date_registered, real_name, p
 
 function select_lang ()
 {
-    //Cualquier metodo que vaya aqui para elegir el idioma Y cargar el archivo. De momento solo hay espa�ol
+    //Cualquier metodo que vaya aqui para elegir el idioma Y cargar el archivo. De momento solo hay español
     
     include_once("../i18n/es_ES.php");
     
