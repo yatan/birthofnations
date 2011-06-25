@@ -1,7 +1,7 @@
 <?php
 
 $dicc = array (
-    'activacion_titulo' => 'Activaci�n de su cuenta Birth of Nations',
+    'activacion_titulo' => 'Activación de su cuenta Birth of Nations',
     'activacion_mensaje_titulo' => "Bienvenido a Birth of Nations, ",
     'activacion_mensaje_cuerpo' => "pero antes es necesario que actives la cuenta para poder jugar.
         Solo necesitas hacer click en el siguiente link para activar la cuenta.",
