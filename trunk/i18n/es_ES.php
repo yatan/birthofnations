@@ -15,11 +15,14 @@ $signup_form = array (
     'signup_title' => "Formulario de Registro"    ,
     'signup_username' => "Nombre de usuario "    ,
     'signup_username_info' => "Caracteres de A-z, mínimo 5 caracteres "    ,
-    'signup_password' => "Mínimo 5 caracteres, máximo 12 caracteres, letras y "    ,
-    'signup_password2' => "Debe ser igual a la anterior "    ,
+    'signup_pass' => 'Contrase�a',
+    'signup_pass_info' => "Mínimo 5 caracteres, máximo 12 caracteres, letras y simbolos"    ,
+    'signup_pass2' => 'Repetir contrase�a',
+    'signup_pass_info2' => "Debe ser igual a la anterior "    ,
+    'signup_referer' => 'Referidor',
     'signup_mail' => "email"    ,
-    'signup_mail_info' => 'Escribe un email válido por favor',
-    'signup_submit' => "Formulario de Registro"    ,
+    'signup_mail_info' => 'Escribe un email válido por favor',// No se usa??
+    'signup_submit' => "Formulario de Registro"    ,// No se usa??
 );
 
 $login_form = array (
