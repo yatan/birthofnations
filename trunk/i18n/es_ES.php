@@ -15,9 +15,9 @@ $signup_form = array (
     'signup_title' => "Formulario de Registro"    ,
     'signup_username' => "Nombre de usuario "    ,
     'signup_username_info' => "Caracteres de A-z, mínimo 5 caracteres "    ,
-    'signup_pass' => 'Contrase�a',
+    'signup_pass' => 'Contraseña',
     'signup_pass_info' => "Mínimo 5 caracteres, máximo 12 caracteres, letras y símbolos"    ,
-    'signup_pass2' => 'Repetir contrase�a',
+    'signup_pass2' => 'Repetir contraseña',
     'signup_pass_info2' => "Debe ser igual a la anterior "    ,
     'signup_referer' => 'Referidor',
     'signup_mail' => "email"    ,
@@ -27,7 +27,7 @@ $signup_form = array (
 
 $login_form = array (
     'login_nonick' => "Falta el usuario",
-    'login_nopass' => "Falta la contrase�a",
+    'login_nopass' => "Falta la contraseña",
     'login_nomatch' => "La combinacion de usuario/password no es la correcta [0x01]" ,
     'login_nomatch2' => "La combinacion de usuario/password no es la correcta [0x02]",
     
