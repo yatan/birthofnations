@@ -100,17 +100,20 @@ function sql($sql)
     return $table;
 	}
 	
-
-function enviar_mail($destino, $nick, $id)
-{
-
 select_lang();
 
+function enviar_mail($destino, $nick)
+{
+
+
+
+global $mail_activation;
+//var_dump($mail_activation);
 // subject
 $titulo = $mail_activation['activacion_titulo'];
 
 // message
-$mensaje = $mail_activation['activacion_mensaje'];
+$mensaje = $mail_activation['activacion_mensaje_titulo'].$mail_activation['activacion_mensaje_cuerpo'];
 
 // Para enviar un correo HTML mail, la cabecera Content-type debe fijarse
 $cabeceras  = 'MIME-Version: 1.0' . "\r\n";
@@ -120,7 +123,7 @@ $cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 $cabeceras .= 'From: BirthofNations <admin@birthofnations.com>' . "\r\n";
 
 // Mail it
-mail($destino, $titulo, $mensaje, $cabeceras);
+enviar_mail($destino, $titulo, $mensaje, $cabeceras);
 	
 	
 	
@@ -151,9 +154,12 @@ mysql_query("INSERT INTO smf_members (member_name, date_registered, real_name, p
 
 function select_lang ()
 {
+    global $mail_activation;
+    global $signup_form;
+    global $login_form;
     //Cualquier metodo que vaya aqui para elegir el idioma Y cargar el archivo. De momento solo hay español
-    
-    include_once("../i18n/es_ES.php");
+      
+    include_once("./i18n/es_ES.php");
     
 }
 
