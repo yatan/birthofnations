@@ -123,7 +123,7 @@ $cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 $cabeceras .= 'From: BirthofNations <admin@birthofnations.com>' . "\r\n";
 
 // Mail it
-enviar_mail($destino, $titulo, $mensaje, $cabeceras);
+mail($destino, $titulo, $mensaje, $cabeceras);
 	
 	
 	

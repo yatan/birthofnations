@@ -22,6 +22,10 @@ die("Falta email");
 else
 $email = $_POST['email'];
 
+if(!isset($_POST['referer']) || $_POST['referer']=="")
+die("Falta referer");
+else
+$referer = $_POST['referer'];
 
 if($pass1 != $pass2)
     die("Error al validar password");
@@ -34,6 +38,18 @@ $verificar = sql("SELECT email FROM usuarios WHERE email='$email'");
 if($verificar==true)
     die("Ya existe un email registrado");
 
+$pass = md5($pass1);
+$id_referer = sql("SELECT id_usuario FROM usuarios WHERE nick='$referer'");
+$hoy = date("Y.n.j");
 
+sql("INSERT INTO usuarios('nick','password','email','fecha_registro','id_referer') VALUES ('$nick','$pass','$email','$hoy','$referer')");
+
+
+//Registrar usuario al foro <-ULTIMO PASO BD->
+anadir_foro($user,$pass1,$email);
+//Se envia el mail de bienvenida
+enviar_mail("$email","$nick");
+//Muestra mensaje de fin de registro OK
+die("ok")
 
 ?>
