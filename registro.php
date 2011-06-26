@@ -1,26 +1,41 @@
-<?
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
-//registro.php?referer=[array codificado con base64]=>[referer][email]
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" href="css/registro.css" rel="Stylesheet" />
+
+<?
+header('Content-Type: text/html; charset=iso-8859-1');
+
+
+
+////registro.php?referer=[array codificado con base64]=>[referer][email]
 if(!isset($_GET['referer']))
     die("Error en el enlace");
 
 $datos = $_GET['referer'];
-$datos = base64_decode($datos);
-$array = explode(",", $datos);
-
-$referer = $array[0];
-$email = $array[1];
 
 
 include_once("include/funciones.php");
 select_lang();
 
+
+$datos = sql("SELECT id_padrino, email FROM referals WHERE codigo='$datos'");
+if($datos==false)
+    die($txt['code_error']);
+else
+{
+    $email = $datos['email'];
+    $id_referer = $datos['id_padrino'];
+    $referer = sql("SELECT nick FROM usuarios WHERE id_usuario='$id_referer'");
+}
+
+
+
+
+
 ?>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link type="text/css" href="css/registro.css" rel="Stylesheet" />
 
 <div class="wrapper">	
 		<div class="section">
@@ -47,7 +62,7 @@ select_lang();
                                 
 				<input tabindex="5" name="referer" disabled id="email" type="text" class="text" value="<? echo $referer; ?>" />
                                 
-				<label for="email"><?php echo $signup_form['signup_email']; ?></label>
+				<label for="email"><?php echo $signup_form['signup_mail']; ?></label>
                                 <input tabindex="5" name="email" disabled id="email" type="text" class="text" value="<? echo $email; ?>" />
 				<div>
 					<input tabindex="6" name="send" id="send" type="submit" class="submit" value="Enviar formulario" />
