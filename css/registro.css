@@ -17,7 +17,7 @@ margin:0pt;
 padding:0pt;
 vertical-align:baseline;
 }
-/*
+
 body{
 	
 	font-size: 12px;
@@ -27,7 +27,7 @@ body{
 	cursor: default;
 	line-height:50px;
 }
-*/
+
 table{
 	border-collapse: separate;
 	border-spacing: 0pt;
@@ -103,18 +103,18 @@ html,body{
 
 /******* CONTENT *******/
 .wrapper{
-	width: 100%;
+	width: 640px;
 	margin: 0pt auto;
 	padding-top: 10px;
 }
 h1{
-	color: #0000FF;
+	color: #fff;
 	font-size: 26px;
 	line-height: 3em;
 }
 label{
 	display: block;
-	/*color: #e4e1cd;*/
+	color: #e4e1cd;
 	line-height: 2em;
 	font-size: 14px;
 }

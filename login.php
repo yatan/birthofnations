@@ -25,6 +25,10 @@ else
 if($consulta==false)
     die($login_form['login_nomatch2']);
 else
+{
     $_SESSION['id_usuario'] = $consulta;
+    //header("index.php"); <-- Redireccion a la pagina principal
+    
+}
     
 ?>
