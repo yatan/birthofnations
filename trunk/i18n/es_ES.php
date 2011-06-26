@@ -15,9 +15,9 @@ $signup_form = array (
     'signup_title' => "Formulario de Registro"    ,
     'signup_username' => "Nombre de usuario "    ,
     'signup_username_info' => "Caracteres de A-z, mÃ­nimo 5 caracteres "    ,
-    'signup_pass' => 'Contraseña',
+    'signup_pass' => 'Contraseï¿½a',
     'signup_pass_info' => "MÃ­nimo 5 caracteres, mÃ¡ximo 12 caracteres, letras y simbolos"    ,
-    'signup_pass2' => 'Repetir contraseña',
+    'signup_pass2' => 'Repetir contraseï¿½a',
     'signup_pass_info2' => "Debe ser igual a la anterior "    ,
     'signup_referer' => 'Referidor',
     'signup_mail' => "email"    ,
@@ -27,9 +27,16 @@ $signup_form = array (
 
 $login_form = array (
     'login_nonick' => "Falta el usuario",
-    'login_nopass' => "Falta la contraseña",
+    'login_nopass' => "Falta la contraseï¿½a",
     'login_nomatch' => "La combinacion de usuario/password no es la correcta [0x01]" ,
     'login_nomatch2' => "La combinacion de usuario/password no es la correcta [0x02]",
     
 );
+
+$txt = array (
+    'code_error' => "Error en el codigo",
+    'referer_title' => "Alguien te ha invitado a Birth of Nations",
+    'referer_mail1' => "Bienvenido<br/>Recibes este correo porque: ",
+    'referer_mail2' => " te ha invitado al juego.<br/>Para aceptar la invitacion, haz click al siguiente enlace, en caso contrario ignora el correo.<br/>"
+)
 ?>

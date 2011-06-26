@@ -1,7 +1,9 @@
 <?
 
+session_start();
 include_once("config.php");
 include_once("include/config.php");
+
 /*
 
 Script con varias funciones:
@@ -71,6 +73,9 @@ function sql($sql)
 	
 	$result = sql_error($sql);
 	
+        //Si no devuelve nada sale de la funcion
+        if($result==1)
+            return true;
 
 	if (mysql_num_rows($result) == 1)	
 	{
@@ -131,6 +136,34 @@ mail($destino, $titulo, $mensaje, $cabeceras);
 }
 
 
+
+
+function mail_referido($nick_padrino, $destino, $code)
+{
+    global $txt;
+
+// subject
+$titulo = $txt['referer_title'];
+
+// message
+$mensaje = $txt['referer_mail1'].$nick_padrino.$txt['referer_mail2'].$code;
+
+// Para enviar un correo HTML mail, la cabecera Content-type debe fijarse
+$cabeceras  = 'MIME-Version: 1.0' . "\r\n";
+$cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+
+// Cabeceras adicionales
+$cabeceras .= 'From: BirthofNations <admin@birthofnations.com>' . "\r\n";
+
+// Mail it
+mail($destino, $titulo, $mensaje, $cabeceras);
+    
+    
+    
+}
+
+
+
 function anadir_foro($usuario, $password, $email)
 {
     
@@ -151,6 +184,26 @@ $hora = time();
 mysql_query("INSERT INTO smf_members (member_name, date_registered, real_name, passwd, email_address, password_salt) VALUES ('$usuario', '$hora', '$usuario', '$contrasena', '$email', '$salt')");
 
 }
+
+
+function anadir_bugs($usuario, $password, $email)
+{
+    
+$server= $GLOBALS["server"];
+$forouser=$GLOBALS["bugsuser"];; /* Usuario DB foro smf */
+$foropass=$GLOBALS["bugspass"];; /* Password DB foro smf */
+$forodb=$GLOBALS["bugsdb"];; /* DB foro smf */
+    
+$link3=mysql_connect($server, $forouser, $foropass);
+
+mysql_select_db($forodb, $link3);
+
+$contrasena = md5($password);
+
+mysql_query("INSERT INTO mantis_user_table (username, email, password) VALUES ('$usuario', '$email', '$password')");
+
+}
+
 
 function select_lang ()
 {
