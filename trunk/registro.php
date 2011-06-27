@@ -1,16 +1,13 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link type="text/css" href="css/registro.css" rel="Stylesheet" />
-
 <?
-header('Content-Type: text/html; charset=iso-8859-1');
+
 
 
 
 ////registro.php?referer=[array codificado con base64]=>[referer][email]
 if(!isset($_GET['referer']))
     die("Error en el enlace");
+
+
 
 $datos = $_GET['referer'];
 
@@ -35,7 +32,10 @@ else
 
 ?>
 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" href="css/registro.css" rel="Stylesheet" />
 
 <div class="wrapper">	
 		<div class="section">

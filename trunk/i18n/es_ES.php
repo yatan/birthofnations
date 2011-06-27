@@ -37,6 +37,27 @@ $txt = array (
     'code_error' => "Error en el codigo",
     'referer_title' => "Alguien te ha invitado a Birth of Nations",
     'referer_mail1' => "Bienvenido<br/>Recibes este correo porque: ",
-    'referer_mail2' => " te ha invitado al juego.<br/>Para aceptar la invitacion, haz click al siguiente enlace, en caso contrario ignora el correo.<br/>"
+    'referer_mail2' => " te ha invitado al juego.<br/>Para aceptar la invitacion, haz click al siguiente enlace, en caso contrario ignora el correo.<br/>",
+    'mail_bienvenida1' => "<p><img src='http://birthofnations.com/images/titulo.png' alt='logo' width='498' height='99' align='middle' />
+                            </p>
+                            <p>&nbsp;</p>
+                            <p>Bienvenido a Birth of Nations tus datos de registro son:</p>
+                            <p>Usuario: ",
+    'mail_bienvenida2' => "</p>
+    <p>Automaticamente se ha creado la cuenta en el foro y la gestion de bugs con los mismos datos que el juego.</p>
+    <p><u><strong>Foro:</strong></u></p>
+    <p> <a href='http://birthofnations.com/forum'>http://birthofnations.com/forum</a></p>
+    <p><strong><u>Reporte de bugs:</u></strong></p>
+    <p> <a href='http://birthofnations.com/bugs/'>http://birthofnations.com/bugs/</a></p>
+    <p><strong><u>Tickets de soporte:</u></strong></p>
+    <p> <a href='http://birthofnations.com/support/'>http://birthofnations.com/support/</a></p>
+    <p>&nbsp;</p>
+    <p>Disfruta del juego</p>
+    <p> <a href='http://birthofnations.com/'>http://birthofnations.com/</a></p>
+    <p>&nbsp;</p>",
+    'mail_bienvenida_title' => "Bienvenido a Birth of Nations"
+    
+
+    
 )
 ?>
