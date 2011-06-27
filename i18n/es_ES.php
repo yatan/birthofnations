@@ -28,8 +28,8 @@ $signup_form = array (
 $login_form = array (
     'login_nonick' => "Falta el usuario",
     'login_nopass' => "Falta la contraseña",
-    'login_nomatch' => "La combinacion de usuario/password no es la correcta [0x01]" ,
-    'login_nomatch2' => "La combinacion de usuario/password no es la correcta [0x02]",
+    'login_nomatch' => "La combinación de usuario/password no es la correcta [0x01]" ,
+    'login_nomatch2' => "La combinación de usuario/password no es la correcta [0x02]",
     
 );
 
