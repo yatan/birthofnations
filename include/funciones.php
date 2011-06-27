@@ -222,6 +222,20 @@ mysql_query("INSERT INTO mantis_user_table (username, email, password, cookie_st
 
 }
 
+function checkban ($id){
+    
+    include("config.php");
+    
+    $sql = sql("SELECT * FROM bans WHERE ( is_perm = 1 OR fecha_fin > ".time()." ) AND id_usuario = " . $id);
+    // (es permanente O no ha caducado ) Y esta asignado a su id -> Sigue ban
+    if ($sql != false){ //Si ha devuelto algo es que esta ban
+        return true;
+    } else {
+        return false;
+    }
+    
+}
+
 
 function select_lang ()
 {
