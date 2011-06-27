@@ -17,12 +17,12 @@ die($login_form['login_nopass']);
 else
 $pass = md5($_POST['pass']);
 
-$consulta = sql("SELECT nick, id FROM usuarios WHERE nick='$user'");
+$consulta = sql("SELECT nick, id_usuario FROM usuarios WHERE nick='$user'");
 
 if($consulta==false)//El usuario no esta en la BD
     die($login_form['login_nomatch']);
 else
-    $consulta = checkban($consulta['id']);
+    $consulta = checkban($consulta['id_usuario']);
     
 if($consulta == true ) //Si esta ban    
     die($login_form['login_banned']);
