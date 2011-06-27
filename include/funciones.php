@@ -216,8 +216,8 @@ $link3=mysql_connect($server, $forouser, $foropass);
 mysql_select_db($forodb, $link3);
 
 $contrasena = md5($password);
-
-mysql_query("INSERT INTO mantis_user_table (username, email, password) VALUES ('$usuario', '$email', '$password')");
+$rand = rand();
+mysql_query("INSERT INTO mantis_user_table (username, email, password, cookie_string) VALUES ('$usuario', '$email', '$contrasena','$rand')");
 
 }
 
