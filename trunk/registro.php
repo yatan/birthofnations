@@ -59,11 +59,12 @@ else
                                 
                                 <label for="referer"><?php echo $signup_form['signup_referer']; ?> </label>					
 		
+                                <input type="hidden" name="email" value="<? echo $email; ?>" />
+                                <input type="hidden" name="referer" value="<? echo $referer; ?>" />
+				<input tabindex="5" name="referer2" disabled id="referer2" type="text" class="text" value="<? echo $referer; ?>" />
                                 
-				<input tabindex="5" name="referer" disabled id="email" type="text" class="text" value="<? echo $referer; ?>" />
-                                
-				<label for="email"><?php echo $signup_form['signup_mail']; ?></label>
-                                <input tabindex="5" name="email" disabled id="email" type="text" class="text" value="<? echo $email; ?>" />
+				<label for="email2"><?php echo $signup_form['signup_mail']; ?></label>
+                                <input tabindex="5" name="email2" disabled id="email2" type="text" class="text" value="<? echo $email; ?>" />
 				<div>
 					<input tabindex="6" name="send" id="send" type="submit" class="submit" value="Enviar formulario" />
 				</div>

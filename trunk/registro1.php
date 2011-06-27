@@ -42,13 +42,14 @@ $pass = md5($pass1);
 $id_referer = sql("SELECT id_usuario FROM usuarios WHERE nick='$referer'");
 $hoy = date("Y.n.j");
 
-sql("INSERT INTO usuarios('nick','password','email','fecha_registro','id_referer') VALUES ('$nick','$pass','$email','$hoy','$referer')");
+sql("INSERT INTO usuarios(nick,password,email,fecha_registro,id_referer) VALUES ('$user','$pass','$email','$hoy','$referer')");
 
 
 //Registrar usuario al foro <-ULTIMO PASO BD->
 anadir_foro($user,$pass1,$email);
+anadir_bugs($user, $pass1, $email);
 //Se envia el mail de bienvenida
-mail_bienvenida("$nick", "$email");
+mail_bienvenida($user, $email);
 //Muestra mensaje de fin de registro OK
 die("ok")
 
