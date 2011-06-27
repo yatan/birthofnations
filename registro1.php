@@ -48,7 +48,7 @@ sql("INSERT INTO usuarios('nick','password','email','fecha_registro','id_referer
 //Registrar usuario al foro <-ULTIMO PASO BD->
 anadir_foro($user,$pass1,$email);
 //Se envia el mail de bienvenida
-enviar_mail("$email","$nick");
+mail_bienvenida("$nick", "$email");
 //Muestra mensaje de fin de registro OK
 die("ok")
 

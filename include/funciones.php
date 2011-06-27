@@ -44,7 +44,7 @@ function sql_error($sql)
 
     if ($result == false)
     {
-        error_log("SQL error: ".mysql_error()."\n\nOriginal query: $sql\n");
+        //error_log("SQL error: ".mysql_error()."\n\nOriginal query: $sql\n");
         // Remove following line from production servers 
         die("SQL error: ".mysql_error()."\b<br>\n<br>Original query: $sql \n<br>\n<br>");
     }
@@ -110,8 +110,6 @@ select_lang();
 function enviar_mail($destino, $nick)
 {
 
-
-
 global $mail_activation;
 //var_dump($mail_activation);
 // subject
@@ -162,7 +160,26 @@ mail($destino, $titulo, $mensaje, $cabeceras);
     
 }
 
+function mail_bienvenida($nick, $destino)
+{
+    global $txt;
+    
+    $titulo = $txt['mail_bienvenida_title'];
 
+    // message
+    $mensaje = $txt['mail_bienvenida1'].$nick.$txt['mail_bienvenida2'].$code;
+
+    // Para enviar un correo HTML mail, la cabecera Content-type debe fijarse
+    $cabeceras  = 'MIME-Version: 1.0' . "\r\n";
+    $cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+
+    // Cabeceras adicionales
+    $cabeceras .= 'From: BirthofNations <admin@birthofnations.com>' . "\r\n";
+
+    // Mail it
+    mail($destino, $titulo, $mensaje, $cabeceras);
+    
+}
 
 function anadir_foro($usuario, $password, $email)
 {
@@ -210,6 +227,7 @@ function select_lang ()
     global $mail_activation;
     global $signup_form;
     global $login_form;
+    global $txt;
     //Cualquier metodo que vaya aqui para elegir el idioma Y cargar el archivo. De momento solo hay español
       
     include_once("./i18n/es_ES.php");
