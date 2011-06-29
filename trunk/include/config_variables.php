@@ -4,4 +4,6 @@
  * (por ejemplo puntos de experiencia necesarios para subir de nivel, limite de desarrollo tecnológico...
  */
 
+$precio_empresa[1] = 10;
+
 ?>
