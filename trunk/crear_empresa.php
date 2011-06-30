@@ -4,7 +4,7 @@
     include_once("funciones.php");
     include_once("config_variables.php");
     
-if (isset($_POST['tipo']) && $_POST['tipo'] != ""){    
+if (isset($_POST['tipo']) && $_POST['tipo'] != "" && strlen($_POST['tipo'])){
 
     $creador = $_SESSION['id_usuario'];
     
