@@ -42,8 +42,9 @@ $pass = md5($pass1);
 $id_referer = sql("SELECT id_usuario FROM usuarios WHERE nick='$referer'");
 $hoy = date("Y.n.j");
 
-sql("INSERT INTO usuarios(nick,password,email,fecha_registro,id_referer) VALUES ('$user','$pass','$email','$hoy','$referer')");//Añadir a la tabla de usuarios
-sql("INSERT INTO money(gold) VALUES 0 "); //Añadir a la tabla de dinero
+sql("INSERT INTO usuarios(nick,password,email,fecha_registro,id_referer) VALUES ('$user','$pass','$email','$hoy','$referer')");//Aï¿½adir a la tabla de usuarios
+$mi_id=sql("SELECT id_usuario FROM usuarios WHERE nick='$user'");
+sql("INSERT INTO money(id_usuario) VALUES ('$mi_id') "); //Aï¿½adir a la tabla de dinero
 
 //Registrar usuario al foro <-ULTIMO PASO BD->
 anadir_foro($user,$pass1,$email);
