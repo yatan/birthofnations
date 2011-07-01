@@ -2,7 +2,6 @@
 
 session_start();
 include_once("config.php");
-include_once("include/config.php");
 
 /*
 
@@ -245,7 +244,7 @@ function select_lang ()
     global $txt;
     //Cualquier metodo que vaya aqui para elegir el idioma Y cargar el archivo. De momento solo hay español
       
-    include_once("./i18n/es_ES.php");
+    include_once("../i18n/es_ES.php");
     
 }
 
