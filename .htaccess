@@ -1,0 +1,9 @@
+Options +Indexes
+Options +FollowSymLinks
+
+RewriteEngine off
+RewriteBase /birth/
+
+RewriteRule ^/?$ es/ [R]
+RewriteRule ^es/$ index.php?lang=es [L]
+RewriteRule ^es/([a-z]+) index.php?lang=$1 [L]

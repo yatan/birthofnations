@@ -1,8 +1,8 @@
 <?php
     
     session_start();
-    include_once("funciones.php");
-    include_once("config_variables.php");
+    include_once("../include/funciones.php");
+    include_once("../include/config_variables.php");
     
 if (isset($_POST['tipo']) && $_POST['tipo'] != "" && strlen($_POST['tipo']) && isset($_POST['nombre']) && $_POST['nombre'] != "" && strlen($_POST['nombre'])){
 
