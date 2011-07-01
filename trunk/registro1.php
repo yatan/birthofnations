@@ -42,7 +42,7 @@ $pass = md5($pass1);
 $id_referer = sql("SELECT id_usuario FROM usuarios WHERE nick='$referer'");
 $hoy = date("Y.n.j");
 
-sql("INSERT INTO usuarios(nick,password,email,fecha_registro,id_referer) VALUES ('$user','$pass','$email','$hoy','$referer')");//A�adir a la tabla de usuarios
+sql("INSERT INTO usuarios(nick,password,email,fecha_registro,id_referer) VALUES ('$user','$pass','$email','$hoy','$id_referer')");//A�adir a la tabla de usuarios
 $mi_id=sql("SELECT id_usuario FROM usuarios WHERE nick='$user'");
 sql("INSERT INTO money(id_usuario) VALUES ('$mi_id') "); //A�adir a la tabla de dinero
 
