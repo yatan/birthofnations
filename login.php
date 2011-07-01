@@ -1,41 +1,33 @@
 <?php
-
-include("include/funciones.php");
-select_lang();
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-if(!isset($_POST['nick']) || $_POST['nick']=="") //Si no introduce el nick
-die($login_form['login_nonick']);
-else
-$user = $_POST['nick'];
-
-if(!isset($_POST['pass']) || $_POST['pass']=="") //Si no introduce la pass
-die($login_form['login_nopass']);
-else
-$pass = md5($_POST['pass']);
-
-$consulta = sql("SELECT nick, id_usuario FROM usuarios WHERE nick='$user'");
-
-if($consulta==false)//El usuario no esta en la BD
-    die($login_form['login_nomatch']);
-else
-    $consulta = checkban($consulta['id_usuario']);
-    
-if($consulta == true ) //Si esta ban    
-    die($login_form['login_banned']);
-else
-    $consulta = sql("SELECT id_usuario FROM usuarios WHERE nick='$user' AND password='$pass'");
-
-if($consulta==false)//No concuerdan user y pass
-    die($login_form['login_nomatch2']);
-else
-{
-    $_SESSION['id_usuario'] = $consulta;
-    //header("index.php"); <-- Redireccion a la pagina principal
-    
-}
-    
+	include_once("./include/funciones.php");
 ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+    <head>
+        <title>Birth Of Nations</title>
+        <link type="text/css" href="/birth/css/css.css" rel="Stylesheet" /> 
+        <link type="text/css" href="/css/ui-lightness/jquery-ui-1.8.13.custom.css" rel="stylesheet" />
+        <link type="text/css" href="/css/menu_style.css" rel="stylesheet" />
+        <script type="text/javascript" src="js/jquery-1.6.1.min.js"></script>
+        <script type="text/javascript" src="js/jquery-ui-1.8.13.custom.min.js"></script>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body> 
+        <div class="blur">
+            <div class="shadow">
+                <div id="contenido">
+                    <?php include("cabecera.php");?><br/>
+                    <div id="login">
+                        <form action="logear.php" method="POST">
+                            <h2>Login</h2>
+                            <label for="nick">Nick:<input tabindex="1" type="text" name="nick"></label><br>
+                            <label for="pass">Password:<input tabindex="2" type="password" name="pass"></label><br>
+                            <input type="submit">
+                        </form>
+                    </div><!--login-->
+                    <?php include("pie.php");?>
+                </div><!-- contenido -->
+            </div><!-- shadow -->
+        </div><!-- blur -->
+    </body>
+</html>
