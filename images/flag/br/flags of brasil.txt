@@ -1,0 +1,21 @@
+Las regiones estarán encabezadas por la bandera de la ciudad con mayor poblacion (o importancia)
+
+REGION NORTE (REGIÃO NORTE)
+
+Capital: Manaos (MAN)
+
+REGION NORDESTE
+
+Capital: Salvador de Bahía (SAB)
+
+REGION CENTRO OESTE
+
+Capital: Brasilia (BIA)
+
+REGION SUDESTE
+
+Capital: Sao Paulo (SAP)
+
+REGION SUR
+
+Capital: Curitiba (CUR)
