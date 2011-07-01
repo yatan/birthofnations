@@ -1,0 +1,29 @@
+La bandera de la ciudad mas grande de la region (excepto en las regiones autonomas)
+
+NORTE
+
+Capital: Porto (POR)
+
+CENTRO
+
+Capital: Coimbra (COI)
+
+LISBOA
+
+Capital: Lisboa (LIS)
+
+ALENTEJO
+
+Capital: Evora
+
+ALGARVE
+
+Capital: Faro (FAR)
+
+MADEIRA
+
+Capital:
+
+AZORES
+
+Capital: 
