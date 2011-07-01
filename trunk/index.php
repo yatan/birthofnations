@@ -1,13 +1,27 @@
 <?php
-	include_once("./include/funciones.php");
-?>
+
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+include_once("./include/funciones.php");
+
+if(!isset($_SESSION['id_usuario']))
+{
+    include("login.php");
+    exit;
+}
+else
+{
+  ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
     <head>
         <title>Birth Of Nations</title>
-        <link type="text/css" href="css/css.css" rel="Stylesheet" /> 
-        <link type="text/css" href="css/ui-lightness/jquery-ui-1.8.13.custom.css" rel="stylesheet" />
-        <link type="text/css" href="css/menu_style.css" rel="stylesheet" />
+        <link type="text/css" href="/birth/css/css.css" rel="Stylesheet" /> 
+        <link type="text/css" href="/css/ui-lightness/jquery-ui-1.8.13.custom.css" rel="stylesheet" />
+        <link type="text/css" href="/css/menu_style.css" rel="stylesheet" />
         <script type="text/javascript" src="js/jquery-1.6.1.min.js"></script>
         <script type="text/javascript" src="js/jquery-ui-1.8.13.custom.min.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -16,18 +30,35 @@
         <div class="blur">
             <div class="shadow">
                 <div id="contenido">
-                    <?php include("cabecera.php");?><br/>
-                    <div id="login">
-                        <form action="login.php" method="POST">
-                            <h2>Login</h2>
-                            <label for="nick">Nick:<input tabindex="1" type="text" name="nick"></label><br>
-                            <label for="pass">Password:<input tabindex="2" type="password" name="pass"></label><br>
-                            <input type="submit">
-                        </form>
-                    </div><!--login-->
+                    <?php include("cabecera.php"); echo $_SESSION['id_usuario']; ?><br/>
+                    <div id="menu">
+                        <h2>Menu</h2>
+                        
+                        <p><a href="index.php">Inicio</a> - Economia - Militar - Politica - Perfil - <a href="logout.php">Logout</a></p>
+                        <p><a href="index.php?mod=crear_empresa">Crear Empresa</a>
+                        
+                    </div><!--menu-->
+                    <div id="cuerpo">
+                        <?
+                        
+                        if(isset($_GET['mod']))
+                            
+                            switch($_GET['mod'])
+                            {
+                            case "crear_empresa":
+                                include("economico/form_crear_empresa.php");
+                                break;
+                            default :
+                                die("Error");
+                            }
+                        
+                        ?>
+                    </div><!--menu-->
                     <?php include("pie.php");?>
                 </div><!-- contenido -->
             </div><!-- shadow -->
         </div><!-- blur -->
-    </body>
-</html>
+
+  <?
+}
+?>
