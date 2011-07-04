@@ -1,11 +1,14 @@
 <?php
     
-    session_start();
+    //session_start();
     include_once("../include/funciones.php");
     include_once("../include/config_variables.php");
+	
     
-if (isset($_POST['tipo']) && $_POST['tipo'] != "" && strlen($_POST['tipo']) && isset($_POST['nombre']) && $_POST['nombre'] != "" && strlen($_POST['nombre'])){
-
+	
+if (isset($_POST['tipo']) && $_POST['tipo'] != "" && strlen($_POST['tipo'])>0 && isset($_POST['nombre']) && $_POST['nombre'] != "" && strlen($_POST['nombre'])>1)
+{
+	$tipo = $_POST['tipo'];
     $creador = $_SESSION['id_usuario'];
     $nombre = $_POST['nombre'];
     $sql = sql("SELECT id FROM empresas WHERE nombre_empresa = '" . $nombre ."'");//Comprobamos que no este el nombre cogido.
@@ -17,10 +20,13 @@ if (isset($_POST['tipo']) && $_POST['tipo'] != "" && strlen($_POST['tipo']) && i
     
     if ($gold < $precio_empresa[$tipo]) //Si tiene menos gold del que cuesta crearla
         die("No hay sugus");
-    else {
+    else 
+	{
         sql("UPDATE money SET gold = gold - " . $precio_empresa[$tipo] . " WHERE id_usuario = " . $creador ); //Se quita el gold
-        sql("INSERT INTO empresas(id_propietario, tipo, nombre_empresa) VALUES $creador, $tipo, '$nombre' "); //se crea
+        sql("INSERT INTO empresas(id_propietario, tipo, nombre_empresa) VALUES ('$creador', '$tipo', '$nombre') "); //se crea
     }
 
 }
+else
+die("faltan datos");
 ?>
