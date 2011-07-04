@@ -1,6 +1,6 @@
 <?
 
-include("include/funciones.php");
+include("../include/funciones.php");
 
 if(!isset($_POST['username']) || $_POST['username']=="")
 die("Falta usuario");

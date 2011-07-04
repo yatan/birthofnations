@@ -5,11 +5,11 @@
  * and open the template in the editor.
  */
 
-include_once("./include/funciones.php");
+include_once("include/funciones.php");
 
 if(!isset($_SESSION['id_usuario']))
 {
-    include("login.php");
+    include("login/login.php");
     exit;
 }
 else
@@ -30,12 +30,12 @@ else
         <div class="blur">
             <div class="shadow">
                 <div id="contenido">
-                    <?php include("cabecera.php"); echo $_SESSION['id_usuario']; ?><br/>
+                    <?php include("cabecera.php"); echo "<center>Mi id:".$_SESSION['id_usuario']; echo "<br>Idioma: ".$_GET['lang']."</center>"; ?><br/>
                     <div id="menu">
                         <h2>Menu</h2>
                         
-                        <p><a href="index.php">Inicio</a> - Economia - Militar - Politica - Perfil - <a href="logout.php">Logout</a></p>
-                        <p><a href="index.php?mod=crear_empresa">Crear Empresa</a>
+                        <p><a href="./">Inicio</a> - Economia - Militar - Politica - Perfil - <a href="./logout">Logout</a></p>
+                        <p><a href="./crear_empresa">Crear Empresa</a>
                         
                     </div><!--menu-->
                     <div id="cuerpo">

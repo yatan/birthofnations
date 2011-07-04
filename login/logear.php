@@ -1,6 +1,6 @@
 <?php
 
-include("include/funciones.php");
+include("../include/funciones.php");
 select_lang();
 /*
  * To change this template, choose Tools | Templates
@@ -34,7 +34,7 @@ if($consulta==false)//No concuerdan user y pass
 else
 {
     $_SESSION['id_usuario'] = $consulta;
-    header("Location: index.php"); //<-- Redireccion a la pagina principal
+    header("Location: ../"); //<-- Redireccion a la pagina principal
     
 }
     

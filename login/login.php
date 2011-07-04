@@ -18,11 +18,19 @@
                 <div id="contenido">
                     <?php include("cabecera.php");?><br/>
                     <div id="login">
-                        <form action="logear.php" method="POST">
+                        <form action="../login/logear.php" method="POST">
                             <h2>Login</h2>
-                            <label for="nick">Nick:<input tabindex="1" type="text" name="nick"></label><br>
-                            <label for="pass">Password:<input tabindex="2" type="password" name="pass"></label><br>
-                            <input type="submit">
+                            <table border="0">
+                                <tr>
+                            <td><label for="nick">Nick:</td>
+                            <td><input tabindex="1" type="text" name="nick"></label></td>
+                                </tr>
+                                <tr>
+                            <td><label for="pass">Password:</td><td><input tabindex="2" type="password" name="pass"></label></td>
+                               <tr>     
+                            <td><input type="submit"></td>
+                               </tr>
+                            </table>
                         </form>
                     </div><!--login-->
                     <?php include("pie.php");?>

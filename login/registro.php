@@ -12,7 +12,7 @@ if(!isset($_GET['referer']))
 $datos = $_GET['referer'];
 
 
-include_once("include/funciones.php");
+include_once("../include/funciones.php");
 select_lang();
 
 
@@ -35,7 +35,7 @@ else
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link type="text/css" href="css/registro.css" rel="Stylesheet" />
+<link type="text/css" href="../css/registro.css" rel="Stylesheet" />
 
 <div class="wrapper">	
 		<div class="section">

@@ -21,7 +21,7 @@ vertical-align:baseline;
 body{
 	
 	font-size: 12px;
-	background: #262626 url(img/bg.png) repeat scroll 0 0;
+	background: #262626 repeat scroll 0 0;
 	font-family: Myriad Pro, Arial, Helvetica, sans-serif;
 	margin: 0pt;
 	cursor: default;
@@ -123,7 +123,7 @@ label{
 }
 input.text, input.submit{
 	width: 70%;
-	background: #171717 url(img/search.png) no-repeat scroll right 2px;
+	background: #171717 no-repeat scroll right 2px;
 	padding: 8px;
 	color: #8c8c8c;
 	border: 1px solid #393939;
@@ -135,7 +135,7 @@ input.text, input.submit{
 	font-size: 16px;
 }
 input.text.active{
-	background: #343434 url(img/search.png) no-repeat scroll right -43px;
+	background: #343434 no-repeat scroll right -43px;
 	border-color: #000;
 	color: #fff;
 }
@@ -164,7 +164,7 @@ input.error{
 .respuesta_insert{
 	margin: 30px;
 	font: Helvetica 14px white;
-	background: #171717 url(img/search.png) no-repeat scroll right 2px;
+	background: #171717 no-repeat scroll right 2px;
 	padding: 15px;
 	color: #8c8c8c;
 	border: 1px solid #393939;

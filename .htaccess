@@ -1,9 +1,16 @@
 Options +Indexes
 Options +FollowSymLinks
 
-RewriteEngine off
+RewriteEngine on
 RewriteBase /birth/
 
 RewriteRule ^/?$ es/ [R]
+
+RewriteRule ^([a-z]+)/logout$ login/logout.php?lang=$1 [L]
+
 RewriteRule ^es/$ index.php?lang=es [L]
-RewriteRule ^es/([a-z]+) index.php?lang=$1 [L]
+RewriteRule ^en/$ index.php?lang=en [L]
+
+
+RewriteRule ^es/([a-z]+) index.php?lang=es&mod=$1 [L]
+RewriteRule ^en/([a-z]+) index.php?lang=en&mod=$1 [L]
