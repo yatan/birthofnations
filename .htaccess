@@ -2,7 +2,7 @@ Options +Indexes
 Options +FollowSymLinks
 
 RewriteEngine on
-RewriteBase /birth/
+RewriteBase /
 
 RewriteRule ^/?$ es/ [R]
 
@@ -12,5 +12,5 @@ RewriteRule ^es/$ index.php?lang=es [L]
 RewriteRule ^en/$ index.php?lang=en [L]
 
 
-RewriteRule ^es/([a-z]+) index.php?lang=es&mod=$1 [L]
-RewriteRule ^en/([a-z]+) index.php?lang=en&mod=$1 [L]
+RewriteRule ^es/([a-z_]+) index.php?lang=es&mod=$1 [L]
+RewriteRule ^en/([a-z_]+) index.php?lang=en&mod=$1 [L]

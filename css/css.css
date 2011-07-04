@@ -2,10 +2,11 @@
 /* CSS Document */
 /********** BASES *****************/
 body {
-	background-color:#0FF;
+	background-color:#FFF;
     margin: auto;
     max-width: 1000px;
-	background-image: url(../images/temporal.jpg);
+	background-image: url(../images/fondogrande.png);
+	background-repeat: repeat-y center;
 }
 #contenido {
 	background-image: url(../images/bg.gif);
