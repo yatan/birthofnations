@@ -5,14 +5,20 @@ body {
 	background-color:#FFF;
     margin: auto;
     max-width: 1000px;
-	background-image: url(../images/fondogrande.png);
-	background-repeat: repeat-y center;
+	background-image: url(../images/fondogrande.jpg);
+	background-repeat:repeat-x;
 }
 #contenido {
-	background-image: url(../images/bg.gif);
-	background-repeat: repeat-x;
-    border: 1px solid #000; /*border color*/
+
+    background-color: #070f84;
+    border: 7px solid #e7e82f; /*border color*/
     padding: .5em 2ex;
+    color: #e7e82f;
+}
+
+#contenido label{
+    color: #fefee2;
+
 }
 #top {
 	background-image: url(../images/titulo.png);
