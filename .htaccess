@@ -6,11 +6,11 @@ RewriteBase /
 
 RewriteRule ^/?$ es/ [R]
 
-RewriteRule ^([a-z]+)/logout$ login/logout.php?lang=$1 [L]
+RewriteRule ^logout$ login/logout.php [L]
+RewriteRule ^([a-z]+)/empresa/([0-9]+)$ index.php?lang=$1&id_empresa=$2&mod=empresa [L]
 
 RewriteRule ^es/$ index.php?lang=es [L]
 RewriteRule ^en/$ index.php?lang=en [L]
-
 
 RewriteRule ^es/([a-z_]+) index.php?lang=es&mod=$1 [L]
 RewriteRule ^en/([a-z_]+) index.php?lang=en&mod=$1 [L]
