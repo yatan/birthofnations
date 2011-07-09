@@ -1,13 +1,17 @@
 Options +Indexes
 Options +FollowSymLinks
 
+
+
 RewriteEngine on
 RewriteBase /
 
 RewriteRule ^/?$ es/ [R]
 
 RewriteRule ^logout$ login/logout.php [L]
+
 RewriteRule ^([a-z]+)/empresa/([0-9]+)$ index.php?lang=$1&id_empresa=$2&mod=empresa [L]
+RewriteRule ^([a-z]+)/perfil/([0-9]+)$ index.php?lang=$1&id_usuario=$2&mod=perfil [L]
 
 RewriteRule ^es/$ index.php?lang=es [L]
 RewriteRule ^en/$ index.php?lang=en [L]

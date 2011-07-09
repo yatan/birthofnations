@@ -1,6 +1,7 @@
 <?
 
-include_once($_SERVER['DOCUMENT_ROOT']."include/funciones.php");
+include_once($_SERVER['DOCUMENT_ROOT']."/include/funciones.php");
+
 
 if(!isset($_GET['id_empresa']))
     die("Error: id no valido"); //Sustituir por error 404
@@ -41,6 +42,7 @@ class empresa
 $empresa = new empresa($id_empresa);
 
 echo "<h1>Empresa</h1>";
-
+echo"<pre><code>";
 var_dump($empresa);
+echo"</code></pre>";
 ?>
