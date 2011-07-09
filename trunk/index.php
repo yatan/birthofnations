@@ -32,11 +32,7 @@ else
                 <div id="contenido">
                     <?php include("cabecera.php"); echo "<center>Mi id:".$_SESSION['id_usuario']; echo "<br>Idioma: ".$_GET['lang']."</center>"; ?><br/>
                     <div id="menu">
-                        <h2>Menu</h2>
-                        
-                        <p><a href="./">Inicio</a> - Economia - Militar - Politica - Perfil - <a href="/logout">Logout</a></p>
-                        <p><a href="./crear_empresa">Crear Empresa</a>
-                        
+                        <? include("menu.php"); ?>  
                     </div><!--menu-->
                     <div id="cuerpo">
                         <center>
