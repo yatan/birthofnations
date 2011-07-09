@@ -27,7 +27,7 @@ class usuario
         $this->nick = $usuario['nick'];
         $this->exp = $usuario['exp'];
         if($usuario['avatar']=="images/no_avatar.gif")
-        $this->avatar = $_SERVER['DOCUMENT_ROOT']."/images/no_avatar.gif";
+        $this->avatar = "/images/no_avatar.gif";
             else
         $this->avatar = $usuario['avatar'];
         
