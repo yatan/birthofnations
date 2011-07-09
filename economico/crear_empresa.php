@@ -11,7 +11,7 @@ if (isset($_POST['tipo']) && $_POST['tipo'] != "" && strlen($_POST['tipo'])>0 &&
 	$tipo = $_POST['tipo'];
     $creador = $_SESSION['id_usuario'];
     $nombre = $_POST['nombre'];
-    $sql = sql("SELECT id FROM empresas WHERE nombre_empresa = '" . $nombre ."'");//Comprobamos que no este el nombre cogido.
+    $sql = sql("SELECT id_empresa FROM empresas WHERE nombre_empresa = '" . $nombre ."'");//Comprobamos que no este el nombre cogido.
     
     if($sql != false )
         die("El nombre esta cogido");
