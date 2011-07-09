@@ -23,7 +23,9 @@ if (isset($_POST['nombre']) && $_POST['nombre'] != "" && strlen($_POST['nombre']
     else 
 	{
         sql("UPDATE money SET gold = gold - " . $precio_partido . " WHERE id_usuario = " . $creador ); //Se quita el gold
-        sql("INSERT INTO partidos(id_lider, nombre_partido) VALUES ('$creador', '$nombre') "); //se crea
+        $id_pais = sql("SELECT id_nacionalidad FROM usuarios WHERE id_usuario = " . $creador);
+        $id_pais = $id_pais['nacionalidad']; //Sacamos la id del pais de su nacionalidad
+        sql("INSERT INTO partidos(id_lider, id_pais, nombre_partido) VALUES ('$creador', '$id_pais', '$nombre') "); //se crea
     }
 
 }
