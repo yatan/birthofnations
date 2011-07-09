@@ -10,7 +10,7 @@
 		  </li>
 			<li><a href="#">Soporte</a>
                 <ul>
-                <li><a href="/foro">Foro</a></li>
+                <li><a href="/forum">Foro</a></li>
                 <li><a href="/support">Tickets de soporte</a></li>
                 <li><a href="/bugs">Reporte de bugs</a></li>
                 </ul>
