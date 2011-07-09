@@ -52,6 +52,9 @@ else
                             case "empresa":
                                 include("economico/empresa.php");
                                 break;
+                            case "perfil":
+                                include("usuarios/perfil.php");
+                                break;                            
                             default :
                                 die($_GET['mod']); //Default por si se pone algo incorrecto. Al futuro hay que cambiarlo
                             }

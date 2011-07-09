@@ -250,4 +250,3 @@ function select_lang ()
 }
 
 ?>
-
