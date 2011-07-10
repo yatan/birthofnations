@@ -7,7 +7,7 @@ $id_usuario = $_SESSION['id_usuario'];
 if (isset($_GET['oferta']) && $_GET['oferta'] != "" && strlen($_GET['oferta'])>0 ){
     $res = sql("SELECT id_empresa FROM usuarios WHERE id_usuario = " . $id_usuario );
     
-    if ($res['id_empresa'] != 0){//Miramos que no este en inguna empresa
+    if ($res['id_empresa'] != 0){//Miramos que no este en ninguna empresa
         
         die("Necesitas salir de tu trabajo");
     }
