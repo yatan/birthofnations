@@ -10,35 +10,7 @@ if(!isset($_GET['id_empresa']))
 $id_empresa = $_GET['id_empresa'];
 
 
-class empresa
-{
-    public $id_empresa;
-    public $id_propietario;
-    public $nombre_empresa;
-    public $capital;
-    public $stock;
-    public $items_venta;
-    public $precio_venta;
-    public $pais;
-    public $region;
-    public $zona;
-    public $raw;
-    
-    function empresa($id){
-        $empresa = sql("SELECT * FROM empresas WHERE id_empresa='$id'");
-        
-        $this->id_empresa = $id;
-        $this->id_propietario = $empresa['id_propietario'];
-        $this->nombre_empresa = $empresa['nombre_empresa'];
-        $this->capital = $empresa['capital'];
-        $this->stock = $empresa['stock'];
-        $this->items_venta = $empresa['items_venta'];
-        $this->precio_venta = $empresa['precio_venta'];
-        $this->raw = $empresa['raw'];
-    }
-    
-}
-
+//El objeto empresa ya esta declarado ya que este script se llama con include
 $empresa = new empresa($id_empresa);
 
 

@@ -25,7 +25,7 @@ class empresa
     public $raw;
     
     function empresa($id){
-        $empresa = sql("SELECT * FROM empresas WHERE id='$id'");
+        $empresa = sql("SELECT * FROM empresas WHERE id_empresa='$id'");
         
         $this->id_empresa = $id;
         $this->id_propietario = $empresa['id_propietario'];
@@ -42,7 +42,12 @@ class empresa
 $empresa = new empresa($id_empresa);
 
 echo "<h1>Empresa</h1>";
-echo"<pre><code>";
-var_dump($empresa);
-echo"</code></pre>";
+if($empresa->id_propietario == $_SESSION['id_usuario'])
+{   //Se envia por get la id para el include
+   $var = $_GET['id_empresa']=$empresa->id_empresa;
+   include("admin_empresa.php");
+}
+else
+    var_dump($empresa);
+
 ?>
