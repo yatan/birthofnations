@@ -25,7 +25,7 @@ if (isset($_POST['tipo']) && $_POST['tipo'] != "" && strlen($_POST['tipo'])>0 &&
         sql("UPDATE money SET gold = gold - " . $precio_empresa[$tipo] . " WHERE id_usuario = " . $creador ); //Se quita el gold
         sql("INSERT INTO empresas(id_propietario, tipo, nombre_empresa) VALUES ('$creador', '$tipo', '$nombre') "); //se crea
     }
-
+echo "Empresa creada con exito";
 }
 else
 die("faltan datos");
