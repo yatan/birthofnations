@@ -14,7 +14,7 @@ if (isset($_GET['oferta']) && $_GET['oferta'] != "" && strlen($_GET['oferta'])>0
     
     $res = sql("SELECT * FROM mercado_trabajo WHERE id_oferta = " . $_GET['oferta']);
     
-    sql("UPDATE usuarios SET id_empresa = " . $res['id_empresa'] . " WHERE id_usuario = $id_usuario"); //Ponemos al usuario en su empresa
+    sql("UPDATE usuarios SET id_empresa = " . $res['id_empresa'] . ", salario = " . $res['salario'] . ", moneda = " . $res['id_pais'] . " WHERE id_usuario = $id_usuario"); //Ponemos al usuario en su empresa
         
     if ($res['cantidad'] == 1 ){//Si la oferta es la ultima
         sql("DELETE FROM mercado_trabajo WHERE id_oferta = " . $_GET['oferta']);
