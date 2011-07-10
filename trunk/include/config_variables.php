@@ -4,7 +4,20 @@
  * (por ejemplo puntos de experiencia necesarios para subir de nivel, limite de desarrollo tecnolÃ³gico...
  */
 
+//Modulo economico
+
 $precio_empresa[1] = 10; //Entre [] el tipo
+
+function formula_produccion($id){
+    //Whatever formulica...
+    
+    return 1;
+    
+}
+
+//Modulo político
 $precio_partido = 40;
+
+
 
 ?>
