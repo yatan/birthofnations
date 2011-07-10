@@ -8,4 +8,4 @@ session_destroy();
 
 ?>
 
-<script>window.location='index.php';</script>
+<script>window.location='/';</script>
