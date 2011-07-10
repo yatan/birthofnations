@@ -17,7 +17,7 @@
         <li><a href="#">Mercados</a>
         <ul>
             <li><a href="#">Mercado de productos</a></li>
-            <li><a href="#">Mercado laboral</a></li>
+            <li><a href="<? echo "/".$_GET['lang']."/mercado_laboral"; ?>">Mercado laboral</a></li>
             <li><a href="#">Mercado de empresas</a></li>
         </ul>   
         </li>     
