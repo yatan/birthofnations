@@ -16,7 +16,8 @@ class usuario
     public $nick;
     public $exp;
     public $avatar;
-
+    public $id_pais;
+    public $id_region;
     
     function usuario($id){
         $usuario = sql("SELECT * FROM usuarios WHERE id_usuario='$id'");
@@ -26,11 +27,23 @@ class usuario
         $this->id_usuario = $id;
         $this->nick = $usuario['nick'];
         $this->exp = $usuario['exp'];
+        $this->id_pais = $usuario['id_pais'];
+        $this->id_region = $usuario['id_region'];
+        
+        
         if($usuario['avatar']=="images/no_avatar.gif")
         $this->avatar = "/images/no_avatar.gif";
             else
         $this->avatar = $usuario['avatar'];
         
+    }
+    
+    function soy_yo($mi_id)
+    {
+        if($this->id_usuario == $mi_id)
+           return true;
+        else
+           return false;
     }
     
 }
@@ -42,8 +55,13 @@ else
 {
 echo "<h1>Perfil de $usuario->nick</h1>";
 echo "<img src='$usuario->avatar'/>";
-echo"<pre><code>";
-var_dump($usuario);
-echo"</code></pre>";
+
+//Aqui si el perfil es el mio hace el include a
+//pagina para editar cosas, sino se pagina de perfil publico
+if($usuario->soy_yo($_SESSION['id_usuario'])==true)
+    include("mi_perfil.php");
+else
+    var_dump($usuario);
+
 }
 ?>
