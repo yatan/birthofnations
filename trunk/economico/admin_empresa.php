@@ -9,6 +9,7 @@ if(!isset($_GET['id_empresa']))
 
 $id_empresa = $_GET['id_empresa'];
 
+var_dump($empresa);
 
 //El objeto empresa ya esta declarado ya que este script se llama con include
 $empresa = new empresa($id_empresa);
@@ -26,8 +27,20 @@ echo "</table>";
 
 //Mostrar dineros.
 
-$money = sql("SELECT capital_gold, capital FROM empresas WHERE id_empresa = " . $id_empresa);
+$money = sql("SELECT gold FROM empresas WHERE id_empresa = " . $id_empresa);
 
-echo "Hay " . $money['capital'] . " moneda local y " . $money['capital_gold'] . " sugus en la empresa.";
+echo "Hay " . '?' . " moneda local y " . $money['gold'] . " sugus en la empresa.";
 
+
+echo "<h2>".$txt['Poner_ofertas_trabajo']."</h2>" ;
 ?>
+    <div id="ofertas_trabajo">
+        <form action="../economico/poner_oferta.php"  method="POST">
+            <label for="salario">Salario:<input tabindex="1" type="text" name="salario"></label><br>
+            <label for="cantidad">Cantidad:<input tabindex="1" type="text" name="cantidad"></label><br>
+            <input tabindex="1" type="hidden" name="id_empresa" value="<?php echo $empresa->id_empresa; ?>">
+            <input tabindex="1" type="hidden" name="id_pais" value="<?php echo $empresa->pais; ?>">
+            <input type="submit">
+        </form>
+    </div><!--form de creacion de empresas-->
+

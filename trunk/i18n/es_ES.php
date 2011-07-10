@@ -45,8 +45,8 @@ $txt = array (
     <p>Disfruta del juego</p>
     <p> <a href='http://birthofnations.com/'>http://birthofnations.com/</a></p>
     <p>&nbsp;</p>",
-    'mail_bienvenida_title' => "Bienvenido a Birth of Nations"
-    
+    'mail_bienvenida_title' => "Bienvenido a Birth of Nations",
+    'Poner_ofertas_trabajo' => "Poner ofertas de trabajo"
 
     
 )

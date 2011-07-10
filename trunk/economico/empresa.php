@@ -4,7 +4,7 @@ include_once($_SERVER['DOCUMENT_ROOT']."/include/funciones.php");
 
 
 if(!isset($_GET['id_empresa']))
-    die("Error: id no valido"); //Sustituir por error 404
+    die("Error: id no valido"); //Substituir por error 404
 
 
 $id_empresa = $_GET['id_empresa'];
@@ -30,11 +30,12 @@ class empresa
         $this->id_empresa = $id;
         $this->id_propietario = $empresa['id_propietario'];
         $this->nombre_empresa = $empresa['nombre_empresa'];
-        $this->capital = $empresa['capital'];
+        $this->gold = $empresa['gold'];
         $this->stock = $empresa['stock'];
         $this->items_venta = $empresa['items_venta'];
         $this->precio_venta = $empresa['precio_venta'];
         $this->raw = $empresa['raw'];
+        $this->pais = $empresa['pais'];
     }
     
 }
