@@ -17,11 +17,11 @@ $empresa = new empresa($id_empresa);
 
 // Mostrar trabajadores
 
-$workers = sql("SELECT nick FROM usuarios WHERE id_empresa = " . $id_empresa);
+$work = mysql_query("SELECT id_usuario, nick FROM usuarios WHERE id_empresa = " . $id_empresa);
 
 echo "<table>";
-foreach ($workers as $worker ){
-    echo "<tr><td>" . $worker['nick'] . "</td></tr>";
+while ($worker = mysql_fetch_array($work)){
+    echo "<tr><td>" . $worker['nick'] . '</td><td>[<a href="/'. $_GET['lang'].'/despedir.php?id_worker='.$worker['id_usuario'].'">Aceptar</a>]</td></tr>';
 }
 echo "</table>";
 
