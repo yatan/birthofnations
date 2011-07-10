@@ -9,11 +9,25 @@
     </ul>
         </li>
         
-        <li><a href="#">Politico</a>
+        <li><a href="#">Militar</a>
         <ul>
-            <li><a href="#">Crear Partido</a></li>
+            <li><a href="#">Entrenamiento</a></li>
         </ul>
         </li>
+        <li><a href="#">Mercados</a>
+        <ul>
+            <li><a href="#">Mercado de productos</a></li>
+            <li><a href="#">Mercado laboral</a></li>
+            <li><a href="#">Mercado de empresas</a></li>
+        </ul>   
+        </li>     
+        <li><a href="#">Pais</a>
+        <ul>
+            <li><a href="#">Mi pais</a></li>
+            <li><a href="#">Partidos politicos</a></li>
+            <li><a href="#">Clasificacion</a></li>
+        </ul>   
+        </li>        
         <li><a href="#">Soporte</a>
         <ul>
             <li><a href="/forum">Foro</a></li>
