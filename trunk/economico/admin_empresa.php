@@ -35,7 +35,7 @@ echo "Hay " . '?' . " moneda local y " . $money['gold'] . " sugus en la empresa.
 echo "<h2>".$txt['Poner_ofertas_trabajo']."</h2>" ;
 ?>
     <div id="ofertas_trabajo">
-        <form action="../economico/poner_oferta.php"  method="POST">
+        <form action="/economico/poner_oferta.php"  method="POST">
             <label for="salario">Salario:<input tabindex="1" type="text" name="salario"></label><br>
             <label for="cantidad">Cantidad:<input tabindex="1" type="text" name="cantidad"></label><br>
             <input tabindex="1" type="hidden" name="id_empresa" value="<?php echo $empresa->id_empresa; ?>">

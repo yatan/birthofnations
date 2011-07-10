@@ -22,7 +22,7 @@ else
         <div class="blur">
             <div class="shadow">
                 <div id="contenido">
-                    <?php include("cabecera.php"); echo "<center>Mi id:".$_SESSION['id_usuario']; echo "<br>Idioma: ".$_GET['lang']."</center>"; ?><br/>
+                    <?php include("cabecera.php"); ?><br/>
                     <div id="menu">
                         <? include("menu.php"); ?>  
                     </div><!--menu-->
