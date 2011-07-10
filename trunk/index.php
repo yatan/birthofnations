@@ -42,7 +42,10 @@ else
                                 break;
                             case "perfil":
                                 include("usuarios/perfil.php");
-                                break;                            
+                                break;   
+                            case "mercado_laboral":
+                                include("economico/mercado_trabajo.php");
+                                break;                             
                             default :
                                 die($_GET['mod']); //Default por si se pone algo incorrecto. Al futuro hay que cambiarlo
                             }
