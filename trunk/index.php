@@ -45,6 +45,9 @@ else
                                 break;   
                             case "mercado_laboral":
                                 include("economico/mercado_trabajo.php");
+                                break;  
+                             case "empresas":
+                                include("economico/empresas.php");
                                 break;                             
                             default :
                                 die($_GET['mod']); //Default por si se pone algo incorrecto. Al futuro hay que cambiarlo

@@ -62,3 +62,7 @@ body {
    background-color: #fff; /*background color of content*/
    color: #000; /*text color of content*/
 } 
+
+a:link, a:visited{
+    color: chartreuse;
+}
