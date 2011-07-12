@@ -19,7 +19,7 @@
 		padding:0px;
 		}
 	.menu li a{
-		background:#333333 url("images/seperator.gif") bottom right no-repeat;
+		background:#333333 url("../images/seperator.gif") bottom right no-repeat;
 		color:#cccccc;
 		display:block;
 		font-weight:normal;
@@ -30,7 +30,7 @@
 		text-decoration:none;
 		}
 		.menu li a:hover, .menu ul li:hover a{
-			background: #2580a2 url("images/hover.gif") bottom center no-repeat;
+			background: #2580a2 url("../images/hover.gif") bottom center no-repeat;
 			color:#FFFFFF;
 			text-decoration:none;
 			}
@@ -52,7 +52,7 @@
 		
 		}
 	.menu li li {
-		background:url('images/sub_sep.gif') bottom left no-repeat;
+		background:url('../images/sub_sep.gif') bottom left no-repeat;
 		display:block;
 		float:none;
 		margin:0px;
@@ -73,7 +73,8 @@
 		text-align:left;
 		}
 		.menu li ul a:hover, .menu li ul li:hover a{
-			background:#2580a2 url('images/hover_sub.gif') center left no-repeat;
+			/* Imagen al tener el raton encima de los submenus
+                        background:#2580a2 url('images/hover_sub.gif') center left no-repeat;*/
 			border:0px;
 			color:#ffffff;
 			text-decoration:none;
