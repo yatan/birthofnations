@@ -73,8 +73,8 @@
 		text-align:left;
 		}
 		.menu li ul a:hover, .menu li ul li:hover a{
-			/* Imagen al tener el raton encima de los submenus
-                        background:#2580a2 url('images/hover_sub.gif') center left no-repeat;*/
+			/* Imagen al tener el raton encima de los submenus url('images/hover_sub.gif') */
+                        background:#2580a2  center left no-repeat;
 			border:0px;
 			color:#ffffff;
 			text-decoration:none;

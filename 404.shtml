@@ -1,0 +1,19 @@
+<html>
+    <head></head>
+    <body>
+<div id="content" class="narrowcolumn">
+    <h2 class="center">Error 404 - Not Found</h2>
+</div>
+Referer: <!--#echo var="HTTP_REFERER" --><br/>
+URL: <!--#echo var="REQUEST_URI" --><br/>
+Navegador:<!--#echo var="HTTP_USER_AGENT" --><br/>
+Dominio: <!--#echo var="HTTP_HOST" --><br/>
+Error: <!--#echo var="REDIRECT_STATUS" --><br/>
+IP: <!--#echo var="REMOTE_ADDR" --><br/>
+
+
+    </body>
+</html>
+<!-- 
+                                                                                                                                                                                                                                                       
+--> 
