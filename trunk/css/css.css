@@ -9,11 +9,11 @@ body {
 	background-repeat:repeat-x;
 }
 #contenido {
-
-    background-image: url(../images/fondocontenedor.jpg);
-    border: 7px solid #e7e82f; /*border color*/
-    padding: .5em 2ex;
-    color: #e7e82f;
+    background-image: url("../images/fondocontenedor.png");
+    border: 7px solid #334261;
+    color: #E7E82F;
+    margin-top: 2em;
+    padding: 0.5em 2ex;
 }
 
 #contenido label{
@@ -31,10 +31,9 @@ body {
 }
 /********** DIV LOGIN *****************/
 #login{
-	position:relative;
-	top:-51px;
-	left: 400px;
-	width:300px;
+    left: 22em;
+    min-height: 500px;
+    position: relative;
 }
 
 /************* EFECTO SOMBRA ******************/
