@@ -9,7 +9,7 @@
 	color:#8e8e8e;
 	}
 .menu ul{
-	background:url(../images/menu-bg.gif) top left repeat-x;
+	background:url(../images/menu/menu-bg.gif) top left repeat-x;
 	height:43px;
 	list-style:none;
 	margin:0;
@@ -69,7 +69,7 @@
 		clear:left;
 		}
 	.menu .current{
-		background:url(../images/current-bg.gif) top left repeat-x;
+		background:url(../images/menu/current-bg.gif) top left repeat-x;
 		color:#ffffff;
 		}
 
