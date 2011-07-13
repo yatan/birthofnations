@@ -21,11 +21,16 @@ body {
 
 }
 #top {
-	background-image: url(../images/logo3.png);
+/*	background-image: url(../images/logo3.png);
 	background-repeat: no-repeat center top;
 	width: 498px;
 	height: 99px;
-	margin: auto;
+	margin: auto;*/
+            background-image: url("../images/logo3.png");
+    background-repeat: no-repeat;
+    height: 100px;
+    margin: auto;
+    width: 610px;
 }
 #pie {
 }
