@@ -10,7 +10,7 @@ body {
 }
 #contenido {
 
-    background-color: #070f84;
+    background-image: url(../images/fondocontenedor.jpg);
     border: 7px solid #e7e82f; /*border color*/
     padding: .5em 2ex;
     color: #e7e82f;

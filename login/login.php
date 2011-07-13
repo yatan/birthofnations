@@ -5,9 +5,9 @@
 <html>
 <? include("index_head.php"); ?>
     <body> 
-                <div id="contenido" style="opacity:0.5;">
+                <div id="contenido">
                     <?php include("cabecera.php");?><br/>
-                    <div id="login" style="opacity:1;">
+                    <div id="login">
                         <form action="../login/logear.php" method="POST">
                             <h2>Login</h2>
                             <table border="0">
