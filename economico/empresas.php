@@ -18,5 +18,7 @@ foreach ($sql as $empresa) {
     echo "<a href='/".$_GET['lang']."/empresa/".$empresa['id_empresa']."'>".$empresa['nombre_empresa']."</a><br/>";
 }
 ?>
-
+<br/>
+<a style=" background-color:#1E679A ; border: 1px solid #1E679A;" href="<? echo "/".$_GET['lang']."/crear_empresa"; ?>"><font color="#FFFFFF" face="arial, verdana, helvetica">Crear Empresa</font></a>
+<br/>
 <br/>
