@@ -5,8 +5,6 @@
 <html>
 <? include("index_head.php"); ?>
     <body> 
-        <div class="blur">
-            <div class="shadow">
                 <div id="contenido">
                     <?php include("cabecera.php");?><br/>
                     <div id="login">
@@ -27,7 +25,5 @@
                     </div><!--login-->
                     <?php include("pie.php");?>
                 </div><!-- contenido -->
-            </div><!-- shadow -->
-        </div><!-- blur -->
     </body>
 </html>
