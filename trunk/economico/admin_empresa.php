@@ -43,4 +43,20 @@ echo "<h2>".$txt['Poner_ofertas_trabajo']."</h2>" ;
             <input type="submit">
         </form>
     </div><!--form de creacion de empresas-->
+    <hr>
+    <h2>Economia</h2>
+    <table border="0">
+        <tr>
+            <td>Moneda</td><td>Cantidad</td>
+        </tr>
+       <?
+       $sql = sql("SELECT gold, esp, frf FROM empresas WHERE id_empresa = '$empresa->id_empresa'");
+       foreach ($sql as $moneda => $valor) {
+       echo"
+        <tr>
+            <td>$moneda</td><td>$valor</td>
+        </tr>";  
+       }
 
+       ?>
+    </table>
