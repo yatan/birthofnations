@@ -3,8 +3,8 @@
         <li><a href="/" >Home</a></li>
         <li><a href="#" id="current">Economico</a>
     <ul>
-        <li><a href="<? echo "/".$_GET['lang']."/crear_empresa"; ?>">Crear Empresa</a></li>
-        <li><a href="<? echo "/".$_GET['lang']."/empresas"; ?>">Empresa</a></li>
+        <li><a href="#">Trabajar</a></li>
+        <li><a href="<? echo "/".$_GET['lang']."/empresas"; ?>">Mis Empresas</a></li>
         <li><a href="<? echo "/".$_GET['lang']."/perfil/".$_SESSION['id_usuario']; ?>">Perfil</a></li>
     </ul>
         </li>
