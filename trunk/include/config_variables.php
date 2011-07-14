@@ -7,7 +7,7 @@
 //Modulo economico
 
 $precio_empresa[1] = 10; //Entre [] el tipo
-
+$precio_empresa[2] = 20;
 function formula_produccion($id){
     //Whatever formulica...
     
