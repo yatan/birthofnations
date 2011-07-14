@@ -21,7 +21,7 @@ $work = mysql_query("SELECT id_usuario, nick FROM usuarios WHERE id_empresa = " 
 
 echo "<table>";
 while ($worker = mysql_fetch_array($work)){
-    echo "<tr><td>" . $worker['nick'] . '</td><td>[<a href="/'. $_GET['lang'].'/despedir.php?id_worker='.$worker['id_usuario'].'">Aceptar</a>]</td></tr>';
+    echo "<tr><td>" . $worker['nick'] . '</td><td>[<a href="/economico/despedir.php?id_worker='.$worker['id_usuario'].'">Aceptar</a>]</td></tr>';
 }
 echo "</table>";
 
