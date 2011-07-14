@@ -1,6 +1,7 @@
 <?
 
 include_once($_SERVER['DOCUMENT_ROOT']."/include/funciones.php");
+include_once($_SERVER['DOCUMENT_ROOT']."/economico/moneda_local.php");
 
 
 if(!isset($_GET['id_empresa']))
@@ -27,9 +28,13 @@ echo "</table>";
 
 //Mostrar dineros.
 
-$money = sql("SELECT gold FROM empresas WHERE id_empresa = " . $id_empresa);
+$local = sql("SELECT pais FROM empresas WHERE id_empresa = " . $id_empresa);
 
-echo "Hay " . '?' . " moneda local y " . $money['gold'] . " sugus en la empresa.";
+$local = $moneda_local[$local];
+
+$money = sql("SELECT gold, ". $local ." FROM empresas WHERE id_empresa = " . $id_empresa);
+
+echo "Hay " . $money[$local] . " ". $local ." y " . $money['gold'] . " sugus en la empresa.";
 
 
 echo "<h2>".$txt['Poner_ofertas_trabajo']."</h2>" ;
