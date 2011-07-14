@@ -13,3 +13,6 @@ sql("UPDATE usuarios SET id_empresa = 0, salario = 0 WHERE id_usuario = " . $_GE
 
 }
 ?>
+<script>
+    window.history.go(-1);
+</script>
