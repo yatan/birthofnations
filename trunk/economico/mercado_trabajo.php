@@ -6,7 +6,7 @@ $id_pais = 1; //Sea como sea que se seleccione
 
 $ofertas = mysql_query("SELECT * FROM mercado_trabajo WHERE id_pais = " . $id_pais . " ORDER BY salario DESC");
 
-echo "<table><tr><th>Salario</th><th>Puestos</th></tr>";
+echo "<table><tr><th>Empresa</th><th>Salario</th><th>Puestos</th></tr>";
 
 while ($oferta = mysql_fetch_array($ofertas)){
     $sql = sql("SELECT nombre_empresa FROM empresas WHERE id_empresa='".$oferta['id_empresa']."'");
