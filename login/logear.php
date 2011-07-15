@@ -34,6 +34,15 @@ if($consulta==false)//No concuerdan user y pass
 else
 {
     $_SESSION['id_usuario'] = $consulta;
+
+    //Se pone la zona horaria bien
+    date_default_timezone_set('Europe/Madrid');
+    $hora = date("H:i:s"); 
+    $dia = date("Y.n.j");
+    $ip = $_SERVER['REMOTE_ADDR'];
+
+    sql("INSERT INTO log_conexion (id_usuario, ip, date) VALUES ('$consulta','$ip','$dia $hora')");
+    
     header("Location: ../"); //<-- Redireccion a la pagina principal
     
 }
