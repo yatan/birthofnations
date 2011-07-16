@@ -23,6 +23,11 @@ else
             <div class="shadow">
                 <div id="contenido">
                     <?php include("cabecera.php"); ?><br/>
+                    <div id="status">
+                        <center>
+                            <? include("status.php"); ?>
+                        </center>
+                    </div>
                     <div id="menu">
                         <? include("menu.php"); ?>  
                     </div><!--menu-->
