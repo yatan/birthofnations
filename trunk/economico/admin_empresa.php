@@ -26,17 +26,6 @@ while ($worker = mysql_fetch_array($work)){
 }
 echo "</table>";
 
-//Mostrar dineros.
-
-$local = sql("SELECT pais FROM empresas WHERE id_empresa = " . $id_empresa);
-
-$local = $moneda_local[$local];
-
-$money = sql("SELECT gold, ". $local ." FROM empresas WHERE id_empresa = " . $id_empresa);
-
-echo "Hay " . $money[$local] . " ". $local ." y " . $money['gold'] . " sugus en la empresa.";
-
-
 echo "<h2>".$txt['Poner_ofertas_trabajo']."</h2>" ;
 ?>
     <div id="ofertas_trabajo">
@@ -55,11 +44,11 @@ echo "<h2>".$txt['Poner_ofertas_trabajo']."</h2>" ;
             <td>Moneda</td><td>Cantidad</td>
         </tr>
        <?
-       $sql = sql("SELECT gold, esp, frf FROM empresas WHERE id_empresa = '$empresa->id_empresa'");
-       foreach ($sql as $moneda => $valor) {
+       $sql = sql("SELECT * FROM empresas WHERE id_empresa = '$empresa->id_empresa'");
+       foreach ($moneda_local as $id => $nombre) {
        echo"
         <tr>
-            <td>$moneda</td><td>$valor</td>
+            <td>$nombre</td><td>$sql[$nombre]</td>
         </tr>";  
        }
 

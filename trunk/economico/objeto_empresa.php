@@ -24,7 +24,7 @@ class empresa
     public $region;
     public $zona;
     public $raw;
-    public $gold;
+    public $Gold;
     public $ESP;
     public $FRF;
     
@@ -37,7 +37,7 @@ class empresa
         $this->id_propietario = $empresa['id_propietario'];
         $this->nombre_empresa = $empresa['nombre_empresa'];
         $this->tipo = $empresa['tipo'];
-        $this->gold = $empresa['gold'];
+        $this->Gold = $empresa['Gold'];
         $this->stock = $empresa['stock'];
         $this->items_venta = $empresa['items_venta'];
         $this->precio_venta = $empresa['precio_venta'];
