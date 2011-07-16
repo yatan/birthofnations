@@ -22,7 +22,7 @@ $work = mysql_query("SELECT id_usuario, nick FROM usuarios WHERE id_empresa = " 
 
 echo "<table>";
 while ($worker = mysql_fetch_array($work)){
-    echo "<tr><td>" . $worker['nick'] . '</td><td>[<a href="/economico/despedir.php?id_worker='.$worker['id_usuario'].'">Aceptar</a>]</td></tr>';
+    echo "<tr><td>" . $worker['nick'] . '</td><td>[<a href="/economico/despedir.php?id_worker='.$worker['id_usuario'].'">Despedir</a>]</td></tr>';
 }
 echo "</table>";
 
@@ -36,8 +36,22 @@ echo "<h2>".$txt['Poner_ofertas_trabajo']."</h2>" ;
             <input tabindex="1" type="hidden" name="id_pais" value="<?php echo $empresa->pais; ?>">
             <input type="submit">
         </form>
-    </div><!--form de creacion de empresas-->
+    </div><!--form de ofertas de trabajo-->
     <hr>
+    <h3>Puestos ofertados</h3>
+    <table border="0">
+        <tr>
+            <td>Salario</td><td>Cantidad</td>
+        </tr>
+    <?
+    $sql = sql("SELECT id_oferta, salario, cantidad FROM mercado_trabajo WHERE id_empresa = '".$_GET['id_empresa']."' ORDER BY salario DESC");
+    
+    foreach($sql as $oferta){
+        echo "<tr><td>". $oferta['salario'] ."</td><td>". $oferta['cantidad'] .'</td><td>[<a href="/economico/quitar_oferta.php?id_oferta='.$oferta['id_oferta'].'">Quitar</a>]</td></tr>';
+        
+    }
+    
+    ?>
     <h2>Economia</h2>
     <table border="0">
         <tr>
