@@ -19,7 +19,10 @@ function raw_needed($tipo){
     
     switch ($tipo):
         case 1: // Sugus
-            $ret = 2;
+            $ret = 1;
+            break;
+        case 3:
+            $ret = 1;
             break;
         default: 
             $ret = 0;

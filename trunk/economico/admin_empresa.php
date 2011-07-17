@@ -18,11 +18,11 @@ $empresa = new empresa($id_empresa);
 
 // Mostrar trabajadores
 
-$work = mysql_query("SELECT id_usuario, nick FROM usuarios WHERE id_empresa = " . $id_empresa);
+$work = mysql_query("SELECT id_usuario, nick, salario FROM usuarios WHERE id_empresa = " . $id_empresa);
 
 echo "<table>";
 while ($worker = mysql_fetch_array($work)){
-    echo "<tr><td>" . $worker['nick'] . '</td><td>[<a href="/economico/despedir.php?id_worker='.$worker['id_usuario'].'">Despedir</a>]</td></tr>';
+    echo "<tr><td>" . $worker['nick'] . '</td><td>'. $worker['salario'] .'</td><td>[<a href="/economico/despedir.php?id_worker='.$worker['id_usuario'].'">Despedir</a>]</td></tr>';
 }
 echo "</table>";
 
