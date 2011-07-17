@@ -46,9 +46,16 @@ $txt = array (
     <p> <a href='http://birthofnations.com/'>http://birthofnations.com/</a></p>
     <p>&nbsp;</p>",
     'mail_bienvenida_title' => "Bienvenido a Birth of Nations",
+    
+    //Economico
+    
     'Poner_ofertas_trabajo' => "Poner ofertas de trabajo",
     'empresa_tipo1' => "Sugus",
-    'empresa_tipo2' => "Azucar"
+    'empresa_tipo2' => "Azucar",
+    
+    //Usuarios
+    
+    'no_mensajes' => 'No tienes mensajes'
 
     
 )
