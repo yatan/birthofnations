@@ -44,12 +44,21 @@ echo "<h2>".$txt['Poner_ofertas_trabajo']."</h2>" ;
             <td>Salario</td><td>Cantidad</td>
         </tr>
     <?
-    $sql = sql("SELECT id_oferta, salario, cantidad FROM mercado_trabajo WHERE id_empresa = '".$_GET['id_empresa']."' ORDER BY salario DESC");
+    $cantidad = sql("SELECT COUNT(id_empresa) FROM mercado_trabajo WHERE id_empresa ='".$_GET['id_empresa']."'");
     
+    $sql = sql("SELECT id_oferta, salario, cantidad FROM mercado_trabajo WHERE id_empresa = '".$_GET['id_empresa']."' ORDER BY salario DESC");
+    if($cantidad > 1)
+    {
     foreach($sql as $oferta){
         echo "<tr><td>". $oferta['salario'] ."</td><td>". $oferta['cantidad'] .'</td><td>[<a href="/economico/quitar_oferta.php?id_oferta='.$oferta['id_oferta'].'">Quitar</a>]</td></tr>';
         
+        }
     }
+    elseif($cantidad==0)
+        echo "<p>".$txt['no_ofertas_trabajo']."</p>";
+    elseif($cantidad==1)
+        echo "<tr><td>". $sql['salario'] ."</td><td>". $sql['cantidad'] .'</td><td>[<a href="/economico/quitar_oferta.php?id_oferta='.$sql['id_oferta'].'">Quitar</a>]</td></tr>';
+        
     
     ?>
     <h2>Economia</h2>
