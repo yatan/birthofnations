@@ -52,6 +52,7 @@ $txt = array (
     'Poner_ofertas_trabajo' => "Poner ofertas de trabajo",
     'empresa_tipo1' => "Sugus",
     'empresa_tipo2' => "Azucar",
+    'no_ofertas_trabajo' => "No hay ofertas de trabajo",
     
     //Usuarios
     
