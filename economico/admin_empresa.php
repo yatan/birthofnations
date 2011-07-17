@@ -10,7 +10,7 @@ if(!isset($_GET['id_empresa']))
 
 $id_empresa = $_GET['id_empresa'];
 
-var_dump($empresa);
+//var_dump($empresa);
 
 //El objeto empresa ya esta declarado ya que este script se llama con include
 $empresa = new empresa($id_empresa);
