@@ -249,4 +249,21 @@ function select_lang ()
     
 }
 
+function type_company ($tipo) {
+    // 0 raw
+    // 1 Necesita raw
+    
+    switch ($tipo):
+        case 1:
+        case 3:
+            $ret = 1;
+            break;
+        case 2:
+            $ret = 0;
+            break;
+    endswitch;
+        
+    return $ret;
+}
+
 ?>

@@ -15,6 +15,20 @@ function formula_produccion($id){
     
 }
 
+function raw_needed($tipo){
+    
+    switch ($tipo):
+        case 1: // Sugus
+            $ret = 2;
+            break;
+        default: 
+            $ret = 0;
+            break;
+    endswitch;
+    
+    return $ret;
+}
+
 //Modulo político
 $precio_partido = 40;
 
