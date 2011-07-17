@@ -15,6 +15,8 @@ $id_empresa = $_GET['id_empresa'];
 //El objeto empresa ya esta declarado ya que este script se llama con include
 $empresa = new empresa($id_empresa);
 
+echo "<br>Empresa: " . $empresa->nombre_empresa . " (" . $empresa->get_tipo() . ")";
+echo "<br>Stock: " .$empresa->stock . " Raw: " . $empresa->raw;
 
 // Mostrar trabajadores
 
@@ -61,6 +63,8 @@ echo "<h2>".$txt['Poner_ofertas_trabajo']."</h2>" ;
         
     
     ?>
+    </table>
+        
     <h2>Economia</h2>
     <table border="0">
         <tr>
