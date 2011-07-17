@@ -53,7 +53,10 @@ else
                                 break;  
                              case "empresas":
                                 include("economico/empresas.php");
-                                break;                             
+                                break;
+                            case "trabajar":
+                                include("economico/trabajar.php");
+                                break;
                             default :
                                 die($_GET['mod']); //Default por si se pone algo incorrecto. Al futuro hay que cambiarlo
                             }

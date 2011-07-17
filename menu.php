@@ -3,7 +3,11 @@
         <li><a href="/" >Home</a></li>
         <li><a href="#" id="current">Economico</a>
     <ul>
-        <li><a href="#">Trabajar</a></li>
+        <?
+        $id_empresa = sql("SELECT id_empresa FROM usuarios WHERE id_usuario='".$_SESSION['id_usuario']."'");
+        if($id_empresa != "0")
+            echo "<li><a href='/".$_GET['lang']."/empresa/".$id_empresa."'>Trabajar</a></li>";
+        ?>
         <li><a href="<? echo "/".$_GET['lang']."/empresas"; ?>">Mis Empresas</a></li>
         <li><a href="<? echo "/".$_GET['lang']."/perfil/".$_SESSION['id_usuario']; ?>">Perfil</a></li>
     </ul>
