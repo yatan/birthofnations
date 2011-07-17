@@ -56,7 +56,8 @@ $txt = array (
     
     //Usuarios
     
-    'no_mensajes' => 'No tienes mensajes'
+    'no_mensajes' => 'No tienes mensajes',
+    'no_friends' => "Aun no tienes ningun amigo, invita alguno."
 
     
 )
