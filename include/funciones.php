@@ -104,7 +104,46 @@ function sql($sql)
 	}
     return $table;
 	}
+
+        function sql2($sql)
+{
 	
+	$result = sql_error($sql);
+	
+        //Si no devuelve nada sale de la funcion
+        if($result==1)
+            return true;
+
+	if (mysql_num_rows($result) == 1)	
+	{
+		if (mysql_num_fields($result) == 1)
+			{
+				
+			$dato = mysql_fetch_row($result);
+			return $dato[0];
+			
+			}
+		else{
+                    $table = array();
+                    $table[0] = sql_data($result);
+                }
+	
+	}
+	else
+	{
+    
+    $table = array();
+	 if (mysql_num_rows($result) > 0)
+    {
+        $i = 0;
+        while($table[$i] = mysql_fetch_assoc($result)) 
+            $i++;
+        unset($table[$i]);                                                                                  
+    }                                                                                                                                     
+    mysql_free_result($result);
+	}
+    return $table;
+	}
 select_lang();
 
 function enviar_mail($destino, $nick)
