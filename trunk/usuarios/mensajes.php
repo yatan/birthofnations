@@ -25,5 +25,5 @@ echo "<table>";
     }
       
 echo "</table>";
-
+include("enviar_mensaje.php");
 ?>
