@@ -17,7 +17,8 @@ echo "<table>";
     if($cantidad != 0)
     {
     foreach($sql as $msg){
-        echo '<tr><td>[<a href="/usuarios/borrar_mensaje.php?id='. $msg['id'] .'">Borrar</a>]</td><td>' . $msg['nick_emisor'] . ": </td><td>". $msg['mensaje'] ."</td></tr>";
+        $nick = sql ("SELECT nick FROM usuarios WHERE id_usuario = " . $msg['id_emisor']);
+        echo '<tr><td>[<a href="/usuarios/borrar_mensaje.php?id='. $msg['id'] .'">Borrar</a>]</td><td>' . $nick . ": </td><td>". $msg['mensaje'] ."</td></tr>";
         }
     }
     else{
