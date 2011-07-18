@@ -26,7 +26,7 @@ elseif($cantidad>1)
     foreach ($sql as $amigo) {
         
         $usuario = new usuario($amigo['id_amigo2']);
-        echo $usuario->get_nick()."<br/>";
+        echo "<a href='/".$_GET['lang']."/perfil/".$usuario->id_usuario."'>".$usuario->get_nick()."</a><br/>";
         
     }
 }
