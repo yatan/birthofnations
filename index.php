@@ -57,6 +57,9 @@ else
                             case "trabajar":
                                 include("economico/trabajar.php");
                                 break;
+                            case "mensajes":
+                                include("usuarios/mensajes.php");
+                                break;
                             default :
                                 die($_GET['mod']); //Default por si se pone algo incorrecto. Al futuro hay que cambiarlo
                             }
