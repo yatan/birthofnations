@@ -17,12 +17,14 @@ echo "$nick"
 ." - "
 ."<img src='/images/status_bar/gold.gif'/> $gold golds"
 ." - ";
+echo"<a style='none' href='/".$_GET['lang']."/mensajes'>";
 if($mensajes==0 || $mensajes == false)
 echo "<img src='/images/status_bar/no_mail.gif'/> No tienes mensajes nuevos";
 elseif ($mensajes==1) 
 echo "<img src='/images/status_bar/mail.gif'/> Tienes un mensaje nuevo";    
 elseif ($mensajes>1) 
 echo "<img src='/images/status_bar/mail.gif'/> Tienes mensajes nuevos";  
+echo"</a>";
 
 echo " - ";
 

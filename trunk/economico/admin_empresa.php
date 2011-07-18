@@ -81,3 +81,26 @@ echo "<h2>".$txt['Poner_ofertas_trabajo']."</h2>" ;
 
        ?>
     </table>
+    
+    <h3>Dineros</h3>
+    <form id="dineros">
+        <label for="cantidad">Cantidad:</label>
+        <input type="text" name="cantidad" id="cantidad"/>
+        <label for="moneda">Moneda:</label>
+         <select id="moneda" name="moneda">
+          <? 
+          
+          $sql = mysql_query("SELECT * FROM money");
+          for($n=1;$n<mysql_num_fields($sql);$n++) {
+              
+              $mon = mysql_field_name($sql,$n);
+              echo"<option value='1'> $mon </option>";
+              
+          }
+          
+          
+          ?>
+         </select></br>
+        <input type="button" name="retirar" id="retirar" value="Retirar"/>
+        <input type="button" name="ingresar" id="ingresar" value="Ingresar"/>
+    </form>
