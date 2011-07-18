@@ -30,7 +30,8 @@
         
         //Poner que has trabajado
         sql("UPDATE diario SET work = 1 WHERE id_usuario = " . $_SESSION['id_usuario']);
-        
+        //Algun mensaje de confirmacion que se tendra que traducir xD
+        echo "Has producido $producido, vuelve mañana";
     } else {
         echo"no";
     }
