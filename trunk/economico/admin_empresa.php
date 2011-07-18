@@ -22,7 +22,7 @@ echo "<br>Stock: " .$empresa->stock . " Raw: " . $empresa->raw;
 
 $work = mysql_query("SELECT id_usuario, nick, salario FROM usuarios WHERE id_empresa = " . $id_empresa);
 
-echo "<table>";
+echo "<br/><h3>Empleados</h3><table><tr><td>Nick</td><td>Salario</td></tr>";
 while ($worker = mysql_fetch_array($work)){
     echo "<tr><td>" . $worker['nick'] . '</td><td>'. $worker['salario'] .'</td><td>[<a href="/economico/despedir.php?id_worker='.$worker['id_usuario'].'">Despedir</a>]</td></tr>';
 }
