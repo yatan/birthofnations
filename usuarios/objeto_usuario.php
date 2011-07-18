@@ -25,8 +25,8 @@ class usuario
         $this->id_region = $usuario['id_region'];
         
         
-        if($usuario['avatar']=="images/no_avatar.gif")
-        $this->avatar = "/images/no_avatar.gif";
+        if($usuario['avatar']==null)
+        $this->avatar = "http://birthofnations.com/images/no_avatar.gif";
             else
         $this->avatar = $usuario['avatar'];
         
@@ -42,6 +42,10 @@ class usuario
     function get_nick()
     {
         return $this->nick;
+    }
+    function get_url_avatar()
+    {
+        return $this->avatar;
     }
     
 }

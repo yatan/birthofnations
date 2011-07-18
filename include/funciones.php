@@ -105,7 +105,7 @@ function sql($sql)
     return $table;
 	}
 
-        function sql2($sql)
+function sql2($sql)
 {
 	
 	$result = sql_error($sql);
