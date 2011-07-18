@@ -11,10 +11,10 @@ if (isset($_POST['msj']) && $_POST['msj'] != "" && strlen($_POST['msj'])>0 && is
     $msj = $_POST['msj'];
     $emisor = $_SESSION['id_usuario'];
     $receptor = $_POST['nombre'];
-    $sql = sql("SELECT nick FROM usuarios WHERE nick = '" . $receptor ."'");//Comprobamos que existe el receptor
+    $sql = sql("SELECT id_usuario FROM usuarios WHERE nick = '" . $receptor ."'");//Comprobamos que existe el receptor
     
     if($sql != false )
-        sql("INSERT INTO messages (id_emisor, nick_emisor, id_receptor, mensaje, fecha) VALUES ('". $_SESSION['id_usuario'] ."','". $_POST['nombre'] ."','". $sql['id']  ."','". $_POST['msj'] ."', GETDATE() )");
+        sql("INSERT INTO messages (id_emisor, id_receptor, mensaje, fecha) VALUES (". $_SESSION['id_usuario'] .",". $sql  .",'". $_POST['msj'] ."', Now() )");
     else{
         die("No existe ese usuario");
     }
