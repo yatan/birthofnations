@@ -73,10 +73,10 @@ function sql($sql)
 
 
 //Seguridad       
-if(!isset($_GET['pin']))
+if(!isset($_SERVER['argv']))
     die("Error");
 
-$pin = $_GET['pin'];
+$pin = $_SERVER['argv'][1];
 $pin2 = sql("SELECT pin FROM settings");
 
 if($pin != $pin2)
