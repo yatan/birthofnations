@@ -16,7 +16,8 @@ $id_empresa = $_GET['id_empresa'];
 $empresa = new empresa($id_empresa);
 
 echo "<br>Empresa: " . $empresa->nombre_empresa . " (" . $empresa->get_tipo() . ")";
-echo "<br>Stock: " .$empresa->stock . " Raw: " . $empresa->raw;
+echo "<br>Stock: " .$empresa->stock;
+if (type_company($empresa->tipo) != 0) { echo " Raw: " . $empresa->raw; }
 
 // Mostrar trabajadores
 
