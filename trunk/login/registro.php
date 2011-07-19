@@ -66,8 +66,13 @@ else
 				<label for="email2"><?php echo $signup_form['signup_mail']; ?></label>
                                 <input tabindex="5" name="email2" disabled id="email2" type="text" class="text" value="<? echo $email; ?>" />
 				<div>
-					<input tabindex="6" name="send" id="send" type="submit" class="submit" value="Enviar formulario" />
-				</div>
+                                    <?
+                                    if(smtp_online()==true)
+                                     echo "<input tabindex='6' name='send' id='send' type='submit' class='submit' value='Enviar formulario' />";
+                                    else
+                                     echo "<h2>El servidor de correo no esta disponible actualmente, intentalo mas tarde</h2>";
+                                    ?>
+                                </div>
 			</form>
 			
 			

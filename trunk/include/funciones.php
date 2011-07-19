@@ -20,9 +20,8 @@ sql($sql): Ejecuta la sentencia sql, si da error muestra mensaje de error con di
 
 */
 
-function online()
+function mysql_online()
 {
- 
 $ip = "localhost";  
 $puerto = 3306; 
  
@@ -33,8 +32,20 @@ if ($fp=@fsockopen($ip,$puerto,$ERROR_NO,$ERROR_STR,(float)0.5))
         } else {         
             echo "<font color='Red'>OFFLINE</font>";   
         }   
+}
 
-
+function smtp_online()
+{
+$ip = "localhost";  
+$puerto = 26; 
+ 
+if ($fp=@fsockopen($ip,$puerto,$ERROR_NO,$ERROR_STR,(float)0.5))   
+    {   
+    fclose($fp);   
+           return true;  
+        } else {         
+           return false;   
+        }   
 }
 
 function sql_error($sql)
