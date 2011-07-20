@@ -31,7 +31,8 @@ else
     {
     //Zona publica
     //var_dump($usuario);
-    
+    echo "<br/>";
+    echo "<a><img src='/images/friend.png'/>Añadir amigo</a>";
     }
     //Zona tanto publica como privada
     include("friends.php");
