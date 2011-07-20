@@ -8,7 +8,7 @@ $id_usuario = $_SESSION['id_usuario'];
 
 if (isset($_GET['id']) && $_GET['id'] != "" && strlen($_GET['id'])>0 ){
 
-sql("DELETE FROM messages WHERE id = " . $_GET['id']);
+sql("UPDATE messages SET deleted = '1' WHERE id = " . $_GET['id']);
 
 }
 ?>

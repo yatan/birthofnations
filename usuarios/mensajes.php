@@ -9,7 +9,7 @@ include_once($_SERVER['DOCUMENT_ROOT']."/include/funciones.php");
 
 $cantidad = sql("SELECT COUNT(id) FROM messages WHERE id_receptor ='".$_SESSION['id_usuario']."'");
 
-$sql = sql2("SELECT * FROM messages WHERE id_receptor = " . $_SESSION['id_usuario']);
+$sql = sql2("SELECT * FROM messages WHERE id_receptor = " . $_SESSION['id_usuario']." AND deleted='0'");
 
 
 echo "<table>";
