@@ -62,7 +62,10 @@ else
                                 break;
                             case "alertas":
                                 include("usuarios/alerts.php");
-                                break;                            
+                                break;      
+                            case "mercado":
+                                include("economico/mercado_objetos.php");
+                                break;                               
                             default :
                                 die($_GET['mod']); //Default por si se pone algo incorrecto. Al futuro hay que cambiarlo
                             }
