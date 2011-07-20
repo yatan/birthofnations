@@ -25,7 +25,16 @@ $work = mysql_query("SELECT id_usuario, nick, salario FROM usuarios WHERE id_emp
 
 echo "<br/><h3>Empleados</h3><table><tr><td>Nick</td><td>Salario</td></tr>";
 while ($worker = mysql_fetch_array($work)){
-    echo "<tr><td>" . $worker['nick'] . '</td><td>'. $worker['salario'] .'</td><td>[<a href="/economico/despedir.php?id_worker='.$worker['id_usuario'].'">Despedir</a>]</td></tr>';
+    echo "<tr><td>" . $worker['nick'] . '</td><td>'. $worker['salario'] .'</td><td>[<a href="/economico/despedir.php?id_worker='.$worker['id_usuario'].'">Despedir</a>]</td>
+<td>
+<form action="/economico/cambiar_salario.php"  method="POST">
+            <label for="salario"><input tabindex="1" type="text" name="salario"></label><br>
+            <label for="cantidad"><input tabindex="1" type="hidden" name="worker" value="'. $worker['id_usuario'] .'"></label>
+            
+            <input type="submit" value="Cambia salario">
+        </form>
+</td>        
+</tr>';
 }
 echo "</table>";
 
