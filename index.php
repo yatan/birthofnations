@@ -60,6 +60,9 @@ else
                             case "mensajes":
                                 include("usuarios/mensajes.php");
                                 break;
+                            case "alertas":
+                                include("usuarios/alerts.php");
+                                break;                            
                             default :
                                 die($_GET['mod']); //Default por si se pone algo incorrecto. Al futuro hay que cambiarlo
                             }

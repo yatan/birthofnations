@@ -8,6 +8,8 @@
 $nick = sql("SELECT nick FROM usuarios WHERE id_usuario='".$_SESSION['id_usuario']."'");
 $gold = sql("SELECT gold FROM money WHERE id_usuario='".$_SESSION['id_usuario']."'");
 $mensajes = sql("SELECT COUNT(*) FROM messages WHERE id_receptor='".$_SESSION['id_usuario']."' AND leido='0'");
+$alertas = sql("SELECT COUNT(*) FROM alertas WHERE id_receptor='".$_SESSION['id_usuario']."' AND leido='0'");
+
 
 echo "$nick"
 ." "
@@ -29,7 +31,12 @@ echo"</a>";
 echo " - ";
 
 
-echo "Alertas: 0";
+echo"<a style='none' href='/".$_GET['lang']."/alertas'>";
+if($alertas==0 || $alertas == false)
+echo "<img src='/images/status_bar/no_alert.png'/> Alertas: 0";  
+elseif ($alertas>=1) 
+echo "<img src='/images/status_bar/alert.png'/> Alertas nuevas: $alertas";  
+echo"</a>";
 
 
 ?>
