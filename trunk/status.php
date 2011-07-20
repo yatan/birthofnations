@@ -9,11 +9,12 @@ $nick = sql("SELECT nick FROM usuarios WHERE id_usuario='".$_SESSION['id_usuario
 $gold = sql("SELECT gold FROM money WHERE id_usuario='".$_SESSION['id_usuario']."'");
 $mensajes = sql("SELECT COUNT(*) FROM messages WHERE id_receptor='".$_SESSION['id_usuario']."' AND leido='0'");
 $alertas = sql("SELECT COUNT(*) FROM alertas WHERE id_receptor='".$_SESSION['id_usuario']."' AND leido='0'");
+$pais = sql("SELECT name, url_bandera FROM country WHERE idcountry IN (SELECT id_nacionalidad FROM usuarios WHERE id_usuario='".$_SESSION['id_usuario']."')");
 
 
 echo "$nick"
 ." "
-."<img src='/images/flag/es.png'/>"
+."<img alt='bandera' title='".$pais['name']."' src='".$pais['url_bandera']."'/>"
 ." - "
 ."<img src='/images/status_bar/life.gif'/> 100"
 ." - "
