@@ -28,7 +28,7 @@ while ($worker = mysql_fetch_array($work)){
     echo "<tr><td>" . $worker['nick'] . '</td><td>'. $worker['salario'] .'</td><td>[<a href="/economico/despedir.php?id_worker='.$worker['id_usuario'].'">Despedir</a>]</td>
 <td>
 <form action="/economico/cambiar_salario.php"  method="POST">
-            <label for="salario"><input tabindex="1" type="text" name="salario"></label><br>
+            <label for="salario"><input tabindex="1" type="text" name="salario"></label>
             <label for="cantidad"><input tabindex="1" type="hidden" name="worker" value="'. $worker['id_usuario'] .'"></label>
             
             <input type="submit" value="Cambia salario">
