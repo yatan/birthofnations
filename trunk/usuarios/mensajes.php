@@ -11,6 +11,8 @@ $cantidad = sql("SELECT COUNT(id) FROM messages WHERE id_receptor ='".$_SESSION[
 
 $sql = sql2("SELECT * FROM messages WHERE id_receptor = " . $_SESSION['id_usuario']." AND deleted='0'");
 
+//Se ponen todos como leidos
+sql("UPDATE messages SET leido='1' WHERE id_receptor='".$_SESSION['id_usuario']."'");
 
 echo "<table>";
 
