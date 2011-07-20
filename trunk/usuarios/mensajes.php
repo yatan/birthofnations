@@ -17,8 +17,11 @@ echo "<table>";
     if($cantidad != 0)
     {
     foreach($sql as $msg){
-        $nick = sql ("SELECT nick FROM usuarios WHERE id_usuario = " . $msg['id_emisor']);
-        echo '<tr><td>[<a href="/usuarios/borrar_mensaje.php?id='. $msg['id'] .'">Borrar</a>]</td><td>' . $nick . ": </td><td>". $msg['mensaje'] ."</td></tr>";
+        if($msg['id_emisor']==0)
+            $nick="Sistema";
+        else
+            $nick = sql("SELECT nick FROM usuarios WHERE id_usuario = " . $msg['id_emisor']);
+        echo '<tr><td>[<a href="/usuarios/borrar_mensaje.php?id='. $msg['id'] .'">Borrar</a>]</td><td>' . $nick . ": </td><td>". substr($msg['mensaje'], 0, 25)."</td></tr>";
         }
     }
     else{
