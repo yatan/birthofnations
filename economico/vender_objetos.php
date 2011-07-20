@@ -1,0 +1,25 @@
+<?php
+    
+    //session_start();
+    include_once("../include/funciones.php");
+    include_once("../include/config_variables.php");
+	
+if (isset($_POST['cantidad']) && $_POST['cantidad'] != "" && is_numeric($_POST['cantidad']) && isset($_POST['precio']) && $_POST['precio'] != "" && is_numeric($_POST['precio']))
+{
+ 
+    //Sacar datos empresa
+    
+    $empresa = sql("SELECT pais, stock, tipo FROM empresas WHERE id_empresa = " . $_POST['id_empresa']);
+    
+    sql("INSERT INTO mercado_objetos(id_pais, id_empresa, objeto, precio, cantidad) VALUES ('". $empresa['pais'] ."','". $_POST['id_empresa'] ."','". nombre_objeto($empresa['tipo']) ."','". $_POST['precio'] ."','". $_POST['cantidad'] ."') ");
+
+    //Quitar stock de la empresa
+    
+    sql("UPDATE empresas SET stock = stock - ". $_POST['cantidad'] . " WHERE id_empresa = ". $_POST['id_empresa']);
+    
+    echo "Oferta añadida correctamente"; 
+} else {
+    
+    die("Faltan datos");
+}
+?>
