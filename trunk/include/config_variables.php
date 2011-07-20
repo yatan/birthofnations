@@ -32,6 +32,24 @@ function raw_needed($tipo){
     return $ret;
 }
 
+function nombre_objeto($tipo){
+    
+    switch ($tipo):
+        case 1:
+            $ret = "sugus";
+            break;
+        case 2:
+            $ret = "azucar";
+            break;
+        case 3:
+            $ret = "droga";
+            break;
+        
+    endswitch;
+    
+    return $ret;
+}
+
 //Modulo político
 $precio_partido = 40;
 

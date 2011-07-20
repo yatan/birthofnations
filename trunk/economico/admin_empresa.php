@@ -19,6 +19,23 @@ echo "<br>Empresa: " . $empresa->nombre_empresa . " (" . $empresa->get_tipo() . 
 echo "<br>Stock: " .$empresa->stock;
 if (type_company($empresa->tipo) != 0) { echo " Raw: " . $empresa->raw; }
 
+//Vender stock
+if ($empresa->stock != 0){
+    
+    echo <<<EOT
+   <h3>Vender stock</h3>
+<table><tr><td>Cantidad</td><td>Precio</td></tr>
+<form action="/economico/vender_objetos.php"  method="POST">
+            <tr><td><label for="cantida"><input tabindex="1" type="text" name="cantidad"></label></td>
+            <td><label for="precio"><input tabindex="1" type="text" name="precio"></label></td>
+            <td><label for="empresa"><input tabindex="1" type="hidden" name="id_empresa" value=" $empresa->id_empresa "></label></td>
+            <td><input type="submit" value="Vender"></td></tr>
+        </form>
+        </table>
+EOT;
+    
+}
+
 // Mostrar trabajadores
 
 $work = mysql_query("SELECT id_usuario, nick, salario FROM usuarios WHERE id_empresa = " . $id_empresa);
