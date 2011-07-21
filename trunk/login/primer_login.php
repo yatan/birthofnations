@@ -1,11 +1,12 @@
 <?
-include("../index_head.php");
+
 include_once($_SERVER['DOCUMENT_ROOT']."/include/funciones.php");
 
 $pais_actual = sql("SELECT id_pais FROM usuarios WHERE id_usuario='".$_SESSION['id_usuario']."'");
 if($pais_actual != null)
     header("Location: ../");
 
+include("../index_head.php");
 ?>
 <style>
 div.ui-dialog a.ui-dialog-titlebar-close {
