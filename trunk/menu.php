@@ -1,3 +1,12 @@
+<?
+
+$trabajado = sql("SELECT work FROM diario WHERE id_usuario = " . $_SESSION['id_usuario']);
+if($trabajado==1)
+    $trabajado = "<img src='/images/menu/no.png'/>";
+elseif($trabajado==0)
+    $trabajado = "<img src='/images/menu/si.png'/>";
+
+?>
 <div class="menu">
     <ul>
         <li><a href="/" >Home</a></li>
@@ -6,7 +15,7 @@
         <?
         $id_empresa = sql("SELECT id_empresa FROM usuarios WHERE id_usuario='".$_SESSION['id_usuario']."'");
         if($id_empresa != "0")
-            echo "<li><a href='/".$_GET['lang']."/empresa/".$id_empresa."'>Trabajar</a></li>";
+            echo "<li><a href='/".$_GET['lang']."/empresa/".$id_empresa."'>Trabajar $trabajado</a></li>";
         ?>
         <li><a href="<? echo "/".$_GET['lang']."/empresas"; ?>">Mis Empresas</a></li>
         <li><a href="<? echo "/".$_GET['lang']."/perfil/".$_SESSION['id_usuario']; ?>">Perfil</a></li>
