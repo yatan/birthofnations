@@ -14,6 +14,8 @@ if(!isset($_SESSION['id_usuario']))
 }
 else
 {
+    if(sql("SELECT id_pais FROM usuarios WHERE id_usuario='".$_SESSION['id_usuario']."'")==null)
+        header("Location: /login/primer_login.php"); //<-- Redireccion a la pagina principal
   ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
