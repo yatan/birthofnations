@@ -24,15 +24,27 @@ if ($empresa->stock != 0){
     
     echo <<<EOT
    <h3>Vender stock</h3>
-<table><tr><td>Cantidad</td><td>Precio</td></tr>
-<form action="/economico/vender_objetos.php"  method="POST">
+<table id="v_stock"><tr><td>Cantidad</td><td>Precio</td></tr>
+<form id="f_v_stock">
             <tr><td><label for="cantida"><input tabindex="1" type="text" name="cantidad"></label></td>
             <td><label for="precio"><input tabindex="1" type="text" name="precio"></label></td>
             <td><label for="empresa"><input tabindex="1" type="hidden" name="id_empresa" value=" $empresa->id_empresa "></label></td>
-            <td><input type="submit" value="Vender"></td></tr>
+            <td><input type="button" id="vender_stock" value="Vender"></td></tr>
         </form>
         </table>
+        
 EOT;
+    ?>
+        <script>
+    $('#vender_stock').click(function() {
+    $.post("/economico/vender_objetos.php", $("#f_v_stock").serialize(),
+    function(data){
+                    alert(data);
+                    $('#v_stock').hide();
+                  } );
+    });   
+    </script>
+<?
     
 }
 
