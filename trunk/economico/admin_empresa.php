@@ -110,9 +110,9 @@ echo "<h2>".$txt['Poner_ofertas_trabajo']."</h2>" ;
     </table>
     
     <h3>Dineros</h3>
-    <form id="dineros">
+    <form id="dineros" method="POST" action="<? echo $_SERVER['REQUEST_URI']; ?>">
         <label for="cantidad">Cantidad:</label>
-        <input type="text" name="cantidad" id="cantidad"/>
+        <input type="text" name="cantidad" id="cantidad" maxlength="6" width="50%"/>
         <label for="moneda">Moneda:</label>
          <select id="moneda" name="moneda">
           <? 
@@ -121,13 +121,59 @@ echo "<h2>".$txt['Poner_ofertas_trabajo']."</h2>" ;
           for($n=1;$n<mysql_num_fields($sql);$n++) {
               
               $mon = mysql_field_name($sql,$n);
-              echo"<option value='1'> $mon </option>";
+              echo"<option value='$n'> $mon </option>";
               
           }
           
           
           ?>
          </select></br>
-        <input type="button" name="retirar" id="retirar" value="Retirar"/>
-        <input type="button" name="ingresar" id="ingresar" value="Ingresar"/>
+        <input type="submit" name="metodo" id="retirar" value="Retirar"/>
+        <input type="submit" name="metodo" id="ingresar" value="Ingresar"/>
     </form>
+    <!--
+    <script>
+    $('#retirar').click(function() {
+    $.post("dineros_e.php", $("#dineros").serialize()+"&"+"id:<?  ?>",
+    function(data){
+                    alert(data);
+                    window.location.reload();
+                  } );
+    });   
+    
+    $('#ingresar').click(function() {
+    $.post("dineros_e.php", $("#viaje").serialize(),
+    function(data){
+                    alert(data);
+                    window.location.reload();
+                  } );
+    });  
+    </script>
+    -->
+    <?
+    if(isset($_POST['metodo']))
+    {
+        if(!isset($_POST['cantidad']))
+            echo $txt['no_cantidad'];
+        else
+        {
+            $cantidad = $_POST['cantidad'];    
+            $moneda = $_POST['moneda'];
+            $nombre_moneda = $moneda_local[$moneda-1];
+            if($_POST['metodo']=="Ingresar")
+            {
+                if($cantidad<=sql("SELECT $nombre_moneda FROM money WHERE id_usuario='".$_SESSION['id_usuario']."'"))
+                {
+                    //Si el usuario dispone del suficiente dinero, se restara de su monedero y se ingresara en la empresa
+                }
+                    
+            echo $txt['operacion_ok'];
+            }
+            elseif($_POST['metodo']=="Retirar")
+            {
+              echo $txt['operacion_ok'];
+            }
+        }
+    }
+    
+    ?>
