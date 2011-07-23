@@ -58,8 +58,9 @@ $txt = array (
     
     'no_mensajes' => 'No tienes mensajes',
     'no_friends' => "Sin amigos",
-    'no_cantidad' =>"Porfavor introduce cantidad",
-    'operacion_ok' => "La operación se ha realizado correctamente"
+    'no_cantidad' =>"Porfavor introduce cantidad correcta",
+    'operacion_ok' => "La operación se ha realizado correctamente",
+    'me_falta_dinero' => "No dispongo de tanto dinero"
 
     
 )

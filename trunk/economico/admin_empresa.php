@@ -153,7 +153,7 @@ echo "<h2>".$txt['Poner_ofertas_trabajo']."</h2>" ;
     <?
     if(isset($_POST['metodo']))
     {
-        if(!isset($_POST['cantidad']))
+        if(!isset($_POST['cantidad'])||$_POST['cantidad']==""||$_POST['cantidad']<=0)
             echo $txt['no_cantidad'];
         else
         {
@@ -165,13 +165,26 @@ echo "<h2>".$txt['Poner_ofertas_trabajo']."</h2>" ;
                 if($cantidad<=sql("SELECT $nombre_moneda FROM money WHERE id_usuario='".$_SESSION['id_usuario']."'"))
                 {
                     //Si el usuario dispone del suficiente dinero, se restara de su monedero y se ingresara en la empresa
+                    sql("UPDATE money SET $nombre_moneda = $nombre_moneda-$cantidad WHERE id_usuario='".$_SESSION['id_usuario']."'");
+                    sql("UPDATE empresas SET $nombre_moneda = $nombre_moneda+$cantidad WHERE id_empresa=$empresa->id_empresa");
+                    echo $txt['operacion_ok'];
+                    echo "<script type='text/javascript'>setTimeout('document.location.reload()',1000);</script>";
                 }
-                    
-            echo $txt['operacion_ok'];
+                else
+                    echo "<p style='color:red;'>".$txt['me_falta_dinero']."</p>";
             }
             elseif($_POST['metodo']=="Retirar")
             {
-              echo $txt['operacion_ok'];
+              if($cantidad<=sql("SELECT $nombre_moneda FROM empresas WHERE id_empresa='$empresa->id_empresa'"))
+                {
+                    //Si el usuario dispone del suficiente dinero, se restara de su monedero y se ingresara en la empresa
+                    sql("UPDATE money SET $nombre_moneda = $nombre_moneda+$cantidad WHERE id_usuario='".$_SESSION['id_usuario']."'");
+                    sql("UPDATE empresas SET $nombre_moneda = $nombre_moneda-$cantidad WHERE id_empresa=$empresa->id_empresa");
+                    echo $txt['operacion_ok'];
+                    echo "<script type='text/javascript'>setTimeout('document.location.reload()',1000);</script>";
+                }
+                else
+                    echo "<p style='color:red;'>".$txt['me_falta_dinero']."</p>";
             }
         }
     }
