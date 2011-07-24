@@ -17,7 +17,45 @@ echo "<h1>Empresa</h1>";
 //Mostrar link para trabajar si es en esta empresa donde trabajo
 $donde_trabajo = sql("SELECT id_empresa FROM usuarios WHERE id_usuario='".$_SESSION['id_usuario']."'");
 if($id_empresa==$donde_trabajo)
-    echo "<a href='/".$_GET['lang']."/trabajar'>Trabajar</a>";
+{
+    echo "<a id='trabajar' style='background-color:#1E679A ; border: 1px solid #1E679A;' href='#'>Trabajar</a>";
+   ?>
+    <style>
+
+div.ui-dialog a.ui-dialog-titlebar-close {
+display: none;
+}
+</style>
+
+<script>
+	$(function() {
+		$( "#dialog" ).dialog({draggable: false, resizable: false, autoOpen: false, buttons: [
+    {
+        text: "Ok",
+        click: function() { $(this).dialog("close"); window.location.reload(); }
+    }
+]
+});
+	});
+</script>
+
+<div id="dialog" title="Trabajar">
+
+</div>
+
+<script>
+    $('#trabajar').click(function() {
+  	$.post("/economico/trabajar.php",
+        function(data){
+                        $("#dialog").append(data);
+                        $( "#dialog" ).dialog('open');
+                      } );
+   
+    });
+</script>
+<?
+}
+    
 //Ahora es un link, pero mas tarde se podria mostrar con show dialog los resultados del trabajo
 
 
