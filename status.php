@@ -12,7 +12,7 @@ $alertas = sql("SELECT COUNT(*) FROM alertas WHERE id_receptor='".$_SESSION['id_
 $pais = sql("SELECT name, url_bandera FROM country WHERE idcountry IN (SELECT id_nacionalidad FROM usuarios WHERE id_usuario='".$_SESSION['id_usuario']."')");
 
 
-echo "$nick"
+echo "<a href='/".$_GET['lang']."/perfil/".$_SESSION['id_usuario']."'>$nick</a>"
 ." "
 ."<img alt='bandera' title='".$pais['name']."' src='".$pais['url_bandera']."'/>"
 ." - "
