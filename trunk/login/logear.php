@@ -43,6 +43,10 @@ else
 
     sql("INSERT INTO log_conexion (id_usuario, ip, date) VALUES ('$consulta','$ip','$dia $hora')");
     
+    //Asignacion sesion de admin
+    if(sql("SELECT is_admin FROM usuarios WHERE id_usuario='$consulta'")==1)
+        $_SESSION['is_admin'] = 1;
+    
     if(sql("SELECT id_pais FROM usuarios WHERE id_usuario='".$_SESSION['id_usuario']."'")!=null)
         header("Location: ../"); //<-- Redireccion a la pagina principal
     else
