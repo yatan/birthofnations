@@ -25,13 +25,19 @@ if($id_empresa==$donde_trabajo)
 div.ui-dialog a.ui-dialog-titlebar-close {
 display: none;
 }
+.ui-dialog .ui-dialog-buttonpane { 
+    text-align: center;
+}
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset { 
+    float: none;
+}
 </style>
 
 <script>
 	$(function() {
 		$( "#dialog" ).dialog({draggable: false, resizable: false, autoOpen: false, buttons: [
     {
-        text: "Ok",
+        text: "Aceptar",
         click: function() { $(this).dialog("close"); window.location.reload(); }
     }
 ]

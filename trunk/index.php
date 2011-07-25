@@ -67,7 +67,10 @@ else
                                 break;      
                             case "mercado":
                                 include("economico/mercado_objetos.php");
-                                break;                               
+                                break;      
+                            case "info_pais":
+                                include("politico/info_pais.php");
+                                break;                             
                             default :
                                 die($_GET['mod']); //Default por si se pone algo incorrecto. Al futuro hay que cambiarlo
                             }
