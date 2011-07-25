@@ -7,7 +7,7 @@
 
 include_once("include/funciones.php");
 //Comrpobacion si el juego esta en mantenimiento
-if(sql("SELECT mantenimiento FROM settings")=="1")
+if(sql("SELECT mantenimiento FROM settings")=="1" && !isset($_SESSION['is_admin']))
 {
     include("login/mantenimiento.php");
     die();    
