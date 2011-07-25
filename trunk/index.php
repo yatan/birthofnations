@@ -6,6 +6,12 @@
  */
 
 include_once("include/funciones.php");
+//Comrpobacion si el juego esta en mantenimiento
+if(sql("SELECT mantenimiento FROM settings")=="1")
+{
+    include("login/mantenimiento.php");
+    die();    
+}
 
 if(!isset($_SESSION['id_usuario']))
 {
