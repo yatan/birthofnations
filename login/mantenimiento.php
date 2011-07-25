@@ -1,4 +1,5 @@
 <?
+include_once($_SERVER['DOCUMENT_ROOT']."/include/funciones.php");
 include("/index_head.php");
 ?>
 
@@ -14,10 +15,10 @@ display: none;
 	});
 </script>
 
-<div id="dialog" title="Modo mantenimiento">
-	<center><p>El juego se encuntra en mantenimiento.</p>
-        <p>Para visitar el foro use el siguiente link:</p>
-        <p><a href="/forum/">Acceder al foro</a></font></p>
+<div id="dialog" title="<? echo $txt['mantenimiento_1']; ?>">
+	<center><p><? echo $txt['mantenimiento_2']; ?></p>
+        <p><? echo $txt['mantenimiento_3']; ?></p>
+        <p><a href="/forum/"><? echo $txt['mantenimiento_4']; ?></a></p>
 </div>
 
 <?
