@@ -60,7 +60,13 @@ $txt = array (
     'no_friends' => "Sin amigos",
     'no_cantidad' =>"Porfavor introduce cantidad correcta",
     'operacion_ok' => "La operación se ha realizado correctamente",
-    'me_falta_dinero' => "No dispongo de tanto dinero"
+    'me_falta_dinero' => "No dispongo de tanto dinero",
+    
+    //Pagina mantenimiento
+    'mantenimiento_1' => "Modo mantenimiento",
+    'mantenimiento_2' => "El juego se encuntra en mantenimiento.",
+    'mantenimiento_3' => "Para visitar el foro use el siguiente link:",
+    'mantenimiento_4' => "Acceder al foro"
 
     
 )
