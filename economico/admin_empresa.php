@@ -16,6 +16,15 @@ $id_empresa = $_GET['id_empresa'];
 $empresa = new empresa($id_empresa);
 
 echo "<br>Empresa: " . $empresa->nombre_empresa . " (" . $empresa->get_tipo() . ")";
+
+echo <<<EOT
+<form id="cambiar_nombre_empresa" action="/economico/cambiar_nombre_empresa.php"  method="POST">
+            <label for="nuevo_nombre"><input tabindex="1" type="text" name="nuevo_nombre"></label>
+            <label for="empresa"><input tabindex="1" type="hidden" name="id_empresa" value=" $empresa->id_empresa "></label>
+            <input type="button" id="cambiar_nombre" value="Cambiar">
+        </form>
+EOT;
+
 echo "<br>Stock: " .$empresa->stock;
 if (type_company($empresa->tipo) != 0) { echo " Raw: " . $empresa->raw; }
 
@@ -112,6 +121,9 @@ echo "<h2>".$txt['Poner_ofertas_trabajo']."</h2>" ;
        <?
        $sql = sql("SELECT * FROM empresas WHERE id_empresa = '$empresa->id_empresa'");
        foreach ($moneda_local as $id => $nombre) {
+           
+       if ($sql[$nombre] == 0 ) {continue; }    
+           
        echo"
         <tr>
             <td>$nombre</td><td>$sql[$nombre]</td>
