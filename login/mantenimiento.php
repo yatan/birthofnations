@@ -1,6 +1,6 @@
 <?
 include_once($_SERVER['DOCUMENT_ROOT']."/include/funciones.php");
-include("/index_head.php");
+include($_SERVER['DOCUMENT_ROOT']."/index_head.php");
 ?>
 
 <style>

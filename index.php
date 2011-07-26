@@ -9,12 +9,12 @@ include_once("include/funciones.php");
 //Comrpobacion si el juego esta en mantenimiento
 if(sql("SELECT mantenimiento FROM settings")=="1" && !isset($_SESSION['is_admin']))
 {
-    include("login/mantenimiento.php");
+    include($_SERVER['DOCUMENT_ROOT']."/login/mantenimiento.php");
     die();    
 }
-elseif($_SESSION['is_admin']!="1")
+elseif(isset($_SESSION['is_admin']) && $_SESSION['is_admin']!="1")
 {
-    include("login/mantenimiento.php");
+    include($_SERVER['DOCUMENT_ROOT']."/login/mantenimiento.php");
     die();    
 }
 if(!isset($_SESSION['id_usuario']))
