@@ -26,6 +26,7 @@ foreach ($sql as $empresa) {
 }
 ?>
 <br/>
-<a style=" background-color:#1E679A ; border: 1px solid #1E679A;" href="<? echo "/".$_GET['lang']."/crear_empresa"; ?>"><font color="#FFFFFF" face="arial, verdana, helvetica">Crear Empresa</font></a>
+<a style=" background-color:#1E679A ; border: 1px solid #1E679A;" ahref="<? //echo "/".$_GET['lang']."/crear_empresa"; ?>"><font color="#FFFFFF" face="arial, verdana, helvetica">Crear Empresa</font></a>
+<p>Creacion de empresas desactivado</p>
 <br/>
 <br/>
