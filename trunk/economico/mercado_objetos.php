@@ -19,18 +19,38 @@ else
 <script language="javascript">
 $(document).ready(function(e) {
 try {
-$("select").msDropDown();
+$("#pais").msDropDown();
 } catch(e) {
 alert(e.message);
 }
 });
+function cambiar_pais(arg) {
+	window.location = '/<? echo $_GET['lang']."/mercado/sugus/"; ?>'+arg+'/<? echo "0"; ?>';
+}
 </script>
 
-  <select style="width:200px;" name="webmenu" id="webmenu" onchange="showValue(this.value)">
-    <option value="calendar" selected="selected" title="/images/flag/es.png">Spain</option>
-    <option value="shopping_cart"  selected="selected" title="/images/flag/fr.png">France</option>
+<select style="width:200px;" name="pais" id="pais" onchange="cambiar_pais(this.value)">
+<?
+        $sql = sql("SELECT idcountry, name, url_bandera FROM country");
+        foreach ($sql as $pais1) {
+            if($pais1['idcountry']==sql("SELECT id_pais FROM usuarios WHERE id_usuario='".$_SESSION['id_usuario']."'") && !isset($_GET['pais']))
+                $seleccionado = "selected='selected'";
+            elseif($pais1['idcountry']==$_GET['pais'])
+                $seleccionado = "selected='selected'";
+            else
+                $seleccionado = "";
+            
+            echo "<option title='".$pais1['url_bandera']."' $seleccionado value='".$pais1['idcountry']."'>".$pais1['name']."</option>";
+        }
+?>
+</select>
+<br/>
+<!-- Seleccion de objeto
+  <select style="width:200px;" name="objeto" id="objeto" onchange="showValue(this.value)">
+    <option value="calendar" selected="selected" title="/images/flag/es.png">Sugus</option>
+    <option value="shopping_cart"  selected="selected" title="/images/flag/fr.png">Drogas</option>
   </select>
-
+-->
 <?
 echo "<h1>Mercado de objetos de: ".sql("SELECT name FROM country WHERE idcountry='$pais'")."</h1>";
 
