@@ -14,7 +14,12 @@
     
     $raw = $producido * raw_needed($empresa['tipo']);
     
-    if($empresa[$moneda_local[$datos['moneda']]] > $datos['salario'] && $diario == 0 && ( type_company($empresa['tipo']) == 0  || $empresa['raw'] >= $raw) ){
+    if($empresa[$moneda_local[$datos['moneda']]] > $datos['salario'] )
+    {
+        if($diario == 0)
+        {
+            if(type_company($empresa['tipo']) == 0  || $empresa['raw'] >= $raw)
+                {
         ////Comprobamos que haya dinero Y  no haya trabajado Y (no necesite O tenga suficiente) raw.
 
         //Quitar dinero de la empresa y meter produccion
@@ -32,7 +37,10 @@
         sql("UPDATE diario SET work = 1 WHERE id_usuario = " . $_SESSION['id_usuario']);
         //Algun mensaje de confirmacion que se tendra que traducir xD
         echo "Has producido $producido, vuelve mañana";
-    } else {
-        echo"no";
+             } 
+             else echo "Falta raw en la empresa";
+         }
+         else echo "Hoy ya has trabajado";
     }
+    else echo "Falta dinero en la empresa para pagarte";
 ?>
