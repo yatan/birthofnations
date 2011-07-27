@@ -61,6 +61,10 @@ $txt = array (
     'no_cantidad' =>"Porfavor introduce cantidad correcta",
     'operacion_ok' => "La operaciÃ³n se ha realizado correctamente",
     'me_falta_dinero' => "No dispongo de tanto dinero",
+    'add_friend_head' => "Peticion de amistad",
+    'add_friend' => "quiere ser tu amigo. ¿Aceptas?",
+    'si' => "Si",
+    'no' => 'No',
     
     //Pagina mantenimiento
     'mantenimiento_1' => "Modo mantenimiento",

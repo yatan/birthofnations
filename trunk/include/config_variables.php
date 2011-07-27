@@ -4,6 +4,10 @@
  * (por ejemplo puntos de experiencia necesarios para subir de nivel, limite de desarrollo tecnológico...
  */
 
+//Modulo general
+
+$friendship_expire = 86400; //Tiempo que debe transcurrir paara que puedas reenviar una peticion de amistad
+
 //Modulo economico
 
 $precio_empresa[1] = 10; //Entre [] el tipo

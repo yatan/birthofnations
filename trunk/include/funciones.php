@@ -2,7 +2,7 @@
 
 session_start();
 include_once("config.php");
-//include_once("include/config.php");
+select_lang();
 
 /*
 
@@ -155,7 +155,6 @@ function sql2($sql)
 	}
     return $table;
 	}
-select_lang();
 
 function enviar_mail($destino, $nick)
 {
@@ -329,5 +328,6 @@ function obj_to_id ($obj){
     
     return $ret;
 }
+
 
 ?>
