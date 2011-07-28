@@ -23,7 +23,7 @@ echo "<table>";
             $nick="Sistema";
         else
             $nick = sql("SELECT nick FROM usuarios WHERE id_usuario = " . $msg['id_emisor']);
-        echo '<tr><td>[<a href="/usuarios/borrar_mensaje.php?id='. $msg['id'] .'">Borrar</a>]</td><td>' . $nick . ": </td><td>". substr($msg['mensaje'], 0, 25)."</td></tr>";
+        echo '<tr><td>[<a href="/usuarios/borrar_mensaje.php?id='. $msg['id'] .'">Borrar</a>]</td><td>' . $nick . ": </td><td>". substr($msg['mensaje'], 0, 1000)."</td></tr>";
         }
     }
     else{
