@@ -23,7 +23,7 @@ if (isset($_GET['id']) && $_GET['id'] != "" && strlen($_GET['id']) > 0) {
     $id2 = $_GET['id']; //Recibe
 //Buscamos por la tabla
 
-    $sql = sql("SELECT * FROM friends WHERE ( id_amigo1 = " . $id1 . " AND id_amigo2 = " . $id2 . " ) OR ( id_amigo1 = " . $id2 . " AND id_amigo2 = " . $id1);
+    $sql = sql("SELECT * FROM friends WHERE ( id_amigo1 = " . $id1 . " AND id_amigo2 = " . $id2 . " ) OR ( id_amigo1 = " . $id2 . " AND id_amigo2 = " . $id1 . " )");
     $time = time();
     if ($sql == false) {//No estan en la tabla.
         sql("INSERT INTO friends(id_amigo1,id_amigo2,peticion,desde) VALUES ( $id1 , $id2 , " . $_SESSION['id_usuario'] . " , $time )");
@@ -32,7 +32,7 @@ if (isset($_GET['id']) && $_GET['id'] != "" && strlen($_GET['id']) > 0) {
 //Si ha pasado X tiempo la borramos y reenviamos.
         if ($sql['desde'] + $friendship_expire < time()) {
 
-            sql("UPDATE friends SET desde = " . $time . " WHERE ( id_amigo1 = " . $id1 . " AND id_amigo2 = " . $id2 . " ) OR ( id_amigo1 = " . $id2 . " AND id_amigo2 = " . $id1);
+            sql("UPDATE friends SET desde = " . $time . " WHERE ( id_amigo1 = " . $id1 . " AND id_amigo2 = " . $id2 . " ) OR ( id_amigo1 = " . $id2 . " AND id_amigo2 = " . $id1 . " )");
             send_friend_alert($_SESSION['id_usuario'], $_GET['id']);
         } else {
             die("Debes esperar para otra peticion enviar");
