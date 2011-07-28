@@ -18,7 +18,7 @@ elseif($cantidad==1)
 {
     $sql = sql("SELECT id_amigo2 FROM friends WHERE id_amigo1='$id_usuario'");
     $usuario = new usuario($sql);
-    echo $usuario->get_nick()."<br/>";
+    echo "<a href='/".$_GET['lang']."/perfil/".$usuario->id_usuario."'>".$usuario->get_nick()."</a><br/>";
 }
 elseif($cantidad>1)
 {
