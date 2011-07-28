@@ -54,13 +54,13 @@ if (isset($_GET['ac']) && $_GET['ac'] != "" && strlen($_GET['ac']) > 0 && isset(
         die("No hay ni peticion ni leches");
     }
 
-    if ($sql['peticion'] == 0) {
+    if ($sql['peticion'] == 1) {
         // El que envió la peticion intenta aceptarla O ya son amigos
         die("O sois amigos o no puedes aceptarla");
     } else {
 
-        if ($_GET['ac'] == 'si') {
-
+        if ($_GET['ac'] == 'si') {//Aceptar
+            sql("INSERT INTO friends (id_amigo1, id_amigo2, peticion, desde) VALUES (" . $id2 . "," . $id1 . ",0,Now()) ");
             sql("UPDATE friends SET peticion = 1, desde = Now() WHERE id_amigo1 = " . $id1 . " AND id_amigo2 = " . $id2);
         } elseif ($_GET['ac'] == 'no') {//Rechazar
             sql("UPDATE friends SET peticion = 2, desde = Now() WHERE id_amigo1 = " . $id1 . " AND id_amigo2 = " . $id2);
