@@ -55,7 +55,7 @@ if (isset($_GET['ac']) && $_GET['ac'] != "" && strlen($_GET['ac']) > 0 && isset(
     }
 
     if ($sql['peticion'] == 1) {
-        // El que envió la peticion intenta aceptarla O ya son amigos
+        // El que enviï¿½ la peticion intenta aceptarla O ya son amigos
         die("O sois amigos o no puedes aceptarla");
     } else {
 
