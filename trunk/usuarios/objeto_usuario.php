@@ -47,6 +47,15 @@ class usuario
     {
         return $this->avatar;
     }
+    function somos_amigos($mi_id)
+    {
+        $somos = sql("SELECT id_amigo2 FROM friends WHERE id_amigo1='$mi_id' AND id_amigo2='$this->id_usuario'");
+        if($somos == true)
+            return true;
+        else
+            return false;
+                
+    }
     
 }
 
