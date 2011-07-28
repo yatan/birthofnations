@@ -40,8 +40,9 @@ else
     $hora = date("H:i:s"); 
     $dia = date("Y.n.j");
     $ip = $_SERVER['REMOTE_ADDR'];
+    $navegador = $_SERVER['HTTP_USER_AGENT'];
 
-    sql("INSERT INTO log_conexion (id_usuario, ip, date) VALUES ('$consulta','$ip','$dia $hora')");
+    sql("INSERT INTO log_conexion (id_usuario, ip, date, navegador) VALUES ('$consulta','$ip','$dia $hora','$navegador')");
     
     //Asignacion sesion de admin
     if(sql("SELECT is_admin FROM usuarios WHERE id_usuario='$consulta'")==1)
