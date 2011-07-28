@@ -57,6 +57,20 @@ EOT;
     
 }
 
+//Mostrar que estamos vendiendo actualmente
+
+echo "<h3>Ventas</h3>";
+$ventas = sql2("SELECT id_pais, cantidad, precio FROM mercado_objetos WHERE id_empresa='".$id_empresa."'");
+
+echo "<table align='center' border='0'><tr align='center'><td>Pais</td><td>Cantidad</td><td>Precio</td><td>Cancelar</td></tr>";
+
+foreach ($ventas as $venta) {
+   echo "<tr align='center'><td>".sql("SELECT name FROM country WHERE idcountry='".$venta['id_pais']."'")."</td><td>".$venta['cantidad']."</td><td>".$venta['precio']."</td></tr>";
+}
+
+echo "</table>";
+
+
 // Mostrar trabajadores
 
 $work = mysql_query("SELECT id_usuario, nick, salario FROM usuarios WHERE id_empresa = " . $id_empresa);
