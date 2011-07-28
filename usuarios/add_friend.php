@@ -26,7 +26,7 @@ if (isset($_GET['id']) && $_GET['id'] != "" && strlen($_GET['id']) > 0) {
     $sql = sql("SELECT * FROM friends WHERE ( id_amigo1 = " . $id1 . " AND id_amigo2 = " . $id2 . " ) OR ( id_amigo1 = " . $id2 . " AND id_amigo2 = " . $id1 . " )");
     $time = time();
     if ($sql == false) {//No estan en la tabla.
-        sql("INSERT INTO friends(id_amigo1,id_amigo2,peticion,desde) VALUES ( $id1 , $id2 , " . $_SESSION['id_usuario'] . " , $time )");
+        sql("INSERT INTO friends(id_amigo1,id_amigo2,peticion,desde) VALUES ( $id1 , $id2 , 0 , $time )");
         send_friend_alert($id1, $id2);
     } else {//O son amigos o hay una peticion 
 //Si ha pasado X tiempo la borramos y reenviamos.
@@ -50,10 +50,11 @@ if (isset($_GET['ac']) && $_GET['ac'] != "" && strlen($_GET['ac']) > 0 && isset(
     $sql = sql("SELECT id_amigo1, peticion FROM friends WHERE id_amigo1 = " . $id1 . " AND id_amigo2 = " . $id2 . " AND peticion = 0");
 
     if ($sql == false) {
-        die("No hay ni petiicon ni leches");
+        //O no hay peticion o el que recibe la peticion no es el SESSION['id_usuario']
+        die("No hay ni peticion ni leches");
     }
 
-    if ($sql['id_amigo1'] == $_SESSION['id_usuario'] || $sql['peticion'] == 0) {
+    if ($sql['peticion'] == 0) {
         // El que envió la peticion intenta aceptarla O ya son amigos
         die("O sois amigos o no puedes aceptarla");
     } else {
