@@ -192,7 +192,7 @@ echo "<h2>".$txt['Poner_ofertas_trabajo']."</h2>" ;
                     sql("UPDATE money SET $nombre_moneda = $nombre_moneda-$cantidad WHERE id_usuario='".$_SESSION['id_usuario']."'");
                     sql("UPDATE empresas SET $nombre_moneda = $nombre_moneda+$cantidad WHERE id_empresa=$empresa->id_empresa");
                     echo $txt['operacion_ok'];
-                    echo "<script type='text/javascript'>setTimeout('document.location.reload()',1000);</script>";
+                    echo "<script type='text/javascript'>setTimeout('window.location=\"".$_SERVER['REQUEST_URI']."\"',1000);</script>";
                 }
                 else
                     echo "<p style='color:red;'>".$txt['me_falta_dinero']."</p>";
@@ -205,7 +205,7 @@ echo "<h2>".$txt['Poner_ofertas_trabajo']."</h2>" ;
                     sql("UPDATE money SET $nombre_moneda = $nombre_moneda+$cantidad WHERE id_usuario='".$_SESSION['id_usuario']."'");
                     sql("UPDATE empresas SET $nombre_moneda = $nombre_moneda-$cantidad WHERE id_empresa=$empresa->id_empresa");
                     echo $txt['operacion_ok'];
-                    echo "<script type='text/javascript'>setTimeout('document.location.reload()',1000);</script>";
+                    echo "<script type='text/javascript'>setTimeout('window.location=\"".$_SERVER['REQUEST_URI']."\"',1000);</script>";
                 }
                 else
                     echo "<p style='color:red;'>".$txt['me_falta_dinero']."</p>";
