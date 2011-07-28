@@ -32,6 +32,7 @@ else
     //Zona publica
     //var_dump($usuario);
     echo "<br/>";
+    if($usuario->somos_amigos($_SESSION['id_usuario'])== false)
     echo "<a href='../../usuarios/add_friend.php?id=$usuario->id_usuario'><img src='/images/friend.png'/>Añadir amigo</a>";
     }
     //Zona tanto publica como privada
