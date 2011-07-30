@@ -92,13 +92,19 @@ else
                         {
                             //Aqui va lo del centro de la pagina principal
                             ?>
-                            <div id="columna1">
+                            <table border="0">
+                            <tr><td><div id="columna1">
                                <? include("columna1.php"); ?>
-                            </div>
+                            </div></td>
 
-                            <div id="columna2">
+                            <td><div id="columna2">
                                <? include("columna2.php"); ?>
-                            </div>
+                            </div></td></tr>
+                            <tr>
+                                <td><h2>Periodicos</h2><p>Articulo misterioso</p></td>
+                                <td><h2>Ultimas guerras</h2><p>pais de las piruletas ha perdido contra pais del regali</p></td>
+                            </tr>
+                            </table>
                             <?
                         }
                         ?>
