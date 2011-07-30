@@ -35,6 +35,9 @@
         
         //Poner que has trabajado
         sql("UPDATE diario SET work = 1 WHERE id_usuario = " . $_SESSION['id_usuario']);
+        //Se guarda en el log de produccion
+        $dia = sql("SELECT day FROM settings");
+        sql("INSERT INTO log_produccion(id_usuario,id_empresa,producido,dia) VALUES('".$_SESSION['id_usuario']."','".$datos['id_empresa']."','$producido','$dia')");
         //Algun mensaje de confirmacion que se tendra que traducir xD
         echo "Has producido $producido, vuelve mañana";
              } 
