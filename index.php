@@ -80,6 +80,9 @@ else
                                 break;      
                             case "info_pais":
                                 include("politico/info_pais.php");
+                                break;           
+                            case "redactar":
+                                include("periodico/redactar.php");
                                 break;                             
                             default :
                                 die($_GET['mod']); //Default por si se pone algo incorrecto. Al futuro hay que cambiarlo

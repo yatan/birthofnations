@@ -14,7 +14,7 @@ if (isset($_POST['msj']) && $_POST['msj'] != "" && strlen($_POST['msj'])>0 && is
     $sql = sql("SELECT id_usuario FROM usuarios WHERE nick = '" . $receptor ."'");//Comprobamos que existe el receptor
     
     if($sql != false )
-        sql("INSERT INTO messages (id_emisor, id_receptor, mensaje, fecha) VALUES (". $_SESSION['id_usuario'] .",". $sql  .",'". $_POST['msj'] ."', Now() )");
+        sql("INSERT INTO messages (id_emisor, id_receptor, mensaje, fecha) VALUES (". $_SESSION['id_usuario'] .",". $sql  .",'". nl2br($_POST['msj']) ."', Now() )");
     else{
         die("No existe ese usuario");
     }
