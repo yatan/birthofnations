@@ -36,7 +36,7 @@ function raw_needed($tipo){
     return $ret;
 }
 
-function nombre_objeto($tipo){
+function nombre_item($tipo){
     
     switch ($tipo):
         case 1:
@@ -49,6 +49,19 @@ function nombre_objeto($tipo){
             $ret = "droga";
             break;
         
+    endswitch;
+    
+    return $ret;
+}
+function obj_to_id ($obj){
+    
+    switch($obj):
+        case 'sugus':
+            $ret = 1;
+            break;
+        case 'azucar':
+            $ret = 2;
+            break;
     endswitch;
     
     return $ret;
