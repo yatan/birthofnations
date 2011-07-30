@@ -12,7 +12,7 @@ function send_friend_alert($send, $receive) {//De momento son mensajes
 //Buscamos quien es el que envia:
     $name = sql("SELECT nick FROM usuarios WHERE id_usuario = " . $send);
 
-    $texto = $name . ' ' . $txt['add_friend'] . '<a href="add_friend.php?ac=si&ai=' . $send . '">' . $txt['si'] . '</a><a href="/usuarios/add_friend.php?ac=no&ai=' . $send . '">' . $txt['no'] . '</a>';
+    $texto = $name . ' ' . $txt['add_friend'] . '<a href="../usuarios/add_friend.php?ac=si&ai=' . $send . '">' . $txt['si'] . '</a><a href="/usuarios/add_friend.php?ac=no&ai=' . $send . '">' . $txt['no'] . '</a>';
 
     sql("INSERT INTO messages(id_emisor,id_receptor,asunto,mensaje,fecha) VALUES (0," . $receive . ",'" . $txt['add_friend_head'] . "','" . $texto . "', Now() ) ");
 }

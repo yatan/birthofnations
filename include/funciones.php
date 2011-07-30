@@ -315,19 +315,5 @@ function type_company ($tipo) {
     return $ret;
 }
 
-function obj_to_id ($obj){
-    
-    switch($obj):
-        case 'sugus':
-            $ret = 1;
-            break;
-        case 'azucar':
-            $ret = 2;
-            break;
-    endswitch;
-    
-    return $ret;
-}
-
 
 ?>
