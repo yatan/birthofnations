@@ -20,7 +20,7 @@ foreach($inventario as $item => $cantidad){
     $id = obj_to_id($item);
     
     echo <<<EOT
-    <tr><td> $cantidad </td><td> $item </td><td> [<a href="../usuarios/usar_item.php?id=$id ">Usar</a>] </td></tr>
+    <tr><td> $cantidad </td><td> $item </td><td> [<a href="/usuarios/usar_item.php?id=$id ">Usar</a>] </td></tr>
 EOT;
     
 }
