@@ -11,13 +11,13 @@ if (isset($_GET['id']) && $_GET['id'] != "" && strlen($_GET['id'])>0 ){
     
     $cantidad = sql("SELECT ". $nombre ." FROM inventario WHERE id_usuario = " . $_SESSION['id_usuario']);
     
-    if($cantidad == 0){
+    if($cantidad <= 0){
         
         die("No tienes");
         
     }else{
         //Quitar uno
-        sql("UPDATE inventario SET ". $nombre . " = " . $nombre ." - 1");
+        sql("UPDATE inventario SET ". $nombre . " = " . $nombre ." - 1 WHERE id_usuario = ". $_SESSION['id_usuario']);
 
         switch($_GET['id']):
             case 1:
