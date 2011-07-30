@@ -30,8 +30,10 @@ else
             <li><a href="#amigos">Perfil</a></li>		
                 <? 
                 if($usuario->soy_yo($_SESSION['id_usuario'])==true)
+                {
                     echo "<li><a href='#economia'>Economia</a></li>";
                     echo "<li><a href='#inventario'>Inventario</a></li>";
+                }
                 ?>
 		
 	</ul>
