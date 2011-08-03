@@ -25,7 +25,10 @@ alert(e.message);
 }
 });
 function cambiar_pais(arg) {
-	window.location = '/<? echo $_GET['lang']."/mercado/sugus/"; ?>'+arg+'/<? echo "0"; ?>';
+	window.location = '/<? echo $_GET['lang']."/mercado/$objeto/"; ?>'+arg+'/<? echo "0"; ?>';
+}
+function cambiar_item(arg) {
+	window.location = '/<? echo $_GET['lang']."/mercado/"; ?>'+arg+'/<? echo "$pais/0"; ?>';
 }
 </script>
 
@@ -45,12 +48,21 @@ function cambiar_pais(arg) {
 ?>
 </select>
 <br/>
-<!-- Seleccion de objeto
-  <select style="width:200px;" name="objeto" id="objeto" onchange="showValue(this.value)">
-    <option value="calendar" selected="selected" title="/images/flag/es.png">Sugus</option>
-    <option value="shopping_cart"  selected="selected" title="/images/flag/fr.png">Drogas</option>
+Seleccion de objeto
+  <select style="width:200px;" name="objeto" id="objeto" onchange="cambiar_item(this.value)">
+    
+    <?
+    foreach (sql("SELECT * FROM items") as $item) {
+        if($item['nombre']==$objeto)
+            $seleccion = "selected='selected'";
+        else
+            $seleccion = "";
+        
+        echo "<option value='".$item['nombre']."' $seleccion title=''>".$item['nombre']."</option>";
+    }
+    ?>
   </select>
--->
+
 <?
 echo "<h1>Mercado de objetos de: ".sql("SELECT name FROM country WHERE idcountry='$pais'")."</h1>";
 
