@@ -4,7 +4,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
+$dia = sql("SELECT day FROM settings");
 $nick = sql("SELECT nick FROM usuarios WHERE id_usuario='".$_SESSION['id_usuario']."'");
 $gold = sql("SELECT gold FROM money WHERE id_usuario='".$_SESSION['id_usuario']."'");
 $mensajes = sql("SELECT COUNT(*) FROM messages WHERE id_receptor='".$_SESSION['id_usuario']."' AND leido='0' AND deleted='0'");
@@ -38,6 +38,6 @@ echo "<img src='/images/status_bar/no_alert.png'/> Alertas: 0";
 elseif ($alertas>=1) 
 echo "<img src='/images/status_bar/alert.png'/> Alertas nuevas: $alertas";  
 echo"</a>";
-
+echo "<a align='right' style='padding-left: 3em'>Dia: $dia</a>";
 
 ?>
