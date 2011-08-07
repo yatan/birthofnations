@@ -1,7 +1,8 @@
 <?php
 
+
 include_once("include/funciones.php");
-//Comrpobacion si el juego esta en mantenimiento
+//Comprobacion si el juego esta en mantenimiento
 if(sql("SELECT mantenimiento FROM settings")=="1" && !isset($_SESSION['is_admin']))
 {
     include($_SERVER['DOCUMENT_ROOT']."/login/mantenimiento.php");
