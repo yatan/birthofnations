@@ -82,7 +82,10 @@ else
                                 break; 
                             case "buscador":
                                 include("usuarios/buscador.php");
-                                break;                             
+                                break;         
+                            case "info_region":
+                                include("politico/info_region.php");
+                                break;                               
                             default :
                                 die($_GET['mod']); //Default por si se pone algo incorrecto. Al futuro hay que cambiarlo
                             }
