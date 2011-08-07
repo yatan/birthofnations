@@ -74,6 +74,7 @@ $txt = array (
     'mantenimiento_4' => "Acceder al foro",
 
     //Politico
+    'no_regions' => "Este pais no posee ninguna region actualmente",
     'pos_101' => "Jefazo Supremo",
     'pos_102' => "Pirulí Rojo"
     
