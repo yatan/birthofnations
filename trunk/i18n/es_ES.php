@@ -49,6 +49,7 @@ $txt = array (
     
     //Economico
     
+    'gold' => "Gold",
     'Poner_ofertas_trabajo' => "Poner ofertas de trabajo",
     'empresa_tipo1' => "Sugus",
     'empresa_tipo2' => "Azucar",
@@ -70,8 +71,10 @@ $txt = array (
     'mantenimiento_1' => "Modo mantenimiento",
     'mantenimiento_2' => "El juego se encuntra en mantenimiento.",
     'mantenimiento_3' => "Para visitar el foro use el siguiente link:",
-    'mantenimiento_4' => "Acceder al foro"
+    'mantenimiento_4' => "Acceder al foro",
 
+    //Politico
+    'pos_101' => "Jefazo Supremo",
     
 )
 ?>
