@@ -75,6 +75,7 @@ $txt = array (
 
     //Politico
     'pos_101' => "Jefazo Supremo",
+    'pos_102' => "Pirulí Rojo"
     
 )
 ?>

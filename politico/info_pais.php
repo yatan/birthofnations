@@ -27,7 +27,7 @@ foreach ($leaders as $leader) {
 
     $name = sql("SELECT nick FROM usuarios WHERE id_usuario = " . $leader['idLeader']);
 
-    echo "<tr><td>" . $nick . "</td><td>" . $txt['pos_' . $leader['position']] . "</td></tr>";
+    echo "<tr><td>" . $name . "</td><td>" . $txt['pos_' . $leader['position']] . "</td></tr>";
 }
 
 echo "</table>";
