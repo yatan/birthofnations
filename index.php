@@ -1,10 +1,5 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 include_once("include/funciones.php");
 //Comrpobacion si el juego esta en mantenimiento
 if(sql("SELECT mantenimiento FROM settings")=="1" && !isset($_SESSION['is_admin']))
