@@ -9,10 +9,12 @@ class pais {
 
     public $nombre;
     public $id;
+    public $bandera;
     
     function pais($id) {
         $this->nombre = sql("SELECT name FROM country WHERE idcountry = " . $id);
         $this->id = $id;
+        $this->bandera = sql("SELECT url_bandera FROM country WHERE idcountry = " . $this->id);
     }
     function list_leaders(){
         $sql = sql2("SELECT * FROM country_leaders WHERE idcountry = ". $this->id ." AND ( date_until  >= ". date("Y-m-d") ." OR is_forever = 1 ) ORDER BY position ASC");
@@ -24,10 +26,6 @@ class pais {
     }
     function population(){
         $sql = sql("SELECT COUNT(*) FROM usuarios WHERE id_nacionalidad = " . $this->id);
-        return $sql;
-    }
-    function flag(){
-        $sql = sql("SELECT url_bandera FROM country WHERE idcountry = " . $this->id);
         return $sql;
     }
 

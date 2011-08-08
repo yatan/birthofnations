@@ -24,6 +24,7 @@ if (isset($_GET['oferta']) && $_GET['oferta'] != "" && strlen($_GET['oferta'])>0
         sql("UPDATE mercado_trabajo SET cantidad = cantidad - 1 WHERE id_oferta = " . $_GET['oferta']);
     }
         //header("Location: ../");<- Redireccion a algun sitio
+    echo "Has entrado correctamente en la empresa";
 } else {
     
     die("Algo falla");
