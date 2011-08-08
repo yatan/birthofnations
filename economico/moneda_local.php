@@ -1,5 +1,7 @@
 <?
 
+// Devuelve: $moneda_local[id_pais] = "Nombre de la moneda del pais"
+
 include_once($_SERVER['DOCUMENT_ROOT']."/include/funciones.php");
 
 
