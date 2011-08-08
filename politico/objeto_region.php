@@ -40,6 +40,12 @@ class region {
         unset( $ret[0]); //Nunca tenemos region cero
         return $ret;
     }
+    function distance_to($id) {
+        include_once($_SERVER['DOCUMENT_ROOT'] . "/politico/grafo_region.php"); //Cargar grafo de regiones
+        $grafo_region->findShortestPath($this->id); //Origen esta region
+        $ret = $grafo_region->getResults($id);
+        return $ret;
+    }
 
 }
 
