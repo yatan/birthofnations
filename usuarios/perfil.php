@@ -39,7 +39,7 @@ else
 	</ul>
     
 <?
-echo "<h2>Perfil de $usuario->nick</h2>";
+echo "<h2>Perfil de $usuario->nick </h2>";
 echo "<img src='$usuario->avatar'/>";
 
 //Aqui si el perfil es el mio hace el include a
