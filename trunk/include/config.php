@@ -1,10 +1,10 @@
 <?
 
 
-$server="birthofnations.com"; /* Nuestro server mysql */
-$database="birthofn_bon"; /* Nuestra base de datos */
-$dbpass="root1234"; /*Nuestro password mysql */
-$dbuser="birthofn_bon"; /* Nuestro user mysql */
+$server=""; /* Nuestro server mysql */
+$database=""; /* Nuestra base de datos */
+$dbpass=""; /*Nuestro password mysql */
+$dbuser=""; /* Nuestro user mysql */
 
 
 $link=mysql_connect($server,$dbuser,$dbpass);
