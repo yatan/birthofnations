@@ -2,6 +2,9 @@
 
 
 include_once("include/funciones.php");
+//Comprobacion del servidor mysql
+if(mysql_online2()==false)
+    die("Hay un fallo en los servidores. Intentalo mas tarde");
 //Comprobacion si el juego esta en mantenimiento
 if(sql("SELECT mantenimiento FROM settings")=="1" && !isset($_SESSION['is_admin']))
 {

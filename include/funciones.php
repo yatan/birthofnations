@@ -48,6 +48,21 @@ if ($fp=@fsockopen($ip,$puerto,$ERROR_NO,$ERROR_STR,(float)0.5))
         }   
 }
 
+//Funcion que devuelve true o false segun estado mysql
+function mysql_online2()
+{
+$ip = "localhost";  
+$puerto = 3306; 
+ 
+if ($fp=@fsockopen($ip,$puerto,$ERROR_NO,$ERROR_STR,(float)0.5))   
+    {   
+    fclose($fp);   
+           return true;  
+        } else {         
+           return false;   
+        }   
+}
+
 function sql_error($sql)
 {
 	
