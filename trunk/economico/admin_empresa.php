@@ -19,7 +19,7 @@ echo "<br>Empresa: " . $empresa->nombre_empresa . " (" . $empresa->get_tipo() . 
 
 echo <<<EOT
 <form id="cambiar_nombre_empresa" action="/economico/cambiar_nombre_empresa.php"  method="POST">
-            <label for="nuevo_nombre"><input tabindex="1" type="text" name="nuevo_nombre"></label>
+            <label for="nuevo_nombre"><input tabindex="1" type="text" name="nuevo_nombre" align="right" value="$empresa->nombre_empresa"></label>
             <label for="empresa"><input tabindex="1" type="hidden" name="id_empresa" value=" $empresa->id_empresa "></label>
             <input type="button" id="cambiar_nombre" value="Cambiar">
         </form>
@@ -80,7 +80,7 @@ while ($worker = mysql_fetch_array($work)){
     echo "<tr><td>" . $worker['nick'] . '</td><td>'. $worker['salario'] .'</td><td>[<a href="/economico/despedir.php?id_worker='.$worker['id_usuario'].'">Despedir</a>]</td>
 <td>
 <form action="/economico/cambiar_salario.php"  method="POST">
-            <label for="salario"><input tabindex="1" type="text" name="salario"></label>
+            <label for="salario"><input tabindex="1" type="text" size="5" align="right" value="'.$worker['salario'].'" name="salario"></label>
             <label for="cantidad"><input tabindex="1" type="hidden" name="worker" value="'. $worker['id_usuario'] .'"></label>
             
             <input type="submit" value="Cambia salario">
@@ -94,10 +94,10 @@ echo "<h2>".$txt['Poner_ofertas_trabajo']."</h2>" ;
 ?>
     <div id="ofertas_trabajo">
         <form action="/economico/poner_oferta.php"  method="POST">
-            <label for="salario">Salario:<input tabindex="1" type="text" name="salario"></label><br>
-            <label for="cantidad">Cantidad:<input tabindex="1" type="text" name="cantidad"></label><br>
-            <input tabindex="1" type="hidden" name="id_empresa" value="<?php echo $empresa->id_empresa; ?>">
-            <input tabindex="1" type="hidden" name="id_pais" value="<?php echo $empresa->pais; ?>">
+            <label for="salario2">Salario:<input id="salario2" tabindex="1" type="text" name="salario"></label><br>
+            <label for="cantidad2">Cantidad:<input id="cantidad2" tabindex="2" type="text" name="cantidad"></label><br>
+            <input type="hidden" name="id_empresa" value="<?php echo $empresa->id_empresa; ?>">
+            <input type="hidden" name="id_pais" value="<?php echo $empresa->pais; ?>">
             <input type="submit">
         </form>
     </div><!--form de ofertas de trabajo-->
