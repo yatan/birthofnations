@@ -17,13 +17,13 @@ $pais = new pais($id_pais);
 
 
 $nombre_pais = $pais->nombre;
-echo "<h1>$nombre_pais</h1>";
+echo "<h1>$nombre_pais</h1><img alt='bandera' title='".$pais->nombre."' src='".$pais->flag()."'/>";
 
-echo "Poblacion actual: " . $pais->population($id_pais);
+echo "Poblacion actual: " . $pais->population();
 
 echo "<h3>Líderes</h3>";
 
-$leaders = $pais->list_leaders($id_pais);
+$leaders = $pais->list_leaders();
 
 echo "<table><tr><th>Nick</th><th>Posicion</th></tr>";
 
@@ -58,7 +58,7 @@ echo "</table>";
 
 echo "<h3>Regiones</h3>";
 
-$regiones = $pais->list_regions($id_pais);
+$regiones = $pais->list_regions();
 
 if ($regiones == false) {
     echo $txt['no_regions'];
