@@ -12,7 +12,7 @@
     
     $producido = formula_produccion($_SESSION['id_usuario']); // Lo que va a producir
     
-    $raw = $producido * raw_needed($empresa['tipo']);
+    $raw = $producido * raw_needed($empresa['tipo']);//raw que va a consumir
     
     if($empresa[$moneda_local[$datos['moneda']]] > $datos['salario'] )
     {
