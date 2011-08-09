@@ -88,7 +88,10 @@ else
                                 break;         
                             case "info_region":
                                 include("politico/info_region.php");
-                                break;      
+                                break; 
+                            case "info_partido":
+                                include("politico/info_partido.php");
+                                break;     
                             case "guerra":
                                 include("militar/guerra.php");
                                 break;                             
