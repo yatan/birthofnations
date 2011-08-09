@@ -12,9 +12,14 @@ $destino = $_POST['region'];
 
 $origen = sql("SELECT salud, id_region FROM usuarios WHERE id_usuario = ". $_SESSION['id_usuario']);
 
+//Comprobar que no es la misma
+if($destino == $origen['id_region']){die("Para dar vueltas en circulo te hacesd una noria");}
+
 //Comprobamos la distancia entre las dos regiones, a ver si me acuerdo de como era:
 
 $region_origen = new region($origen['id_region']);
+$region_destino = new region($destino);
+
 
 $ruta = $region_origen->distance_to($destino);
 
@@ -26,7 +31,8 @@ $distancia = (int)$ruta[$destino]['distance'];
 $tickets = sql("SELECT sugus FROM inventario WHERE id_usuario = " . $_SESSION['id_usuario']);
 
 if($tickets >= $distancia && $origen['salud'] > 0 ){//Si puede viajar
-    sql("UPDATE usuarios SET salud = salud - 1, id_region = ". $destino . " WHERE id_usuario = " . $_SESSION['id_usuario']);
+    //Quitar items y mierdas y actualizar el pais
+    sql("UPDATE usuarios SET salud = salud - 1, id_region = ". $destino . ", id_pais = ".$region_destino->owner_id()." WHERE id_usuario = " . $_SESSION['id_usuario']);
     sql("UPDATE inventario SET sugus = sugus - " . $distancia . " WHERE id_usuario = " . $_SESSION['id_usuario']);
     echo"Has viajado correctamente";
 }else{//Si no tiene objetos
