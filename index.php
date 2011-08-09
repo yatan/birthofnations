@@ -88,7 +88,10 @@ else
                                 break;         
                             case "info_region":
                                 include("politico/info_region.php");
-                                break;                               
+                                break;      
+                            case "guerra":
+                                include("militar/guerra.php");
+                                break;                             
                             default :
                                 die($_GET['mod']); //Default por si se pone algo incorrecto. Al futuro hay que cambiarlo
                             }
