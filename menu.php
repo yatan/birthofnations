@@ -2,9 +2,9 @@
 
 $trabajado = sql("SELECT work FROM diario WHERE id_usuario = " . $_SESSION['id_usuario']);
 if($trabajado==1)
-    $trabajado = "<img src='/images/menu/no.png'/>";
+    $trabajado = "<img src='/images/menu/no.png' alt='no'>";
 elseif($trabajado==0)
-    $trabajado = "<img src='/images/menu/si.png'/>";
+    $trabajado = "<img src='/images/menu/si.png' alt='si' >";
 
 ?>
 <div class="menu">
