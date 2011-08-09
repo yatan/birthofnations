@@ -16,9 +16,10 @@ echo "<h1>Empresa</h1>";
 
 //Mostrar link para trabajar y despedirme si es en esta empresa donde trabajo
 $donde_trabajo = sql("SELECT id_empresa FROM usuarios WHERE id_usuario='".$_SESSION['id_usuario']."'");
+$ya_trabaje = sql("SELECT work FROM diario WHERE id_usuario = " . $_SESSION['id_usuario']);
 if($id_empresa==$donde_trabajo)
 {
-    echo "<a id='trabajar' style='background-color:#1E679A ; border: 1px solid #1E679A;' href='#'>Trabajar</a>";
+    if($ya_trabaje != 1){echo "<a id='trabajar' style='background-color:#1E679A ; border: 1px solid #1E679A;' href='#'>Trabajar</a>";}
     echo "<a id='despedir' href='../../economico/despedir.php?id_worker=".$_SESSION['id_usuario']."'>Salir</a>";
    ?>
     <style>
