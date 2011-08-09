@@ -1,21 +1,30 @@
+<link rel="stylesheet" type="text/css" href="/css/dd.css" />
+<script type="text/javascript" src="/js/jquery.dd.js"></script>
+
 <script language="javascript">
+$(document).ready(function(e) {
+try {
+$("#pais2").msDropDown();
+} catch(e) {
+alert(e.message);
+}
+});
+
 function cambiar_pais2(arg) {
  $("#regi").load("/usuarios/v_lista_regiones.php", {id_pais: arg});	
 }
 </script>
-<?
 
-echo "Aqui va el metodo de seleccion de regiones magico de yatan que no se hacer, asi que pongo un link y luego le quitais la variable del principio";
-echo"<br><a href='../../usuarios/viaje.php'>Mueveme</a>";
+<p>Para viajar es necesario un sugus por region, cuanto mas lejos, mas sugus</p>
 
-?>
 <form id="viajar2">
 Pais:
-<select name="pais" onchange="cambiar_pais2(this.value)">
-    <?
-    $sql = sql("SELECT idcountry, name FROM country");
+<select id="pais2" style="width:200px;" name="pais" onchange="cambiar_pais2(this.value)">
+    <option></option>    
+<?
+    $sql = sql("SELECT idcountry, name, url_bandera FROM country ORDER BY name ASC");
     foreach ($sql as $pais) {
-       echo "<option value='".$pais['idcountry']."'>".$pais['name']."</option>";
+       echo "<option title='".$pais['url_bandera']."' value='".$pais['idcountry']."'>".$pais['name']."</option>";
     }
     ?>
 </select>
