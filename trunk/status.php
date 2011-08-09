@@ -14,19 +14,19 @@ $pais = sql("SELECT name, url_bandera FROM country WHERE idcountry IN (SELECT id
 
 echo "<a href='/".$_GET['lang']."/perfil/".$_SESSION['id_usuario']."'>$nick</a>"
 ." "
-."<img alt='bandera' title='".$pais['name']."' src='".$pais['url_bandera']."'/>"
+."<img alt='bandera' title='".$pais['name']."' src='".$pais['url_bandera']."'>"
 ." - "
-."<img alt='vida'  src='/images/status_bar/life.gif'/> 100"
+."<img alt='vida'  src='/images/status_bar/life.gif'> 100"
 ." - "
-."<img alt='gold' src='/images/status_bar/gold.gif'/> $gold golds"
+."<img alt='gold' src='/images/status_bar/gold.gif'> $gold golds"
 ." - ";
 echo"<a style='none' href='/".$_GET['lang']."/mensajes'>";
 if($mensajes==0 || $mensajes == false)
-echo "<img alt='no_mail' src='/images/status_bar/no_mail.gif'/> No tienes mensajes nuevos";
+echo "<img alt='no_mail' src='/images/status_bar/no_mail.gif' > No tienes mensajes nuevos";
 elseif ($mensajes==1) 
-echo "<img alt='mail' src='/images/status_bar/mail.gif'/> Tienes un mensaje nuevo";    
+echo "<img alt='mail' src='/images/status_bar/mail.gif' > Tienes un mensaje nuevo";    
 elseif ($mensajes>1) 
-echo "<img alt='/mail' src='/images/status_bar/mail.gif'/> Tienes mensajes nuevos";  
+echo "<img alt='/mail' src='/images/status_bar/mail.gif' > Tienes mensajes nuevos";  
 echo"</a>";
 
 echo " - ";
@@ -34,10 +34,10 @@ echo " - ";
 
 echo"<a style='none' href='/".$_GET['lang']."/alertas'>";
 if($alertas==0 || $alertas == false)
-echo "<img src='/images/status_bar/no_alert.png'/> Alertas: 0";  
+echo "<img src='/images/status_bar/no_alert.png' alt='no_alert'> Alertas: 0";  
 elseif ($alertas>=1) 
-echo "<img alt='alert' src='/images/status_bar/alert.png'/> Alertas nuevas: $alertas";  
+echo "<img alt='alert' src='/images/status_bar/alert.png'> Alertas nuevas: $alertas";  
 echo"</a>";
-echo "<a style='text-align:right;' style='padding-left: 3em'>Dia: $dia</a>";
+echo "<a style='padding-left: 3em; text-align:right;'>Dia: $dia</a>";
 
 ?>

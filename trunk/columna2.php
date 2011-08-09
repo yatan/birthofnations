@@ -7,8 +7,8 @@
 ?>
 
 
-<script src="http://widgets.twimg.com/j/2/widget.js"></script>
-<script>
+<script src="http://widgets.twimg.com/j/2/widget.js" type="text/javascript"></script>
+<script type="text/javascript">
 new TWTR.Widget({
   version: 2,
   type: 'search',
