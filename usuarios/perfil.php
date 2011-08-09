@@ -37,16 +37,29 @@ else {
         </ul>
 
             <?
+            echo "<div style='height: 500px; width: 940px;'>";
+            echo "<div style='float: left; width: 15em; height: 28.45em;'>";
             echo "<h2>Perfil de $usuario->nick </h2>";
             echo "<img src='$usuario->avatar'/>";
+            echo "<div style='font-size: 12px; text-align: left; margin: 10px; height: 29em;'>";
+            echo "<center><strong>Descripci&oacute;n</strong></center>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+            echo "</div>";
+            echo "</div>";
+
+
+            //Zona tanto publica como privada
+            echo "<div id='amigos' style='float: right; height: 26.45em; width: 34em;'>";
+            include("friends.php");
+            echo "</div>";
+
 
 //Aqui si el perfil es el mio hace el include a
 //pagina para editar cosas, sino se pagina de perfil publico
+                       
             if ($usuario->soy_yo($_SESSION['id_usuario']) == true) {
                 echo "<div id='economia'>";
                 include("mi_perfil.php");
                 echo "</div>";
-
                 echo "<div id='inventario'>";
                 include("inventario.php");
                 echo "</div>";
@@ -55,14 +68,14 @@ else {
                 echo "</div>";
             } else {
                 //Zona publica
-                echo "<br/>";
+                echo "<div style='position: absolute; width: 149px; height: 47px; top: 28em; left: 3em;'>";
                 if ($usuario->somos_amigos($_SESSION['id_usuario']) == false)
-                    echo "<a href='../../usuarios/add_friend.php?id=$usuario->id_usuario'><img src='/images/friend.png'/>Añadir amigo</a>";
+                    echo "<a href='../../usuarios/add_friend.php?id=$usuario->id_usuario'><img src='/images/friend.png'/>A&ntilde;adir amigo</a>";
+                echo "</div>";
             }
-            //Zona tanto publica como privada
-            echo "<div id='amigos'>";
-            include("friends.php");
-            echo "</div>";
         }
+            echo "</div>";
         ?>
 </div>
+
+
