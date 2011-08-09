@@ -47,15 +47,10 @@ else {
             echo "</div>";
 
 
-            //Zona tanto publica como privada
-            echo "<div id='amigos' style='float: right; height: 26.45em; width: 34em;'>";
-            include("friends.php");
-            echo "</div>";
-
-
 //Aqui si el perfil es el mio hace el include a
 //pagina para editar cosas, sino se pagina de perfil publico
-                       
+            
+            
             if ($usuario->soy_yo($_SESSION['id_usuario']) == true) {
                 echo "<div id='economia'>";
                 include("mi_perfil.php");
@@ -68,11 +63,15 @@ else {
                 echo "</div>";
             } else {
                 //Zona publica
-                echo "<div style='position: absolute; width: 149px; height: 47px; top: 28em; left: 3em;'>";
+                echo "<div style='background-color:red;'>";
                 if ($usuario->somos_amigos($_SESSION['id_usuario']) == false)
-                    echo "<a href='../../usuarios/add_friend.php?id=$usuario->id_usuario'><img src='/images/friend.png'/>A&ntilde;adir amigo</a>";
+                    echo "<a href='../../usuarios/add_friend.php?id=$usuario->id_usuario'><img src='/images/friend.png'/>Añadir amigo</a>";
                 echo "</div>";
             }
+            //Zona tanto publica como privada
+            echo "<div id='amigos' style='float: right; height: 26.45em; width: 34em;'>";
+            include("friends.php");
+            echo "</div>";
         }
             echo "</div>";
         ?>
