@@ -21,7 +21,7 @@ echo <<<EOT
 <form id="cambiar_nombre_empresa" action="/economico/cambiar_nombre_empresa.php"  method="POST">
             <label for="nuevo_nombre"><input tabindex="1" type="text" name="nuevo_nombre" align="right" value="$empresa->nombre_empresa"></label>
             <label for="empresa"><input tabindex="1" type="hidden" name="id_empresa" value=" $empresa->id_empresa "></label>
-            <input type="button" id="cambiar_nombre" value="Cambiar">
+            <input type="submit" id="cambiar_nombre" value="Cambiar">
         </form>
 EOT;
 
