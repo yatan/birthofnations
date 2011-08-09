@@ -16,17 +16,17 @@ echo "<a href='/".$_GET['lang']."/perfil/".$_SESSION['id_usuario']."'>$nick</a>"
 ." "
 ."<img alt='bandera' title='".$pais['name']."' src='".$pais['url_bandera']."'/>"
 ." - "
-."<img src='/images/status_bar/life.gif'/> 100"
+."<img alt='vida'  src='/images/status_bar/life.gif'/> 100"
 ." - "
-."<img src='/images/status_bar/gold.gif'/> $gold golds"
+."<img alt='gold' src='/images/status_bar/gold.gif'/> $gold golds"
 ." - ";
 echo"<a style='none' href='/".$_GET['lang']."/mensajes'>";
 if($mensajes==0 || $mensajes == false)
-echo "<img src='/images/status_bar/no_mail.gif'/> No tienes mensajes nuevos";
+echo "<img alt='no_mail' src='/images/status_bar/no_mail.gif'/> No tienes mensajes nuevos";
 elseif ($mensajes==1) 
-echo "<img src='/images/status_bar/mail.gif'/> Tienes un mensaje nuevo";    
+echo "<img alt='mail' src='/images/status_bar/mail.gif'/> Tienes un mensaje nuevo";    
 elseif ($mensajes>1) 
-echo "<img src='/images/status_bar/mail.gif'/> Tienes mensajes nuevos";  
+echo "<img alt='/mail' src='/images/status_bar/mail.gif'/> Tienes mensajes nuevos";  
 echo"</a>";
 
 echo " - ";
@@ -36,8 +36,8 @@ echo"<a style='none' href='/".$_GET['lang']."/alertas'>";
 if($alertas==0 || $alertas == false)
 echo "<img src='/images/status_bar/no_alert.png'/> Alertas: 0";  
 elseif ($alertas>=1) 
-echo "<img src='/images/status_bar/alert.png'/> Alertas nuevas: $alertas";  
+echo "<img alt='alert' src='/images/status_bar/alert.png'/> Alertas nuevas: $alertas";  
 echo"</a>";
-echo "<a align='right' style='padding-left: 3em'>Dia: $dia</a>";
+echo "<a style='text-align:right;' style='padding-left: 3em'>Dia: $dia</a>";
 
 ?>
