@@ -72,11 +72,17 @@ echo "</table>";
 
 
 // Mostrar trabajadores
-
-$work = mysql_query("SELECT id_usuario, nick, salario FROM usuarios WHERE id_empresa = " . $id_empresa);
+$empleados = array();
+$work = sql2("SELECT id_usuario, nick, salario FROM usuarios WHERE id_empresa = " . $id_empresa);
 
 echo "<br/><h3>Empleados</h3><table><tr><td>Nick</td><td>Salario</td></tr>";
-while ($worker = mysql_fetch_array($work)){
+
+foreach ($work as $worker) 
+    {
+    //Se guardan los nicks de los trabajadores en un array externo
+    //$empleados[] = $worker['id_usuario'];
+    $empleados[$worker['id_usuario']] = $worker['nick'];
+    
     echo "<tr><td>" . $worker['nick'] . '</td><td>'. $worker['salario'] .'</td><td>[<a href="/economico/despedir.php?id_worker='.$worker['id_usuario'].'">Despedir</a>]</td>
 <td>
 <form action="/economico/cambiar_salario.php"  method="POST">
@@ -126,7 +132,35 @@ echo "<h2>".$txt['Poner_ofertas_trabajo']."</h2>" ;
     
     ?>
     </table>
-        
+    
+    <h3>Historial produccion</h3>
+    <table width="75%" border="1" align="center" style="text-align:center;" >
+
+      <tr style="font-size:24px; background-color:#09C; color:#930;">
+        <td>Empleado</td>
+        <td><? echo($dia-3); ?></td>
+        <td><? echo($dia-2); ?></td>
+        <td><? echo($dia-1); ?></td>
+        <td><? echo($dia); ?></td>
+      </tr>
+  <?
+      foreach ($empleados as $empleado => $e_nick) {
+          echo "<tr>";
+          echo "<td>$e_nick</td>";
+          
+          for($d=$dia-3;$d<=$dia;$d++)
+          {
+              $prod = sql("SELECT producido FROM log_produccion WHERE id_usuario='$empleado' AND id_empresa='$id_empresa' AND dia='$d'");
+              if($prod==false)
+                  echo "<td><img src='/images/cancel.png'/></td>";
+              else
+                   echo "<td>$prod</td>";
+          }
+          echo "</tr>";
+      }
+  ?>
+    </table>
+    
     <h2>Economia</h2>
     <table border="0">
         <tr>
