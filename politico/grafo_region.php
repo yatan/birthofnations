@@ -1,19 +1,30 @@
 <?php
 
 require($_SERVER['DOCUMENT_ROOT'] . "/politico/clase_grafo.php");
+//require($_SERVER['DOCUMENT_ROOT'] . "/include/funciones.php");
 
 
 // I is the infinite distance.
 define('I', 1000);
 
-// Size of the matrix
+// Size of the matrix (Numero de regiones del juego
 $matrixWidth = 3;
 
 // $points is an array in the following format: (router1,router2,distance-between-them)
-$points = array(
-    array(1, 2, 1),
-    array(1, 3, 2),
-);
+
+for ($i = 1; $i <= $matrixWidth; $i++) {
+
+    $sql = sql("SELECT * FROM distancia_regiones WHERE id_region = " . $i);
+
+    for ($j = $i + 1; $j <= $matrixWidth; $j++) {
+
+        if ($sql['r' . $j] == -1) {
+            continue;
+        } else {
+            $points[] = array($i, $j, (int) $sql['r' . $j]);
+        }
+    }
+}
 
 $ourMap = array();
 
