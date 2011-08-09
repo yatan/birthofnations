@@ -20,7 +20,7 @@ function cambiar_pais2(arg) {
 <form id="viajar2">
 Pais:
 <select id="pais2" style="width:200px;" name="pais" onchange="cambiar_pais2(this.value)">
-    <option></option>    
+    <option>Seleccionar pais:</option>    
 <?
     $sql = sql("SELECT idcountry, name, url_bandera FROM country ORDER BY name ASC");
     foreach ($sql as $pais) {
