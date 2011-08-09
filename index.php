@@ -97,24 +97,29 @@ else
                         {
                             //Aqui va lo del centro de la pagina principal
                             ?>
-                            <table border="0">
-                            <tr><td><div id="columna1">
-                               <? include("columna1.php"); ?>
-                            </div></td>
+                            <div id="columnas" style="padding: 10px; width: 58.4em; height: 25em;">
+                                <div id="columna1" style="float: right; width: 41em; height: 25em;">
+                                   <? include("columna1.php"); ?>
+                                </div>
 
-                            <td><div id="columna2">
-                               <? include("columna2.php"); ?>
-                            </div></td></tr>
-                            <tr>
-                                <td><h2>Periodicos</h2><p>Articulo misterioso</p></td>
-                                <td><h2>Ultimas guerras</h2><p>pais de las piruletas ha perdido contra pais del regali</p></td>
-                            </tr>
-                            </table>
+                                <div id="columna2" style="float: left; height: 25em; width: 17em;">
+                                   <? include("columna2.php"); ?>
+                                </div>
+                            </div><!-- columnas -->
+                                <div id="fila2" style="width: 59.6em; height: 14.5em;">
+                                    <div id="periodicos_login" style="float: left; width: 29.5em; height: 14.5em;">
+                                        <h2>Periodicos</h2><p>Articulo misterioso</p>
+                                    </div>
+                                    <div id="guerras_login" style="float: right; width: 30em; height: 14.5em;">
+                                        <h2>Ultimas guerras</h2><p>pais de las piruletas ha perdido contra pais del regaliz</p>
+                                    </div>
+                                </div>
+                             
                             <?
                         }
                         ?>
                         </center>
-                    </div><!--menu-->
+                    </div><!--cuerpo-->
                     <?php include("pie.php");?>
                 </div><!-- contenido -->
             </div><!-- shadow -->
