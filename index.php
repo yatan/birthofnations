@@ -33,7 +33,7 @@ else
         <div class="blur">
             <div class="shadow">
                 <div id="contenido">
-                    <?php include("cabecera.php"); ?><br/>
+                    <?php include("cabecera.php"); ?><br>
                     <div id="status">
                         <center>
                             <? include("status.php"); ?>
