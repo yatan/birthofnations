@@ -7,7 +7,7 @@
 if (isset($_POST['salario']) && $_POST['salario'] != "" && is_numeric($_POST['salario']))
 {
         
-    sql("UPDATE usuarios SET salario = ". $_POST['salario'] ." WHERE id_usuario = " . $_POST['id_worker'] );
+    sql("UPDATE usuarios SET salario = ". $_POST['salario'] ." WHERE id_usuario = " . $_POST['worker'] );
 
     echo "Salario cambiado correctamente"; 
 } else {

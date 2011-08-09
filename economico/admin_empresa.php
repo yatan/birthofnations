@@ -87,7 +87,7 @@ foreach ($work as $worker)
 <td>
 <form action="/economico/cambiar_salario.php"  method="POST">
             <label for="salario"><input tabindex="1" type="text" size="5" align="right" value="'.$worker['salario'].'" name="salario"></label>
-            <label for="cantidad"><input tabindex="1" type="hidden" name="worker" value="'. $worker['id_usuario'] .'"></label>
+            <label for="worker"><input tabindex="1" type="hidden" name="worker" value="'. $worker['id_usuario'] .'"></label>
             
             <input type="submit" value="Cambia salario">
         </form>
