@@ -7,6 +7,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/include/funciones.php");
 
 $destino = $_POST['region'];
 
+
 //Sacamos la region origen
 
 $origen = sql("SELECT salud, id_region FROM usuarios WHERE id_usuario = ". $_SESSION['id_usuario']);
@@ -16,8 +17,9 @@ $origen = sql("SELECT salud, id_region FROM usuarios WHERE id_usuario = ". $_SES
 $region_origen = new region($origen['id_region']);
 
 $ruta = $region_origen->distance_to($destino);
+
 // [1][0] - [1][1] es la ruta
-$distancia = $ruta[1]['distance'];
+$distancia = (int)$ruta[$destino]['distance'];
 
 //Ahora comprobamos que tiene suficientes objetos necesarios para viajar, cuales sean, pa probar sugus
 
