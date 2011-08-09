@@ -5,7 +5,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/include/funciones.php");
 
 //Esta es la variable que llega como destino:
 
-$destino = 1;
+$destino = $_POST['region'];
 
 //Sacamos la region origen
 
@@ -26,7 +26,7 @@ $tickets = sql("SELECT sugus FROM inventario WHERE id_usuario = " . $_SESSION['i
 if($tickets >= $distancia && $origen['salud'] > 0 ){//Si puede viajar
     sql("UPDATE usuarios SET salud = salud - 1, id_region = ". $destino . " WHERE id_usuario = " . $_SESSION['id_usuario']);
     sql("UPDATE inventario SET sugus = sugus - " . $distancia . " WHERE id_usuario = " . $_SESSION['id_usuario']);
-    
+    echo"Has viajado correctamente";
 }else{//Si no tiene objetos
     echo "No cumples los requisitos necesarios para viajar, revisa tu existencia, mortal.";
     
