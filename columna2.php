@@ -13,7 +13,7 @@ new TWTR.Widget({
   version: 2,
   type: 'search',
   search: 'from:birthofn OR @birthofn OR #birthofn',
-  interval: 6000,
+  interval: 12000,
   title: 'Twitter de #birthofn',
   subject: '@birthofn',
   width: 250,
@@ -32,7 +32,7 @@ new TWTR.Widget({
   features: {
     scrollbar: true,
     loop: false,
-    live: true,
+    live: false,
     hashtags: true,
     timestamp: true,
     avatars: true,
