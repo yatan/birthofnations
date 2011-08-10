@@ -91,7 +91,10 @@ else
                                 break; 
                             case "info_partido":
                                 include("politico/info_partido.php");
-                                break;     
+                                break;   
+                            case "lista_partidos":
+                                include("politico/list_party.php");
+                                break;                             
                             case "guerra":
                                 include("militar/guerra.php");
                                 break;                             

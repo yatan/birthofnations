@@ -37,7 +37,7 @@ elseif($trabajado==0)
         <li><a href="#">Pais</a>
         <ul>
             <li><a href="<? echo "/".$_GET['lang']."/pais/".sql("SELECT id_nacionalidad FROM usuarios WHERE id_usuario='".$_SESSION['id_usuario']."'"); ?>">Mi pais</a></li>
-            <li><a href="#">Partidos politicos</a></li>
+            <li><a href="<? echo "/".$_GET['lang']."/partidos/".sql("SELECT id_nacionalidad FROM usuarios WHERE id_usuario='".$_SESSION['id_usuario']."'"); ?>">Partidos politicos</a></li>
             <li><a href="#">Clasificacion</a></li>
         </ul>   
         </li>        

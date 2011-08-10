@@ -1,10 +1,4 @@
-<?php
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
+<?
 include_once($_SERVER['DOCUMENT_ROOT'] . "/include/funciones.php");
 include_once($_SERVER['DOCUMENT_ROOT'] . "/politico/objeto_pais.php");
 
@@ -14,63 +8,45 @@ if (!isset($_GET['id_pais']))
 $id_pais = $_GET['id_pais'];
 
 $pais = new pais($id_pais);
-
-
 $nombre_pais = $pais->nombre;
-echo "<h1>$nombre_pais</h1><img alt='bandera' title='".$pais->nombre."' src='".$pais->bandera."'/>";
 
-echo "Poblacion actual: " . $pais->population();
+echo "<h1>Partidos politicos en: $pais->nombre <img alt='bandera' title='".$pais->nombre."' src='".$pais->bandera."'/></h1>";
+?>
 
-echo "<h3>Líderes</h3>";
+<link rel="stylesheet" type="text/css" href="/css/dd.css" />
+<script type="text/javascript" src="/js/jquery.dd.js"></script>
 
-$leaders = $pais->list_leaders();
-
-echo "<table><tr><th>Nick</th><th>Posicion</th></tr>";
-
-foreach ($leaders as $leader) {
-
-    $name = sql("SELECT nick FROM usuarios WHERE id_usuario = " . $leader['idLeader']);
-
-    echo "<tr><td><a href='../perfil/" . $leader['idLeader'] . "'>" . $name . "</a></td><td>" . $txt['pos_' . $leader['position']] . "</td></tr>";
+<script language="javascript">
+$(document).ready(function(e) {
+try {
+$("#pais").msDropDown();
+} catch(e) {
+alert(e.message);
 }
-
-echo "</table>";
-
-echo "<h3>Dineros</h3>";
-
-echo "<table><tr><th>Moneda</th><th>Cantidad</th></tr>";
-$gold = sql("SELECT Gold FROM money_pais WHERE idcountry ='" . $id_pais . "'");
-
-echo "<tr><td>" . $txt['gold'] . "</td><td>" . $gold . "</td></tr>";
-$sql = sql("SELECT * FROM money_pais WHERE idcountry = " . $id_pais);
-
-unset($sql['idcountry'], $sql['Gold']);
-arsort($sql);
-
-foreach ($sql as $moneda => $valor) {
-    if ($valor == 0) {
-        continue;
-    }
-    echo "<tr><td>" . $moneda . "</td><td>" . $valor . "</td></tr>";
+});
+function cambiar_pais(arg) {
+	window.location = '/<? echo $_GET['lang']."/partidos/"; ?>'+arg;
 }
+</script>
 
-echo "</table>";
+<select style="width:200px;" name="pais" id="pais" onchange="cambiar_pais(this.value)">
+<?
+        $sql = sql("SELECT idcountry, name, url_bandera FROM country");
+        foreach ($sql as $pais1) {
+            if($pais1['idcountry']==$id_pais)
+                $seleccionado = "selected='selected'";
+            else
+                $seleccionado = "";
+            
+            echo "<option title='".$pais1['url_bandera']."' $seleccionado value='".$pais1['idcountry']."'>".$pais1['name']."</option>";
+        }
+?>
+</select>
 
-echo "<h3>Regiones</h3>";
+<?
+$partidos = sql("SELECT * FROM partidos WHERE id_pais='$pais->id'");
 
-$regiones = $pais->list_regions();
-
-if ($regiones == false) {
-    echo $txt['no_regions'];
-} else {
-
-    echo "<table><tr><th>Nombre</th></tr>";
-
-    foreach ($regiones as $region) {
-
-        echo "<tr><td><a href='../region/" . $region['idregion'] . "'>" . $region['name'] . "</a></td></tr>";
-    }
-
-    echo "</table>";
+foreach ($partidos as $partido) {
+    echo "<a href='/".$_GET['lang']."/partido/".$partido['id_partido']."'>".$partido['nombre_partido']." Lider: ".id2nick($partido['id_lider'])."</a><br>";
 }
 ?>

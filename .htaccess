@@ -16,6 +16,7 @@ RewriteRule ^([a-z]+)/mercado/([a-z]+)/([0-9]+)/([0-9]+)$ index.php?lang=$1&prod
 RewriteRule ^([a-z]+)/pais/([0-9]+)$ index.php?lang=$1&id_pais=$2&mod=info_pais [L]
 RewriteRule ^([a-z]+)/region/([0-9]+)$ index.php?lang=$1&id_region=$2&mod=info_region [L]
 RewriteRule ^([a-z]+)/partido/([0-9]+)$ index.php?lang=$1&id_partido=$2&mod=info_partido [L]
+RewriteRule ^([a-z]+)/partidos/([0-9]+)$ index.php?lang=$1&id_pais=$2&mod=lista_partidos [L]
 RewriteRule ^([a-z]+)/war/([0-9]+)$ index.php?lang=$1&id_guerra=$2&mod=guerra [L]
 RewriteRule ^([a-z]+)/guerras/([0-9]+)$ index.php?lang=$1&id_pais=$2&mod=lista_guerras [L]
 
