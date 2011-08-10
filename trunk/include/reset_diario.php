@@ -96,7 +96,8 @@ $sql = sql2("SELECT id_partido, frec_elecciones, dia_elecciones FROM partidos");
 foreach ($sql as $party) {
     if ($DA % $party['frec_elecciones'] == $party['dia_elecciones']) {//Si es dia de elecciones la abrimos
         $time = time();
-        sql("INSERT INTO votaciones(tipo_votacion,fin,comienzo,param1) VALUES ('1','" . $time+86400 . "',' " . $time . "','" . $party['id_partido'] . "')");
+        $time2 = $time +86400;
+        sql("INSERT INTO votaciones(tipo_votacion,fin,comienzo,param1) VALUES ('1','" . $time2 . "',' " . $time . "','" . $party['id_partido'] . "')");
     }
 }
 
