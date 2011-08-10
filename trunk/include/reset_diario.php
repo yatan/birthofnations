@@ -88,6 +88,17 @@ sql("UPDATE diario SET work = 0");
 //Actualizacion del dia
 sql("UPDATE settings SET day=day+1");
 
+//Politico
+sql("UPDATE usuarios SET ant_partido = ant_partido + 1");
+$DA = sal("SELECT day FROM settings");
+$sql = sql2("SELECT id_partido, frec_elecciones, dia_elecciones FROM partidos");
+
+foreach ($sql as $party) {
+    if ($DA % $party['frec_elecciones'] == $party['dia_elecciones']) {//Si es dia de elecciones la abrimos
+        sql("INSERT INTO votaciones(tipo_votacion,fin,comienzo,param1) VALUES (1," . time() + 86400 . ", " . time() . "," . $party['id_partido'] . ")");
+    }
+}
+
 
 echo "Cron realizado correctamente";
 ?>
