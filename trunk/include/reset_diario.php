@@ -72,6 +72,46 @@ function sql($sql)
 	}
 
 
+        
+        function sql2($sql)
+{
+	
+	$result = sql_error($sql);
+	
+        //Si no devuelve nada sale de la funcion
+        if($result==1)
+            return true;
+
+	if (mysql_num_rows($result) == 1)	
+	{
+		if (mysql_num_fields($result) == 1)
+			{
+				
+			$dato = mysql_fetch_row($result);
+			return $dato[0];
+			
+			}
+		else{
+                    $table = array();
+                    $table[0] = sql_data($result);
+                }
+	
+	}
+	else
+	{
+    
+    $table = array();
+	 if (mysql_num_rows($result) > 0)
+    {
+        $i = 0;
+        while($table[$i] = mysql_fetch_assoc($result)) 
+            $i++;
+        unset($table[$i]);                                                                                  
+    }                                                                                                                                     
+    mysql_free_result($result);
+	}
+    return $table;
+	}
 //Seguridad       
 if(!isset($_SERVER['argv']))
     die("Error");
@@ -95,9 +135,12 @@ $sql = sql2("SELECT id_partido, frec_elecciones, dia_elecciones FROM partidos");
 
 foreach ($sql as $party) {
     if ($DA % $party['frec_elecciones'] == $party['dia_elecciones']) {//Si es dia de elecciones la abrimos
+        {
         $time = time();
         $time2 = $time +86400;
         sql("INSERT INTO votaciones(tipo_votacion,fin,comienzo,param1) VALUES ('1','" . $time2 . "',' " . $time . "','" . $party['id_partido'] . "')");
+        }
+        
     }
 }
 
