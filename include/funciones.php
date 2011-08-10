@@ -334,5 +334,37 @@ function id2nick($id)
 {
     return sql("SELECT nick FROM usuarios WHERE id_usuario='$id'");
 }
+function next_elecciones($DA, $DE, $FE) {//Actual/Resto del dia de las elecciones/Frecuencia
 
+if($DA%$FE > $DE){
+    $prox = $DA - $DA%$FE + $DE + $FE;
+}else{
+    $prox = $DA - $DA%$FE + $DE;
+}
+        return $prox;
+    
+}
+
+function puedo_votar($id_usuario,$tipo,$id_votacion){//Determina si puedes votar o no, segun el tipo de votacion
+    switch($tipo):
+        case 1://Presi de partido
+            $sql = sql("SELECT id_partido, ant_partido FROM usuarios WHERE id_usuario = ". $id_usuario);//Su partido y antiguedad
+            $sql2 = sql("SELECT param1 FROM votaciones WHERE id_votacion = " . $id_votacion);//El partido de la votacion
+            $sql3 = sql("SELECT * FROM log_votos WHERE id_votacion = " . $id_votacion . " AND id_usuario = " . $id_usuario);//Si ya ha votado
+            $sql4 = sql("SELECT ant_votaciones FROM partidos WHERE id_partido = " . $sql2);
+            
+            
+            if($sql['id_partido'] == $sql2 && $sql3 == false && $sql['ant_partido'] >= $sql4){//Esta afiliado al partido Y no ha votado Y tiene X antiguedad
+                $ret = true;
+            }else{
+                $ret = false;
+            }
+            break;
+        default:
+            $ret = false;
+            break;
+    endswitch;
+    
+return $ret;
+}
 ?>
