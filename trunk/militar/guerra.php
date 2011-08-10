@@ -18,5 +18,5 @@ $('#pegar').click(function() {
 $.post("/militar/pegar.php", {id_usuario:"<? echo $_SESSION['id_usuario']; ?>"});
 });   
 
-setInterval(golpes,1000);
+setInterval(golpes,1500);
 </script>
