@@ -330,5 +330,9 @@ function type_company ($tipo) {
     return $ret;
 }
 
+function id2nick($id)
+{
+    return sql("SELECT nick FROM usuarios WHERE id_usuario='$id'");
+}
 
 ?>
