@@ -9,5 +9,5 @@ $online = sql("SELECT COUNT(*) FROM usuarios WHERE ultima_accion >= '$calculo_mi
 ?>
 
 <div id="pie"> 
-    <br><center>Hay: <? echo $online; ?> usuarios online Estado mysql: <? mysql_online(); ?> <a href="/COPYRIGHT">Copyright 2011 Batamanta Team</a> r232</center> 
+    <br><center>Hay: <? echo $online; ?> usuarios online Estado mysql: <? mysql_online(); ?> <a href="/COPYRIGHT">Copyright 2011 Batamanta Team</a> r278 <g:plusone size="small" count="false" href="birthofnations.com"></g:plusone></center> 
 </div> <!--pie-->
