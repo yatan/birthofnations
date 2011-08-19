@@ -49,7 +49,6 @@ $txt = array (
     
     //Economico
     
-    'gold' => "Gold",
     'Poner_ofertas_trabajo' => "Poner ofertas de trabajo",
     'empresa_tipo1' => "Sugus",
     'empresa_tipo2' => "Azucar",
@@ -59,24 +58,10 @@ $txt = array (
     
     'no_mensajes' => 'No tienes mensajes',
     'no_friends' => "Sin amigos",
-    'no_cantidad' =>"Porfavor introduce cantidad correcta",
-    'operacion_ok' => "La operaciÃ³n se ha realizado correctamente",
-    'me_falta_dinero' => "No dispongo de tanto dinero",
-    'add_friend_head' => "Peticion de amistad",
-    'add_friend' => "quiere ser tu amigo. ¿Aceptas?",
-    'si' => "Si",
-    'no' => 'No',
-    
-    //Pagina mantenimiento
-    'mantenimiento_1' => "Modo mantenimiento",
-    'mantenimiento_2' => "El juego se encuntra en mantenimiento.",
-    'mantenimiento_3' => "Para visitar el foro use el siguiente link:",
-    'mantenimiento_4' => "Acceder al foro",
+    'stat_a' => "Hambriento",
+    'stat_b' => "Necesita sexo",
+    'stat_c' => "Sobredosis de azucar",
 
-    //Politico
-    'no_regions' => "Este pais no posee ninguna region actualmente",
-    'pos_101' => "Jefazo Supremo",
-    'pos_102' => "Pirulí Rojo"
     
 )
 ?>
