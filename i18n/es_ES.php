@@ -52,6 +52,7 @@ $txt = array (
     'Poner_ofertas_trabajo' => "Poner ofertas de trabajo",
     'empresa_tipo1' => "Sugus",
     'empresa_tipo2' => "Azucar",
+    'empresa_tipo3' => "Armas",
     'no_ofertas_trabajo' => "No hay ofertas de trabajo",
     
     //Usuarios
@@ -66,6 +67,7 @@ $txt = array (
     'stat_a' => "Hambriento",
     'stat_b' => "Necesita sexo",
     'stat_c' => "Sobredosis de azucar",
+    'stat_S' => "Suicida",
     
     //Pagina mantenimiento
     'mantenimiento_1' => "Modo mantenimiento",

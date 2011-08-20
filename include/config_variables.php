@@ -46,7 +46,7 @@ function nombre_item($tipo){
             $ret = "azucar";
             break;
         case 3:
-            $ret = "droga";
+            $ret = "armas";
             break;
         
     endswitch;
@@ -61,6 +61,9 @@ function obj_to_id ($obj){
             break;
         case 'azucar':
             $ret = 2;
+            break;
+        case 'armas':
+            $ret = 3;
             break;
     endswitch;
     
