@@ -21,12 +21,20 @@ if ($user['id_nacionalidad'] == $party['id_pais'] && $user['id_partido'] == 0) {
 }
 
 echo "Jefe actual: " . $leader['nick'] . '<img src="' . $leader['avatar'] . '">';
-if ($dia_actual % $party['frec_elecciones'] == $party['dia_elecciones']) {
+if ($dia_actual % $party['frec_elecciones'] == $party['dia_elecciones'] && $user['id_partido'] == $party['id_partido']) { //Dia de elecciones + Estoy afiliado
     //Mensaje de que hay elecciones
     echo "<br>Hoy es dia de elecciones <br>";
     //Sacar id de la votacion
-    $sql = sql("SELECT id_votacion FROM votaciones WHERE tipo_votacion = 1 AND param1 = ". $_GET['id_partido']);
-    echo '<a href="/politico/lista_candidatos.php?id='.$sql.'">Votar</a>';
+    $time = time();
+    $sql = sql("SELECT id_votacion FROM votaciones WHERE tipo_votacion = 1 AND param1 = " . $party['id_partido'] . " AND fin > " . $time);
+    echo '<a href="/politico/lista_candidatos.php?id=' . $sql . '">Votar</a>';
+} elseif (($dia_actual % $party['frec_elecciones'] == $party['dia_elecciones'] - 1 || $dia_actual % $party['frec_elecciones'] == $party['dia_elecciones'] - 2) && $user['id_partido'] == $party['id_partido']) {
+    //2 dias anteriores a las elecciones + Estoy afiliado
+    // Fecha + Postulacion
+    echo "Proximas elecciones el dia: " . next_elecciones($dia_actual, $party['dia_elecciones'], $party['frec_elecciones']);
+    $time = time();
+    $vot = sql("SELECT id_votacion FROM votaciones WHERE param1 = " . $party['id_partido'] . " AND fin > " . $time);
+    echo "[<a href='/politico/postular.php?v=" . $vot . "'>Postulate</a>]";
 } else {
     //Calculamos la siguiente fecha
     echo "Proximas elecciones el dia: " . next_elecciones($dia_actual, $party['dia_elecciones'], $party['frec_elecciones']);
