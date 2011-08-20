@@ -24,6 +24,10 @@ if (isset($_GET['id']) && $_GET['id'] != "" && strlen($_GET['id'])>0 ){
                 sql("UPDATE usuarios SET salud = salud - 2, vitalidad = vitalidad + 1 WHERE id_usuario = ". $_SESSION['id_usuario']);
                 echo "Sugus usado";
                 break;
+            case 3:
+                sql("UPDATE usuarios SET salud = 1 WHERE id_usuario = ". $_SESSION['id_usuario']);
+                echo "<img alt='Logro Suicida' title='Logro' src='../images/Achievement.gif'>";
+                add_stat('S',$_SESSION['id_usuario']);
         endswitch;
     }
     

@@ -324,7 +324,7 @@ function puedo_votar($id_usuario, $tipo, $id_votacion) {//Determina si puedes vo
 
 function check_stat($stat, $id) {
 
-    $sql = sql("SELECT stats FROM usuarios WHERE id_usuario = " . $id);
+    $sql = sql("SELECT status FROM usuarios WHERE id_usuario = " . $id);
     $sql = explode(',', $sql);
 
     $flag = false;
@@ -341,9 +341,9 @@ function check_stat($stat, $id) {
 
 function add_stat($stat, $id) {
     if (check_stat($stat, $id) == false) {
-        $sql = sql("SELECT stats FROM usuarios WHERE id_usuario = " . $id);
+        $sql = sql("SELECT status FROM usuarios WHERE id_usuario = " . $id);
         $sql .= $stat . ',';
-        sql("UPDATE usuarios SET stats = '" . $sql . "' WHERE id_usuario = " . $id);
+        sql("UPDATE usuarios SET status = '" . $sql . "' WHERE id_usuario = " . $id);
         $sql = true;
     } else {
         $sql = false;
@@ -353,7 +353,7 @@ function add_stat($stat, $id) {
 
 function list_stat($id) {
 
-    $sql = sql("SELECT stats FROM usuarios WHERE id_usuario = " . $id);
+    $sql = sql("SELECT status FROM usuarios WHERE id_usuario = " . $id);
     $sql = explode(',', $sql);
 
     foreach ($sql as $status) {
@@ -373,7 +373,7 @@ function del_stat($stat, $id) {
                 $new_stat .= $status . ",";
             }
         }
-        sql("UPDATE usuarios SET stats = '" . $new_stat . "' WHERE id_usuario = " . $id);
+        sql("UPDATE usuarios SET status = '" . $new_stat . "' WHERE id_usuario = " . $id);
     }
     return $new_stat;
 }
