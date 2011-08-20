@@ -134,7 +134,7 @@ $DA = sql("SELECT day FROM settings");
 $sql = sql2("SELECT id_partido, frec_elecciones, dia_elecciones FROM partidos");
 
 foreach ($sql as $party) {
-    if ($DA % $party['frec_elecciones'] == $party['dia_elecciones']) {//Si es dia de elecciones la abrimos
+    if ($DA % $party['frec_elecciones'] == $party['dia_elecciones']-2) {//2 dias antes de las elecciones, abrimos la votacion
         {
         $time = time();
         $time2 = $time +86400;
