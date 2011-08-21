@@ -34,7 +34,13 @@ if ($dia_actual % $party['frec_elecciones'] == $party['dia_elecciones'] && $user
     echo "Proximas elecciones el dia: " . next_elecciones($dia_actual, $party['dia_elecciones'], $party['frec_elecciones']);
     $time = time();
     $vot = sql("SELECT id_votacion FROM votaciones WHERE param1 = " . $party['id_partido'] . " AND fin > " . $time);
-    echo "[<a href='/politico/postular.php?v=" . $vot . "'>Postulate</a>]";
+    $sql = sql("SELECT * from candidatos_elecciones WHERE id_candidato = " . $_SESSION['id_usuario'] . " AND id_votacion = " . $vot);
+
+    if ($sql == false) {//Si aun no esta postulado
+        echo "[<a href='/politico/postular.php?v=" . $vot . "'>Postulate</a>]";
+    } else {//Si ya esta postulado
+        echo "[<a href='/politico/despostular.php?v=" . $vot . "'>Despostulate</a>]";
+    }
 } else {
     //Calculamos la siguiente fecha
     echo "Proximas elecciones el dia: " . next_elecciones($dia_actual, $party['dia_elecciones'], $party['frec_elecciones']);

@@ -147,6 +147,30 @@ foreach ($sql as $party) {
 }
 
 
+$time = time();
+//Cerramos las votaciones que no hayan sido resueltas, que ya hayan terminado y sean de presidente de partido
+$sql = sql2("SELECT * FROM votaciones WHERE solved = 0 AND fin < " . $time . " AND tipo_votacion = 1");
+
+foreach ($sql as $votacion) {
+    //Ver la lista de candidatos
+    $candidatos = sql2("SELECT * FROM candidatos_elecciones WHERE id_votacion = " . $votacion['id_votacion']);
+    if ($candidatos != false) {//Si hay candidatos
+        $winner = array('id' => 0, 'votos' => -1);
+        foreach ($candidatos as $cand) {//Ver quien es el ganador
+            if ($cand['votos'] > $winner['votos']) {//Comparamos los votos con los del ganador
+                $winner['id'] = $cand['id_candidato'];
+                $winner['votos'] = $cand['votos'];
+            } elseif ($cand['votos'] == $winner['votos']) {//Si empatan utilizamos los criterios de desempate (que no tenemos)
+            }
+        }
+
+        //Cambiar las casilla de lider
+        sql("UPDATE partidos SET id_lider = " . $winner['id'] . " WHERE id_partido = " . $votacion['param1']);
+    } else {//Si no hay candidatos
+        //Todo sigue igual
+    }
+}
+
 echo "Cron realizado correctamente";
 ?>
 
