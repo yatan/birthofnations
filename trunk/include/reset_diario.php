@@ -139,7 +139,7 @@ foreach ($sql as $party) {
     if ($mod == $party['dia_elecciones']-2) {//2 dias antes de las elecciones, abrimos la votacion
         {
         $time = time();
-        $time2 = $time +86400;
+        $time2 = $time +86400 - 100; //quitamos unos cuantos, por si da problemas al 
         sql("INSERT INTO votaciones(tipo_votacion,fin,comienzo,param1) VALUES ('1','" . $time2 . "',' " . $time . "','" . $party['id_partido'] . "')");
         }
         
@@ -166,6 +166,7 @@ foreach ($sql as $votacion) {
 
         //Cambiar las casilla de lider
         sql("UPDATE partidos SET id_lider = " . $winner['id'] . " WHERE id_partido = " . $votacion['param1']);
+        sql("UPDATE votaciones SET solved = 1 WHERE id_votacion = " . $votacion['id_votacion']);
     } else {//Si no hay candidatos
         //Todo sigue igual
     }
