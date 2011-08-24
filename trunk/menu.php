@@ -44,9 +44,9 @@ elseif($trabajado==0)
         </li>        
         <li><a href="#"><? echo $txt['soporte']; ?></a>
         <ul>
-            <li><a href="/forum"><? echo $txt['foro']; ?></a></li>
-            <li><a href="/support"><? echo $txt['soporte']; ?></a></li>
-            <li><a href="/bugs"><? echo $txt['bugs']; ?></a></li>
+            <li><a target="Foro" href="/forum"><? echo $txt['foro']; ?></a></li>
+            <li><a target="Soporte" href="/support"><? echo $txt['soporte']; ?></a></li>
+            <li><a target="Bugs" href="/bugs"><? echo $txt['bugs']; ?></a></li>
         </ul>
         </li>
                 <li><a href="/logout">Logout</a></li>
