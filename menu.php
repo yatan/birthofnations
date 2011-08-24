@@ -10,42 +10,43 @@ elseif($trabajado==0)
 <div class="menu">
     <ul>
         <li><a href="/" >Home</a></li>
-        <li><a href="#" id="current">Economico</a>
+        <li><a href="#" id="current"><? echo $txt['economico']; ?></a>
     <ul>
         <?
         $id_empresa = sql("SELECT id_empresa FROM usuarios WHERE id_usuario='".$_SESSION['id_usuario']."'");
         if($id_empresa != "0")
             echo "<li><a href='/".$_GET['lang']."/empresa/".$id_empresa."'>Trabajar $trabajado</a></li>";
         ?>
-        <li><a href="<? echo "/".$_GET['lang']."/empresas"; ?>">Mis Empresas</a></li>
-        <li><a href="<? echo "/".$_GET['lang']."/perfil/".$_SESSION['id_usuario']; ?>">Perfil</a></li>
+        <li><a href="<? echo "/".$_GET['lang']."/empresas"; ?>"><? echo $txt['mis_empresas']; ?></a></li>
+        <li><a href="<? echo "/".$_GET['lang']."/perfil/".$_SESSION['id_usuario']; ?>"><? echo $txt['perfil']; ?></a></li>
     </ul>
         </li>
         
-        <li><a href="#">Militar</a>
+        <li><a href="#"><? echo $txt['militar']; ?></a>
         <ul>
-            <li><a href="#">Entrenamiento</a></li>
+            <li><a href="#"><? echo $txt['entrenamiento']; ?></a></li>
+            <li><a href="#"><? echo $txt['guerras']; ?></a></li>
         </ul>
         </li>
-        <li><a href="#">Mercados</a>
+        <li><a href="#"><? echo $txt['mercados']; ?></a>
         <ul>
-            <li><a href="<? echo "/".$_GET['lang']."/mercado"; ?>">Mercado de productos</a></li>
-            <li><a href="<? echo "/".$_GET['lang']."/mercado_laboral"; ?>">Mercado laboral</a></li>
-            <li><a href="#">Mercado de empresas</a></li>
+            <li><a href="<? echo "/".$_GET['lang']."/mercado"; ?>"><? echo $txt['mercado_productos']; ?></a></li>
+            <li><a href="<? echo "/".$_GET['lang']."/mercado_laboral"; ?>"><? echo $txt['mercado_laboral']; ?></a></li>
+            <li><a href="#"><? echo $txt['mercado_empresas']; ?></a></li>
         </ul>   
         </li>     
-        <li><a href="#">Pais</a>
+        <li><a href="#"><? echo $txt['pais']; ?></a>
         <ul>
-            <li><a href="<? echo "/".$_GET['lang']."/pais/".sql("SELECT id_nacionalidad FROM usuarios WHERE id_usuario='".$_SESSION['id_usuario']."'"); ?>">Mi pais</a></li>
-            <li><a href="<? echo "/".$_GET['lang']."/partidos/".sql("SELECT id_nacionalidad FROM usuarios WHERE id_usuario='".$_SESSION['id_usuario']."'"); ?>">Partidos politicos</a></li>
-            <li><a href="#">Clasificacion</a></li>
+            <li><a href="<? echo "/".$_GET['lang']."/pais/".sql("SELECT id_nacionalidad FROM usuarios WHERE id_usuario='".$_SESSION['id_usuario']."'"); ?>"><? echo $txt['mi_pais']; ?></a></li>
+            <li><a href="<? echo "/".$_GET['lang']."/partidos/".sql("SELECT id_nacionalidad FROM usuarios WHERE id_usuario='".$_SESSION['id_usuario']."'"); ?>"><? echo $txt['partidos_politicos']; ?></a></li>
+            <li><a href="#"><? echo $txt['ranking']; ?></a></li>
         </ul>   
         </li>        
-        <li><a href="#">Soporte</a>
+        <li><a href="#"><? echo $txt['soporte']; ?></a>
         <ul>
-            <li><a href="/forum">Foro</a></li>
-            <li><a href="/support">Tickets de soporte</a></li>
-            <li><a href="/bugs">Reporte de bugs</a></li>
+            <li><a href="/forum"><? echo $txt['foro']; ?></a></li>
+            <li><a href="/support"><? echo $txt['soporte']; ?></a></li>
+            <li><a href="/bugs"><? echo $txt['bugs']; ?></a></li>
         </ul>
         </li>
                 <li><a href="/logout">Logout</a></li>
