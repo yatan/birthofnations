@@ -63,7 +63,7 @@ $txt = array (
     'operacion_ok' => "La operación se ha realizado correctamente",
     'me_falta_dinero' => "No dispongo de tanto dinero",
     'add_friend_head' => "Peticion de amistad",
-    'add_friend' => "quiere ser tu amigo. �Aceptas?",
+    'add_friend' => "quiere ser tu amigo. �Aceptas?",
     'stat_a' => "Hambriento",
     'stat_b' => "Necesita sexo",
     'stat_c' => "Sobredosis de azucar",
@@ -78,8 +78,29 @@ $txt = array (
     //Politico
     'no_regions' => "Este pais no posee ninguna region actualmente",
     'pos_101' => "Jefazo Supremo",
-    'pos_102' => "Pirul� Rojo"
+    'pos_102' => "Pirulí Rojo",
+    
+    //Menu
 
+    'economico' => "Economico",
+    'militar' => "Militar",
+    'mercados' => "Mercados",
+    'pais' => "Pais",
+    'soporte' => "Soporte",
+    'trabajar' => "Trabajar",
+    'mis_empresas' => "Mis Empresas",
+    'perfil' => "Mi Perfil",
+    'entrenamiento' => "Entrenamiento",
+    'guerras' => "Guerras",
+    'mercado_productos' => "Mercado de productos",
+    'mercado_laboral' => "Mercado laboral",
+    'mercado_empresas' => "Mercado de empresas",
+    'mi_pais' => "Mi País",
+    'partidos_politicos' => "Partidos politicos",
+    'ranking' => "Clasificación",
+    'foro' => "Foro",
+    'tickets' => "Tickets de soporte",
+    'bugs' => "Reporte de bugs"    
     
 )
 ?>
