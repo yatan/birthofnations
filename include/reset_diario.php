@@ -121,7 +121,7 @@ foreach ($sql as $party) {
             sql("INSERT INTO votaciones(tipo_votacion,fin,comienzo,param1) VALUES ('1','" . $time2 . "',' " . $time . "','" . $party['id_partido'] . "')");
         }
     }
-}
+
 
 
 $time = time();
