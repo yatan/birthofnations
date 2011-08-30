@@ -112,15 +112,12 @@ $sql = sql2("SELECT id_partido, frec_elecciones, dia_elecciones FROM partidos");
 
 foreach ($sql as $party) {
     $mod = $DA % $party['frec_elecciones']; //Modulo del dia
-    if ($mod < 0) {
-        $mod += $party['frec_elecciones'];
-    } // Si es negativo lo subimos
-    if ($mod == $party['dia_elecciones'] - 2) {//2 dias antes de las elecciones, abrimos la votacion {
-            $time = time();
-            $time2 = $time + 86400 - 100; //quitamos unos cuantos, por si da problemas al 
-            sql("INSERT INTO votaciones(tipo_votacion,fin,comienzo,param1) VALUES ('1','" . $time2 . "',' " . $time . "','" . $party['id_partido'] . "')");
-        }
+    if ($mod == $party['dia_elecciones'] - 2 || $mod == $party['dia_elecciones'] - 2 + $party['frec_elecciones'] ) {//2 dias antes de las elecciones, abrimos la votacion {
+        $time = time();
+        $time2 = $time + 86400 - 100; //quitamos unos cuantos, por si da problemas al 
+        sql("INSERT INTO votaciones(tipo_votacion,fin,comienzo,param1) VALUES ('1','" . $time2 . "',' " . $time . "','" . $party['id_partido'] . "')");
     }
+}
 
 
 
