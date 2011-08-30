@@ -1,4 +1,4 @@
-<?
+<?php
 include_once($_SERVER['DOCUMENT_ROOT']."/include/funciones.php");
 include_once($_SERVER['DOCUMENT_ROOT']."/index_head.php");
 if(!isset($_SESSION['is_admin']))
