@@ -1,7 +1,8 @@
-
+<div id="historia"></div>
+<img src="http://placehold.it/800x600" alt="" />
 
 <input type="button" id="pegar" style="font-size: large; background-color: red;" value="PEGAR"/>
-<a id="historia"></a>
+
 <script type="text/javascript">
 
 
