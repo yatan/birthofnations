@@ -1,38 +1,48 @@
 <?php
 
-$x = 700;
-$y = 700;
+$x = 176;
+$y = 176;
 
 $gd = imagecreatetruecolor($x, $y);
- 
+
+//Colores
 $red = imagecolorallocate($gd, 255, 0, 0); 
 $green = imagecolorallocate($gd, 0, 255, 0); 
 $blue = imagecolorallocate($gd, 0, 0, 255); 
-
 $black = imagecolorallocate($gd, 0, 0, 0); 
 
 
-for ($i = 0; $i < 700; $i+=25) {
-    for ($j = 0; $j < 700; $j+=25) {
-        $a = rand(0, 2);
-        if($a==1)
-            imagefilledrectangle($gd, $i,$j, $i+25,$j+25, $blue);
-        elseif($a==2)
-            imagefilledrectangle($gd, $i,$j, $i+25,$j+25, $green);
+    $mapa = array(
+        0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,
+        0,1,0,0,0,0,0,
+        0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,
+        0,0,0,1,0,0,0,
+        0,0,0,0,0,0,0
+       );
+    $posicion = 0;
+
+for ($i = 1; $i < 175; $i+=25) {
+    for ($j = 1; $j < 175; $j+=25) {
+        
+        if($mapa[$posicion]==1)
+            imagefilledrectangle($gd, $j,$i, $j+25,$i+25, $red);
         else
-            imagefilledrectangle($gd, $i,$j, $i+25,$j+25, $red);
+            imagefilledrectangle($gd, $j,$i, $j+25,$i+25, $green);
+        $posicion++;
             
 
     }
 }
  
 
-for ($i = 0; $i <= $y; $i += 15) {
-    imageline($gd, $i, 0, $i, 700, $black);
+for ($i = 0; $i <= $y; $i += 25) {
+    imageline($gd, $i, 0, $i, 177, $black);
 }
 
-for ($i = 0; $i <= $x; $i += 15) {
-    imageline($gd, 0, $i, 700, $i, $black);
+for ($i = 0; $i <= $x; $i += 25) {
+    imageline($gd, 0, $i, 177, $i, $black);
 } 
 
 
