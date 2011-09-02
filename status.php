@@ -10,10 +10,37 @@ $gold = sql("SELECT gold FROM money WHERE id_usuario='".$_SESSION['id_usuario'].
 $mensajes = sql("SELECT COUNT(*) FROM messages WHERE id_receptor='".$_SESSION['id_usuario']."' AND leido='0' AND deleted='0'");
 $alertas = sql("SELECT COUNT(*) FROM alertas WHERE id_receptor='".$_SESSION['id_usuario']."' AND leido='0'");
 $pais = sql("SELECT name, url_bandera FROM country WHERE idcountry IN (SELECT id_nacionalidad FROM usuarios WHERE id_usuario='".$_SESSION['id_usuario']."')");
+$estado = sql("SELECT status FROM usuarios WHERE id_usuario='".$_SESSION['id_usuario']."'");
 
+if($estado != null)
+{
+$a_estado = explode(",",$estado);
+$i_estado="";
+foreach ($a_estado as $estado2) {
+    switch($estado2)
+    {
+        case "a":
+            $i_estado = $i_estado."<img title='".$txt['stat_a']."' src='/images/status_bar/status/2.png'/> ";
+            break;        
+        case "b":
+            $i_estado = $i_estado."<img title='".$txt['stat_b']."' src='/images/status_bar/status/3.png'/> ";
+            break;
+        case "c":
+            $i_estado = $i_estado."<img title='".$txt['stat_c']."' src='/images/status_bar/status/4.png'/> ";
+            break;     
+        case "S":
+            $i_estado = $i_estado."<img title='".$txt['stat_S']."' src='/images/status_bar/status/5.png'/> ";
+            break;        
+        default:
+            $i_estado = $i_estado."";
+    }
+}
+}
+else
+$i_estado = "<img src='/images/status_bar/status/1.png'/>";
 
-echo "<a href='/".$_GET['lang']."/perfil/".$_SESSION['id_usuario']."'>$nick</a>"
-." "
+echo "$i_estado - <a href='/".$_GET['lang']."/perfil/".$_SESSION['id_usuario']."'>$nick</a>"
+." - "
 ."<img alt='bandera' title='".$pais['name']."' src='".$pais['url_bandera']."'>"
 ." - "
 ."<img alt='vida'  src='/images/status_bar/life.gif'> 100"

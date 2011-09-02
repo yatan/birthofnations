@@ -262,3 +262,20 @@ echo "<h2>".$txt['Poner_ofertas_trabajo']."</h2>" ;
     }
     
     ?>
+
+    
+      <button id="vender_empresa">Vender empresa</button>
+
+      <div id="vender_empresa2" style="display: none">
+          <form action="vender_empresa.php" method="POST">
+              Precio:<input type="text" name="precio" value="<? echo $empresa->precio_empresa; ?>" style="text-align:right;"/>
+              <input type="submit" value="Vender"/>
+          </form>            
+      </div>
+
+      
+<script>
+    $("#vender_empresa").click(function () {
+    $("#vender_empresa2").show("slow");
+    });
+</script>

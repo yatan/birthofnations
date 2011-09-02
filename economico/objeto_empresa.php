@@ -43,6 +43,7 @@ class empresa
         $this->precio_venta = $empresa['precio_venta'];
         $this->raw = $empresa['raw'];
         $this->pais = $empresa['pais'];
+        $this->precio_empresa = $empresa['precio_empresa'];
         
     }
     
