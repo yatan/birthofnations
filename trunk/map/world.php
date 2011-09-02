@@ -16,7 +16,7 @@ $black = imagecolorallocate($gd, 0, 0, 0);
         0,0,0,0,0,0,0,
         0,0,0,0,0,0,0,
         0,1,0,0,0,0,0,
-        0,0,0,0,0,0,0,
+        0,0,2,0,2,0,0,
         0,0,0,0,0,0,0,
         0,0,0,1,0,0,0,
         0,0,0,0,0,0,0
@@ -28,6 +28,8 @@ for ($i = 1; $i < 175; $i+=25) {
         
         if($mapa[$posicion]==1)
             imagefilledrectangle($gd, $j,$i, $j+25,$i+25, $red);
+        elseif($mapa[$posicion]==2)
+            imagefilledrectangle($gd, $j,$i, $j+25,$i+25, $blue);
         else
             imagefilledrectangle($gd, $j,$i, $j+25,$i+25, $green);
         $posicion++;

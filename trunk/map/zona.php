@@ -30,7 +30,7 @@
         0,0,0,0,0,0,0,
         0,0,0,0,0,0,0,
         0,1,0,0,0,0,0,
-        0,0,0,0,0,0,0,
+        0,0,2,0,2,0,0,
         0,0,0,0,0,0,0,
         0,0,0,1,0,0,0,
         0,0,0,0,0,0,0
@@ -43,6 +43,8 @@ for($i=1;$i<=7;$i++)
     {
         if($mapa[$posicion]==1)
             echo "<img src='/images/map/house.png'/>";
+        elseif($mapa[$posicion]==2)
+            echo "<img src='/images/map/car.png'/>";
         else
             echo "<img src='/images/map/hierba.png'/>";
         $posicion++;

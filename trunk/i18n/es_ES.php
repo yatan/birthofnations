@@ -68,6 +68,7 @@ $txt = array (
     'stat_b' => "Necesita sexo",
     'stat_c' => "Sobredosis de azucar",
     'stat_S' => "Suicida",
+    'no_stat' => "Bien",
     
     //Pagina mantenimiento
     'mantenimiento_1' => "Modo mantenimiento",

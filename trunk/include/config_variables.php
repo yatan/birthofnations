@@ -37,7 +37,8 @@ function raw_needed($tipo){
 }
 
 function nombre_item($tipo){
-    
+    return sql("SELECT nombre FROM items WHERE id_item='$tipo'");
+    /*
     switch ($tipo):
         case 1:
             $ret = "sugus";
@@ -52,9 +53,11 @@ function nombre_item($tipo){
     endswitch;
     
     return $ret;
+    */
 }
 function obj_to_id ($obj){
-    
+    return sql("SELECT id_item FROM items WHERE nombre='$obj'");
+    /*
     switch($obj):
         case 'sugus':
             $ret = 1;
@@ -68,9 +71,10 @@ function obj_to_id ($obj){
     endswitch;
     
     return $ret;
+    */
 }
 
-//Modulo político
+//Modulo polÃ­tico
 $precio_partido = 40;
 
 
