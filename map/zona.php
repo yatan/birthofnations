@@ -25,14 +25,27 @@
 </div>
 <div class="mapa">
     <?
+    
+    $mapa = array(
+        0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,
+        0,1,0,0,0,0,0,
+        0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,
+        0,0,0,1,0,0,0,
+        0,0,0,0,0,0,0
+       );
+    $posicion = 0;
+    
 for($i=1;$i<=7;$i++)
 {
     for($j=1;$j<=7;$j++)
     {
-        if($i==3 && $j==5)
+        if($mapa[$posicion]==1)
             echo "<img src='/images/map/house.png'/>";
         else
             echo "<img src='/images/map/hierba.png'/>";
+        $posicion++;
     }
     echo "<br/>";
 }
