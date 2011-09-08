@@ -29,6 +29,7 @@ echo "<br>Stock: " .$empresa->stock;
 if (type_company($empresa->tipo) != 0) { echo " Raw: " . $empresa->raw; }
 
 //Vender stock
+$sql=sql("SELECT marketable FROM items WHERE id_item = ".$empresa->tipo);
 if ($empresa->stock != 0){
     
     echo <<<EOT
