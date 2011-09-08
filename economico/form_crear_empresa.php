@@ -4,18 +4,22 @@
         <h2>Creacion de empresas:</h2>
         <label for="nombre">Nombre:<input tabindex="1" type="text" name="nombre"></label><br>
         <label for="pass">Tipo:<select name="tipo">
-                <option value=1>Fábrica de Sugus</option>
-                <option value=2>Fábrica de Az�car</option></select>
+<?
+$sql = sql("SELECT id_item FROM items WHERE empresable = 1");
+foreach ($sql as $item){
+    echo "<option value=".$item['id_item'].">".$txt['item'.$item['id_item']]."</option>";
+}
+?>
         </label><br>
         <input type="button" id="enviar" value="Enviar">
     </form>
 </div><!--form de creacion de empresas-->
 <script>
     $('#enviar').click(function() {
-  	$.post("../economico/crear_empresa.php", $("#empresa").serialize(),
+        $.post("../economico/crear_empresa.php", $("#empresa").serialize(),
         function(data){
-                        alert(data);
-                      } );
+            alert(data);
+        } );
    
     });
 

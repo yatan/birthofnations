@@ -6,11 +6,12 @@ if(isset($_GET['pais']))
 else
     $pais = sql("SELECT id_pais FROM usuarios WHERE id_usuario='".$_SESSION['id_usuario']."'");
 
-//$objeto = $_GET['producto'];
 if(isset($_GET['producto']))
     $objeto = $_GET['producto']; 
 else
-    $objeto="sugus";
+    $objeto= 3;
+
+$objeto = sql("SELECT id_item, nombre, marketable FROM items WHERE id_item = ". $objeto);
 
 if(isset($_GET['pag']))
     $pagina = $_GET['pag']; 
@@ -30,7 +31,7 @@ alert(e.message);
 }
 });
 function cambiar_pais(arg) {
-	window.location = '/<? echo $_GET['lang']."/mercado/$objeto/"; ?>'+arg+'/<? echo "0"; ?>';
+	window.location = '/<? echo $_GET['lang']."/mercado/".$objeto['id_item']."/"; ?>'+arg+'/<? echo "0"; ?>';
 }
 function cambiar_item(arg) {
 	window.location = '/<? echo $_GET['lang']."/mercado/"; ?>'+arg+'/<? echo "$pais/0"; ?>';
@@ -57,13 +58,13 @@ Seleccion de objeto
   <select style="width:200px;" name="objeto" id="objeto" onchange="cambiar_item(this.value)">
     
     <?
-    foreach (sql("SELECT * FROM items") as $item) {
-        if($item['nombre']==$objeto)
+    foreach (sql("SELECT * FROM items WHERE marketable = 1") as $item) {
+        if($item['id_item']==$objeto['id_item'])
             $seleccion = "selected='selected'";
         else
             $seleccion = "";
         
-        echo "<option value='".$item['nombre']."' $seleccion title=''>".$item['nombre']."</option>";
+        echo "<option value='".$item['id_item']."' $seleccion title=''>".$item['nombre']."</option>";
     }
     ?>
   </select>
@@ -74,7 +75,7 @@ echo "<h1>Mercado de objetos de: ".sql("SELECT name FROM country WHERE idcountry
 //A partir de que registro se va a ver segun la pagina que estemos
 $pag_resultados = $pagina * 10;
 
-$ofertas = sql2("SELECT * FROM mercado_objetos WHERE id_pais = " . $pais . " AND objeto = '". $objeto ."' ORDER BY precio ASC LIMIT $pag_resultados, 10");
+$ofertas = sql2("SELECT * FROM mercado_objetos WHERE id_pais = " . $pais . " AND id_item = '". $objeto['id_item'] ."' ORDER BY precio ASC LIMIT $pag_resultados, 10");
 
 echo "<table><tr><th>Empresa</th><th>Precio</th><th>Cantidad</th><th>Comprar</th></tr>";
 
@@ -94,10 +95,10 @@ foreach ($ofertas as $oferta){
 
 echo "</table>";
 
-$max_paginas = sql("SELECT COUNT(*) FROM mercado_objetos WHERE id_pais = " . $pais . " AND objeto = '". $objeto ."'")/10+1;
+$max_paginas = sql("SELECT COUNT(*) FROM mercado_objetos WHERE id_pais = " . $pais . " AND id_item = '". $objeto['id_item'] ."'")/10+1;
 for($i=1;$i<=$max_paginas;$i++)
 {   
     $pag = $i-1;
-    echo "<a href='/".$_GET['lang']."/mercado/$objeto/$pais/".$pag."'>$i </a>";
+    echo "<a href='/".$_GET['lang']."/mercado/".$objeto['id_item']."/$pais/".$pag."'>$i </a>";
 }
 ?>
