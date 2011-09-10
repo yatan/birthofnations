@@ -48,7 +48,9 @@ $txt = array (
     'mail_bienvenida_title' => "Bienvenido a Birth of Nations",
     
     //Economico
-    
+    'item1' => "Sugus",
+    'item2' => "Azucar",
+    'item3' => "Armas",
     'Poner_ofertas_trabajo' => "Poner ofertas de trabajo",
     'empresa_tipo1' => "Sugus",
     'empresa_tipo2' => "Azucar",
