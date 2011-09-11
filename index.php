@@ -80,9 +80,6 @@ else
                             case "info_pais":
                                 include("politico/info_pais.php");
                                 break;           
-                            case "redactar":
-                                include("periodico/redactar.php");
-                                break; 
                             case "buscador":
                                 include("usuarios/buscador.php");
                                 break;         

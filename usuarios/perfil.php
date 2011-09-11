@@ -31,6 +31,7 @@ else {
         echo "<li><a href='#economia'>Economia</a></li>";
         echo "<li><a href='#inventario'>Inventario</a></li>";
         echo "<li><a href='#viajar'>Viajar</a></li>";
+        echo "<li><a href='#periodico'>Periodico</a></li>";
     }
     ?>
 
@@ -60,6 +61,9 @@ else {
                 echo "</div>";
                 echo "<div id='viajar'>";
                 include("viajar.php");
+                echo "</div>";
+                echo "<div id='periodico'>";
+                include("periodico/redactar.php");
                 echo "</div>";
             } else {
                 //Zona publica
