@@ -378,4 +378,28 @@ function del_stat($stat, $id) {
     return $new_stat;
 }
 
+    function list_items(){
+        $sql = sql("SELECT nombre FROM items");
+        array_unshift($sql,"m");
+        foreach($sql as $item){
+            
+            $sql2[] = $item['nombre'];
+            
+        }
+        return $sql2;
+    }
+    
+    function parse_raw($tipo){
+        //de la casilla de raw_needed a un array [idraw] -> cantidad necesaria
+        
+        $sql = sql("SELECT raw_needed FROM items WHERE id_item = " . $tipo);
+        $sql = explode(',',$sql);
+        foreach($sql as $raw1){
+            $raw[] = explode('-',$raw1);
+        }
+        foreach($raw as $each){
+            $raw2[$each[0]] = $each[1];
+        }
+        return $raw2;
+    }
 ?>
