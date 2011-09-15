@@ -290,6 +290,12 @@ function id2nick($id) {
     return sql("SELECT nick FROM usuarios WHERE id_usuario='$id'");
 }
 
+function item2id($item){
+    
+    $sql = sql("SELECT id_item FROM items WHERE nombre = '" . $item ."'");
+    return $sql;
+}
+
 function next_elecciones($DA, $DE, $FE) {//Actual/Resto del dia de las elecciones/Frecuencia
     if ($DA % $FE > $DE) {
         $prox = $DA - $DA % $FE + $DE + $FE;
