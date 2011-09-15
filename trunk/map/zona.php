@@ -1,3 +1,6 @@
+<?
+include("../index_head.php");
+?>
 <style type="text/css">
 .menu_izq {
 	float: left;
@@ -14,40 +17,54 @@
 </head>
 
 <body>
+    
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+var quien;
+		
+   $(".elemento1").mouseenter(function(e){
+    quien = $(this).attr("propietario");
+	 
+    $('#propietario').text(quien);
+      
+   });
+   
+  $(".elemento1").mouseleave(function(e){
+  $('#propietario').text("");
+  });
+   
+  
+})	
+	
+</script>
 <div class="pagina">
-    <center><h1>Mapa</h1></center>
+    <center><h1>Mapa Zona 1</h1></center>
 <div class="menu_izq">
   <p>Menu</p>
   <p>Precio:</p>
   <p>100$</p>
   <p>Propietario:</p>
-  <p>yatan</p>
+  <p id="propietario"></p>
 </div>
 <div class="mapa">
     <?
+   include "../include/funciones.php";
     
-    $mapa = array(
-        0,0,0,0,0,0,0,
-        0,0,0,0,0,0,0,
-        0,1,0,0,0,0,0,
-        0,0,2,0,2,0,0,
-        0,0,0,0,0,0,0,
-        0,0,0,1,0,0,0,
-        0,0,0,0,0,0,0
-       );
-    $posicion = 0;
-    
-for($i=1;$i<=7;$i++)
+for($y=1;$y<=7;$y++)
 {
-    for($j=1;$j<=7;$j++)
+    for($x=1;$x<=7;$x++)
     {
-        if($mapa[$posicion]==1)
-            echo "<img src='/images/map/house.png'/>";
-        elseif($mapa[$posicion]==2)
-            echo "<img src='/images/map/car.png'/>";
+        $tipo = sql("SELECT tipo FROM map_zonas WHERE x='$x' AND y='$y' AND id_zona='1'");
+        
+        if($tipo==1)
+            echo "<img class='elemento1' propietario='fraasas' src='/images/map/house.png'/>";
+        elseif($tipo==2)
+            echo "<img class='elemento1' propietario='erwewrer' src='/images/map/car.png'/>";
         else
             echo "<img src='/images/map/hierba.png'/>";
-        $posicion++;
+        
     }
     echo "<br/>";
 }
