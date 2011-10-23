@@ -32,7 +32,7 @@ foreach ($sql as $item => $value) {
     if ($value == 0) {
         continue;
     }
-    echo $item . ": " . $value . "<a href='empresa_item.php?emp=" . $empresa->id_empresa . "&item=" . item2id($item) . "'>Usar</a><br>";
+    echo $item . ": " . $value . " [<a href='../../economico/empresa_item.php?emp=" . $empresa->id_empresa . "&item=" . item2id($item) . "'>Usar</a>]<br>";
 }
 
 
