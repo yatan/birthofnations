@@ -28,13 +28,62 @@ echo "Inventario de la empresa: <br>";
 $sql = sql("SELECT * FROM inventario_empresas WHERE id_empresa = " . $empresa->id_empresa);
 unset($sql['id_empresa']);
 
-foreach ($sql as $item => $value) {
-    if ($value == 0) {
-        continue;
+
+?>
+<style>
+
+div.ui-dialog a.ui-dialog-titlebar-close {
+display: none;
+}
+.ui-dialog .ui-dialog-buttonpane { 
+    text-align: center;
+}
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset { 
+    float: none;
+}
+</style>
+
+<script>
+	$(function() {
+		$( "#dialog" ).dialog({draggable: false, resizable: false, autoOpen: false, buttons: [
+    {
+        text: "Aceptar",
+        click: function() { $(this).dialog("close"); window.location.reload(); }
     }
-    echo $item . ": " . $value . " [<a href='../../economico/empresa_item.php?emp=" . $empresa->id_empresa . "&item=" . item2id($item) . "'>Usar</a>]<br>";
+]
+});
+	});
+</script>
+
+<div id="dialog" title="Usar item">
+
+</div>
+
+
+<?
+
+foreach ($sql as $item => $value) {
+    if ($value > 0) {
+        echo $item . ": " . $value . " [<a href='#' class='click_item' id='" . item2id($item) . "'>Usar</a>]<br>";
+    }
+    
 }
 
+?>
+<script>
+ $('.click_item').click(function() {
+ 
+
+  	$.post("../../economico/empresa_item.php?emp=<? echo $empresa->id_empresa; ?>&item="+$(this).attr("id"),
+        function(data){
+                        $("#dialog").append(data);
+                        $( "#dialog" ).dialog('open');
+                      } );
+   
+    });       
+</script>    
+
+<?
 
 echo <<<EOT
    <h3>Vender stock</h3>

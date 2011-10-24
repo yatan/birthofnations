@@ -26,7 +26,7 @@ if (isset($_GET['emp']) && $_GET['emp'] != "" && strlen($_GET['emp'])>0 && isset
                 break;
             case 2:
                 
-                echo "El suelo se llena de azucar. Pronto, te devorar·n las hormigas.";
+                echo "El suelo se llena de azucar. Pronto, te devorar√°n las hormigas.";
         endswitch;
     }
     
