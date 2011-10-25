@@ -416,4 +416,49 @@ function obj_to_id($obj) {
     return sql("SELECT id_item FROM items WHERE nombre='$obj'");
 }
 
+function ventana_js($mensaje) {
+echo <<<EOT
+       
+
+<style>
+
+div.ui-dialog a.ui-dialog-titlebar-close {
+display: none;
+}
+.ui-dialog .ui-dialog-buttonpane { 
+    text-align: center;
+}
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset { 
+    float: none;
+}
+</style>
+
+<script>
+	$(function() {
+		$( "#dialog" ).dialog({draggable: false, resizable: false, autoOpen: false, buttons: [
+    {
+        text: "Aceptar",
+        click: function() { $(this).dialog("close"); window.location.reload(); }
+    }
+]
+});
+	});
+</script>
+
+<div id="dialog" title="Usar item" style="display:none">
+$mensaje
+</div>
+
+<a href="#" id="ventana">ventana</a>
+
+<script>
+    $('#ventana').click(function() {
+        $( "#dialog" ).dialog('open');
+
+    });   
+</script>
+EOT;
+
+}
+
 ?>
