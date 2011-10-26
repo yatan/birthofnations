@@ -416,7 +416,7 @@ function obj_to_id($obj) {
     return sql("SELECT id_item FROM items WHERE nombre='$obj'");
 }
 
-function ventana_js($mensaje) {
+function ventana_js($mensaje, $link="ventana", $titulo="", $tipo=1) {
 echo <<<EOT
        
 
@@ -432,24 +432,51 @@ display: none;
     float: none;
 }
 </style>
+EOT;
 
-<script>
-	$(function() {
-		$( "#dialog" ).dialog({draggable: false, resizable: false, autoOpen: false, buttons: [
-    {
-        text: "Aceptar",
-        click: function() { $(this).dialog("close"); window.location.reload(); }
-    }
-]
-});
-	});
-</script>
 
-<div id="dialog" title="Usar item" style="display:none">
+switch($tipo) {
+    case 1:
+            echo <<<EOT
+            <script>
+                    $(function() {
+                            $( "#dialog" ).dialog({draggable: false, resizable: false, autoOpen: false, buttons: [
+                {
+                    text: "Aceptar",
+                    click: function() { $(this).dialog("close"); window.location.reload(); }
+                }
+            ]
+            });
+                    });
+            </script>
+EOT;
+    break;
+
+    case 2:
+                        echo <<<EOT
+            <script>
+                    $(function() {
+                            $( "#dialog" ).dialog({draggable: false, resizable: false, autoOpen: false, buttons: [
+                {
+                    text: "Aceptar",
+                    click: function() { $(this).dialog("close"); }
+                }
+            ]
+            });
+                    });
+            </script>
+EOT;
+    break;
+        
+}
+
+
+echo <<<EOT
+<div id="dialog" title="$titulo" style="display:none">
 $mensaje
 </div>
 
-<a href="#" id="ventana">ventana</a>
+<a href="#" id="ventana">$link</a>
 
 <script>
     $('#ventana').click(function() {
