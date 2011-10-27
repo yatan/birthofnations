@@ -11,7 +11,7 @@ $mensajes = sql("SELECT COUNT(*) FROM messages WHERE id_receptor='".$_SESSION['i
 $alertas = sql("SELECT COUNT(*) FROM alertas WHERE id_receptor='".$_SESSION['id_usuario']."' AND leido='0'");
 $pais = sql("SELECT name, url_bandera FROM country WHERE idcountry IN (SELECT id_nacionalidad FROM usuarios WHERE id_usuario='".$_SESSION['id_usuario']."')");
 $estado = sql("SELECT status FROM usuarios WHERE id_usuario='".$_SESSION['id_usuario']."'");
-ventana_js("hola","hola link",2);
+ventana_js("hola","hola link","ventana js",2);
 if($estado != null)
 {
 $a_estado = explode(",",$estado);

@@ -417,6 +417,12 @@ function obj_to_id($obj) {
 }
 
 function ventana_js($mensaje, $link="ventana", $titulo="", $tipo=1) {
+    
+    $id_ventana = rand();
+    $id_link = rand();
+    if($id_link == $id_ventana)
+        $id_link += 1;
+    
 echo <<<EOT
        
 
@@ -440,7 +446,7 @@ switch($tipo) {
             echo <<<EOT
             <script>
                     $(function() {
-                            $( "#dialog" ).dialog({draggable: false, resizable: false, autoOpen: false, buttons: [
+                            $( "#$id_ventana" ).dialog({draggable: false, resizable: false, autoOpen: false, buttons: [
                 {
                     text: "Aceptar",
                     click: function() { $(this).dialog("close"); window.location.reload(); }
@@ -456,7 +462,7 @@ EOT;
                         echo <<<EOT
             <script>
                     $(function() {
-                            $( "#dialog" ).dialog({draggable: false, resizable: false, autoOpen: false, buttons: [
+                            $( "#$id_ventana" ).dialog({draggable: false, resizable: false, autoOpen: false, buttons: [
                 {
                     text: "Aceptar",
                     click: function() { $(this).dialog("close"); }
@@ -472,15 +478,15 @@ EOT;
 
 
 echo <<<EOT
-<div id="dialog" title="$titulo" style="display:none">
+<div id="$id_ventana" title="$titulo" style="display:none">
 $mensaje
 </div>
 
-<a href="#" id="ventana">$link</a>
+<a href="#" id="$id_link">$link</a>
 
 <script>
-    $('#ventana').click(function() {
-        $( "#dialog" ).dialog('open');
+    $('#$id_link').click(function() {
+        $( "#$id_ventana" ).dialog('open');
 
     });   
 </script>
