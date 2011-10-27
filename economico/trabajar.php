@@ -64,7 +64,8 @@ if ($empresa[$moneda_local[$datos['moneda']]] > $datos['salario']) { //Si hay su
             $dia = sql("SELECT day FROM settings");
             sql("INSERT INTO log_produccion(id_usuario,id_empresa,producido,dia) VALUES('" . $_SESSION['id_usuario'] . "','" . $datos['id_empresa'] . "','$producido','$dia')");
             //Algun mensaje de confirmacion que se tendra que traducir xD
-            echo "Has producido $producido, vuelve mañana";
+            echo "Has producido $producido, vuelve mañana<br>";
+            echo "Has ganado 1 de experiencia";
         }
         else
             echo "Falta raw en la empresa";
