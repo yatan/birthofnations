@@ -1,12 +1,11 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 include_once($_SERVER['DOCUMENT_ROOT'] . "/include/funciones.php");
 include_once($_SERVER['DOCUMENT_ROOT'] . "/politico/objeto_pais.php");
+
+
+//Temporal hasta que se ponga en el hta
+$_GET['pais']=2;
 
 if (!isset($_GET['id_pais']))
     die("Error: id no valido"); //Substituir por error 404
@@ -23,17 +22,15 @@ echo "Poblacion actual: " . $pais->population();
 
 echo "<h3>Líderes</h3>";
 
-$cargos = $pais->list_cargos(); //Sacamos la lista de cargos del pais
+$leaders = $pais->list_leaders();
 
 echo "<table><tr><th>Nick</th><th>Posicion</th></tr>";
 
-foreach ($cargos as $cargo) {//Para cada cargo
+foreach ($leaders as $leader) {
 
-    $gente = list_leaders($cargo['id_cargo']); //Sacamos la lista de gente
-    
-    foreach($gente as $persona){//Para cada uno de ellos
-    echo "<tr><td><a href='../perfil/" . $persona . "'>" . id2nick($persona) . "</a></td><td>" . $cargo['nombre'] . "</td></tr>";
-    }
+    $name = sql("SELECT nick FROM usuarios WHERE id_usuario = " . $leader['idLeader']);
+
+    echo "<tr><td><a href='../perfil/" . $leader['idLeader'] . "'>" . $name . "</a></td><td>" . $txt['pos_' . $leader['position']] . "</td></tr>";
 }
 
 echo "</table>";
