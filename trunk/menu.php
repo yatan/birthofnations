@@ -24,7 +24,7 @@ elseif($trabajado==0)
         
         <li><a href="#"><? echo $txt['militar']; ?></a>
         <ul>
-            <li><a href="#"><? echo $txt['entrenamiento']; ?></a></li>
+            <li><a href="<? echo "/".$_GET['lang']."/entrenar"; ?>"><? echo $txt['entrenamiento']; ?></a></li>
             <li><a href="#"><? echo $txt['guerras']; ?></a></li>
         </ul>
         </li>
