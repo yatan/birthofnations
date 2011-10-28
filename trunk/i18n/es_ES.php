@@ -48,14 +48,16 @@ $txt = array (
     'mail_bienvenida_title' => "Bienvenido a Birth of Nations",
     
     //Economico
-    'item1' => "Sugus",
-    'item2' => "Azucar",
-    'item3' => "Armas",
+    'Gold' => 'Gold',
     'Poner_ofertas_trabajo' => "Poner ofertas de trabajo",
     'empresa_tipo1' => "Sugus",
     'empresa_tipo2' => "Azucar",
     'empresa_tipo3' => "Armas",
     'no_ofertas_trabajo' => "No hay ofertas de trabajo",
+    //Estos 3 deberian desaparecer
+    'item1' => "Sugus",
+    'item2' => "Azucar",
+    'item3' => "Armas",
     
     //Usuarios
     
