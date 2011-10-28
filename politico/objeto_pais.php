@@ -16,8 +16,10 @@ class pais {
         $this->id = $id;
         $this->bandera = sql("SELECT url_bandera FROM country WHERE idcountry = " . $this->id);
     }
-    function list_leaders(){
-        $sql = sql2("SELECT * FROM country_leaders WHERE idcountry = ". $this->id ." AND ( date_until  >= ". date("Y-m-d") ." OR is_forever = 1 ) ORDER BY position ASC");
+    function list_cargos(){
+        $min = $this->id*100;
+        $max = $this->id*100+99;
+        $sql = sql2("SELECT id_cargo, nombre, id_gente FROM country_leaders WHERE id_cargo >= " . $min . " AND id_cargo <= " . $max . " ORDER BY id_cargo ASC");
         return $sql;
     }
     function list_regions(){

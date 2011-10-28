@@ -492,6 +492,62 @@ $mensaje
 </script>
 EOT;
 
+//Sin retocar
+function check_leader($cargo, $id) {
+
+    $sql = sql("SELECT status FROM usuarios WHERE id_usuario = " . $id);
+    $sql = explode(',', $sql);
+
+    $flag = false;
+
+    foreach ($sql as $status) {
+        if ($status == $stat) {
+            $flag = true;
+            break;
+        }
+    }
+
+    return $flag;
+}
+//Sin retocar
+function add_leader($cargo, $id) {
+    if (check_stat($stat, $id) == false) {
+        $sql = sql("SELECT status FROM usuarios WHERE id_usuario = " . $id);
+        $sql .= $stat . ',';
+        sql("UPDATE usuarios SET status = '" . $sql . "' WHERE id_usuario = " . $id);
+        $sql = true;
+    } else {
+        $sql = false;
+    }
+    return $sql;
+}
+//Sin retocar
+function list_leaders($cargo) {
+
+    $sql = sql("SELECT id_gente FROM country_leaders WHERE id_cargo = " . $cargo);
+    $sql = explode(',', $sql);
+
+    foreach ($sql as $status) {
+        $list[] = $status;
+    }
+    unset($list[count($list) - 1]);
+
+    return $list;
+}
+//Sin retocar
+function del_leader($cargo, $id) {
+    if (check_stat($stat, $id) == true) {
+        $list = list_stat($id);
+        $new_stat = "";
+        foreach ($list as $status) {
+            if ($status != $stat) {
+                $new_stat .= $status . ",";
+            }
+        }
+        sql("UPDATE usuarios SET status = '" . $new_stat . "' WHERE id_usuario = " . $id);
+    }
+    return $new_stat;
+}
 }
 
 ?>
