@@ -7,7 +7,7 @@
 
 echo "<h2>Mi economia</h2>";
 
-echo sql("SELECT Gold FROM money WHERE id_usuario='".$_SESSION['id_usuario']."'")." Gold<br/>";
+echo sql("SELECT Gold FROM money WHERE id_usuario='".$_SESSION['id_usuario']."'"). $txt['Gold'] ." <br/>";
 $sql = sql("SELECT * FROM money WHERE id_usuario='".$_SESSION['id_usuario']."'");
 
 arsort($sql);

@@ -43,7 +43,7 @@ echo "<h3>Dineros</h3>";
 echo "<table><tr><th>Moneda</th><th>Cantidad</th></tr>";
 $gold = sql("SELECT Gold FROM money_pais WHERE idcountry ='" . $id_pais . "'");
 
-echo "<tr><td>" . $txt['gold'] . "</td><td>" . $gold . "</td></tr>";
+echo "<tr><td>" . $txt['Gold'] . "</td><td>" . $gold . "</td></tr>";
 $sql = sql("SELECT * FROM money_pais WHERE idcountry = " . $id_pais);
 
 unset($sql['idcountry'], $sql['Gold']);
