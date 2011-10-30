@@ -82,8 +82,6 @@ $txt = array (
 
     //Politico
     'no_regions' => "Este pais no posee ninguna region actualmente",
-    'pos_101' => "Jefazo Supremo",
-    'pos_102' => "Pirulí Rojo",
     
     //Menu
 
@@ -112,7 +110,11 @@ $txt = array (
     'sugus' => "Sugus",
     'azucar' => "Azucar",
     'armas' => "Armas",
-    'hierro' => "Hierro"
+    'hierro' => "Hierro",
     
+    //Leyes
+    
+    'law_100' => 'Cambiar nombre al pais',
+    'law_101' => 'Ser guay',
 )
 ?>

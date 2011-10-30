@@ -3,7 +3,6 @@
 session_start();
 include_once("config.php");
 select_lang();
-
 /*
 
   Script con varias funciones:
@@ -491,17 +490,16 @@ $mensaje
     });   
 </script>
 EOT;
-
-//Sin retocar
+}
 function check_leader($cargo, $id) {
 
-    $sql = sql("SELECT status FROM usuarios WHERE id_usuario = " . $id);
+    $sql = sql("SELECT id_gente FROM country_leaders WHERE id_cargo = " . $cargo);
     $sql = explode(',', $sql);
 
     $flag = false;
 
-    foreach ($sql as $status) {
-        if ($status == $stat) {
+    foreach ($sql as $persona) {
+        if ($persona == $id) {
             $flag = true;
             break;
         }
@@ -512,16 +510,16 @@ function check_leader($cargo, $id) {
 //Sin retocar
 function add_leader($cargo, $id) {
     if (check_stat($stat, $id) == false) {
-        $sql = sql("SELECT status FROM usuarios WHERE id_usuario = " . $id);
-        $sql .= $stat . ',';
-        sql("UPDATE usuarios SET status = '" . $sql . "' WHERE id_usuario = " . $id);
+        $sql = sql("SELECT id_gente FROM country_leaders WHERE id_cargo = " . $cargo);
+        $sql .= $cargo . ',';
+        sql("UPDATE country_leaders SET id_gente = '" . $sql . "' WHERE id_cargo = " . $cargo);
         $sql = true;
     } else {
         $sql = false;
     }
     return $sql;
 }
-//Sin retocar
+
 function list_leaders($cargo) {
 
     $sql = sql("SELECT id_gente FROM country_leaders WHERE id_cargo = " . $cargo);
@@ -536,18 +534,84 @@ function list_leaders($cargo) {
 }
 //Sin retocar
 function del_leader($cargo, $id) {
-    if (check_stat($stat, $id) == true) {
-        $list = list_stat($id);
+    if (check_stat($cargo, $id) == true) {
+        $list = list_leaders($cargo);
         $new_stat = "";
-        foreach ($list as $status) {
-            if ($status != $stat) {
-                $new_stat .= $status . ",";
+        foreach ($list as $gente) {
+            if ($gente != $id) {
+                $new_stat .= $gente . ",";
             }
         }
-        sql("UPDATE usuarios SET status = '" . $new_stat . "' WHERE id_usuario = " . $id);
+        sql("UPDATE country_leaders SET id_gente = '" . $new_stat . "' WHERE id_cargo = " . $cargo);
     }
     return $new_stat;
 }
+
+function list_laws($cargo) {
+
+    $sql = sql2("SELECT laws FROM country_leaders WHERE id_cargo = " . $cargo); //Sacamos la lista codificada
+
+
+    $sql = explode(',', $sql); //Separamos la info de cada ley
+
+    unset($sql[count($sql) - 1]); //Eliminamos el ultimo que nos sale en blanco
+
+    foreach ($sql as $law) {
+        $sql2[] = explode('-', $law); //Separamos la info de cada ley en trocitos
+    }
+
+    return($sql2);
 }
 
+function check_law($cargo, $tochecklaw) {
+
+    $laws = list_laws($cargo);
+    $flag = false;
+
+    foreach ($laws as $law) {
+        if ($law[0] == $tochecklaw) {
+            $flag = true;
+            break;
+        }
+    }
+
+    return $flag;
+}
+
+function add_law($cargo, $id_ley, $vot, $p1 = 0, $p2 = 0) {
+
+    $flag = check_law($cargo, $id_ley); //Comprobamos que no tenga el poder
+    if ($flag == false) {
+        //Si no lo tiene se lo añadimos
+        $text = sql("SELECT laws FROM country_leaders WHERE id_cargo = " . $cargo);
+        $text .= $id_ley . "-" . $vot . "-" . $p1 . "-" . $p2 . ",";
+        sql("UPDATE country_leaders SET laws = '".$text."' WHERE id_cargo = " . $cargo);
+    }
+    
+    return !$flag;
+    
+}
+
+function del_law($cargo,$id_ley){
+    
+    $flag = check_law($cargo,$id_ley);
+    if($flag == true){ //Comprobamos que podia lanzar la ley
+        
+        $leyes = list_laws($cargo);
+        $text = "";
+        
+        foreach($leyes as $ley){//Vamos comprobando una por una
+            
+            if($ley[0] != $id_ley){//Las que no sean las que queremos quitar
+                $text .= $ley[0] . "-" . $ley[1] . "-" . $ley[2] . "-" . $ley[3] . ","; //Las vamos añadiendo
+            }else{
+                continue;
+            }            
+        }
+        //Al final, actualizamos en la BD
+        sql("UPDATE country_leaders SET laws = '".$text."' WHERE id_cargo = " . $cargo);
+    }
+    
+    return $flag;
+}
 ?>
