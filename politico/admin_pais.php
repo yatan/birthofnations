@@ -5,7 +5,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/politico/objeto_pais.php");
 
 
 //Temporal hasta que se ponga en el hta
-$_GET['pais']=2;
+$_GET['id_pais']=2;
 
 if (!isset($_GET['id_pais']))
     die("Error: id no valido"); //Substituir por error 404
@@ -22,16 +22,7 @@ echo "Poblacion actual: " . $pais->population();
 
 echo "<h3>Líderes</h3>";
 
-$leaders = $pais->list_leaders();
-
-echo "<table><tr><th>Nick</th><th>Posicion</th></tr>";
-
-foreach ($leaders as $leader) {
-
-    $name = sql("SELECT nick FROM usuarios WHERE id_usuario = " . $leader['idLeader']);
-
-    echo "<tr><td><a href='../perfil/" . $leader['idLeader'] . "'>" . $name . "</a></td><td>" . $txt['pos_' . $leader['position']] . "</td></tr>";
-}
+include("./list_leader.php");
 
 echo "</table>";
 
@@ -40,7 +31,7 @@ echo "<h3>Dineros</h3>";
 echo "<table><tr><th>Moneda</th><th>Cantidad</th></tr>";
 $gold = sql("SELECT Gold FROM money_pais WHERE idcountry ='" . $id_pais . "'");
 
-echo "<tr><td>" . $txt['gold'] . "</td><td>" . $gold . "</td></tr>";
+echo "<tr><td>" . $txt['Gold'] . "</td><td>" . $gold . "</td></tr>";
 $sql = sql("SELECT * FROM money_pais WHERE idcountry = " . $id_pais);
 
 unset($sql['idcountry'], $sql['Gold']);

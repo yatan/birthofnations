@@ -19,6 +19,8 @@ function formula_produccion($id) {
     return 1;
 }
 
+
+//Otra que deberia ser eliminada, ahora esto esta en la BD
 function raw_needed($tipo) {
 
     switch ($tipo):
@@ -38,4 +40,24 @@ function raw_needed($tipo) {
 
 //Modulo político
 $precio_partido = 40;
+
+//Numero de parametros de cada ley.
+function law_params($ley){
+    
+    switch($ley):
+        case 100:
+            $data = 1;
+            break;
+        case 101:
+            $data = 2;
+            break;
+        case 102:
+            $data = 0;
+            break;
+    endswitch;
+    
+    
+    return $data;
+}
+
 ?>
