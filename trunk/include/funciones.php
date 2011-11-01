@@ -563,6 +563,18 @@ function list_laws($cargo) {
     return($sql2);
 }
 
+function list_laws_raw($cargo) {
+
+    $sql = sql2("SELECT laws FROM country_leaders WHERE id_cargo = " . $cargo); //Sacamos la lista codificada
+
+
+    $sql = explode(',', $sql); //Separamos la info de cada ley
+
+    unset($sql[count($sql) - 1]); //Eliminamos el ultimo que nos sale en blanco
+
+    return($sql);
+}
+
 function check_law($cargo, $tochecklaw) {
 
     $laws = list_laws($cargo);
@@ -578,13 +590,13 @@ function check_law($cargo, $tochecklaw) {
     return $flag;
 }
 
-function add_law($cargo, $id_ley, $vot, $p1 = 0, $p2 = 0) {
+function add_law($cargo, $id_ley, $vot, $p1 = 0) {
 
     $flag = check_law($cargo, $id_ley); //Comprobamos que no tenga el poder
     if ($flag == false) {
         //Si no lo tiene se lo añadimos
         $text = sql("SELECT laws FROM country_leaders WHERE id_cargo = " . $cargo);
-        $text .= $id_ley . "-" . $vot . "-" . $p1 . "-" . $p2 . ",";
+        $text .= $id_ley . "-" . $vot . "-" . $p1 . ",";
         sql("UPDATE country_leaders SET laws = '".$text."' WHERE id_cargo = " . $cargo);
     }
     
@@ -603,7 +615,7 @@ function del_law($cargo,$id_ley){
         foreach($leyes as $ley){//Vamos comprobando una por una
             
             if($ley[0] != $id_ley){//Las que no sean las que queremos quitar
-                $text .= $ley[0] . "-" . $ley[1] . "-" . $ley[2] . "-" . $ley[3] . ","; //Las vamos añadiendo
+                $text .= $ley[0] . "-" . $ley[1] . ","; //Las vamos añadiendo
             }else{
                 continue;
             }            
