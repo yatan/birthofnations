@@ -59,7 +59,7 @@ if (!isset($_GET['f'])) {
             }
             ?>
         </select>
-        <input type="button" id="enviar" value="Enviar"></input>
+        <input type="submit" id="enviar" value="Enviar"></input>
     </form>
 
     <?
