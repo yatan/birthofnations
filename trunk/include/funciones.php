@@ -594,7 +594,7 @@ function add_law($cargo, $id_ley, $vot, $p1 = 0) {
 
     $flag = check_law($cargo, $id_ley); //Comprobamos que no tenga el poder
     if ($flag == false) {
-        //Si no lo tiene se lo añadimos
+        //Si no lo tiene se lo aÃ±adimos
         $text = sql("SELECT laws FROM country_leaders WHERE id_cargo = " . $cargo);
         $text .= $id_ley . "-" . $vot . "-" . $p1 . ",";
         sql("UPDATE country_leaders SET laws = '".$text."' WHERE id_cargo = " . $cargo);
@@ -615,7 +615,7 @@ function del_law($cargo,$id_ley){
         foreach($leyes as $ley){//Vamos comprobando una por una
             
             if($ley[0] != $id_ley){//Las que no sean las que queremos quitar
-                $text .= $ley[0] . "-" . $ley[1] . ","; //Las vamos añadiendo
+                $text .= $ley[0] . "-" . $ley[1] . ","; //Las vamos aï¿½adiendo
             }else{
                 continue;
             }            
@@ -625,5 +625,16 @@ function del_law($cargo,$id_ley){
     }
     
     return $flag;
+}
+
+function rango($puntos)
+{
+    global $txt;
+    //De 0 a 14 puntos de combate
+    if($puntos>=0 && $puntos<15)
+        return $txt["rango_0"];
+    //A partir de 15 puntos de combate
+    elseif($puntos>=15)
+        return $txt["rango_1"];
 }
 ?>

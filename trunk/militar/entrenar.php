@@ -10,17 +10,12 @@ $fuerza = $militar['fuerza'];
 $rango = $militar['rango'];
 $p_combat = $militar['p_combat'];
 
-echo <<<EOT
+echo "<p>Fuerza: $fuerza</p>";
+echo "<p>Rango: ".rango($p_combat)."</p>";
+echo "<p>Puntos de combate: $p_combat</p>";
 
-<p>Fuerza: $fuerza</p>
-<p>Rango: $rango</p>
-<p>Puntos de combate: $p_combat</p>
+echo "<br>";
 
-
-  
-<div id="progressbar" style="width:100px; height:20px;"></div>
-<br>
-EOT;
 
 if($entrenado==0)
     echo "<button id='entrenar'>Entrenar</button>";
