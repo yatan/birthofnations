@@ -118,5 +118,10 @@ $txt = array (
     'law_100' => 'Cambiar nombre al pais',
     'law_101' => 'Ser guay',
     'law_102' => 'Cocinero de Hierro',
+    
+    //Rangos Militares
+    
+    'rango_0' => 'Soldado',
+    'rango_1' => 'Tirillas',
 )
 ?>
