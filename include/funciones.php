@@ -267,7 +267,7 @@ function select_lang() {
 
     include_once($_SERVER['DOCUMENT_ROOT'] . "/i18n/es_ES.php");
 }
-
+//Esta creo que tb sobra ahora
 function type_company($tipo) {
     // 0 raw
     // 1 Necesita raw
@@ -416,13 +416,13 @@ function obj_to_id($obj) {
 }
 
 function ventana_js($mensaje, $link="ventana", $titulo="", $tipo=1) {
-    
+
     $id_ventana = rand();
     $id_link = rand();
-    if($id_link == $id_ventana)
+    if ($id_link == $id_ventana)
         $id_link += 1;
-    
-echo <<<EOT
+
+    echo <<<EOT
        
 
 <style>
@@ -440,8 +440,8 @@ display: none;
 EOT;
 
 
-switch($tipo) {
-    case 1:
+    switch ($tipo) {
+        case 1:
             echo <<<EOT
             <script>
                     $(function() {
@@ -455,10 +455,10 @@ switch($tipo) {
                     });
             </script>
 EOT;
-    break;
+            break;
 
-    case 2:
-                        echo <<<EOT
+        case 2:
+            echo <<<EOT
             <script>
                     $(function() {
                             $( "#$id_ventana" ).dialog({draggable: false, resizable: false, autoOpen: false, buttons: [
@@ -471,12 +471,11 @@ EOT;
                     });
             </script>
 EOT;
-    break;
-        
-}
+            break;
+    }
 
 
-echo <<<EOT
+    echo <<<EOT
 <div id="$id_ventana" title="$titulo" style="display:none">
 $mensaje
 </div>
@@ -491,6 +490,7 @@ $mensaje
 </script>
 EOT;
 }
+
 function check_leader($cargo, $id) {
 
     $sql = sql("SELECT id_gente FROM country_leaders WHERE id_cargo = " . $cargo);
@@ -507,6 +507,7 @@ function check_leader($cargo, $id) {
 
     return $flag;
 }
+
 function add_leader($cargo, $id) {
     if (check_stat($stat, $id) == false) {
         $sql = sql("SELECT id_gente FROM country_leaders WHERE id_cargo = " . $cargo);
@@ -596,63 +597,82 @@ function add_law($cargo, $id_ley, $vot, $p1 = 0) {
         //Si no lo tiene se lo añadimos
         $text = sql("SELECT laws FROM country_leaders WHERE id_cargo = " . $cargo);
         $text .= $id_ley . "-" . $vot . "-" . $p1 . ",";
-        sql("UPDATE country_leaders SET laws = '".$text."' WHERE id_cargo = " . $cargo);
+        sql("UPDATE country_leaders SET laws = '" . $text . "' WHERE id_cargo = " . $cargo);
     }
-    
-    return !$flag;
-    
+
+    return!$flag;
 }
 
-function del_law($cargo,$id_ley){
-    
-    $flag = check_law($cargo,$id_ley);
-    if($flag == true){ //Comprobamos que podia lanzar la ley
-        
+function del_law($cargo, $id_ley) {
+
+    $flag = check_law($cargo, $id_ley);
+    if ($flag == true) { //Comprobamos que podia lanzar la ley
         $leyes = list_laws($cargo);
         $text = "";
-        
-        foreach($leyes as $ley){//Vamos comprobando una por una
-            
-            if($ley[0] != $id_ley){//Las que no sean las que queremos quitar
+
+        foreach ($leyes as $ley) {//Vamos comprobando una por una
+            if ($ley[0] != $id_ley) {//Las que no sean las que queremos quitar
                 $text .= $ley[0] . "-" . $ley[1] . ","; //Las vamos a�adiendo
-            }else{
+            } else {
                 continue;
-            }            
+            }
         }
         //Al final, actualizamos en la BD
-        sql("UPDATE country_leaders SET laws = '".$text."' WHERE id_cargo = " . $cargo);
+        sql("UPDATE country_leaders SET laws = '" . $text . "' WHERE id_cargo = " . $cargo);
     }
-    
+
     return $flag;
 }
 
-function apply_law($vot){
-    
-    $votacion = sql("SELECT * FROM votaciones WHERE id_votacion = ".$vot);
-    
-    $p = explode('.',$votacion['param1']);
+function apply_law($vot) {
+
+    $votacion = sql("SELECT * FROM votaciones WHERE id_votacion = " . $vot);
+
+    $p = explode('.', $votacion['param1']);
 //    unset($p[count($p) - 1]);
-    
-    
-    switch($votacion['tipo_votacion']):
-    case 100: //Cambio de nombre del pais
-        
-        sql("UPDATE country SET name = '".$p[1]."' WHERE idcountry = ".$p[0]);
-        
-        break;
-    
+//P[0] Es siempre el id del pais    
+
+    switch ($votacion['tipo_votacion']):
+        case 100: //Cambio de nombre del pais        
+            sql("UPDATE country SET name = '" . $p[1] . "' WHERE idcountry = " . $p[0]);
+            break;
+        case 101:
+            //Lista de cargos
+            $sql = sql("SELECT id_cargo FROM country_leaders WHERE id_cargo >= " . $p[0] * 100 . " AND id_cargo <= " . ($p[0] * 100 + 99));
+            //Reordenamos bajando un nivel
+            foreach ($sql as $cargo) {
+                $ids[] = $cargo['id_cargo'];
+            }
+            //Buscamos el menor no ocupado
+            for ($c = $p[0] * 100; $c < $p[0] * 100 + 100; $c++) {
+
+                if (!in_array($c, $ids)) {
+                    break;
+                }
+            }
+            
+            if($c == $p[0]*100 + 100){echo "No puedes poner mas cargos, borra otro antes";}
+            else{
+                sql("INSERT INTO country_leaders (id_cargo, nombre) VALUES ('$c','$p[1]')");
+            }
+            break;
+        case 102:
+            if($p[1]>= $p[0]*100 && $p[1] < $p[0]*100+100){
+            sql("DELETE FROM country_leaders WHERE id_cargo = ".$p[1]);
+            }
+            break;
+                    
     endswitch;
-        
 }
 
-function rango($puntos)
-{
+function rango($puntos) {
     global $txt;
     //De 0 a 14 puntos de combate
-    if($puntos>=0 && $puntos<15)
+    if ($puntos >= 0 && $puntos < 15)
         return $txt["rango_0"];
     //A partir de 15 puntos de combate
-    elseif($puntos>=15)
+    elseif ($puntos >= 15)
         return $txt["rango_1"];
 }
+
 ?>

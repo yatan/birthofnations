@@ -116,8 +116,8 @@ $txt = array (
     //Leyes
     
     'law_100' => 'Cambiar nombre al pais',
-    'law_101' => 'Ser guay',
-    'law_102' => 'Cocinero de Hierro',
+    'law_101' => 'Añadir cargo',
+    'law_102' => 'Eliminar cargo',
     
     //Rangos Militares
     

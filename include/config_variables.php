@@ -49,10 +49,10 @@ function law_params($ley){
             $data = 1;
             break;
         case 101:
-            $data = 2;
+            $data = 1;
             break;
         case 102:
-            $data = 0;
+            $data = 1;
             break;
     endswitch;
     
