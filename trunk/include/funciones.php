@@ -507,7 +507,6 @@ function check_leader($cargo, $id) {
 
     return $flag;
 }
-//Sin retocar
 function add_leader($cargo, $id) {
     if (check_stat($stat, $id) == false) {
         $sql = sql("SELECT id_gente FROM country_leaders WHERE id_cargo = " . $cargo);
@@ -532,7 +531,7 @@ function list_leaders($cargo) {
 
     return $list;
 }
-//Sin retocar
+
 function del_leader($cargo, $id) {
     if (check_stat($cargo, $id) == true) {
         $list = list_leaders($cargo);
@@ -625,6 +624,25 @@ function del_law($cargo,$id_ley){
     }
     
     return $flag;
+}
+
+function apply_law($vot){
+    
+    $votacion = sql("SELECT * FROM votaciones WHERE id_votacion = ".$vot);
+    
+    $p = explode('.',$votacion['param1']);
+//    unset($p[count($p) - 1]);
+    
+    
+    switch($votacion['tipo_votacion']):
+    case 100: //Cambio de nombre del pais
+        
+        sql("UPDATE country SET name = '".$p[1]."' WHERE idcountry = ".$p[0]);
+        
+        break;
+    
+    endswitch;
+        
 }
 
 function rango($puntos)

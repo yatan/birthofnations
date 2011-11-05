@@ -15,7 +15,7 @@ $pais = new pais($id_pais);
 
 //Buscamos los cargos que tiene en el pais seleccionado
 
-if (!isset($_GET['f'])) {
+if (!isset($_POST['f'])) {
     $cargos = $pais->list_cargos();
 
     foreach ($cargos as $cargo) {
@@ -66,18 +66,19 @@ if (!isset($_GET['f'])) {
 }
 
 if (isset($_POST['f'])) {
-    $ley = explode('-',$_GET['f']);
+    $ley = explode('-', $_POST['f']);
     ?>
     <form id="ley" action="../politico/launcher.php" method ="POST">
-    <?
-        echo "<input type='hidden' value='" . $ley[0] . "-" . $ley[1] . "'>";
-        for($i=1;$i<=law_params($ley[0]);$i++){
-            echo "<input name='p".$i."'><br>";
+        <?
+        echo "<input type='hidden' name='data' value='" . $ley[0] . "-" . $ley[1] . "'>";
+        echo "<input type='hidden' name='country' value='" . $_GET['id_pais'] . "'>";
+        for ($i = 0; $i < law_params($ley[0]); $i++) {
+            echo "<input name='p[" . $i . "]'><br>";
         }
-    ?>
-    
-    <input type="button" id="enviar" value="Enviar"></input>
-</form>
-<?
+        ?>
+
+        <input type="submit" id="enviar" value="Enviar"></input>
+    </form>
+    <?
 }
 ?>
