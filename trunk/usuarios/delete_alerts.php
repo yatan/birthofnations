@@ -16,7 +16,7 @@ $contador = 0;
 if (isset($_POST['alertas']))
 {
 foreach ($_POST['alertas'] as $alerta) {
-    sql("DELETE FROM alertas WHERE id_alerta='$alerta'");
+    sql("UPDATE alertas SET tipo='0' WHERE id_alerta='$alerta'");
     $contador += 1;
 }
 }

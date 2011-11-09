@@ -289,6 +289,11 @@ function id2nick($id) {
     return sql("SELECT nick FROM usuarios WHERE id_usuario='$id'");
 }
 
+//Devuelve el nombre de una empresa a partir de una id
+function id2empresa($id) {
+    return sql("SELECT nombre_empresa FROM empresas WHERE id_empresa='$id'");
+}
+
 function item2id($item) {
 
     $sql = sql("SELECT id_item FROM items WHERE nombre = '" . $item . "'");
