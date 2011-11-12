@@ -118,6 +118,8 @@ $txt = array (
     'law_100' => 'Cambiar nombre al pais',
     'law_101' => 'Añadir cargo',
     'law_102' => 'Eliminar cargo',
+    'law_103' => 'Dar cargo',
+    'law_104' => 'Quitar cargo',
     
     //Rangos Militares
     
