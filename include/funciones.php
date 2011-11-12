@@ -513,10 +513,10 @@ function check_leader($cargo, $id) {
     return $flag;
 }
 
-function add_leader($cargo, $id) {
-    if (check_stat($stat, $id) == false) {
+function add_leader($cargo, $id) { 
+    if (check_leader($cargo, $id) == false) {
         $sql = sql("SELECT id_gente FROM country_leaders WHERE id_cargo = " . $cargo);
-        $sql .= $cargo . ',';
+        $sql .= $id . ',';
         sql("UPDATE country_leaders SET id_gente = '" . $sql . "' WHERE id_cargo = " . $cargo);
         $sql = true;
     } else {
@@ -539,7 +539,7 @@ function list_leaders($cargo) {
 }
 
 function del_leader($cargo, $id) {
-    if (check_stat($cargo, $id) == true) {
+    if (check_leader($cargo, $id) == true) {
         $list = list_leaders($cargo);
         $new_stat = "";
         foreach ($list as $gente) {
@@ -666,7 +666,25 @@ function apply_law($vot) {
             sql("DELETE FROM country_leaders WHERE id_cargo = ".$p[1]);
             }
             break;
-                    
+        case 103: //1:id del cargo 2:id jugador
+            //Comprobamos que el cargo pertenece al pais desde el cual se envia la ley
+            if($p[1] >= $p[0]*100 && $p[1]< $p[0]*100+100){
+                //Comprobamos que no tenga ya el cargo
+                if(!check_leader($p[1],$p[2])){
+                    //Entonces le añadimos al cargo
+                    add_leader($p[1],$p[2]);
+                }
+            }
+            break;
+        case 104://1:id del cargo 2:id jugador
+            //Comprobamos que el cargo pertenece al pais desde el cual se envia la ley
+            if($p[1] >= $p[0]*100 && $p[1]< $p[0]*100+100){
+                //Comprobamos que ya tenga el cargo
+                    //Entonces le quitamos el cargo
+                    del_leader($p[1],$p[2]);//La funcion ya comprueba que lo tenga
+            }
+            break;
+                
     endswitch;
 }
 
