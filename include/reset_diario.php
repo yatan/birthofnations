@@ -106,22 +106,40 @@ sql("UPDATE diario SET work = 0, train = 0");
 sql("UPDATE settings SET day=day+1");
 
 //Politico
+
+//Abrir votaciones de partidos y postulaciones de presidentes de partido
+
 sql("UPDATE usuarios SET ant_partido = ant_partido + 1");
 $DA = sql("SELECT day FROM settings");
 $sql = sql2("SELECT id_partido, frec_elecciones, dia_elecciones FROM partidos");
+$time = time();
 
 foreach ($sql as $party) {
     $mod = $DA % $party['frec_elecciones']; //Modulo del dia
     if ($mod == $party['dia_elecciones'] - 2 || $mod == $party['dia_elecciones'] - 2 + $party['frec_elecciones'] ) {//2 dias antes de las elecciones, abrimos la votacion {
-        $time = time();
-        $time2 = $time + 86400 - 100; //quitamos unos cuantos, por si da problemas al 
+        $time2 = $time + 86400 - 100; //quitamos unos cuantos, por si da problemas al terminar el cron
         sql("INSERT INTO votaciones(tipo_votacion,fin,comienzo,param1) VALUES ('1','" . $time2 . "',' " . $time . "','" . $party['id_partido'] . "')");
     }
 }
 
+//Abrir votaciones para cargos de paises
 
+foreach($sql as $cargo) {
+    $data = explode('-', $cargo['votacion']);
+    if ($data[0] == 'V') {//Si hay que abrir votacion
+        $data2 = explode('.', $data[1]);
+        $mod = $DA % $data2[1]; //Modulo del dia
+        if ($mod == $data2[0] - 2 || $mod == $data2[0] - 2 + $data2[1]) {//2 dias antes de las elecciones, abrimos la votacion {
+            $data3=explode('?',$data2[2]);
+            var_dump($data2);
+            var_dump($data3);
+            $time = time();
+            $time2 = $time + 86400 - 100; //quitamos unos cuantos, por si da problemas al terminar el cron
+            sql("INSERT INTO votaciones(tipo_votacion,fin,comienzo,param1,restricciones) VALUES ('".$cargo['id_cargo']."','" . $time2 . "',' " . $time . "','" . $data3[0] . "','".$data3[1]."')");
+        }
+    }
+}
 
-$time = time();
 //Cerramos las votaciones que no hayan sido resueltas, que ya hayan terminado y sean de presidente de partido
 $sql = sql2("SELECT * FROM votaciones WHERE solved = 0 AND fin < " . $time . " AND tipo_votacion = 1");
 

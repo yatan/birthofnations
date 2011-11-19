@@ -30,6 +30,10 @@ class pais {
         $sql = sql("SELECT COUNT(*) FROM usuarios WHERE id_nacionalidad = " . $this->id);
         return $sql;
     }
+    function tipo_gobierno(){
+        $sql = sql("SELECT tipo_gobierno FROM country WHERE id_country = ". $id);
+        return $sql;
+    }
 
 }
 
