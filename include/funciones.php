@@ -310,15 +310,20 @@ function next_elecciones($DA, $DE, $FE) {//Actual/Resto del dia de las eleccione
 }
 
 function puedo_votar($id_usuario, $tipo, $id_votacion) {//Determina si puedes votar o no, segun el tipo de votacion
+    
+    $sql3 = sql("SELECT * FROM log_votos WHERE id_votacion = " . $id_votacion . " AND id_usuario = " . $id_usuario); //Si ya ha votado
+    if($sql3 != false){ //Si ya ha votado
+        return false;
+    }
+    
     switch ($tipo):
         case 1://Presi de partido
             $sql = sql("SELECT id_partido, ant_partido FROM usuarios WHERE id_usuario = " . $id_usuario); //Su partido y antiguedad
             $sql2 = sql("SELECT param1 FROM votaciones WHERE id_votacion = " . $id_votacion); //El partido de la votacion
-            $sql3 = sql("SELECT * FROM log_votos WHERE id_votacion = " . $id_votacion . " AND id_usuario = " . $id_usuario); //Si ya ha votado
             $sql4 = sql("SELECT ant_votaciones FROM partidos WHERE id_partido = " . $sql2);
 
 
-            if ($sql['id_partido'] == $sql2 && $sql3 == false && $sql['ant_partido'] >= $sql4) {//Esta afiliado al partido Y no ha votado Y tiene X antiguedad
+            if ($sql['id_partido'] == $sql2 && $sql['ant_partido'] >= $sql4) {//Esta afiliado al partido Y tiene X antiguedad
                 $ret = true;
             } else {
                 $ret = false;
@@ -328,7 +333,26 @@ function puedo_votar($id_usuario, $tipo, $id_votacion) {//Determina si puedes vo
             $ret = false;
             break;
     endswitch;
-
+    if ($tipo >= 100){//Votaciones para cargos de un pais
+        $sql = sql("SELECT * FROM votaciones WHERE id_votacion = ".$id_votacion);
+        $rest = explode("!",$sql['restricciones']);//Sacamos las restricciones para votar
+        foreach($rest as $res){
+        $rest2[] = explode("+",$res); //Separamos cada una de ellas
+        }
+        $ret = true;//En principio se podria votar
+        foreach($rest2 as $condicion){//Comprobamos cada una de ellas
+            switch($condicion[0]):
+                case "C": //Ciudadania del pais
+                    $cs = sql("SELECT id_nacionalidad FROM usuarios WHERE id_usuario = " . $_SESSION['id_usuario']);
+                    if($cs != floor($sql['tipo_votacion']/100)){$ret = false;}
+                    break;
+                case "E": //Puntos de experiencia
+                    $exp = sql("SELECT exp FROM usuarios WHERE id_usuario = " . $_SESSION['id_usuario']);
+                    if($exp < $condicion[1]){$ret = false;}
+                    break;
+            endswitch;
+        }
+    }
     return $ret;
 }
 
