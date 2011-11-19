@@ -51,10 +51,9 @@ foreach($cargos as $cargo){
         echo "No hay postulaciones abiertas";
     }else{ //Si hay
     if ($dia_actual % $data2[1] == $data2[0]) { //Dia de elecciones 
-        var_dump($data[1]);var_dump($data[0]);var_dump($dia_actual);
     //Sacar id de la votacion
     $time = time();
-    $sql = sql("SELECT id_votacion FROM votaciones WHERE tipo_votacion = ".$cargo['id_cargo']." AND fin > " . $time);
+    $sql = sql("SELECT id_votacion FROM votaciones WHERE tipo_votacion = ".$cargo['id_cargo']." AND fin > " . $time . " AND solved = 0");
     echo $cargo['nombre'] . '  <a href="/politico/lista_candidatos.php?id=' . $sql . '">Votar</a>';
 } elseif (($dia_actual % $data2[1] == $data2[0] - 1 || $dia_actual % $data2[1] == $data2[0] - 2)) {
     //2 dias anteriores a las elecciones
