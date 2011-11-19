@@ -7,6 +7,7 @@
 
 include_once($_SERVER['DOCUMENT_ROOT'] . "/include/funciones.php");
 include_once($_SERVER['DOCUMENT_ROOT'] . "/politico/objeto_pais.php");
+$dia_actual = sql("SELECT day FROM settings");
 
 if (!isset($_GET['id_pais']))
     die("Error: id no valido"); //Substituir por error 404
@@ -37,6 +38,43 @@ foreach ($cargos as $cargo) {//Para cada cargo
 }
 
 echo "</table>";
+
+echo "<h3>Postulaciones públicas</h3>";
+
+foreach($cargos as $cargo){
+    
+    //Para cada cargo vemos si hay votacion abierta
+    $sql = sql("SELECT * FROM votaciones WHERE tipo_votacion = ". $cargo['id_cargo'] . " AND solved = 0");
+    $data = explode('-',$cargo['votacion']);
+    $data2 = explode('.',$data[1]);
+    if($sql == false){//Si no hay
+        echo "No hay postulaciones abiertas";
+    }else{ //Si hay
+    if ($dia_actual % $data2[1] == $data2[0]) { //Dia de elecciones 
+        var_dump($data[1]);var_dump($data[0]);var_dump($dia_actual);
+    //Sacar id de la votacion
+    $time = time();
+    $sql = sql("SELECT id_votacion FROM votaciones WHERE tipo_votacion = ".$cargo['id_cargo']." AND fin > " . $time);
+    echo $cargo['nombre'] . '  <a href="/politico/lista_candidatos.php?id=' . $sql . '">Votar</a>';
+} elseif (($dia_actual % $data2[1] == $data2[0] - 1 || $dia_actual % $data2[1] == $data2[0] - 2)) {
+    //2 dias anteriores a las elecciones
+    // Fecha + Postulacion
+    echo "Proximas elecciones el dia: " . next_elecciones($dia_actual, $data2[0], $data2[1]);
+    $time = time();
+    $vot = sql("SELECT id_votacion FROM votaciones WHERE tipo_votacion = " . $cargo['id_cargo'] . " AND fin > " . $time);
+    $sql = sql("SELECT * from candidatos_elecciones WHERE id_candidato = " . $_SESSION['id_usuario'] . " AND tipo_elecciones = ".$cargo['id_cargo']);
+
+    if ($sql == false) {//Si aun no esta postulado
+        echo "[<a href='/politico/postular2.php?v=" . $cargo['id_cargo'] . "'>Postulate</a>]";
+    } else {//Si ya esta postulado
+        echo "[<a href='/politico/despostular2.php?v=" . $cargo['id_cargo'] . "'>Despostulate</a>]";
+    }
+} else {
+    //Calculamos la siguiente fecha
+    echo "Proximas elecciones el dia: " . next_elecciones($dia_actual, $data2[0], $data2[1]);
+}
+    }
+}
 
 echo "<h3>Dineros</h3>";
 
