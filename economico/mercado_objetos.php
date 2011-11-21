@@ -9,7 +9,7 @@ else
 if(isset($_GET['producto']))
     $objeto = $_GET['producto']; 
 else
-    $objeto= 3;
+    $objeto= 1;
 
 $objeto = sql("SELECT id_item, nombre, marketable FROM items WHERE id_item = ". $objeto);
 
@@ -17,6 +17,8 @@ if(isset($_GET['pag']))
     $pagina = $_GET['pag']; 
 else
     $pagina=0;
+
+$moneda = moneda_pais($pais);
 ?>
 
 <link rel="stylesheet" type="text/css" href="/css/dd.css" />
@@ -83,7 +85,7 @@ foreach ($ofertas as $oferta){
     
     $empresa = sql("SELECT nombre_empresa FROM empresas WHERE id_empresa = '" . $oferta['id_empresa']."'");
     
-    echo " <tr><td>". $empresa ."</td><td>". $oferta['precio'] ."</td><td>". $oferta['cantidad'] .'</td><td>
+    echo " <tr><td>". $empresa ."</td><td> {$oferta['precio']}  $moneda </td><td>". $oferta['cantidad'] .'</td><td>
 <form action="/economico/comprar.php"  method="POST">
             <label for="cantidad"><input tabindex="1" type="text" name="cantidad"></label>
             <label for="id_oferta"><input tabindex="1" type="hidden" name="id_oferta" value = "'. $oferta['id_oferta'] .'"></label>

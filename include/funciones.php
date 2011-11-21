@@ -444,6 +444,10 @@ function obj_to_id($obj) {
     return sql("SELECT id_item FROM items WHERE nombre='$obj'");
 }
 
+function moneda_pais($pais) {
+    return sql("SELECT moneda FROM country WHERE idcountry='$pais'");
+}
+
 function ventana_js($mensaje, $link="ventana", $titulo="", $tipo=1) {
 
     $id_ventana = rand();
@@ -695,7 +699,7 @@ function apply_law($vot) {
             if($p[1] >= $p[0]*100 && $p[1]< $p[0]*100+100){
                 //Comprobamos que no tenga ya el cargo
                 if(!check_leader($p[1],$p[2])){
-                    //Entonces le añadimos al cargo
+                    //Entonces le aï¿½adimos al cargo
                     add_leader($p[1],$p[2]);
                 }
             }
