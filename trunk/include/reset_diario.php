@@ -118,7 +118,7 @@ foreach ($sql as $party) {
     $mod = $DA % $party['frec_elecciones']; //Modulo del dia
     if ($mod == $party['dia_elecciones'] - 2 || $mod == $party['dia_elecciones'] - 2 + $party['frec_elecciones'] ) {//2 dias antes de las elecciones, abrimos la votacion {
         $time2 = $time + 86400 - 100; //quitamos unos cuantos, por si da problemas al terminar el cron
-        sql("INSERT INTO votaciones(tipo_votacion,fin,comienzo,param1) VALUES ('1','" . $time2 . "',' " . $time . "','" . $party['id_partido'] . "')");
+        sql("INSERT INTO votaciones(tipo_votacion,is_cargo,fin,comienzo,param1) VALUES ('1','1','" . $time2 . "',' " . $time . "','" . $party['id_partido'] . "')");
     }
 }
 
@@ -131,17 +131,17 @@ foreach($sql as $cargo) {
         $mod = $DA % $data2[1]; //Modulo del dia
         if ($mod == $data2[0] - 2 || $mod == $data2[0] - 2 + $data2[1]) {//2 dias antes de las elecciones, abrimos la votacion {
             $data3=explode('?',$data2[2]);
-            var_dump($data2);
-            var_dump($data3);
+            //var_dump($data2);
+            //var_dump($data3);
             $time = time();
             $time2 = $time + 86400 - 100; //quitamos unos cuantos, por si da problemas al terminar el cron
-            sql("INSERT INTO votaciones(tipo_votacion,fin,comienzo,param1,restricciones) VALUES ('".$cargo['id_cargo']."','" . $time2 . "',' " . $time . "','" . $data3[0] . "','".$data3[1]."')");
+            sql("INSERT INTO votaciones(tipo_votacion,is_cargo,fin,comienzo,param1,restricciones) VALUES ('".$cargo['id_cargo']."','1','" . $time2 . "',' " . $time . "','" . $data3[0] . "','".$data3[1]."')");
         }
     }
 }
 
 //Cerramos las votaciones que no hayan sido resueltas, que ya hayan terminado y sean de presidente de partido
-$sql = sql2("SELECT * FROM votaciones WHERE solved = 0 AND fin < " . $time . " AND tipo_votacion = 1");
+$sql = sql2("SELECT * FROM votaciones WHERE solved = 0 AND fin < " . $time . " AND tipo_votacion = 1 AND is_cargo = 1");
 
 foreach ($sql as $votacion) {
     //Ver la lista de candidatos
@@ -163,6 +163,52 @@ foreach ($sql as $votacion) {
     }
     //marcar como resuelta
     sql("UPDATE votaciones SET solved = 1 WHERE id_votacion = " . $votacion['id_votacion']);
+}
+
+//Ahora resolvemos las de cargos de un pais 
+//Sin resolver, que hayan acabado, que sean de algun pais y que sean de cargos
+$sql = sql2("SELECT * FROM votaciones WHERE solved = 0 AND fin < " . $time . " AND tipo_votacion >= 100 AND is_cargo = 1");
+
+foreach($sql as $votacion){
+    //Sacar id del pais
+    $id_pais = floor($votacion['tipo_votacion']);
+    //Leemos cuantos hay que elegir
+    $cuantos = $votacion['restricciones'];
+    $cuantos = explode('!',$cuantos);
+    foreach($cuantos as $data){
+        $data2 = explode('+',$data);
+        if($data2[0] == 'S'){
+            $ret=$data2[1]; 
+            break;
+            }
+    }
+    
+    //Sacamos los resultados de la votacion
+    //
+    //Ver la lista de candidatos
+    $candidatos = sql2("SELECT * FROM candidatos_elecciones WHERE id_votacion = " . $votacion['id_votacion']);
+    if ($candidatos != false) {//Si hay candidatos
+        $data = '';
+        foreach($candidatos as $candidato){
+            $data[$candidato['id_candidato']] = $candidato['votos'];
+        }
+        //Ordenamos por el numero de votos recibidos
+        arsort($data);
+        $data = array_keys($data);
+        var_dump($data);
+        //Quitamos a los lideres anteriores:
+        sql("UPDATE country_leaders SET id_gente = '0,' WHERE id_cargo = " . $votacion['tipo_votacion']);
+        //Ponemos a los nuevos
+        for($i=0;$i<$ret;$i++){
+            var_dump($data[$i]);
+            add_leader($votacion['tipo_votacion'],$data[$i]);
+        }
+    } else {//Si no hay candidatos
+        //Todo sigue igual
+    }
+    //marcar como resuelta
+    sql("UPDATE votaciones SET solved = 1 WHERE id_votacion = " . $votacion['id_votacion']);
+
 }
 
 echo "Cron realizado correctamente";
