@@ -195,12 +195,10 @@ foreach($sql as $votacion){
         //Ordenamos por el numero de votos recibidos
         arsort($data);
         $data = array_keys($data);
-        var_dump($data);
         //Quitamos a los lideres anteriores:
-        sql("UPDATE country_leaders SET id_gente = '0,' WHERE id_cargo = " . $votacion['tipo_votacion']);
+        sql("UPDATE country_leaders SET id_gente = null WHERE id_cargo = " . $votacion['tipo_votacion']);
         //Ponemos a los nuevos
         for($i=0;$i<$ret;$i++){
-            var_dump($data[$i]);
             add_leader($votacion['tipo_votacion'],$data[$i]);
         }
     } else {//Si no hay candidatos
