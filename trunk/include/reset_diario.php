@@ -124,6 +124,8 @@ foreach ($sql as $party) {
 
 //Abrir votaciones para cargos de paises
 
+$sql = sql("SELECT * FROM country_leaders");
+
 foreach($sql as $cargo) {
     $data = explode('-', $cargo['votacion']);
     if ($data[0] == 'V') {//Si hay que abrir votacion
