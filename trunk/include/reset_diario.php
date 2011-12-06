@@ -117,7 +117,7 @@ $time = time();
 foreach ($sql as $party) {
     $mod = $DA % $party['frec_elecciones']; //Modulo del dia
     if ($mod == $party['dia_elecciones'] - 2 || $mod == $party['dia_elecciones'] - 2 + $party['frec_elecciones'] ) {//2 dias antes de las elecciones, abrimos la votacion {
-        $time2 = $time + 86400 - 100; //quitamos unos cuantos, por si da problemas al terminar el cron
+        $time2 = $time + 3*86400 - 100; //quitamos unos cuantos, por si da problemas al terminar el cron
         sql("INSERT INTO votaciones(tipo_votacion,is_cargo,fin,comienzo,param1) VALUES ('1','1','" . $time2 . "',' " . $time . "','" . $party['id_partido'] . "')");
     }
 }
@@ -136,7 +136,7 @@ foreach($sql as $cargo) {
             //var_dump($data2);
             //var_dump($data3);
             $time = time();
-            $time2 = $time + 86400 - 100; //quitamos unos cuantos, por si da problemas al terminar el cron
+            $time2 = $time + 3*86400 - 100; //quitamos unos cuantos, por si da problemas al terminar el cron
             sql("INSERT INTO votaciones(tipo_votacion,is_cargo,fin,comienzo,param1,restricciones) VALUES ('".$cargo['id_cargo']."','1','" . $time2 . "',' " . $time . "','" . $data3[0] . "','".$data3[1]."')");
         }
     }
