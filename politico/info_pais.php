@@ -49,11 +49,12 @@ foreach($cargos as $cargo){
     $data2 = explode('.',$data[1]);
     if($sql == false){//Si no hay
         echo "No hay postulaciones abiertas";
+        echo "Proximas elecciones el dia: " . next_elecciones($dia_actual, $data2[0], $data2[1]);
     }else{ //Si hay
     if ($dia_actual % $data2[1] == $data2[0]) { //Dia de elecciones 
     //Sacar id de la votacion
     $time = time();
-    $sql = sql("SELECT id_votacion FROM votaciones WHERE tipo_votacion = ".$cargo['id_cargo']." AND fin > " . $time . " AND solved = 0");
+    $sql = sql("SELECT id_votacion FROM votaciones WHERE tipo_votacion = ".$cargo['id_cargo']." AND is_cargo = 1 AND fin > " . $time . " AND solved = 0");
     echo $cargo['nombre'] . '  <a href="/politico/lista_candidatos.php?id=' . $sql . '">Votar</a>';
 } elseif (($dia_actual % $data2[1] == $data2[0] - 1 || $dia_actual % $data2[1] == $data2[0] - 2)) {
     //2 dias anteriores a las elecciones
@@ -61,7 +62,7 @@ foreach($cargos as $cargo){
     echo "Proximas elecciones el dia: " . next_elecciones($dia_actual, $data2[0], $data2[1]);
     $time = time();
     $vot = sql("SELECT id_votacion FROM votaciones WHERE tipo_votacion = " . $cargo['id_cargo'] . " AND fin > " . $time);
-    $sql = sql("SELECT * from candidatos_elecciones WHERE id_candidato = " . $_SESSION['id_usuario'] . " AND tipo_elecciones = ".$cargo['id_cargo']);
+    $sql = sql("SELECT * from candidatos_elecciones WHERE id_candidato = " . $_SESSION['id_usuario'] . " AND id_votacion = ".$vot);
 
     if ($sql == false) {//Si aun no esta postulado
         echo "[<a href='/politico/postular2.php?v=" . $cargo['id_cargo'] . "'>Postulate</a>]";
