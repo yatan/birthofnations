@@ -10,9 +10,10 @@ foreach ($sql as $item){
     echo "<option value=".$item['id_item'].">".$txt['item'.$item['id_item']]."</option>";
 }
 ?>
-        </label><br>
+            </select></label><br>
         <input type="button" id="enviar" value="Enviar">
     </form>
+    <p>Coste 10 <img src="/images/status_bar/gold.gif"/> golds</p>
 </div><!--form de creacion de empresas-->
 <script>
     $('#enviar').click(function() {

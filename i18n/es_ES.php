@@ -58,7 +58,8 @@ $txt = array (
     'item1' => "Sugus",
     'item2' => "Azucar",
     'item3' => "Armas",
-    'item4' =>"Plumas",
+    'item4' => "Plumas",
+    'item10' => "Cuchillo",
     
     //Usuarios
     
@@ -116,7 +117,7 @@ $txt = array (
     //Leyes
     
     'law_100' => 'Cambiar nombre al pais',
-    'law_101' => 'Añadir cargo',
+    'law_101' => 'Aï¿½adir cargo',
     'law_102' => 'Eliminar cargo',
     'law_103' => 'Dar cargo',
     'law_104' => 'Quitar cargo',
