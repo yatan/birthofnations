@@ -2,9 +2,16 @@
 
 $trabajado = sql("SELECT work FROM diario WHERE id_usuario = " . $_SESSION['id_usuario']);
 if($trabajado==1)
-    $trabajado = "<img src='/images/menu/no.png' alt='no'>";
+    $trabajado = "<img src='/images/menu/si.png' alt='si'>";
 elseif($trabajado==0)
-    $trabajado = "<img src='/images/menu/si.png' alt='si' >";
+    $trabajado = "<img src='/images/menu/no.png' alt='no' >";
+
+
+$entrenado = sql("SELECT train FROM diario WHERE id_usuario = " . $_SESSION['id_usuario']);
+if($entrenado==1)
+    $entrenado = "<img src='/images/menu/si.png' alt='si'>";
+elseif($entrenado==0)
+    $entrenado = "<img src='/images/menu/no.png' alt='no' >";
 
 ?>
 <div class="menu">
@@ -24,7 +31,7 @@ elseif($trabajado==0)
         
         <li><a href="#"><? echo $txt['militar']; ?></a>
         <ul>
-            <li><a href="<? echo "/".$_GET['lang']."/entrenar"; ?>"><? echo $txt['entrenamiento']; ?></a></li>
+            <li><a href="<? echo "/".$_GET['lang']."/entrenar"; ?>"><? echo $txt['entrenamiento']." ".$entrenado; ?></a></li>
             <li><a href="#"><? echo $txt['guerras']; ?></a></li>
         </ul>
         </li>
