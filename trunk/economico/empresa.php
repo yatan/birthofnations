@@ -12,7 +12,7 @@ $id_empresa = $_GET['id_empresa'];
 
 $empresa = new empresa($id_empresa);
 
-echo "<h1>Empresa</h1>";
+echo "<h1> {$empresa->nombre_empresa} </h1>";
 
 //Mostrar link para trabajar y despedirme si es en esta empresa donde trabajo
 $donde_trabajo = sql("SELECT id_empresa FROM usuarios WHERE id_usuario='".$_SESSION['id_usuario']."'");
