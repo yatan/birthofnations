@@ -89,6 +89,34 @@ function sql2($sql) {
     return $table;
 }
 
+function check_leader($cargo, $id) {
+
+    $sql = sql("SELECT id_gente FROM country_leaders WHERE id_cargo = " . $cargo);
+    $sql = explode(',', $sql);
+
+    $flag = false;
+
+    foreach ($sql as $persona) {
+        if ($persona == $id) {
+            $flag = true;
+            break;
+        }
+    }
+
+    return $flag;
+}
+
+function add_leader($cargo, $id) { 
+    if (check_leader($cargo, $id) == false) {
+        $sql = sql("SELECT id_gente FROM country_leaders WHERE id_cargo = " . $cargo);
+        $sql .= $id . ',';
+        sql("UPDATE country_leaders SET id_gente = '" . $sql . "' WHERE id_cargo = " . $cargo);
+        $sql = true;
+    } else {
+        $sql = false;
+    }
+    return $sql;
+}
 //Seguridad       
 if (!isset($_SERVER['argv']))
     die("Error");
