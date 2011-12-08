@@ -97,7 +97,10 @@ else
                                 break; 
                             case "entrenar":
                                 include("militar/entrenar.php");
-                                break;                            
+                                break;
+                            case "nacionalidad":
+                                include("usuarios/change_nacionalidad.php");
+                                break;
                             default :
                                 die($_GET['mod']); //Default por si se pone algo incorrecto. Al futuro hay que cambiarlo
                             }
