@@ -120,9 +120,9 @@ function sql2($sql) {
 
     if (mysql_num_rows($result) == 1) {
         if (mysql_num_fields($result) == 1) {
-
-            $dato = mysql_fetch_row($result);
-            return $dato[0];
+            $dato = array();
+            $dato[0] = mysql_fetch_row($result);
+            return $dato;
         } else {
             $table = array();
             $table[0] = sql_data($result);
@@ -337,7 +337,7 @@ function puedo_votar($id_usuario, $tipo, $id_votacion) {//Determina si puedes vo
                     }
                     break;
                 case "G": //Gold, siempre debe ser la ultima
-                    if ($ret == true) {//Sólo se paga si el resto de condiciones ya se han cumplido
+                    if ($ret == true) {//Sï¿½lo se paga si el resto de condiciones ya se han cumplido
                         $gold = sql("SELECT Gold FROM money WHERE id_usuario = " . $_SESSION['id_usuario']);
                         if ($gold >= $condicion[1]) {//Si tiene gold suficiente
                             sql("UPDATE money SET gold = gold - " . $condicion[1] . " WHERE id_usuario = " . $_SESSION['id_usuario']);
@@ -396,7 +396,7 @@ function puedo_postularme($id_usuario, $tipo, $id_votacion) {//Determina si pued
                     }
                     break;
                 case "G": //Gold, siempre debe ser la ultima
-                    if ($ret == true) {//Sólo se paga si el resto de condiciones ya se han cumplido
+                    if ($ret == true) {//Sï¿½lo se paga si el resto de condiciones ya se han cumplido
                         $gold = sql("SELECT Gold FROM money WHERE id_usuario = " . $_SESSION['id_usuario']);
                         if ($gold >= $condicion[1]) {//Si tiene gold suficiente
                             sql("UPDATE money SET gold = gold - " . $condicion[1] . " WHERE id_usuario = " . $_SESSION['id_usuario']);
