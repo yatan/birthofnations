@@ -4,7 +4,7 @@ include_once($_SERVER['DOCUMENT_ROOT']."/include/funciones.php");
 if(isset($_GET['pais']))
     $pais = $_GET['pais']; 
 else
-    $pais = sql("SELECT id_pais FROM usuarios WHERE id_usuario='".$_SESSION['id_usuario']."'");
+    $pais = $objeto_usuario->id_pais;
 
 if(isset($_GET['producto']))
     $objeto = $_GET['producto']; 
@@ -44,7 +44,7 @@ function cambiar_item(arg) {
 <?
         $sql = sql("SELECT idcountry, name, url_bandera FROM country");
         foreach ($sql as $pais1) {
-            if($pais1['idcountry']==sql("SELECT id_pais FROM usuarios WHERE id_usuario='".$_SESSION['id_usuario']."'") && !isset($_GET['pais']))
+            if($pais1['idcountry']==$objeto_usuario->id_pais && !isset($_GET['pais']))
                 $seleccionado = "selected='selected'";
             elseif($pais1['idcountry']==$_GET['pais'])
                 $seleccionado = "selected='selected'";
