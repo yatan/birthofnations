@@ -650,7 +650,7 @@ function list_laws($cargo) {
 
 function list_laws_raw($cargo) {
 
-    $sql = sql2("SELECT laws FROM country_leaders WHERE id_cargo = " . $cargo); //Sacamos la lista codificada
+    $sql = sql("SELECT laws FROM country_leaders WHERE id_cargo = " . $cargo); //Sacamos la lista codificada
 
 
     $sql = explode(',', $sql); //Separamos la info de cada ley
@@ -721,12 +721,12 @@ function apply_law($vot) {
         case 100: //Cambio de nombre del pais        
             sql("UPDATE country SET name = '" . $p[1] . "' WHERE idcountry = " . $p[0]);
             break;
-        case 101:
+        case 101://Añadir cargo
             //Lista de cargos
-            $sql = sql("SELECT id_cargo FROM country_leaders WHERE id_cargo >= " . $p[0] * 100 . " AND id_cargo <= " . ($p[0] * 100 + 99));
+            $sql = sql2("SELECT id_cargo FROM country_leaders WHERE id_cargo >= " . $p[0] * 100 . " AND id_cargo <= " . ($p[0] * 100 + 99));
             //Reordenamos bajando un nivel
             foreach ($sql as $cargo) {
-                $ids[] = $cargo['id_cargo'];
+                $ids[] = $cargo[0];
             }
             //Buscamos el menor no ocupado
             for ($c = $p[0] * 100; $c < $p[0] * 100 + 100; $c++) {
@@ -742,12 +742,12 @@ function apply_law($vot) {
                 sql("INSERT INTO country_leaders (id_cargo, nombre) VALUES ('$c','$p[1]')");
             }
             break;
-        case 102:
+        case 102://Quitar cargo
             if ($p[1] >= $p[0] * 100 && $p[1] < $p[0] * 100 + 100) {
                 sql("DELETE FROM country_leaders WHERE id_cargo = " . $p[1]);
             }
             break;
-        case 103: //1:id del cargo 2:id jugador
+        case 103: //1:id del cargo 2:id jugador //Dar cargo 1 a usuario 2
             //Comprobamos que el cargo pertenece al pais desde el cual se envia la ley
             if ($p[1] >= $p[0] * 100 && $p[1] < $p[0] * 100 + 100) {
                 //Comprobamos que no tenga ya el cargo
@@ -757,7 +757,7 @@ function apply_law($vot) {
                 }
             }
             break;
-        case 104://1:id del cargo 2:id jugador
+        case 104://1:id del cargo 2:id jugador //Quitar cargo 1 a usuario 2
             //Comprobamos que el cargo pertenece al pais desde el cual se envia la ley
             if ($p[1] >= $p[0] * 100 && $p[1] < $p[0] * 100 + 100) {
                 //Comprobamos que ya tenga el cargo
