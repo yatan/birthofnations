@@ -12,9 +12,11 @@ class usuario
     public $avatar;
     public $id_pais;
     public $id_region;
+    public $id_nacionalidad;
     
     public $n_pais;
     public $n_region;
+    public $n_nacionalidad;
     
     function usuario($id){
         $usuario = sql("SELECT * FROM usuarios WHERE id_usuario='$id'");
@@ -26,6 +28,7 @@ class usuario
         $this->exp = $usuario['exp'];
         $this->id_pais = $usuario['id_pais'];
         $this->id_region = $usuario['id_region'];
+        $this->id_nacionalidad = $usuario['id_nacionalidad'];
         
         if($usuario['avatar']==null)
         $this->avatar = "http://birthofnations.com/images/no_avatar.gif";
@@ -34,7 +37,7 @@ class usuario
             
         $this->n_pais = sql("SELECT name FROM country WHERE idcountry= '{$this->id_pais}'");
         $this->n_region = sql("SELECT name FROM region WHERE idregion = '{$this->id_region}'"); 
-        
+        $this->n_nacionalidad = sql("SELECT name FROM region WHERE idregion = '{$this->id_nacionalidad}'");
     }
     
     function soy_yo($mi_id)
@@ -68,6 +71,10 @@ class usuario
     function get_n_region()
     {
         return $this->n_region;
+    }
+    function get_n_nacionalidad()
+    {
+        return $this->n_nacionalidad;
     }
     
 }
