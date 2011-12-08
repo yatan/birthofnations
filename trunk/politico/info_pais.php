@@ -61,13 +61,13 @@ foreach($cargos as $cargo){
     // Fecha + Postulacion
     echo "Proximas elecciones el dia: " . next_elecciones($dia_actual, $data2[0], $data2[1]);
     $time = time();
-    $vot = sql("SELECT id_votacion FROM votaciones WHERE tipo_votacion = " . $cargo['id_cargo'] . " AND fin > " . $time);
+    $vot = sql("SELECT id_votacion FROM votaciones WHERE tipo_votacion = " . $cargo['id_cargo'] . " AND fin > " . $time . " AND is_cargo = 1 AND solved = 0");
     $sql = sql("SELECT * from candidatos_elecciones WHERE id_candidato = " . $_SESSION['id_usuario'] . " AND id_votacion = ".$vot);
 
     if ($sql == false) {//Si aun no esta postulado
-        echo "[<a href='/politico/postular2.php?v=" . $cargo['id_cargo'] . "'>Postulate</a>]";
+        echo "[<a href='/politico/postular.php?v=" . $vot . "'>Postulate</a>]";
     } else {//Si ya esta postulado
-        echo "[<a href='/politico/despostular2.php?v=" . $cargo['id_cargo'] . "'>Despostulate</a>]";
+        echo "[<a href='/politico/despostular.php?v=" . $vot . "'>Despostulate</a>]";
     }
 } else {
     //Calculamos la siguiente fecha

@@ -2,6 +2,15 @@
 
 include_once($_SERVER['DOCUMENT_ROOT'] . "/include/funciones.php");
 
+$cargo=sql("SELECT tipo_votacion FROM votaciones WHERE id_votacion = ".$_GET['v']);
+
+if(puedo_postularme($_SESSION['id_usuario'],$cargo,$_GET['v']) == true){
+    
+     sql("INSERT INTO candidatos_elecciones(id_votacion,id_candidato,tipo_elecciones,votos) VALUES ('".$_GET['v']."','" . $_SESSION['id_usuario'] . "','".$cargo."','0')");
+    
+}
+
+
 $user = sql("SELECT id_partido, id_nacionalidad, ant_partido FROM usuarios WHERE id_usuario = " . $_SESSION['id_usuario']);
 $votacion = sql("SELECT * FROM votaciones WHERE id_votacion = " . $_GET['v']);
 $party = sql("SELECT ant_votaciones FROM partidos WHERE id_partido = " . $user['id_partido']);
