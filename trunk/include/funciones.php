@@ -283,6 +283,11 @@ function item2id($item) {
     return $sql;
 }
 
+function id2item($id){
+    $sql = sql("SELECT nombre FROM items WHERE id_item = '$id'");
+    return $sql;   
+}
+
 function next_elecciones($DA, $DE, $FE) {//Actual/Resto del dia de las elecciones/Frecuencia
     if ($DA % $FE > $DE) {
         $prox = $DA - $DA % $FE + $DE + $FE;
