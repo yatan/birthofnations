@@ -267,23 +267,6 @@ function select_lang() {
 
     include_once($_SERVER['DOCUMENT_ROOT'] . "/i18n/es_ES.php");
 }
-//Esta creo que tb sobra ahora
-function type_company($tipo) {
-    // 0 raw
-    // 1 Necesita raw
-
-    switch ($tipo):
-        case 1:
-        case 3:
-            $ret = 1;
-            break;
-        case 2:
-            $ret = 0;
-            break;
-    endswitch;
-
-    return $ret;
-}
 
 function id2nick($id) {
     return sql("SELECT nick FROM usuarios WHERE id_usuario='$id'");
