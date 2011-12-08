@@ -22,25 +22,6 @@ function formula_produccion($id) {
     return 1;
 }
 
-
-//Otra que deberia ser eliminada, ahora esto esta en la BD
-function raw_needed($tipo) {
-
-    switch ($tipo):
-        case 1: // Sugus
-            $ret = 1;
-            break;
-        case 3:
-            $ret = 1;
-            break;
-        default:
-            $ret = 0;
-            break;
-    endswitch;
-
-    return $ret;
-}
-
 //Modulo político
 $precio_partido = 40;
 
