@@ -26,6 +26,9 @@ class usuario
         $this->id_usuario = $id;
         $this->nick = $usuario['nick'];
         $this->exp = $usuario['exp'];
+        $this->salud = $usuario['salud'];
+        $this->gold = sql("SELECT gold FROM money WHERE id_usuario='$id'");
+        $this->status = $usuario['status'];
         $this->id_region = $usuario['id_region'];
         $this->id_pais = sql("SELECT idcountry FROM region WHERE idregion = " . $this->id_region);
         $this->id_nacionalidad = $usuario['id_nacionalidad'];
@@ -38,6 +41,9 @@ class usuario
         $this->n_pais = sql("SELECT name FROM country WHERE idcountry= '{$this->id_pais}'");
         $this->n_region = sql("SELECT name FROM region WHERE idregion = '{$this->id_region}'"); 
         $this->n_nacionalidad = sql("SELECT name FROM country WHERE idcountry = '{$this->id_nacionalidad}'");
+        
+        $this->id_empresa = $usuario['id_empresa'];
+        
     }
     
     function soy_yo($mi_id)

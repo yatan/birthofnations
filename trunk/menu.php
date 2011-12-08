@@ -20,7 +20,7 @@ elseif($entrenado==0)
         <li><a href="#" id="current"><? echo $txt['economico']; ?></a>
     <ul>
         <?
-        $id_empresa = sql("SELECT id_empresa FROM usuarios WHERE id_usuario='".$_SESSION['id_usuario']."'");
+        $id_empresa = $objeto_usuario->id_empresa;
         if($id_empresa != "0")
             echo "<li><a href='/".$_GET['lang']."/empresa/".$id_empresa."'>Trabajar $trabajado</a></li>";
         ?>

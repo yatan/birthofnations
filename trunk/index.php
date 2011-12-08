@@ -28,7 +28,12 @@ else
   ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
- <?php include("index_head.php"); ?>
+<?php 
+include("index_head.php"); 
+include_once("usuarios/objeto_usuario.php");
+$objeto_usuario = new usuario($_SESSION['id_usuario']);
+?>
+    
     <body> 
         <div class="blur">
             <div class="shadow">

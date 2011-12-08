@@ -14,11 +14,14 @@ if (!isset($_GET['id_usuario']))
 
 
 $id_usuario = $_GET['id_usuario'];
-
-
-
-
-$usuario = new usuario($id_usuario);
+if($id_usuario != $objeto_usuario->id_usuario)
+{
+    $usuario = new usuario($id_usuario);
+}
+else
+{
+    $usuario = $objeto_usuario;
+}
 if ($usuario->id_usuario == null)
     die("No existe el usuario"); //Aqui mostrar error 404
 else {
