@@ -356,6 +356,53 @@ function puedo_votar($id_usuario, $tipo, $id_votacion) {//Determina si puedes vo
     return $ret;
 }
 
+function puedo_postularme($id_usuario, $tipo, $id_votacion) {//Determina si puedes postularte o no, segun el tipo de votacion
+    
+    $sql3 = sql("SELECT * FROM candidatos_elecciones WHERE id_votacion = " . $id_votacion . " AND id_candidato = " . $id_usuario); //Si ya ha votado
+    if($sql3 != false){ //Si ya esta postulado.
+        return false;
+    }
+    
+    switch ($tipo):
+        case 1://Presi de partido
+            $sql = sql("SELECT id_partido, ant_partido FROM usuarios WHERE id_usuario = " . $id_usuario); //Su partido y antiguedad
+            $sql2 = sql("SELECT param1 FROM votaciones WHERE id_votacion = " . $id_votacion); //El partido de la votacion
+            $sql4 = sql("SELECT ant_votaciones FROM partidos WHERE id_partido = " . $sql2);
+
+
+            if ($sql['id_partido'] == $sql2 && $sql['ant_partido'] >= $sql4) {//Esta afiliado al partido Y tiene X antiguedad
+                $ret = true;
+            } else {
+                $ret = false;
+            }
+            break;
+        default:
+            $ret = false;
+            break;
+    endswitch;
+    if ($tipo >= 100){//Votaciones para cargos de un pais
+        $sql = sql("SELECT * FROM votaciones WHERE id_votacion = ".$id_votacion);
+        $rest = explode("!",$sql['param1']);//Sacamos las restricciones para postularse
+        foreach($rest as $res){
+        $rest2[] = explode("+",$res); //Separamos cada una de ellas
+        }
+        $ret = true;//En principio se podria postular
+        foreach($rest2 as $condicion){//Comprobamos cada una de ellas
+            switch($condicion[0]):
+                case "C": //Ciudadania del pais
+                    $cs = sql("SELECT id_nacionalidad FROM usuarios WHERE id_usuario = " . $_SESSION['id_usuario']);
+                    if($cs != floor($sql['tipo_votacion']/100)){$ret = false;}
+                    break;
+                case "E": //Puntos de experiencia
+                    $exp = sql("SELECT exp FROM usuarios WHERE id_usuario = " . $_SESSION['id_usuario']);
+                    if($exp < $condicion[1]){$ret = false;}
+                    break;
+            endswitch;
+        }
+    }
+    return $ret;
+}
+
 function check_stat($stat, $id) {
 
     $sql = sql("SELECT status FROM usuarios WHERE id_usuario = " . $id);
