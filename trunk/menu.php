@@ -44,8 +44,8 @@ elseif($entrenado==0)
         </li>     
         <li><a href="#"><? echo $txt['pais']; ?></a>
         <ul>
-            <li><a href="<? echo "/".$_GET['lang']."/pais/".sql("SELECT id_nacionalidad FROM usuarios WHERE id_usuario='".$_SESSION['id_usuario']."'"); ?>"><? echo $txt['mi_pais']; ?></a></li>
-            <li><a href="<? echo "/".$_GET['lang']."/partidos/".sql("SELECT id_nacionalidad FROM usuarios WHERE id_usuario='".$_SESSION['id_usuario']."'"); ?>"><? echo $txt['partidos_politicos']; ?></a></li>
+            <li><a href="<? echo "/".$_GET['lang']."/pais/".$objeto_usuario->id_pais; ?>"><? echo $txt['mi_pais']; ?></a></li>
+            <li><a href="<? echo "/".$_GET['lang']."/partidos/".$objeto_usuario->id_pais; ?>"><? echo $txt['partidos_politicos']; ?></a></li>
             <li><a href="#"><? echo $txt['ranking']; ?></a></li>
         </ul>   
         </li>        
