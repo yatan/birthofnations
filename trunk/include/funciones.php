@@ -293,12 +293,11 @@ function next_elecciones($DA, $DE, $FE) {//Actual/Resto del dia de las eleccione
 }
 
 function puedo_votar($id_usuario, $tipo, $id_votacion) {//Determina si puedes votar o no, segun el tipo de votacion
-    
     $sql3 = sql("SELECT * FROM log_votos WHERE id_votacion = " . $id_votacion . " AND id_usuario = " . $id_usuario); //Si ya ha votado
-    if($sql3 != false){ //Si ya ha votado
+    if ($sql3 != false) { //Si ya ha votado
         return false;
     }
-    
+
     switch ($tipo):
         case 1://Presi de partido
             $sql = sql("SELECT id_partido, ant_partido FROM usuarios WHERE id_usuario = " . $id_usuario); //Su partido y antiguedad
@@ -316,23 +315,36 @@ function puedo_votar($id_usuario, $tipo, $id_votacion) {//Determina si puedes vo
             $ret = false;
             break;
     endswitch;
-    if ($tipo >= 100){//Votaciones para cargos de un pais
-        $sql = sql("SELECT * FROM votaciones WHERE id_votacion = ".$id_votacion);
-        $rest = explode("!",$sql['restricciones']);//Sacamos las restricciones para votar
-        foreach($rest as $res){
-        $rest2[] = explode("+",$res); //Separamos cada una de ellas
+    if ($tipo >= 100) {//Votaciones para cargos de un pais
+        $sql = sql("SELECT * FROM votaciones WHERE id_votacion = " . $id_votacion);
+        $rest = explode("!", $sql['restricciones']); //Sacamos las restricciones para votar
+        foreach ($rest as $res) {
+            $rest2[] = explode("+", $res); //Separamos cada una de ellas
         }
-        $ret = true;//En principio se podria votar
-        foreach($rest2 as $condicion){//Comprobamos cada una de ellas
-            switch($condicion[0]):
-                case "C": //Ciudadania del pais
+        $ret = true; //En principio se podria votar
+        foreach ($rest2 as $condicion) {//Comprobamos cada una de ellas
+            switch ($condicion[0]):
+                case "C": //Ciudadania
                     $cs = sql("SELECT id_nacionalidad FROM usuarios WHERE id_usuario = " . $_SESSION['id_usuario']);
-                    if($cs != floor($sql['tipo_votacion']/100)){$ret = false;}
+                    if ($cs != $condicion[1]) {
+                        $ret = false;
+                    }
                     break;
                 case "E": //Puntos de experiencia
                     $exp = sql("SELECT exp FROM usuarios WHERE id_usuario = " . $_SESSION['id_usuario']);
-                    if($exp < $condicion[1]){$ret = false;}
+                    if ($exp < $condicion[1]) {
+                        $ret = false;
+                    }
                     break;
+                case "G": //Gold, siempre debe ser la ultima
+                    if ($ret == true) {//Sólo se paga si el resto de condiciones ya se han cumplido
+                        $gold = sql("SELECT Gold FROM money WHERE id_usuario = " . $_SESSION['id_usuario']);
+                        if ($gold >= $condicion[1]) {//Si tiene gold suficiente
+                            sql("UPDATE money SET gold = gold - " . $condicion[1] . " WHERE id_usuario = " . $_SESSION['id_usuario']);
+                        } else {//Si no tiene dinero suficiente
+                            $ret = false;
+                        }
+                    }
             endswitch;
         }
     }
@@ -340,12 +352,11 @@ function puedo_votar($id_usuario, $tipo, $id_votacion) {//Determina si puedes vo
 }
 
 function puedo_postularme($id_usuario, $tipo, $id_votacion) {//Determina si puedes postularte o no, segun el tipo de votacion
-    
     $sql3 = sql("SELECT * FROM candidatos_elecciones WHERE id_votacion = " . $id_votacion . " AND id_candidato = " . $id_usuario); //Si ya ha votado
-    if($sql3 != false){ //Si ya esta postulado.
+    if ($sql3 != false) { //Si ya esta postulado.
         return false;
     }
-    
+
     switch ($tipo):
         case 1://Presi de partido
             $sql = sql("SELECT id_partido, ant_partido FROM usuarios WHERE id_usuario = " . $id_usuario); //Su partido y antiguedad
@@ -363,23 +374,36 @@ function puedo_postularme($id_usuario, $tipo, $id_votacion) {//Determina si pued
             $ret = false;
             break;
     endswitch;
-    if ($tipo >= 100){//Votaciones para cargos de un pais
-        $sql = sql("SELECT * FROM votaciones WHERE id_votacion = ".$id_votacion);
-        $rest = explode("!",$sql['param1']);//Sacamos las restricciones para postularse
-        foreach($rest as $res){
-        $rest2[] = explode("+",$res); //Separamos cada una de ellas
+    if ($tipo >= 100) {//Votaciones para cargos de un pais
+        $sql = sql("SELECT * FROM votaciones WHERE id_votacion = " . $id_votacion);
+        $rest = explode("!", $sql['param1']); //Sacamos las restricciones para postularse
+        foreach ($rest as $res) {
+            $rest2[] = explode("+", $res); //Separamos cada una de ellas
         }
-        $ret = true;//En principio se podria postular
-        foreach($rest2 as $condicion){//Comprobamos cada una de ellas
-            switch($condicion[0]):
-                case "C": //Ciudadania del pais
-                    $cs = sql("SELECT id_nacionalidad FROM usuarios WHERE id_usuario = " . $_SESSION['id_usuario']);
-                    if($cs != floor($sql['tipo_votacion']/100)){$ret = false;}
+        $ret = true; //En principio se podria postular
+        foreach ($rest2 as $condicion) {//Comprobamos cada una de ellas
+            switch ($condicion[0]):
+                case "C": //Ciudadania
+                    $cs = sql("SELECT id_nacionalidad FROM usuarios WHERE id_usuario = ".$_SESSION['id_usuario']);
+                    if ($cs != $condicion[1]) {
+                        $ret = false;
+                    }
                     break;
                 case "E": //Puntos de experiencia
                     $exp = sql("SELECT exp FROM usuarios WHERE id_usuario = " . $_SESSION['id_usuario']);
-                    if($exp < $condicion[1]){$ret = false;}
+                    if ($exp < $condicion[1]) {
+                        $ret = false;
+                    }
                     break;
+                case "G": //Gold, siempre debe ser la ultima
+                    if ($ret == true) {//Sólo se paga si el resto de condiciones ya se han cumplido
+                        $gold = sql("SELECT Gold FROM money WHERE id_usuario = " . $_SESSION['id_usuario']);
+                        if ($gold >= $condicion[1]) {//Si tiene gold suficiente
+                            sql("UPDATE money SET gold = gold - " . $condicion[1] . " WHERE id_usuario = " . $_SESSION['id_usuario']);
+                        } else {//Si no tiene dinero suficiente
+                            $ret = false;
+                        }
+                    }
             endswitch;
         }
     }
@@ -444,9 +468,9 @@ function del_stat($stat, $id) {
 
 function list_items() {//Genera un array $array[id_item] -> nombre item;
     $sql = sql("SELECT id_item, nombre FROM items");
-        foreach($sql as $item){
-            $list[$item['id_item']] = $item['nombre'];
-        }
+    foreach ($sql as $item) {
+        $list[$item['id_item']] = $item['nombre'];
+    }
     return $list;
 }
 
@@ -569,7 +593,7 @@ function check_leader($cargo, $id) {
     return $flag;
 }
 
-function add_leader($cargo, $id) { 
+function add_leader($cargo, $id) {
     if (check_leader($cargo, $id) == false) {
         $sql = sql("SELECT id_gente FROM country_leaders WHERE id_cargo = " . $cargo);
         $sql .= $id . ',';
@@ -711,36 +735,37 @@ function apply_law($vot) {
                     break;
                 }
             }
-            
-            if($c == $p[0]*100 + 100){echo "No puedes poner mas cargos, borra otro antes";}
-            else{
+
+            if ($c == $p[0] * 100 + 100) {
+                echo "No puedes poner mas cargos, borra otro antes";
+            } else {
                 sql("INSERT INTO country_leaders (id_cargo, nombre) VALUES ('$c','$p[1]')");
             }
             break;
         case 102:
-            if($p[1]>= $p[0]*100 && $p[1] < $p[0]*100+100){
-            sql("DELETE FROM country_leaders WHERE id_cargo = ".$p[1]);
+            if ($p[1] >= $p[0] * 100 && $p[1] < $p[0] * 100 + 100) {
+                sql("DELETE FROM country_leaders WHERE id_cargo = " . $p[1]);
             }
             break;
         case 103: //1:id del cargo 2:id jugador
             //Comprobamos que el cargo pertenece al pais desde el cual se envia la ley
-            if($p[1] >= $p[0]*100 && $p[1]< $p[0]*100+100){
+            if ($p[1] >= $p[0] * 100 && $p[1] < $p[0] * 100 + 100) {
                 //Comprobamos que no tenga ya el cargo
-                if(!check_leader($p[1],$p[2])){
+                if (!check_leader($p[1], $p[2])) {
                     //Entonces le aï¿½adimos al cargo
-                    add_leader($p[1],$p[2]);
+                    add_leader($p[1], $p[2]);
                 }
             }
             break;
         case 104://1:id del cargo 2:id jugador
             //Comprobamos que el cargo pertenece al pais desde el cual se envia la ley
-            if($p[1] >= $p[0]*100 && $p[1]< $p[0]*100+100){
+            if ($p[1] >= $p[0] * 100 && $p[1] < $p[0] * 100 + 100) {
                 //Comprobamos que ya tenga el cargo
-                    //Entonces le quitamos el cargo
-                    del_leader($p[1],$p[2]);//La funcion ya comprueba que lo tenga
+                //Entonces le quitamos el cargo
+                del_leader($p[1], $p[2]); //La funcion ya comprueba que lo tenga
             }
             break;
-                
+
     endswitch;
 }
 
