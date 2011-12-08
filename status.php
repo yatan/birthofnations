@@ -5,16 +5,15 @@
  * and open the template in the editor.
  */
 $dia = sql("SELECT day FROM settings");
-$datos = sql("SELECT nick, status, salud FROM usuarios WHERE id_usuario='".$_SESSION['id_usuario']."'");
-$gold = sql("SELECT gold FROM money WHERE id_usuario='".$_SESSION['id_usuario']."'");
+$gold = $objeto_usuario->gold;
 $mensajes = sql("SELECT COUNT(*) FROM messages WHERE id_receptor='".$_SESSION['id_usuario']."' AND leido='0' AND deleted='0'");
 $alertas = sql("SELECT COUNT(*) FROM alertas WHERE id_receptor='".$_SESSION['id_usuario']."' AND leido='0'");
-$pais = sql("SELECT name, url_bandera FROM country WHERE idcountry IN (SELECT id_nacionalidad FROM usuarios WHERE id_usuario='".$_SESSION['id_usuario']."')");
+$pais = sql("SELECT name, url_bandera FROM country WHERE idcountry='{$objeto_usuario->id_pais}'");
 
 
-$nick = $datos['nick'];
-$estado = $datos['status'];
-$salud = $datos['salud'];
+$nick = $objeto_usuario->nick;
+$estado = $objeto_usuario->status;
+$salud = $objeto_usuario->salud;
 
 if($estado != null)
 {
