@@ -442,14 +442,12 @@ function del_stat($stat, $id) {
     return $new_stat;
 }
 
-function list_items() {
-    $sql = sql("SELECT nombre FROM items");
-    array_unshift($sql, "m");
-    foreach ($sql as $item) {
-
-        $sql2[] = $item['nombre'];
-    }
-    return $sql2;
+function list_items() {//Genera un array $array[id_item] -> nombre item;
+    $sql = sql("SELECT id_item, nombre FROM items");
+        foreach($sql as $item){
+            $list[$item['id_item']] = $item['nombre'];
+        }
+    return $list;
 }
 
 function parse_raw($tipo) {
