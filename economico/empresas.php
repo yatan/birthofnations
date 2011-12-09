@@ -13,7 +13,7 @@ echo"<h1>Mis empresas</h1>";
 
 //$cantidad_empresas = sql("SELECT COUNT(id_empresa) FROM empresas WHERE id_propietario='".$_SESSION['id_usuario']."'");
 
-$sql = sql("SELECT * FROM empresas WHERE id_propietario='".$_SESSION['id_usuario']."'");
+$sql = sql2("SELECT * FROM empresas WHERE id_propietario='".$_SESSION['id_usuario']."'");
 
 //if($cantidad_empresas == 1)
 //echo "<a href='/".$_GET['lang']."/empresa/".$sql['id_empresa']."'>".$sql['nombre_empresa']."</a><br/>";
