@@ -7,7 +7,7 @@
 <?
 $sql = sql("SELECT id_item FROM items WHERE empresable = 1");
 foreach ($sql as $item){
-    echo "<option value=".$item['id_item'].">".$txt['item'.$item['id_item']]."</option>";
+    echo "<option value=".$item['id_item'].">". ucfirst(id2item($item['id_item']))."</option>";
 }
 ?>
             </select></label><br>
