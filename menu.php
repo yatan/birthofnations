@@ -54,6 +54,7 @@ elseif($entrenado==0)
             <li><a target="Foro" href="/forum"><? echo $txt['foro']; ?></a></li>
             <li><a target="Soporte" href="/support"><? echo $txt['soporte']; ?></a></li>
             <li><a target="Bugs" href="/bugs"><? echo $txt['bugs']; ?></a></li>
+            <li><a target="Wiki" href="/wiki"><? echo $txt['wiki']; ?></a></li>
         </ul>
         </li>
                 <li><a href="/logout">Logout</a></li>
