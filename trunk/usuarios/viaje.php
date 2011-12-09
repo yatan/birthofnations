@@ -27,12 +27,12 @@ $distancia = (int)$ruta[$destino]['distance'];
 
 //Ahora comprobamos que tiene suficientes objetos necesarios para viajar, cuales sean, pa probar sugus
 
-$tickets = sql("SELECT sugus FROM inventario WHERE id_usuario = " . $_SESSION['id_usuario']);
+$tickets = sql("SELECT transporte FROM inventario WHERE id_usuario = " . $_SESSION['id_usuario']); //Comentario temporal
 
 if($tickets >= $distancia && $origen['salud'] > 0 ){//Si puede viajar
     //Quitar items y mierdas y actualizar el pais
     sql("UPDATE usuarios SET salud = salud - 1, id_region = ". $destino . ", id_pais = ".$region_destino->owner_id()." WHERE id_usuario = " . $_SESSION['id_usuario']);
-    sql("UPDATE inventario SET sugus = sugus - " . $distancia . " WHERE id_usuario = " . $_SESSION['id_usuario']);
+    sql("UPDATE inventario SET transporte = transporte - " . $distancia . " WHERE id_usuario = " . $_SESSION['id_usuario']);
     echo"Has viajado correctamente";
 }else{//Si no tiene objetos
     echo "No cumples los requisitos necesarios para viajar, revisa tu existencia, mortal.";
