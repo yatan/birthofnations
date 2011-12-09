@@ -18,7 +18,7 @@ $sql = sql("SELECT * FROM empresas WHERE id_propietario='".$_SESSION['id_usuario
 //if($cantidad_empresas == 1)
 //echo "<a href='/".$_GET['lang']."/empresa/".$sql['id_empresa']."'>".$sql['nombre_empresa']."</a><br/>";
 //else {
-echo "<table><tr><td>Tipo</td><td>Nombre</td></tr>";
+echo "<table><tr><th>Tipo</th><th>Nombre</th></tr>";
 
 foreach ($sql as $empresa) {
     echo "<tr><td>".  id2item($empresa['tipo'])."</td><td><a href='/".$_GET['lang']."/empresa/".$empresa['id_empresa']."'>".$empresa['nombre_empresa']."</a></td></tr>";
