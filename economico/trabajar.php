@@ -18,8 +18,8 @@ $producido = formula_produccion($_SESSION['id_usuario']); // Numero de items que
 
 if ($empresa[$moneda_local[$datos['moneda']]] > $datos['salario']) { //Si hay sueldo suficiente
     if ($diario == 0) { //Si aun no ha trabajado
-        //Comprobamos que haya todo el raw necesario.
-
+        $hay_raw=true;
+    if($item['is_raw'] != 1){ //Comprobamos que haya todo el raw necesario.
         $raw_needed = parse_raw($empresa['tipo']);
 
         //Multiplicamos por la cantidad que se necesite de cada uno.
@@ -37,6 +37,7 @@ if ($empresa[$moneda_local[$datos['moneda']]] > $datos['salario']) { //Si hay su
                 break;
             }
         }
+    }
 
 
 
