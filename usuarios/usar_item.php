@@ -22,6 +22,7 @@ if (isset($_GET['id']) && $_GET['id'] != "" && strlen($_GET['id'])>0 ){
         switch($_GET['id']):
                 case 1:
                     sql("UPDATE usuarios SET salud = salud + 2 WHERE id_usuario = " . $_SESSION['id_usuario']);
+                    echo "Pan usado, se han restaurado 2 puntos de salud";
                     break;
         endswitch;
     }
@@ -29,3 +30,5 @@ if (isset($_GET['id']) && $_GET['id'] != "" && strlen($_GET['id'])>0 ){
 }
 
 ?>
+<br>
+<a href="javascript:history.back(1)">Volver</a>
