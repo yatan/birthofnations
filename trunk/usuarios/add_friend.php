@@ -7,14 +7,12 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/include/config_variables.php");
 //ac para aceptar
 //Comprobar que no son amigos.
 
-function send_friend_alert($send, $receive) {//De momento son mensajes
+function send_friend_alert($send, $receive) {//Para enviar la alerta
     global $txt;
 //Buscamos quien es el que envia:
     $name = sql("SELECT nick FROM usuarios WHERE id_usuario = " . $send);
-
-    $texto = $name . ' ' . $txt['add_friend'] . '<a href="../usuarios/add_friend.php?ac=si&ai=' . $send . '">' . $txt['si'] . '</a><a href="/usuarios/add_friend.php?ac=no&ai=' . $send . '">' . $txt['no'] . '</a>';
-
-    sql("INSERT INTO messages(id_emisor,id_receptor,asunto,mensaje,fecha) VALUES (0," . $receive . ",'" . $txt['add_friend_head'] . "','" . $texto . "', Now() ) ");
+    
+    sql("INSERT INTO alertas(id_emisor,id_receptor,tipo,fecha) VALUES ('".$send."','".$receive."','1','".time()."')"); 
 }
 
 if (isset($_GET['id']) && $_GET['id'] != "" && strlen($_GET['id']) > 0) {
@@ -58,7 +56,7 @@ if (isset($_GET['ac']) && $_GET['ac'] != "" && strlen($_GET['ac']) > 0 && isset(
         // El que envi� la peticion intenta aceptarla O ya son amigos
         die("O sois amigos o no puedes aceptarla");
     } else {
-
+        $_GET['ac'] = 'si'; //Aunque ahora no sea posible rechazar, lo dejamos indicado por si algun dia hace falta.
         if ($_GET['ac'] == 'si') {//Aceptar
             sql("INSERT INTO friends (id_amigo1, id_amigo2, peticion, desde) VALUES (" . $id2 . "," . $id1 . ",1,Now()) ");
             sql("UPDATE friends SET peticion = 1, desde = Now() WHERE id_amigo1 = " . $id1 . " AND id_amigo2 = " . $id2);

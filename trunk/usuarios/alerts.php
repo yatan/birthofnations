@@ -5,6 +5,8 @@
  * and open the template in the editor.
  */
 
+//include_once($_SERVER['DOCUMENT_ROOT']."/include/funciones.php");
+
 echo "<h1>Alertas</h1>";
 
 
@@ -17,7 +19,7 @@ foreach ($alertas as $alerta) {
     switch ($alerta['tipo']) {
         case "1":
             echo "<tr><td>Amigo</td><td>";
-            echo id2nick($alerta['id_emisor'])." quiere ser tu amigo. <a href='#'>Añadir a amigos</a></td>";
+            echo id2nick($alerta['id_emisor'])." quiere ser tu amigo. <a href='../usuarios/add_friend.php?ac=".$alerta['id_emisor']."'>Aceptar</a></td>";
             echo "<td><input type='checkbox' name='alertas[]' value='".$alerta['id_alerta']."'/></td></tr>";
             
             break;
