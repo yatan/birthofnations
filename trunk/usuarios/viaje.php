@@ -5,8 +5,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/include/funciones.php");
 
 //Esta es la variable que llega como destino:
 
-$destino = $_POST['region'];
-
+$destino = (int)$_POST['region'];
 
 //Sacamos la region origen
 
@@ -17,14 +16,14 @@ if($destino == $origen['id_region']){die("Para dar vueltas en circulo te hacesd 
 
 //Comprobamos la distancia entre las dos regiones, a ver si me acuerdo de como era:
 
-$region_origen = new region($origen['id_region']);
 $region_destino = new region($destino);
-
+$region_origen = new region($origen['id_region']);
 
 $ruta = $region_origen->distance_to($destino);
 
 // [1][0] - [1][1] es la ruta
 $distancia = (int)$ruta[$destino]['distance'];
+
 
 //Ahora comprobamos que tiene suficientes objetos necesarios para viajar, cuales sean, pa probar sugus
 
