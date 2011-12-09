@@ -106,7 +106,8 @@ $txt = array (
     'ranking' => "Clasificación",
     'foro' => "Foro",
     'tickets' => "Tickets de soporte",
-    'bugs' => "Reporte de bugs",  
+    'bugs' => "Reporte de bugs",
+    'wiki' => "Wiki",
     
     //Items
     
