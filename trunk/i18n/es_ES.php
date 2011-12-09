@@ -54,7 +54,6 @@ $txt = array (
     'empresa_tipo2' => "Trigo",
     'empresa_tipo3' => "Oil",
     'empresa_tipo4' => "Transporte",
-    'empresa_tipo10' => "Cuchillos",
     'no_ofertas_trabajo' => "No hay ofertas de trabajo",
     //Estos 3 deberian desaparecer
     'item1' => "Sugus",
