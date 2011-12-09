@@ -79,7 +79,7 @@ $txt = array (
     
     //Pagina mantenimiento
     'mantenimiento_1' => "Modo mantenimiento",
-    'mantenimiento_2' => "El juego se encuntra en mantenimiento.",
+    'mantenimiento_2' => "El juego se encuentra en mantenimiento.",
     'mantenimiento_3' => "Para visitar el foro use el siguiente link:",
     'mantenimiento_4' => "Acceder al foro",
 
