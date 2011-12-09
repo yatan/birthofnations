@@ -50,10 +50,10 @@ $txt = array (
     //Economico
     'Gold' => 'Gold',
     'Poner_ofertas_trabajo' => "Poner ofertas de trabajo",
-    'empresa_tipo1' => "Sugus",
-    'empresa_tipo2' => "Azucar",
-    'empresa_tipo3' => "Armas",
-    'empresa_tipo4' => "Plumas",
+    'empresa_tipo1' => "Pan",
+    'empresa_tipo2' => "Trigo",
+    'empresa_tipo3' => "Oil",
+    'empresa_tipo4' => "Transporte",
     'empresa_tipo10' => "Cuchillos",
     'no_ofertas_trabajo' => "No hay ofertas de trabajo",
     //Estos 3 deberian desaparecer
