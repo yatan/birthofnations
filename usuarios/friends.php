@@ -25,8 +25,9 @@ elseif($cantidad>1)
     $sql = sql("SELECT id_amigo2 FROM friends WHERE id_amigo1='$id_usuario'");
     foreach ($sql as $amigo) {
         
-        $usuario = new usuario($amigo['id_amigo2']);
-        echo "<a href='/".$_GET['lang']."/perfil/".$usuario->id_usuario."'>".$usuario->get_nick()."</a><br/>";
+        $usuario = sql("SELECT nick FROM usuarios WHERE id_usuario='{$amigo['id_amigo2']}'");
+        echo "<a href='/".$_GET['lang']."/perfil/{$amigo['id_amigo2']}'>".$usuario."</a><br/>";
+        
         
     }
 }
