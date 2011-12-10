@@ -12,6 +12,9 @@ $diario = sql("SELECT work FROM diario WHERE id_usuario = " . $_SESSION['id_usua
 
 $item = sql("SELECT * FROM items WHERE id_item = " . $empresa['tipo']);
 
+//id del dueño de la empresa
+$duenyo = sql("SELECT id_propietario FROM empresas WHERE id_empresa = {$datos['id_empresa']}");
+
 $list_items = list_items();
 
 $producido = formula_produccion($_SESSION['id_usuario']); // Numero de items que va a producir
@@ -31,7 +34,11 @@ if ($empresa[$moneda_local[$datos['moneda']]] > $datos['salario']) { //Si hay su
         //Comprobamos si la empresa tiene los items necesarios para este trabajador.
         $hay_raw = true;
         foreach ($raw_needed as $item => $value) {
-            $sql = sql("SELECT " . $list_items[$item] . " FROM inventario_empresas WHERE id_empresa = " . $datos['id_empresa']);
+//Acceso de los items raw al inventario empresa
+//$sql = sql("SELECT " . $list_items[$item] . " FROM inventario_empresas WHERE id_empresa = " . $datos['id_empresa']);
+
+//Acceso de los items raw desde el inventario del jugador
+            $sql = sql("SELECT " . $list_items[$item] . " FROM inventario WHERE id_usuario = $duenyo");
             if ($sql < $value) {
                 $hay_raw = false;
                 break;
@@ -53,7 +60,8 @@ if ($empresa[$moneda_local[$datos['moneda']]] > $datos['salario']) { //Si hay su
 
             if ($item['is_raw'] == 0) { //Si no es de raw, quitamos el raw que necesitaba
                 foreach ($raw_needed as $item => $value) {
-                    sql("UPDATE inventario_empresas SET " . $list_items[$item] . " = " . $list_items[$item] . " - " . $value . " WHERE id_empresa = " . $datos['id_empresa']);
+                    //Se quita el raw del inventario del jugador
+                    sql("UPDATE inventario SET " . $list_items[$item] . " = " . $list_items[$item] . " - " . $value . " WHERE id_usuario = $duenyo");
                 }
             }
 
