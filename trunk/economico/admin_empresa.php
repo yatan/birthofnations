@@ -22,7 +22,8 @@ echo <<<EOT
             <input type="submit" id="cambiar_nombre" value="Cambiar">
         </form>
 EOT;
-
+echo "<table border='1' style='width=100%;'>";
+echo "<td style='width: 300px' valign='top' align='center'>";
 echo "Inventario de la empresa: <br>";
 
 $sql = sql("SELECT * FROM inventario_empresas WHERE id_empresa = " . $empresa->id_empresa);
@@ -89,8 +90,8 @@ echo <<<EOT
    <h3>Vender stock</h3>
 <table id="v_stock"><tr><td>Cantidad</td><td>Precio</td></tr>
 <form id="f_v_stock">
-            <tr><td><label for="cantida"><input tabindex="1" type="text" name="cantidad"></label></td>
-            <td><label for="precio"><input tabindex="1" type="text" name="precio"></label></td>
+            <tr><td><label for="cantida"><input tabindex="1" size='10' type="text" name="cantidad"></label></td>
+            <td><label for="precio"><input tabindex="1" size='10' type="text" name="precio"></label></td>
             <td><label for="empresa"><input tabindex="1" type="hidden" name="id_empresa" value=" $empresa->id_empresa "></label></td>
             <td><input type="button" id="vender_stock" value="Vender"></td></tr>
         </form>
@@ -157,7 +158,12 @@ echo "<h2>" . $txt['Poner_ofertas_trabajo'] . "</h2>";
         <input type="submit">
     </form>
 </div><!--form de ofertas de trabajo-->
-<hr>
+
+
+</td>
+<td style='width: 300px;' valign='top' align="center">
+    
+    
 <h3>Puestos ofertados</h3>
 <table border="0">
     <tr>
@@ -230,7 +236,7 @@ foreach ($moneda_local as $id => $nombre) {
 <h3>Dineros</h3>
 <form id="dineros" method="POST" action="<? echo $_SERVER['REQUEST_URI']; ?>">
     <label for="cantidad">Cantidad:</label>
-    <input type="text" name="cantidad" id="cantidad" maxlength="6" width="50%"/>
+    <input type="text" name="cantidad" id="cantidad" maxlength="6" width="50%"/><br>
     <label for="moneda">Moneda:</label>
     <select id="moneda" name="moneda">
 <?
@@ -314,3 +320,6 @@ if (isset($_POST['metodo'])) {
         $("#vender_empresa2").show("slow");
     });
 </script>
+
+</td>
+</table>
