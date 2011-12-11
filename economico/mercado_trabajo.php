@@ -1,3 +1,11 @@
+<style type="text/css">
+   .tip{
+      background-color: #000000;
+      padding: 5px;
+      display: none;
+      position: absolute;
+   }
+</style>
 <?
 
 include_once($_SERVER['DOCUMENT_ROOT']."/include/funciones.php");
@@ -44,7 +52,7 @@ function cambiar_pais(arg) {
         foreach ($sql as $pais1) {
             if($pais1['idcountry']==$objeto_usuario->id_pais && !isset($_GET['pais']))
                 $seleccionado = "selected='selected'";
-            elseif($pais1['idcountry']==$_GET['pais'])
+            elseif($pais1['idcountry']==$_GET['pais'] && isset($_GET['pais']))
                 $seleccionado = "selected='selected'";
             else
                 $seleccionado = "";
@@ -61,9 +69,36 @@ echo "<table><tr><th>Empresa</th><th>Jefe</th><th>Salario</th><th>Puestos</th></
 
 while ($oferta = mysql_fetch_array($ofertas)){
     $sql = sql("SELECT nombre_empresa FROM empresas WHERE id_empresa='".$oferta['id_empresa']."'");
-    $jefe = sql("SELECT nick FROM usuarios WHERE id_usuario = '". $oferta['id_jefe'] ."' " );
-    echo "<tr><td>".$sql."</td><td>". $jefe ."</td><td>". $oferta['salario'] ."</td><td>". $oferta['cantidad'] .'</td><td>[<a href="/economico/aceptar_trabajo.php?oferta='.$oferta['id_oferta'].'">Aceptar</a>]</td></tr>';
+    $jefe = id2nick($oferta['id_jefe']);
+    
+    if($oferta['comentario']!=null)
+    {
         
+echo <<<EOT
+        
+<script>
+$(document).ready(function(){
+   $(".o{$oferta['id_oferta']}").mouseenter(function(e){
+      $("#v{$oferta['id_oferta']}").css("left", e.pageX + 1);
+      $("#v{$oferta['id_oferta']}").css("top", e.pageY + 1);
+      $("#v{$oferta['id_oferta']}").css("display", "block");
+   });
+$(".o{$oferta['id_oferta']}").mouseleave(function(e){
+      $("#v{$oferta['id_oferta']}").css("display", "none");
+   });
+})      
+</script>
+        
+       <div class='tip' id='v{$oferta['id_oferta']}'>{$oferta['comentario']}</div>    
+        <tr class='o{$oferta['id_oferta']}'>
+EOT;
+
+    }
+    else
+        echo "<tr>";
+    
+    echo "<td>".$sql."</td><td>". $jefe ."</td><td>". $oferta['salario'] ."</td><td>". $oferta['cantidad'] .'</td><td>[<a href="/economico/aceptar_trabajo.php?oferta='.$oferta['id_oferta'].'">Aceptar</a>]</td></tr>';
+
 }
 echo "</table>";
 ?>
