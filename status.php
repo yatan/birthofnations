@@ -44,6 +44,8 @@ $i_estado = "<img src='/images/status_bar/status/1.png'/>";
 
 echo "$i_estado - <a href='/".$_GET['lang']."/perfil/".$_SESSION['id_usuario']."'>$nick</a>"
 ." - "
+."Level: $objeto_usuario->level - Exp: $objeto_usuario->exp"
+." - "
 ."<img alt='bandera' title='".$pais['name']."' src='".$pais['url_bandera']."'>"
 ." - "
 ."<img alt='vida'  src='/images/status_bar/life.gif'> $salud"

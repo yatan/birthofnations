@@ -9,6 +9,7 @@ class usuario
     public $id_usuario;
     public $nick;
     public $exp;
+    public $level;
     public $avatar;
     public $id_pais;
     public $id_region;
@@ -26,6 +27,7 @@ class usuario
         $this->id_usuario = $id;
         $this->nick = $usuario['nick'];
         $this->exp = $usuario['exp'];
+        $this->level = $usuario['level'];
         $this->salud = $usuario['salud'];
         $this->gold = sql("SELECT gold FROM money WHERE id_usuario='$id'");
         $this->status = $usuario['status'];
@@ -43,6 +45,9 @@ class usuario
         $this->n_nacionalidad = sql("SELECT name FROM country WHERE idcountry = '{$this->id_nacionalidad}'");
         
         $this->id_empresa = $usuario['id_empresa'];
+        
+        if($this->level != $this->check_lvl())
+            $this->set_lvl();
         
     }
     
@@ -81,6 +86,28 @@ class usuario
     function get_n_nacionalidad()
     {
         return $this->n_nacionalidad;
+    }
+    
+    function check_lvl()
+    {
+        if($this->exp >= 0 && $this->exp <14)
+            return 1;
+        elseif($this->exp >= 14 && $this->exp <32)
+            return 2;
+        elseif($this->exp >= 32 && $this->exp <64)
+            return 3;
+        elseif($this->exp >= 64 && $this->exp <128)
+            return 4;        
+    }
+    
+    function set_lvl()
+    {
+        $nuevo_lvl = $this->check_lvl();
+        sql("UPDATE usuarios SET level='$nuevo_lvl' WHERE id_usuario='$this->id_usuario'");
+        $this->level = $nuevo_lvl;
+        
+        //Aqui se envia un mensaje o alerta del nuevo lvl
+        
     }
     
 }
