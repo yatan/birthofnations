@@ -2,7 +2,7 @@
 
 //Archivo de reset diario
 
-include_once("config.php");
+include_once("/home/birthofn/public_html/include/config.php");
 
 function sql_error($sql) {
 
