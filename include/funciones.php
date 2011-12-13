@@ -726,7 +726,7 @@ function apply_law($vot) {
         case 100: //Cambio de nombre del pais        
             sql("UPDATE country SET name = '" . $p[1] . "' WHERE idcountry = " . $p[0]);
             break;
-        case 101://Añadir cargo
+        case 101://Aï¿½adir cargo
             //Lista de cargos
             $sql = sql2("SELECT id_cargo FROM country_leaders WHERE id_cargo >= " . $p[0] * 100 . " AND id_cargo <= " . ($p[0] * 100 + 99));
             //Reordenamos bajando un nivel
@@ -782,6 +782,17 @@ function rango($puntos) {
     //A partir de 15 puntos de combate
     elseif ($puntos >= 15)
         return $txt["rango_1"];
+}
+
+function item2img($item)
+{
+    switch ($item) {
+        case 1:
+            return "<img src='/images/items/pan.gif' />";
+        break;
+
+
+    }
 }
 
 ?>

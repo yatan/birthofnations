@@ -79,13 +79,13 @@ $pag_resultados = $pagina * 10;
 
 $ofertas = sql2("SELECT * FROM mercado_objetos WHERE id_pais = " . $pais . " AND id_item = '". $objeto['id_item'] ."' ORDER BY precio ASC LIMIT $pag_resultados, 10");
 
-echo "<table><tr><th>Empresa</th><th>Precio</th><th>Cantidad</th><th>Comprar</th></tr>";
+echo "<table><tr><th>Tipo</th><th>Empresa</th><th>Precio</th><th>Cantidad</th><th>Comprar</th></tr>";
 
 foreach ($ofertas as $oferta){
     
     $empresa = sql("SELECT nombre_empresa FROM empresas WHERE id_empresa = '" . $oferta['id_empresa']."'");
     
-    echo " <tr><td>". $empresa ."</td><td> {$oferta['precio']}  $moneda </td><td>". $oferta['cantidad'] .'</td><td>
+    echo " <tr><td>".item2img($oferta['id_item'])."</td><td>". $empresa ."</td><td> {$oferta['precio']}  $moneda </td><td>". $oferta['cantidad'] .'</td><td>
 <form action="/economico/comprar.php"  method="POST">
             <label for="cantidad"><input tabindex="1" type="text" name="cantidad"></label>
             <label for="id_oferta"><input tabindex="1" type="hidden" name="id_oferta" value = "'. $oferta['id_oferta'] .'"></label>
