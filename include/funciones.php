@@ -788,7 +788,7 @@ function item2img($item)
 {
     switch ($item) {
         case 1:
-            return "<img src='/images/items/pan.gif' />";
+            return "<img src='/images/items/pan.png' />";
         break;
 
 
