@@ -790,6 +790,9 @@ function item2img($item)
         case 1:
             return "<img src='/images/items/pan.png' />";
         break;
+        case 2:
+            return "<img src='/images/items/grano.png' />";
+        break;    
 
 
     }
