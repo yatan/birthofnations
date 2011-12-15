@@ -33,8 +33,8 @@ else {
     if ($usuario->soy_yo($_SESSION['id_usuario']) == true) {
         echo "<li><a href='#economia'>Economia</a></li>";
         echo "<li><a href='#inventario'>Inventario</a></li>";
-        echo "<li><a href='#viajar'>Viajar</a></li>";
-        echo "<li><a href='#periodico'>Periodico</a></li>";
+       // echo "<li><a href='#viajar'>Viajar</a></li>";
+       // echo "<li><a href='#periodico'>Periodico</a></li>";
     }
     ?>
 
@@ -47,7 +47,7 @@ else {
             echo "<img src='$usuario->avatar'/><br>";
             echo "<p style='font-size: 14px; text-align: left; margin: 10px;'>Pais: {$usuario->get_n_pais()}</p>";
             echo "<p style='font-size: 14px; text-align: left; margin: 10px;'>Region: {$usuario->get_n_region()}</p>";
-            echo "<p style='font-size: 14px; text-align: left; margin: 10px;'>Nacionalidad: {$usuario->get_n_nacionalidad()} (Cambiar)</p>";
+            echo "<p style='font-size: 14px; text-align: left; margin: 10px;'>Nacionalidad: {$usuario->get_n_nacionalidad()}</p>";
             echo "<div style='font-size: 12px; text-align: left; margin: 10px; height: 29em;'>";
             echo "<center><strong>Descripci&oacute;n</strong></center>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
             echo "</div>";
@@ -65,12 +65,12 @@ else {
                 echo "<div id='inventario'>";
                 include("inventario.php");
                 echo "</div>";
-                echo "<div id='viajar'>";
+                /*echo "<div id='viajar'>";
                 include("viajar.php");
-                echo "</div>";
-                echo "<div id='periodico'>";
+                echo "</div>";*/
+                /*echo "<div id='periodico'>";
                 include("periodico/redactar.php");
-                echo "</div>";
+                echo "</div>";*/
             } else {
                 //Zona publica
                 echo "<div style='background-color:red;'>";
