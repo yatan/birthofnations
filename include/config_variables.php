@@ -13,6 +13,9 @@ $friendship_expire = 86400; //Tiempo que debe transcurrir paara que puedas reenv
 $precio_empresa[10] = 10;//Entre [] el tipo
 $precio_empresa[1] = 10;
 $precio_empresa[2] = 10;
+$precio_empresa[3] = 10;
+$precio_empresa[4] = 10;
+
 function formula_produccion($id) {
     //Whatever formulica...
 
