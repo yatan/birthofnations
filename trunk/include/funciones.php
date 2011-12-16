@@ -283,9 +283,9 @@ function item2id($item) {
     return $sql;
 }
 
-function id2item($id){
+function id2item($id) {
     $sql = sql("SELECT nombre FROM items WHERE id_item = '$id'");
-    return $sql;   
+    return $sql;
 }
 
 function next_elecciones($DA, $DE, $FE) {//Actual/Resto del dia de las elecciones/Frecuencia
@@ -357,31 +357,25 @@ function puedo_votar($id_usuario, $tipo, $id_votacion) {//Determina si puedes vo
 }
 
 function puedo_postularme($id_usuario, $tipo, $id_votacion) {//Determina si puedes postularte o no, segun el tipo de votacion
-    $sql3 = sql("SELECT * FROM candidatos_elecciones WHERE id_votacion = " . $id_votacion . " AND id_candidato = " . $id_usuario); //Si ya ha votado
+    $sql3 = sql("SELECT * FROM candidatos_elecciones WHERE id_votacion = " . $id_votacion . " AND id_candidato = " . $id_usuario); //Si ya esta postulado
     if ($sql3 != false) { //Si ya esta postulado.
         return false;
     }
 
-    switch ($tipo):
-        case 1://Presi de partido
-            $sql = sql("SELECT id_partido, ant_partido FROM usuarios WHERE id_usuario = " . $id_usuario); //Su partido y antiguedad
-            $sql2 = sql("SELECT param1 FROM votaciones WHERE id_votacion = " . $id_votacion); //El partido de la votacion
-            $sql4 = sql("SELECT ant_votaciones FROM partidos WHERE id_partido = " . $sql2);
+    if ($tipo == 1) {//Presi de partido
+        $sql = sql("SELECT id_partido, ant_partido FROM usuarios WHERE id_usuario = " . $id_usuario); //Su partido y antiguedad
+        $sql2 = sql("SELECT param1 FROM votaciones WHERE id_votacion = " . $id_votacion); //El partido de la votacion
+        $sql4 = sql("SELECT ant_votaciones FROM partidos WHERE id_partido = " . $sql2);
 
 
-            if ($sql['id_partido'] == $sql2 && $sql['ant_partido'] >= $sql4) {//Esta afiliado al partido Y tiene X antiguedad
-                $ret = true;
-            } else {
-                $ret = false;
-            }
-            break;
-        default:
-            $ret = false;
-            break;
-    endswitch;
-    if ($tipo >= 100) {//Votaciones para cargos de un pais
+        if ($sql['id_partido'] == $sql2 && $sql['ant_partido'] >= $sql4) {//Esta afiliado al partido Y tiene X antiguedad
+            return true;
+        } else {
+            return false;
+        }
+    } elseif ($tipo >= 100) {//Votaciones para cargos de un pais
         $sql = sql("SELECT * FROM votaciones WHERE id_votacion = " . $id_votacion);
-        $rest = explode("!", $sql['param1']); //Sacamos las restricciones para postularse
+        $rest = explode("!", $sql['restricciones']); //Sacamos las restricciones para postularse
         foreach ($rest as $res) {
             $rest2[] = explode("+", $res); //Separamos cada una de ellas
         }
@@ -389,24 +383,24 @@ function puedo_postularme($id_usuario, $tipo, $id_votacion) {//Determina si pued
         foreach ($rest2 as $condicion) {//Comprobamos cada una de ellas
             switch ($condicion[0]):
                 case "C": //Ciudadania
-                    $cs = sql("SELECT id_nacionalidad FROM usuarios WHERE id_usuario = ".$_SESSION['id_usuario']);
+                    $cs = sql("SELECT id_nacionalidad FROM usuarios WHERE id_usuario = " . $id_usuario);
                     if ($cs != $condicion[1]) {
-                        $ret = false;
+                        return false;
                     }
                     break;
                 case "E": //Puntos de experiencia
-                    $exp = sql("SELECT exp FROM usuarios WHERE id_usuario = " . $_SESSION['id_usuario']);
+                    $exp = sql("SELECT exp FROM usuarios WHERE id_usuario = " . $id_usuario);
                     if ($exp < $condicion[1]) {
-                        $ret = false;
+                        return false;
                     }
                     break;
                 case "G": //Gold, siempre debe ser la ultima
                     if ($ret == true) {//S�lo se paga si el resto de condiciones ya se han cumplido
-                        $gold = sql("SELECT Gold FROM money WHERE id_usuario = " . $_SESSION['id_usuario']);
+                        $gold = sql("SELECT Gold FROM money WHERE id_usuario = " . $id_usuario);
                         if ($gold >= $condicion[1]) {//Si tiene gold suficiente
-                            sql("UPDATE money SET gold = gold - " . $condicion[1] . " WHERE id_usuario = " . $_SESSION['id_usuario']);
+                            sql("UPDATE money SET gold = gold - " . $condicion[1] . " WHERE id_usuario = " . $id_usuario);
                         } else {//Si no tiene dinero suficiente
-                            $ret = false;
+                            return false;
                         }
                     }
             endswitch;
@@ -784,17 +778,14 @@ function rango($puntos) {
         return $txt["rango_1"];
 }
 
-function item2img($item)
-{
+function item2img($item) {
     switch ($item) {
         case 1:
             return "<img src='/images/items/pan.png' />";
-        break;
+            break;
         case 2:
             return "<img src='/images/items/grano.png' />";
-        break;    
-
-
+            break;
     }
 }
 
