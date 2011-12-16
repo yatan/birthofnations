@@ -5,9 +5,6 @@
  * and open the template in the editor.
  */
 
-include_once($_SERVER['DOCUMENT_ROOT']."/include/funciones.php");
-echo"<html>";
-include($_SERVER['DOCUMENT_ROOT']."/index_head.php");
 ?>
 <script type="text/javascript" src="/js/countdown/jquery.countdown.js"></script>
 
@@ -18,13 +15,12 @@ display: none;
 </style>
 
 <script>
-	$(function() {
-            	var austDay = "<? 
-                $hora = sql("SELECT hora_final FROM viajes WHERE id_usuario='{$_SESSION['id_usuario']}'");
-                echo date("M j, Y H:i:s O", $hora); ?>";
-	
+	$(function() {	
 		$( "#dialog" ).dialog({draggable: false, resizable: false});
-                $('#contador').countdown({until: austDay, compact: true, 
+                $('#contador').countdown({until: <? 
+                $hora = sql("SELECT hora_final FROM viajes WHERE id_usuario='{$_SESSION['id_usuario']}'");
+                $hora2 = $hora - time();
+                echo "$hora2"; ?>, expiryUrl: "/", compact: true, 
     description: ''});
 	});
         
@@ -34,6 +30,3 @@ display: none;
     <p>Tiempo restante de viaje:</p>
     <div id="contador"></div>
 </div>
-
-</body>
-</html>
