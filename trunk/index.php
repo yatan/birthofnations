@@ -32,8 +32,8 @@ $objeto_usuario = new usuario($_SESSION['id_usuario']);
 if($objeto_usuario->id_region==null)
     header("Location: /login/primer_login.php"); //<-- Redireccion a la pagina del primer login
 
-if($objeto_usuario->estoy_viajando==true)
-    header("Location: /usuarios/viajando.php"); //<-- Redireccion a la pagina mientras se vuela (TEMPORAL)
+if($objeto_usuario->estoy_viajando==true && !isset($_GET['mod']))
+    header("Location: /es/viajando"); //<-- Redireccion a la pagina mientras se vuela (TEMPORAL)
 
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -115,6 +115,10 @@ include("index_head.php");
                             case "nacionalidad":
                                 include("usuarios/change_nacionalidad.php");
                                 break;
+                            case "viajando":
+                                include("usuarios/viajando.php");
+                                break;
+                            
                             default :
                                 die($_GET['mod']); //Default por si se pone algo incorrecto. Al futuro hay que cambiarlo
                             }
