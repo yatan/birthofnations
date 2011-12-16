@@ -1,6 +1,6 @@
 <?
 include_once($_SERVER['DOCUMENT_ROOT'] . "/include/funciones.php");
-include_once("objeto_usuario.php");
+
 ?>
 <script>
     $(function() {
@@ -33,7 +33,7 @@ else {
     if ($usuario->soy_yo($_SESSION['id_usuario']) == true) {
         echo "<li><a href='#economia'>Economia</a></li>";
         echo "<li><a href='#inventario'>Inventario</a></li>";
-       // echo "<li><a href='#viajar'>Viajar</a></li>";
+        echo "<li><a href='#viajar'>Viajar</a></li>";
        // echo "<li><a href='#periodico'>Periodico</a></li>";
     }
     ?>
@@ -65,9 +65,9 @@ else {
                 echo "<div id='inventario'>";
                 include("inventario.php");
                 echo "</div>";
-                /*echo "<div id='viajar'>";
+                echo "<div id='viajar'>";
                 include("viajar.php");
-                echo "</div>";*/
+                echo "</div>";
                 /*echo "<div id='periodico'>";
                 include("periodico/redactar.php");
                 echo "</div>";*/

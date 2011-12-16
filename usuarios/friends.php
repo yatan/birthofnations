@@ -6,7 +6,7 @@
  */
 
 include_once($_SERVER['DOCUMENT_ROOT']."/include/funciones.php");
-include_once("objeto_usuario.php");
+
 
 echo "<h2>Amigos</h2>";
 

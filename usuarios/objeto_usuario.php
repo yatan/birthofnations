@@ -127,7 +127,7 @@ class usuario
             return false;
         elseif($tiempo <= $time)    //Si ya ha pasado la hora, se pone a null el tiempo
         {
-            sql("UPDATE viajes SET hora_final='null' WHERE id_usuario='$this->id_usuario'");
+            sql("DELETE FROM viajes WHERE id_usuario='$this->id_usuario'");
             return false;
         }
         elseif($tiempo > $time)

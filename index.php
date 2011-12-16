@@ -25,7 +25,7 @@ else
 {
 
     
-include_once("usuarios/objeto_usuario.php");
+require("usuarios/objeto_usuario.php");
 $objeto_usuario = new usuario($_SESSION['id_usuario']);
 
 //Se mira si es el primer login, por lo que no tendra ninguna ciudad asignada
