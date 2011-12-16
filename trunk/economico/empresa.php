@@ -19,8 +19,8 @@ $donde_trabajo = sql("SELECT id_empresa FROM usuarios WHERE id_usuario='".$_SESS
 $ya_trabaje = sql("SELECT work FROM diario WHERE id_usuario = " . $_SESSION['id_usuario']);
 if($id_empresa==$donde_trabajo)
 {
-    if($ya_trabaje != 1){echo "<a id='trabajar' style='background-color:#1E679A ; border: 1px solid #1E679A;' href='#'>Trabajar</a>";}
-    echo "<a id='despedir' href='../../economico/despedir.php?id_worker=".$_SESSION['id_usuario']."'>Salir</a>";
+    if($ya_trabaje != 1){echo "<button id='trabajar' style='background-color:#1E679A ; border: 1px solid #1E679A;' href='#'>Trabajar</button><br>";}
+    echo "<a id='despedir' href='../../economico/despedir.php?id_worker=".$_SESSION['id_usuario']."'>Dejar Empresa</a>";
    ?>
     <style>
 
@@ -52,6 +52,10 @@ display: none;
 </div>
 
 <script>
+    $(document).ready(function() {
+        $("#trabajar").button();
+    });
+
     $('#trabajar').click(function() {
   	$.post("/economico/trabajar.php",
         function(data){
