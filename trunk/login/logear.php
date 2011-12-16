@@ -48,7 +48,7 @@ else
     if(sql("SELECT is_admin FROM usuarios WHERE id_usuario='$consulta'")==1)
         $_SESSION['is_admin'] = 1;
     
-    if(sql("SELECT id_pais FROM usuarios WHERE id_usuario='".$_SESSION['id_usuario']."'")!=null)
+    if(sql("SELECT id_region FROM usuarios WHERE id_usuario='".$_SESSION['id_usuario']."'")!=null)
         header("Location: /"); //<-- Redireccion a la pagina principal
     else
         header("Location: primer_login.php"); //<-- Cuando el usuario entra la 1º vez

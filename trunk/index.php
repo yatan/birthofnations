@@ -23,15 +23,24 @@ if(!isset($_SESSION['id_usuario']))
 }
 else
 {
-    if(sql("SELECT id_pais FROM usuarios WHERE id_usuario='".$_SESSION['id_usuario']."'")==null)
-        header("Location: /login/primer_login.php"); //<-- Redireccion a la pagina principal
-  ?>
+
+    
+include_once("usuarios/objeto_usuario.php");
+$objeto_usuario = new usuario($_SESSION['id_usuario']);
+
+//Se mira si es el primer login, por lo que no tendra ninguna ciudad asignada
+if($objeto_usuario->id_region==null)
+    header("Location: /login/primer_login.php"); //<-- Redireccion a la pagina del primer login
+
+if($objeto_usuario->estoy_viajando==true)
+    header("Location: /usuarios/viajando.php"); //<-- Redireccion a la pagina mientras se vuela (TEMPORAL)
+
+?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <?php 
 include("index_head.php"); 
-include_once("usuarios/objeto_usuario.php");
-$objeto_usuario = new usuario($_SESSION['id_usuario']);
+
 ?>
     
     <body> 
