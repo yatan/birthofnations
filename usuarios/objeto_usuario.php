@@ -14,6 +14,7 @@ class usuario
     public $id_pais;
     public $id_region;
     public $id_nacionalidad;
+    public $estoy_viajando;
     
     public $n_pais;
     public $n_region;
@@ -48,6 +49,12 @@ class usuario
         
         if($this->level != $this->check_lvl())
             $this->set_lvl();
+        
+        //Se mira si esta viajando
+        if($this->check_travel() == true)
+            $this->estoy_viajando = true;
+        else
+            $this->estoy_viajando = false;
         
     }
     
@@ -107,6 +114,24 @@ class usuario
         $this->level = $nuevo_lvl;
         
         //Aqui se envia un mensaje o alerta del nuevo lvl
+        
+    }
+    
+    //Funcion para comprobar si esta viajando, si el viaje ha terminado se pone a null el temporizador
+    function check_travel()
+    {
+        $time = time();
+        $tiempo = sql("SELECT hora_final FROM viajes WHERE id_usuario='$this->id_usuario'");
+        
+        if($tiempo == NULL)
+            return false;
+        elseif($tiempo <= $time)    //Si ya ha pasado la hora, se pone a null el tiempo
+        {
+            sql("UPDATE viajes SET hora_final='null' WHERE id_usuario='$this->id_usuario'");
+            return false;
+        }
+        elseif($tiempo > $time)
+            return true;
         
     }
     
