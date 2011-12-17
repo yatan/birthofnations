@@ -25,28 +25,28 @@ elseif($entrenado==0)
             echo "<li><a href='/".$_GET['lang']."/empresa/".$id_empresa."'>Trabajar $trabajado</a></li>";
         ?>
         <li><a href="<? echo "/".$_GET['lang']."/empresas"; ?>"><? echo $txt['mis_empresas']; ?></a></li>
-        <li><a href="<? echo "/".$_GET['lang']."/perfil/".$_SESSION['id_usuario']; ?>"><? echo $txt['perfil']; ?></a></li>
+        <!--<li><a href="<? echo "/".$_GET['lang']."/perfil/".$_SESSION['id_usuario']; ?>"><? echo $txt['perfil']; ?></a></li>-->
     </ul>
         </li>
         
         <li><a href="#"><? echo $txt['militar']; ?></a>
         <ul>
             <li><a href="<? echo "/".$_GET['lang']."/entrenar"; ?>"><? echo $txt['entrenamiento']." ".$entrenado; ?></a></li>
-            <li><a href="#"><? echo $txt['guerras']; ?></a></li>
+            <!--<li><a href="#"><? echo $txt['guerras']; ?></a></li>-->
         </ul>
         </li>
         <li><a href="#"><? echo $txt['mercados']; ?></a>
         <ul>
             <li><a href="<? echo "/".$_GET['lang']."/mercado"; ?>"><? echo $txt['mercado_productos']; ?></a></li>
             <li><a href="<? echo "/".$_GET['lang']."/mercado_laboral"; ?>"><? echo $txt['mercado_laboral']; ?></a></li>
-            <li><a href="#"><? echo $txt['mercado_empresas']; ?></a></li>
+            <!--<li><a href="#"><? echo $txt['mercado_empresas']; ?></a></li>-->
         </ul>   
         </li>     
         <li><a href="#"><? echo $txt['pais']; ?></a>
         <ul>
             <li><a href="<? echo "/".$_GET['lang']."/pais/".$objeto_usuario->id_pais; ?>"><? echo $txt['mi_pais']; ?></a></li>
             <li><a href="<? echo "/".$_GET['lang']."/partidos/".$objeto_usuario->id_pais; ?>"><? echo $txt['partidos_politicos']; ?></a></li>
-            <li><a href="#"><? echo $txt['ranking']; ?></a></li>
+            <!--<li><a href="#"><? echo $txt['ranking']; ?></a></li>-->
         </ul>   
         </li>        
         <li><a href="#"><? echo $txt['soporte']; ?></a>

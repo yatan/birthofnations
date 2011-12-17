@@ -25,6 +25,7 @@
                                </tr>
                             </table>
                         </form>
+                        <a href="/login/recuperar.php">Recuperar password</a>
                     </div><!--login-->
                     <?php include("pie.php");?>
                 </div><!-- contenido -->
