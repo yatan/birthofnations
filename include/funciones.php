@@ -785,7 +785,14 @@ function item2img($item) {
             break;
         case 2:
             return "<img src='/images/items/grano.png' />";
-            break;
+        break;    
+        case 3:
+            return "<img src='/images/items/oil.png' />";
+        break;
+        case 4:
+            return "<img src='/images/items/transporte.png' />";
+        break;    
+
     }
 }
 
