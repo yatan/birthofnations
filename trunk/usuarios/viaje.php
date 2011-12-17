@@ -2,6 +2,7 @@
 
 include_once($_SERVER['DOCUMENT_ROOT'] . "/politico/objeto_region.php");
 include_once($_SERVER['DOCUMENT_ROOT'] . "/include/funciones.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/include/config_variables.php");
 
 //Esta es la variable que llega como destino:
 
@@ -29,7 +30,7 @@ $distancia = (int)$ruta[$destino]['distance'];
 
 $tickets = sql("SELECT transporte FROM inventario WHERE id_usuario = " . $_SESSION['id_usuario']); //Comentario temporal
 
-if($tickets >= $distancia && $origen['salud'] > 0 ){//Si puede viajar
+if($tickets >= $distancia && $origen['salud'] >= $min_travel_health ){//Si puede viajar
     //Quitar items y mierdas y actualizar el pais
     sql("UPDATE usuarios SET salud = salud - 1, id_region = ". $destino . " WHERE id_usuario = " . $_SESSION['id_usuario']);
     sql("UPDATE inventario SET transporte = transporte - " . $distancia . " WHERE id_usuario = " . $_SESSION['id_usuario']);
@@ -37,8 +38,7 @@ if($tickets >= $distancia && $origen['salud'] > 0 ){//Si puede viajar
     sql("INSERT INTO viajes(id_usuario, hora_final) VALUES('" . $_SESSION['id_usuario'] . "','$tiempo')");
     echo"Empieza el viaje, durara $distancia minutos";
 }else{//Si no tiene objetos
-    echo "No cumples los requisitos necesarios para viajar, revisa tu existencia, mortal.";
-    
+    echo $txt['cant_travel'];
 }
 
 ?>

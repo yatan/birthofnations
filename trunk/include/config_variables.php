@@ -8,7 +8,11 @@
 //Modulo general
 
 $friendship_expire = 86400; //Tiempo que debe transcurrir paara que puedas reenviar una peticion de amistad
+$min_travel_health = 10;
+
 //Modulo economico
+
+$min_work_health = 10;
 
 $precio_empresa[10] = 10;//Entre [] el tipo
 $precio_empresa[1] = 10;
@@ -51,4 +55,7 @@ function law_params($ley){
     return $data;
 }
 
+//Modulo militar
+
+$min_train_health = 10;
 ?>
