@@ -3,6 +3,9 @@
 include_once($_SERVER['DOCUMENT_ROOT'] . "/include/funciones.php");
 include_once($_SERVER['DOCUMENT_ROOT'] . "/include/config_variables.php");
 include_once($_SERVER['DOCUMENT_ROOT'] . "/economico/moneda_local.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/usuarios/objeto_usuario.php");
+
+$objeto_usuario = new usuario($_SESSION['id_usuario']);
 
 $datos = sql("SELECT id_empresa, salario, moneda FROM usuarios WHERE id_usuario = " . $_SESSION['id_usuario']); //Sacar donde trabaja y su salario
 
@@ -18,6 +21,12 @@ $duenyo = sql("SELECT id_propietario FROM empresas WHERE id_empresa = {$datos['i
 $list_items = list_items();
 
 $producido = formula_produccion($_SESSION['id_usuario']); // Numero de items que va a producir
+
+//Condiciones que ha de cumplir el trabajador
+
+if($objeto_usuario->salud < $min_work_health ){
+    die($txt['cant_work']);
+}
 
 if ($empresa[$moneda_local[$datos['moneda']]] > $datos['salario']) { //Si hay sueldo suficiente
     if ($diario == 0) { //Si aun no ha trabajado

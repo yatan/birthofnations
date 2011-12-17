@@ -63,7 +63,9 @@ $txt = array (
     'item10' => "Cuchillo",
     
     //Usuarios
-    
+    'cant_travel' => 'No cumples los requisitos necesarios para viajar, revisa tu existencia, mortal.',
+    'cant_work' => 'Necesitas 10 puntos de salud para trabajar.',
+    'no_train_health' => 'Necesitas 10 puntos de salud para entrenar.',
     'no_mensajes' => 'No tienes mensajes',
     'no_friends' => "Sin amigos",
     'no_cantidad' =>"Por favor introduce cantidad correcta",
@@ -96,7 +98,7 @@ $txt = array (
     'trabajar' => "Trabajar",
     'mis_empresas' => "Mis Empresas",
     'perfil' => "Mi Perfil",
-    'entrenamiento' => "Entrenamiento",
+    'entrenamiento'=> "Entrenamiento",
     'guerras' => "Guerras",
     'mercado_productos' => "Mercado de productos",
     'mercado_laboral' => "Mercado laboral",
