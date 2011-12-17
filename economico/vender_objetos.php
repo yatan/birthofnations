@@ -20,8 +20,8 @@ if (isset($_POST['cantidad']) && $_POST['cantidad'] != "" && is_numeric($_POST['
     
     $inventario = sql("SELECT * FROM inventario_empresas WHERE id_empresa = " . $_POST['id_empresa']);
     
-    if ($inventario[$nameitemavender] >= $_POST['cantidad']){
-    // Si tiene mas objetos de los que quiere vender
+    if ($inventario[$nameitemavender] >= $_POST['cantidad'] && $_POST['precio'] >= 0){
+    // Si tiene mas objetos de los que quiere vender Y el precio es mayor
     
     sql("INSERT INTO mercado_objetos(id_pais, id_empresa, id_item, precio, cantidad) VALUES ('". $empresa['pais'] ."','". $_POST['id_empresa'] ."','". $empresa['tipo'] ."','". $_POST['precio'] ."','". $_POST['cantidad'] ."') ");
 
@@ -33,6 +33,6 @@ if (isset($_POST['cantidad']) && $_POST['cantidad'] != "" && is_numeric($_POST['
     }
 } else {
     
-    die("Faltan datos");
+    die("Algo falla");
 }
 ?>
