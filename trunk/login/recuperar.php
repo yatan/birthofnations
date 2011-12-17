@@ -10,7 +10,7 @@ include($_SERVER['DOCUMENT_ROOT']."/index_head.php");
 ?>
 
 <style>
-    #central{
+    .central{
     position:absolute;
     top:50%;
     left: 50%;
@@ -25,21 +25,28 @@ include($_SERVER['DOCUMENT_ROOT']."/index_head.php");
 
 </style>
 
-<div id="central">
+<div id="central" class="central">
     <h1>Reset de password</h1>
     <form id="datos">
         E-mail:<input type="email" name="mail"/><br>
         <input id="reset" type="button" value="Resetear password"/>
     </form>
 </div>
+<div id="central2" class="central" style="display: none;">
+    <img src='/images/loading.gif'/>
+</div>
 
 <script>
     $('#reset').click(function() {
+        $("#central").hide();
+        $("#central2").show();
   	$.post("enviar_mail_reset.php", $("#datos").serialize(),
         function(data){
-                        alert(data);
-                        window.location.reload();
+                        $("#central").html(data);
+                        $("#central2").hide();
+                        $("#central").show();
                       } );
+                      
    
     });
 </script>
