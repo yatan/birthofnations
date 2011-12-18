@@ -2,7 +2,7 @@
 
 include_once($_SERVER['DOCUMENT_ROOT']."/include/funciones.php");
 
-$pais_actual = sql("SELECT id_pais FROM usuarios WHERE id_usuario='".$_SESSION['id_usuario']."'");
+$pais_actual = sql("SELECT id_region FROM usuarios WHERE id_usuario='".$_SESSION['id_usuario']."'");
 if($pais_actual != null)
     header("Location: ../");
 
