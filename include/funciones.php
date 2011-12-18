@@ -801,7 +801,7 @@ function reset_mail($mail) {
     $pin = sql("SELECT pin FROM settings");
     $token = md5($mail)+$pin;
     $link = "http://birthofnations.com/usuarios/recuperar.php?token=".$token;
-    mail($mail,"Recuperacion password cuenta Birth of Nations","<p>El siguiente link es para resetear: $link </p>");
+    mail($mail,"Recuperacion password cuenta Birth of Nations","El siguiente link es para resetear: $link ");
 }
 
 ?>

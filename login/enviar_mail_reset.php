@@ -17,6 +17,7 @@ else
 {
     $correo = $_POST['mail'];
     reset_mail($correo);
+    echo $correo_ok;
     
 }
     
