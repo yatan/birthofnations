@@ -86,6 +86,7 @@ $txt = array (
     'mantenimiento_4' => "Acceder al foro",
 
     //Politico
+    'already_voted' => 'Ya has votado',
     'no_regions' => "Este pais no posee ninguna region actualmente",
     
     //Menu
