@@ -56,8 +56,7 @@ foreach($cargos as $cargo){
     $time = time();
     $sql = sql("SELECT id_votacion FROM votaciones WHERE tipo_votacion = ".$cargo['id_cargo']." AND is_cargo = 1 AND fin > " . $time . " AND solved = 0");
     echo $cargo['nombre'] . '  <a href="/politico/lista_candidatos.php?id=' . $sql . '">Votar</a>';
-} elseif (($dia_actual % $data2[1] == $data2[0] - 1 || $dia_actual % $data2[1] == $data2[0] - 2)) {
-    //2 dias anteriores a las elecciones
+} else{//Si no es el dia de la votacion es hora de postularse
     // Fecha + Postulacion
     echo "Proximas elecciones el dia: " . next_elecciones($dia_actual, $data2[0], $data2[1]);
     $time = time();
@@ -69,9 +68,6 @@ foreach($cargos as $cargo){
     } else {//Si ya esta postulado
         echo "[<a href='/politico/despostular.php?v=" . $vot . "'>Despostulate</a>]";
     }
-} else {
-    //Calculamos la siguiente fecha
-    echo "Proximas elecciones el dia: " . next_elecciones($dia_actual, $data2[0], $data2[1]);
 }
     }
 }
