@@ -1,5 +1,5 @@
 <?
-
+$time_start = microtime(true);
 //Archivo de reset diario
 
 include_once("/home/birthofn/public_html/include/config.php");
@@ -239,6 +239,10 @@ foreach($sql as $votacion){
 
 }
 
-echo "Cron realizado correctamente";
+
+$time_end = microtime(true);
+$time = $time_end - $time_start;
+
+echo "Cron realizado correctamente en $time segundos\n";
 ?>
 
