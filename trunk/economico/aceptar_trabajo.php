@@ -9,7 +9,7 @@ if (isset($_GET['oferta']) && $_GET['oferta'] != "" && strlen($_GET['oferta'])>0
     
     if ($res['id_empresa'] != 0){//Miramos que no este en ninguna empresa
         
-        die("Necesitas salir de tu trabajo");
+        die(getString("company__error_left_work"));
     }
     
     $res = sql("SELECT * FROM mercado_trabajo WHERE id_oferta = " . $_GET['oferta']);
@@ -27,6 +27,6 @@ if (isset($_GET['oferta']) && $_GET['oferta'] != "" && strlen($_GET['oferta'])>0
     echo "Has entrado correctamente en la empresa";
 } else {
     
-    die("Algo falla");
+    die(getString("company_ups_something_is_wrong"));
 }
 ?>
