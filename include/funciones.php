@@ -141,7 +141,7 @@ function sql2($sql) {
     return $table;
 }
 
-select_lang();
+
 
 function enviar_mail($destino, $nick) {
 
@@ -258,14 +258,44 @@ function checkban($id) {
     }
 }
 
+function check_lang($lengua){    
+    $lengua_defecto=$lenguaje_principal;   
+    $fichero = "./i18n/".$lengua.".php";
+
+    if(! file_exists($fichero)){
+        $lengua = $lengua_defecto;
+        
+    }   
+    
+    $_SESSION['i18n'] = $lengua;
+    $_SESSION['i18n_default'] = $lengua_defecto;
+   
+    
+}
+
+function getString($text){
+    if(!isset($i18n_array)){
+        include './i18n/'.$_SESSION['i18n_default'].".php";   
+        include'./i18n/'.$_SESSION['i18n'].".php";     
+    }
+
+    return $i18n_array[$text];
+    
+}
+
 function select_lang() {
-    global $mail_activation;
+    /*global $mail_activation;
     global $signup_form;
     global $login_form;
-    global $txt;
+    global $txt;*/
     //Cualquier metodo que vaya aqui para elegir el idioma Y cargar el archivo. De momento solo hay español
-
-    include_once($_SERVER['DOCUMENT_ROOT'] . "/i18n/es_ES.php");
+    
+    check_lang($_GET['lang']);  
+    
+    
+    
+    
+    //include_once($_SERVER['DOCUMENT_ROOT'] . "/i18n/es_ES.php");
 }
 
 function id2nick($id) {
