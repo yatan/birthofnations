@@ -4,7 +4,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/economico/moneda_local.php");
 
 
 if (!isset($_GET['id_empresa']))
-    die("Error: id no valido"); //Sustituir por error 404
+    die(getString ("company_error_not_valid")); //Sustituir por error 404
 
 
 $id_empresa = $_GET['id_empresa'];
@@ -13,7 +13,7 @@ $id_empresa = $_GET['id_empresa'];
 //El objeto empresa ya esta declarado ya que este script se llama con include
 $empresa = new empresa($id_empresa);
 
-echo "<br>Empresa: " . $empresa->nombre_empresa . " (" . $empresa->get_tipo() . ")";
+echo "<br>".getString ("company").": ".$empresa->nombre_empresa . " (" . $empresa->get_tipo() . ")";
 
 echo <<<EOT
 <form id="cambiar_nombre_empresa" action="/economico/cambiar_nombre_empresa.php"  method="POST">
@@ -24,7 +24,7 @@ echo <<<EOT
 EOT;
 echo "<table border='1' style='width=100%;'>";
 echo "<td style='width: 300px' valign='top' align='center'>";
-echo "Inventario de la empresa: <br>";
+echo getString("company_inventory")."<br>";
 
 $sql = sql("SELECT * FROM inventario_empresas WHERE id_empresa = " . $empresa->id_empresa);
 unset($sql['id_empresa']);
@@ -56,7 +56,7 @@ display: none;
 	});
 </script>
 
-<div id="dialog" title="Usar item">
+<div id="dialog" title="<?  getString("use_item")?>">
 
 </div>
 
@@ -111,7 +111,7 @@ EOT;
 <?
 //Mostrar que estamos vendiendo actualmente
 
-echo "<h3>Ventas</h3>";
+echo "<h3>".  getString("sales")."</h3>";
 $ventas = sql2("SELECT id_pais, cantidad, precio, id_oferta FROM mercado_objetos WHERE id_empresa='" . $id_empresa . "'");
 
 echo "<table align='center' border='0'><tr align='center'><td>Pais</td><td>Cantidad</td><td>Precio</td><td>Cancelar</td></tr>";
@@ -140,14 +140,14 @@ foreach ($work as $worker) {
             <label for="salario"><input tabindex="1" type="text" size="5" align="right" value="' . $worker['salario'] . '" name="salario"></label>
             <label for="worker"><input tabindex="1" type="hidden" name="worker" value="' . $worker['id_usuario'] . '"></label>
             
-            <input type="submit" value="Cambia salario">
+            <input type="submit" value="'.getString('button_change_salary').'">
         </form>
 </td>        
 </tr>';
 }
 echo "</table>";
 
-echo "<h2>" . $txt['Poner_ofertas_trabajo'] . "</h2>";
+echo "<h2>" . getString('Poner_ofertas_trabajo') . "</h2>";
 ?>
 <div id="ofertas_trabajo">
     <form action="/economico/poner_oferta.php"  method="POST">
@@ -233,11 +233,11 @@ foreach ($moneda_local as $id => $nombre) {
 ?>
 </table>
 
-<h3>Dineros</h3>
+<h3><?echo getString("company_money");?></h3>
 <form id="dineros" method="POST" action="<? echo $_SERVER['REQUEST_URI']; ?>">
-    <label for="cantidad">Cantidad:</label>
+    <label for="cantidad"><?echo getString("cantidad");?></label>
     <input type="text" name="cantidad" id="cantidad" maxlength="6" width="50%"/><br>
-    <label for="moneda">Moneda:</label>
+    <label for="moneda"><?echo getString("coin");?></label>
     <select id="moneda" name="moneda">
 <?
 $sql = mysql_query("SELECT * FROM money");
@@ -248,8 +248,8 @@ for ($n = 1; $n < mysql_num_fields($sql); $n++) {
 }
 ?>
     </select></br>
-    <input type="submit" name="metodo" id="retirar" value="Retirar"/>
-    <input type="submit" name="metodo" id="ingresar" value="Ingresar"/>
+    <input type="submit" name="metodo" id="retirar" value="<?echo getString("retirar");?>"/>
+    <input type="submit" name="metodo" id="ingresar" value="<?echo getString("ingresar");?>"/>
 </form>
 <!--
 <script>
@@ -298,18 +298,18 @@ if (isset($_POST['metodo'])) {
                 echo "<script type='text/javascript'>setTimeout('window.location=\"" . $_SERVER['REQUEST_URI'] . "\"',1000);</script>";
             }
             else
-                echo "<p style='color:red;'>" . $txt['me_falta_dinero'] . "</p>";
+                echo "<p style='color:red;'>" . $getString('me_falta_dinero') . "</p>";
         }
     }
 }
 ?>
 
 
-<button id="vender_empresa">Vender empresa</button>
+<button id="vender_empresa"><?echo getString("vender_empresa");?></button>
 
 <div id="vender_empresa2" style="display: none">
     <form action="vender_empresa.php" method="POST">
-        Precio:<input type="text" name="precio" value="<? echo $empresa->precio_empresa; ?>" style="text-align:right;"/>
+        <?  getString("precio_empresa")?>:<input type="text" name="precio" value="<? echo $empresa->precio_empresa; ?>" style="text-align:right;"/>
         <input type="submit" value="Vender"/>
     </form>            
 </div>
