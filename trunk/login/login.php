@@ -8,7 +8,7 @@
                 <div id="contenido">
                     <?php include("cabecera.php");?><br/>
                     <div id="texto" style="color:black; font-size: large;">
-                        Birth of Nations es un juego online libre de estrategia política, económica y social. El desarrollo del juego se realiza de forma comunitaria, y sus propios jugadores deciden cual es el rumbo que toma el proyecto.
+                       <?echo getString("login_texto");?>
                     </div>
                     <div id="login">
                         <form action="/login/logear.php" method="POST">
@@ -25,7 +25,7 @@
                                </tr>
                             </table>
                         </form>
-                        <a href="/login/recuperar.php">Recuperar password</a>
+                        <a href="/login/recuperar.php"><?echo getString("login_recovery");?></a>
                     </div><!--login-->
                     <?php include("pie.php");?>
                 </div><!-- contenido -->
