@@ -43,7 +43,7 @@ Sustituir el array de abajo cuando haya mas de 1 item usable
 $items_usables = array("0" => array('nombre'=>'pan'));
 
 
-echo "<table><tr><td>Cantidad</td><td>Objeto</td><td>Usar</td></tr>";
+echo "<table><tr><td>Objeto</td><td>Cantidad</td><td>Usar</td></tr>";
 unset($inventario['id_usuario']);
 
 foreach($inventario as $item => $cantidad){
@@ -61,13 +61,10 @@ foreach($inventario as $item => $cantidad){
     }
     
     if($usable==true)
-    echo <<<EOT
-    <tr><td> $cantidad </td><td> $item </td><td> [<a href="/usuarios/usar_item.php?id=$id ">Usar</a>] </td></tr>
-EOT;
+        echo "<tr><td>" . item2img($id) . "</td><td> $cantidad  </td><td> [<a href='/usuarios/usar_item.php?id=$id '>Usar</a>] </td></tr>";
     else
-            echo <<<EOT
-    <tr><td> $cantidad </td><td> $item </td><td>  </td></tr>
-EOT;
+        echo "<tr><td>" . item2img($id) . "</td><td> $cantidad  </td><td>  </td></tr>";
+
     
 }
 
