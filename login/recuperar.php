@@ -1,9 +1,5 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 include_once($_SERVER['DOCUMENT_ROOT']."/include/funciones.php");
 include($_SERVER['DOCUMENT_ROOT']."/index_head.php");
 
@@ -26,10 +22,10 @@ include($_SERVER['DOCUMENT_ROOT']."/index_head.php");
 </style>
 
 <div id="central" class="central">
-    <h1>Reset de password</h1>
+    <h1><?  echo getString("login_recovery_title");?></h1>
     <form id="datos">
-        E-mail:<input type="email" name="mail"/><br>
-        <input id="reset" type="button" value="Resetear password"/>
+        <?  echo getString("login_recovery_email");?><input type="email" name="mail"/><br>
+        <input id="reset" type="button" value="<?  echo getString("login_reset_password");?>"/>
     </form>
 </div>
 <div id="central2" class="central" style="display: none;">
