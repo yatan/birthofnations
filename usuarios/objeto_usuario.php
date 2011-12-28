@@ -19,6 +19,7 @@ class usuario
     public $n_pais;
     public $n_region;
     public $n_nacionalidad;
+
     
     function usuario($id){
         $usuario = sql("SELECT * FROM usuarios WHERE id_usuario='$id'");
@@ -135,6 +136,8 @@ class usuario
         
     }
     
+    
+
 }
 
 ?>
