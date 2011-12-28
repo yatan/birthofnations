@@ -25,7 +25,6 @@ $ruta = $region_origen->distance_to($destino);
 // [1][0] - [1][1] es la ruta
 $distancia = (int)$ruta[$destino]['distance'];
 
-
 //Ahora comprobamos que tiene suficientes objetos necesarios para viajar, cuales sean, pa probar sugus
 
 $tickets = sql("SELECT transporte FROM inventario WHERE id_usuario = " . $_SESSION['id_usuario']); //Comentario temporal
