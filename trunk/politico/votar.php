@@ -4,7 +4,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/include/funciones.php");
 
 if (isset($_GET['idv']) && strlen($_GET['idv']) > 0 && $_GET['idv'] != "" && isset($_GET['vot']) && strlen($_GET['vot']) > 0 && $_GET['vot'] != "") {
 
-    //Re-revisar condiciones y que votamos por un candidato
+    //Re-revisar condiciones (por si las moscas) y que votamos por un candidato
     //Que no haya votado ya
     $sql = sql("SELECT * FROM log_votos WHERE id_usuario = " . $_SESSION['id_usuario'] . " AND id_votacion = " . $_GET['idv']);
     

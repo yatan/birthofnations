@@ -27,10 +27,14 @@ $rest = explode('.', $data[1]);
 switch ($rest[0]):
     case 'A':
         $time = time();
-        $time2 = $time + 1;
+        $time2 = $time + 86400;
         sql("INSERT INTO votaciones(tipo_votacion, id_pais, comienzo, fin, restricciones, param1, solved) 
         VALUES('" . $data[0] . "','" . $_POST['id_pais'] . "','" . $time . "','" . $time2 . "','" . $data[1] . "','" . $p . "','1')");
         $sql = sql("SELECT id_votacion FROM votaciones WHERE comienzo = " . $time . " AND fin = " . $time2 . " AND param1 = '" . $p . "'");
+        sql("INSERT INTO candidatos_elecciones(id_votacion, id_candidato, tipo_elecciones, votos, solved) 
+            VALUES ('".$sql."','-1','".$data[0]."','1','1')");//"Candidato si con 1 voto"
+        sql("INSERT INTO candidatos_elecciones(id_votacion, id_candidato, tipo_elecciones, votos, solved) 
+            VALUES ('".$sql."','-2','".$data[0]."','0','1')");//"Candidato no con 0 votos"
         apply_law($sql);
         break;
     case 'V': //Votaciones chachis
