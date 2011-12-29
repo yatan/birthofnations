@@ -39,7 +39,7 @@ foreach ($cargos as $cargo) {//Para cada cargo
 
 echo "</table>";
 
-echo "<h3>Postulaciones públicas</h3>";
+echo "<h3>Postulaciones pï¿½blicas</h3>";
 
 foreach($cargos as $cargo){
     
@@ -77,7 +77,7 @@ echo "<h3>Dineros</h3>";
 echo "<table><tr><th>Moneda</th><th>Cantidad</th></tr>";
 $gold = sql("SELECT Gold FROM money_pais WHERE idcountry ='" . $id_pais . "'");
 
-echo "<tr><td>" . $txt['Gold'] . "</td><td>" . $gold . "</td></tr>";
+echo "<tr><td>" . getString('Gold') . "</td><td>" . $gold . "</td></tr>";
 $sql = sql("SELECT * FROM money_pais WHERE idcountry = " . $id_pais);
 
 unset($sql['idcountry'], $sql['Gold']);
@@ -97,7 +97,7 @@ echo "<h3>Regiones</h3>";
 $regiones = $pais->list_regions();
 
 if ($regiones == false) {
-    echo $txt['no_regions'];
+    echo getString('no_regions');
 } else {
 
     echo "<table><tr><th>Nombre</th></tr>";
