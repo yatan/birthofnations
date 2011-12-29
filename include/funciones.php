@@ -2,6 +2,7 @@
 
 session_start();
 include_once("config.php");
+include("config_variables.php");
 select_lang();
 /*
 
@@ -259,13 +260,15 @@ function checkban($id) {
 }
 
 function check_lang($lengua){    
-    $lengua_defecto=$lenguaje_principal;   
+    $lengua_defecto="es";  
     $fichero = "./i18n/".$lengua.".php";
 
     if(! file_exists($fichero)){
         $lengua = $lengua_defecto;
         
     }   
+    
+   
     
     $_SESSION['i18n'] = $lengua;
     $_SESSION['i18n_default'] = $lengua_defecto;
