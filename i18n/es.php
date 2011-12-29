@@ -137,6 +137,8 @@ $i18n_array['hierro'] = "Hierro";
 //Leyes
 
 $i18n_array['law_100'] = 'Cambiar nombre al pais';
+$i18n_array['1prop_100'] = 'Llamar';
+$i18n_array['2prop_100'] = 'al pais';
 $i18n_array['law_101'] = 'A�adir cargo';
 $i18n_array['law_102'] = 'Eliminar cargo';
 $i18n_array['law_103'] = 'Dar cargo';
