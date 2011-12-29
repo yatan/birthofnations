@@ -15,10 +15,10 @@ display: none;
 	});
 </script>
 
-<div id="dialog" title="<? echo $txt['mantenimiento_1']; ?>">
-	<center><p><? echo $txt['mantenimiento_2']; ?></p>
-        <p><? echo $txt['mantenimiento_3']; ?></p>
-        <p><a href="/forum/"><? echo $txt['mantenimiento_4']; ?></a></p>
+<div id="dialog" title="<? echo getString('mantenimiento_1'); ?>">
+	<center><p><? echo getString('mantenimiento_2'); ?></p>
+        <p><? echo getString('mantenimiento_3'); ?></p>
+        <p><a href="/forum/"><? echo getString('mantenimiento_4'); ?></a></p>
 </div>
 
 <?
