@@ -118,6 +118,9 @@ include("index_head.php");
                             case "viajando":
                                 include("usuarios/viajando.php");
                                 break;
+                            case "laws":
+                                include("politico/last_laws.php");
+                                break;
                             
                             default :
                                 die($_GET['mod']); //Default por si se pone algo incorrecto. Al futuro hay que cambiarlo

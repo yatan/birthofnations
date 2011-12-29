@@ -3,11 +3,9 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/include/funciones.php");
 include_once($_SERVER['DOCUMENT_ROOT'] . "/include/config_variables.php");
 include_once($_SERVER['DOCUMENT_ROOT'] . "/politico/objeto_pais.php");
 
-//Temporal hasta que se ponga en el hta
-$_GET['id_pais'] = 2;
-
-if (!isset($_GET['id_pais']))
-    die("Error: id no valido"); //Substituir por error 404
+if (!isset($_GET['id_pais'])) {
+    $_GET['id_pais'] = $objeto_usuario->id_nacionalidad;
+}
 
 $id_pais = $_GET['id_pais'];
 
@@ -27,48 +25,52 @@ if (!isset($_POST['f'])) {
 
 //Ya tenemos la lista de cargos de una persona, ahora sacamos la lista de leyes.
 
-    foreach ($position as $pos) {
+    if (!isset($position)) {//Si no tiene cargos
+        //Nada xD
+    } else {//EL resto
+        foreach ($position as $pos) {
 
-        $leyes[] = list_laws_raw($pos);
-    }
+            $leyes[] = list_laws_raw($pos);
+        }
 //Filtramos
 //Bajamos un nivel el array
 
-    foreach ($leyes as $ley) {
+        foreach ($leyes as $ley) {
 
-        foreach ($ley as $data) {
-            $leyes2[] = $data;
-        }
-    }
-
-    $leyes = array_unique($leyes2); //Quitamos duplicados y ordenamos alfabeticamente
-    asort($leyes);
-
-    $leyes2 = "";
-//Explotamos
-    foreach ($leyes as $ley) {
-        $leyes2[] = explode('-', $ley);
-    }
-    ?>
-    <form id="ley" method ="POST" action="./launch_law.php">
-        <select name='f'>
-            <?
-            foreach ($leyes2 as $ley) {
-
-                echo "<option value='" . $ley[0] . "-" . $ley[1] . "'>" . $txt['law_' . $ley[0]] . " (" . $ley[1] . ")</option>";
+            foreach ($ley as $data) {
+                $leyes2[] = $data;
             }
-            ?>
-        </select>
-        <input type="submit" id="enviar" value="Enviar"></input>
-    </form>
+        }
 
-    <?
+        $leyes = array_unique($leyes2); //Quitamos duplicados y ordenamos alfabeticamente
+        asort($leyes);
+
+        $leyes2 = "";
+//Explotamos
+        foreach ($leyes as $ley) {
+            $leyes2[] = explode('-', $ley);
+        }
+        ?>
+        <form id="ley" method ="POST" action="">
+            <select name='f'>
+                <?
+                foreach ($leyes2 as $ley) {
+
+                    echo "<option value='" . $ley[0] . "-" . $ley[1] . "'>" . getString('law_' . $ley[0]) . " (" . $ley[1] . ")</option>";
+                }
+                ?>
+            </select>
+            <input type="submit" id="enviar" value="Enviar"></input>
+        </form>
+
+        <?
+    }
 }
 
 if (isset($_POST['f'])) {
     $ley = explode('-', $_POST['f']);
     ?>
-    <form id="ley" action="../politico/launcher.php" method ="POST">
+    <form id="ley" action="../politico/launcher.php?lang=es" method ="POST">
         <?
         echo "<input type='hidden' name='data' value='" . $ley[0] . "-" . $ley[1] . "'>";
         echo "<input type='hidden' name='country' value='" . $_GET['id_pais'] . "'>";

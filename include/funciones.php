@@ -756,50 +756,50 @@ function apply_law($vot) {
 
     switch ($votacion['tipo_votacion']):
         case 100: //Cambio de nombre del pais        
-            sql("UPDATE country SET name = '" . $p[1] . "' WHERE idcountry = " . $p[0]);
+            sql("UPDATE country SET name = '" . $p[0] . "' WHERE idcountry = " . $votacion['id_pais']);
             break;
         case 101://A�adir cargo
             //Lista de cargos
-            $sql = sql2("SELECT id_cargo FROM country_leaders WHERE id_cargo >= " . $p[0] * 100 . " AND id_cargo <= " . ($p[0] * 100 + 99));
+            $sql = sql2("SELECT id_cargo FROM country_leaders WHERE id_cargo >= " . $votacion['id_pais'] * 100 . " AND id_cargo <= " . ($votacion['id_pais'] * 100 + 99));
             //Reordenamos bajando un nivel
             foreach ($sql as $cargo) {
                 $ids[] = $cargo[0];
             }
             //Buscamos el menor no ocupado
-            for ($c = $p[0] * 100; $c < $p[0] * 100 + 100; $c++) {
+            for ($c = $votacion['id_pais'] * 100; $c < $votacion['id_pais'] * 100 + 100; $c++) {
 
                 if (!in_array($c, $ids)) {
                     break;
                 }
             }
 
-            if ($c == $p[0] * 100 + 100) {
+            if ($c == $votacion['id_pais'] * 100 + 100) {
                 echo "No puedes poner mas cargos, borra otro antes";
             } else {
-                sql("INSERT INTO country_leaders (id_cargo, nombre) VALUES ('$c','$p[1]')");
+                sql("INSERT INTO country_leaders (id_cargo, nombre) VALUES ('$c','$p[0]')");
             }
             break;
         case 102://Quitar cargo
-            if ($p[1] >= $p[0] * 100 && $p[1] < $p[0] * 100 + 100) {
-                sql("DELETE FROM country_leaders WHERE id_cargo = " . $p[1]);
+            if ($p[0] >= $votacion['id_pais'] * 100 && $p[0] < $votacion['id_pais'] * 100 + 100) {
+                sql("DELETE FROM country_leaders WHERE id_cargo = " . $p[0]);
             }
             break;
         case 103: //1:id del cargo 2:id jugador //Dar cargo 1 a usuario 2
             //Comprobamos que el cargo pertenece al pais desde el cual se envia la ley
-            if ($p[1] >= $p[0] * 100 && $p[1] < $p[0] * 100 + 100) {
+            if ($p[0] >= $votacion['id_pais'] * 100 && $p[0] < $votacion['id_pais'] * 100 + 100) {
                 //Comprobamos que no tenga ya el cargo
-                if (!check_leader($p[1], $p[2])) {
+                if (!check_leader($p[0], $p[1])) {
                     //Entonces le a�adimos al cargo
-                    add_leader($p[1], $p[2]);
+                    add_leader($p[0], $p[1]);
                 }
             }
             break;
         case 104://1:id del cargo 2:id jugador //Quitar cargo 1 a usuario 2
             //Comprobamos que el cargo pertenece al pais desde el cual se envia la ley
-            if ($p[1] >= $p[0] * 100 && $p[1] < $p[0] * 100 + 100) {
+            if ($p[0] >= $votacion['id_pais'] * 100 && $p[0] < $votacion['id_pais'] * 100 + 100) {
                 //Comprobamos que ya tenga el cargo
                 //Entonces le quitamos el cargo
-                del_leader($p[1], $p[2]); //La funcion ya comprueba que lo tenga
+                del_leader($p[0], $p[1]); //La funcion ya comprueba que lo tenga
             }
             break;
 
