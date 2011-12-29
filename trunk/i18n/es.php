@@ -103,6 +103,8 @@ $i18n_array['mantenimiento_4'] = "Acceder al foro";
 //Politico
 $i18n_array['already_voted'] = 'Ya has votado';
 $i18n_array['no_regions'] = "Este pais no posee ninguna region actualmente";
+$i18n_array['open_polls'] = "Votaciones abiertas";
+$i18n_array['closed_polls'] = "Votaciones cerradas";
 
 //Menu
 
