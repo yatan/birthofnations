@@ -200,8 +200,6 @@ foreach ($sql as $votacion) {
 $sql = sql2("SELECT * FROM votaciones WHERE solved = 0 AND fin < " . $time . " AND tipo_votacion >= 100 AND is_cargo = 1");
 
 foreach($sql as $votacion){
-    //Sacar id del pais
-    $id_pais = floor($votacion['tipo_votacion']);
     //Leemos cuantos hay que elegir
     $cuantos = $votacion['restricciones'];
     $cuantos = explode('!',$cuantos);
