@@ -23,16 +23,16 @@ foreach ($a_estado as $estado2) {
     switch($estado2)
     {
         case "a":
-            $i_estado = $i_estado."<img title='".$txt['stat_a']."' src='/images/status_bar/status/2.png'/> ";
+            $i_estado = $i_estado."<img title='".getString('stat_a')."' src='/images/status_bar/status/2.png'/> ";
             break;        
         case "b":
-            $i_estado = $i_estado."<img title='".$txt['stat_b']."' src='/images/status_bar/status/3.png'/> ";
+            $i_estado = $i_estado."<img title='".getString('stat_b')."' src='/images/status_bar/status/3.png'/> ";
             break;
         case "c":
-            $i_estado = $i_estado."<img title='".$txt['stat_c']."' src='/images/status_bar/status/4.png'/> ";
+            $i_estado = $i_estado."<img title='".getString('stat_c')."' src='/images/status_bar/status/4.png'/> ";
             break;     
         case "S":
-            $i_estado = $i_estado."<img title='".$txt['stat_S']."' src='/images/status_bar/status/5.png'/> ";
+            $i_estado = $i_estado."<img title='".getString('stat_S')."' src='/images/status_bar/status/5.png'/> ";
             break;        
         default:
             $i_estado = $i_estado."";
