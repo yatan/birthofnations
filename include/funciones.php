@@ -2,7 +2,7 @@
 
 session_start();
 include_once("config.php");
-include("config_variables.php");
+
 select_lang();
 /*
 
@@ -260,7 +260,9 @@ function checkban($id) {
 }
 
 function check_lang($lengua){    
+
     $lengua_defecto="es";  
+
     $fichero = "./i18n/".$lengua.".php";
 
     if(! file_exists($fichero)){
@@ -293,7 +295,10 @@ function select_lang() {
     global $txt;*/
     //Cualquier metodo que vaya aqui para elegir el idioma Y cargar el archivo. De momento solo hay español
     
-    check_lang($_GET['lang']);  
+    if(isset ($_GET['lang']))
+        check_lang($_GET['lang']);  
+    else
+        check_lang("es");  
     
     
     
