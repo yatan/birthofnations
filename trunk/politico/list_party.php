@@ -44,7 +44,7 @@ function cambiar_pais(arg) {
 </select>
 
 <?
-$partidos = sql("SELECT * FROM partidos WHERE id_pais='$pais->id'");
+$partidos = sql2("SELECT * FROM partidos WHERE id_pais='$pais->id'");
 
 foreach ($partidos as $partido) {
     echo "<a href='/".$_GET['lang']."/partido/".$partido['id_partido']."'>".$partido['nombre_partido']." Lider: ".id2nick($partido['id_lider'])."</a><br>";
