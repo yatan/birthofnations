@@ -17,10 +17,10 @@ if (isset($_POST['nuevo_nombre']) && $_POST['nuevo_nombre'] != "" && strlen($_PO
         sql("UPDATE empresas SET nombre_empresa = '". $_POST['nuevo_nombre'] ."' WHERE id_empresa = ". $_POST['id_empresa']);
     
     
-    echo "Nombre cambiado";
+    echo getString("name_changed");
 
 
 }
 else
-die("faltan datos");
+die(getString("not_enough_data"));
 ?>

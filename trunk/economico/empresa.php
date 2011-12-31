@@ -47,7 +47,7 @@ display: none;
 	});
 </script>
 
-<div id="dialog" title="Trabajar">
+<div id="dialog" title=<?echo getString('company_work');?>>
 
 </div>
 
@@ -80,8 +80,8 @@ else
 {
 //Aqui se mostrara publicamente a todo el mundo
     //var_dump($empresa);
-    echo "<p>Propietario: ".$empresa->get_nick_propietario()."</p>";
-    echo "<p>Tipo:".$empresa->get_tipo()."</p>";
+    echo "<p>".  getString('company_owner').": ".$empresa->get_nick_propietario()."</p>";
+    echo "<p>".  getString('company_type').":".$empresa->get_tipo()."</p>";
        
 }
 ?>

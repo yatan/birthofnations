@@ -65,7 +65,7 @@ function cambiar_pais(arg) {
 <?
 $ofertas = mysql_query("SELECT * FROM mercado_trabajo WHERE id_pais = " . $pais . " ORDER BY salario DESC");
 
-echo "<table><tr><th>Empresa</th><th>Jefe</th><th>Salario</th><th>Puestos</th></tr>";
+echo "<table><tr><th>".  getString("Empresa")."</th><th>Jefe</th><th>Salario</th><th>Puestos</th></tr>";
 
 while ($oferta = mysql_fetch_array($ofertas)){
     $sql = sql("SELECT nombre_empresa FROM empresas WHERE id_empresa='".$oferta['id_empresa']."'");

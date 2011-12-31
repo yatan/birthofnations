@@ -9,10 +9,10 @@ if (isset($_POST['salario']) && $_POST['salario'] != "" && is_numeric($_POST['sa
     if($_POST['salario'] >= 0){
     sql("INSERT INTO mercado_trabajo(id_pais, id_empresa, id_jefe, salario, cantidad) VALUES ('".$_POST['id_pais']."','".$_POST['id_empresa']."', '". $_SESSION['id_usuario'] ."', '".$_POST['salario']."','".$_POST['cantidad']."') ");
 
-    echo "Oferta añadida correctamente"; 
+    echo getString('company_oferta_anyadida'); 
     }
 } else {
     
-    die("Faltan datos");
+    die(getString('not_enough_data'));
 }
 ?>

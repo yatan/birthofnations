@@ -8,12 +8,12 @@ if (isset($_POST['salario']) && $_POST['salario'] != "" && is_numeric($_POST['sa
     if($_POST['salario'] > 0) {//Comprobaciones varias
         sql("UPDATE usuarios SET salario = " . $_POST['salario'] . " WHERE id_usuario = " . $_POST['worker']);
 
-        echo "Salario cambiado correctamente";
+        echo getString('salary_succesfully_changed');
     } else {
-        echo "Pon salarios mayores a 0";
+        echo getString('increase_salary');
     }
 } else {
 
-    die("Faltan datos");
+    die(getString("not_enough_data"));
 }
 ?>

@@ -164,6 +164,7 @@ $i18n_array['foot_status_mysql_status'] = "mysql status: ";
 
 //COMPANIES
 $i18n_array['company_error_left_work'] = "Necesitas salir de tu trabajo";
+$i18n_array['company_item_use'] = "Usar: ";
 $i18n_array['company'] = "Empresa:";
 $i18n_array['company_error_not_valid'] = "Empresa no valida";
 $i18n_array['company_ups_something_is_wrong'] = "Algo falla";
@@ -179,6 +180,38 @@ $i18n_array['ingresar'] = "Ingresar";
 $i18n_array['retirar'] = "Retirar";
 $i18n_array['vender_empresa'] = "Vender empresa";
 $i18n_array['precio_empresa'] = "Precio";
+$i18n_array['salary'] = "salario";
+$i18n_array['economy'] = "Economía";
+$i18n_array['cantidad'] = "Cantidad";
+$i18n_array['name_changed'] = "Nombre cambiado";
+$i18n_array['not_enough_data'] = "Faltan datos";
+$i18n_array['increase_salary'] = "Pon salarios mayores a 0";
+$i18n_array['salary_succesfully_changed'] = "Salario modificado correctamente";
+$i18n_array['buy_succes'] = "Compra realizada correctamente";
+$i18n_array['not_enough_money'] = "No tienes suficiente dinero";
+$i18n_array['not_enough_sugus'] = "No tienes sugus suficientes";
+$i18n_array['created_succes'] = "Empresa creada correctamente";
+$i18n_array['company_the_name_is_taken'] = "El nombre está en uso";
+$i18n_array['company_work'] = "Trabajar";
+$i18n_array['company_owner'] = "Propietario";
+$i18n_array['company_type'] = "Tipo";
+$i18n_array['company_no_tienes'] = "No tienes";
+$i18n_array['company_my_companies'] = "Mis empresas";
+$i18n_array['company_list_name'] = "Nombre";
+$i18n_array['company_create_bussiness'] = "Crear empresa";
+$i18n_array['company_create_send'] = "Enviar";
+$i18n_array['golds'] = "golds";
+$i18n_array['company_object_selection'] = "Selección de objeto";
+$i18n_array['company_object_market'] = "Mercado de objetos de: ";
+$i18n_array['company'] = "Empresa";
+$i18n_array['company_accept'] = "Aceptar";
+$i18n_array['company_oferta_anyadida'] = "Oferta añadida correctamente";
+$i18n_array['company_not_enough_salary'] = "Falta dinero en la empresa para pagarte";
+$i18n_array['company_you_have_worked'] = "Ya has trabajado por hoy";
+$i18n_array['company_not_enough_raw'] = "Faltan las materias necesarias para producir";
+$i18n_array['company_exp'] = "Has ganado 1 punto de experiencia";
+$i18n_array['company_you_have_produced'] = "Has producido ";
+$i18n_array['company_come_again_tomorrow'] = "Vuelve mañana";
 
 
 ?>
