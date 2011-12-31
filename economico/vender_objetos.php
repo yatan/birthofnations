@@ -29,10 +29,10 @@ if (isset($_POST['cantidad']) && $_POST['cantidad'] != "" && is_numeric($_POST['
     
     sql("UPDATE inventario_empresas SET ".$nameitemavender." = ".$nameitemavender." - ". $_POST['cantidad'] . " WHERE id_empresa = ". $_POST['id_empresa']);
     
-    echo "Oferta añadida correctamente"; 
+    echo getString('company_oferta_anyadida'); 
     }
 } else {
     
-    die("Algo falla");
+    die(getString('company_ups_something_is_wrong'));
 }
 ?>

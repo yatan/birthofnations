@@ -13,7 +13,7 @@ if (isset($_GET['emp']) && $_GET['emp'] != "" && strlen($_GET['emp'])>0 && isset
     
     if($cantidad <= 0){
         
-        die("No tienes");
+        die(getString('company_no_tienes'));
         
     }else{
         //Quitar uno

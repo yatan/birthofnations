@@ -56,7 +56,7 @@ function cambiar_item(arg) {
 ?>
 </select>
 <br/>
-Seleccion de objeto
+<?echo getString('company_object_selection');?>
   <select style="width:200px;" name="objeto" id="objeto" onchange="cambiar_item(this.value)">
     
     <?
@@ -72,7 +72,7 @@ Seleccion de objeto
   </select>
 
 <?
-echo "<h1>Mercado de objetos de: ".sql("SELECT name FROM country WHERE idcountry='$pais'")."</h1>";
+echo "<h1>".  getString('company_object_market').sql("SELECT name FROM country WHERE idcountry='$pais'")."</h1>";
 
 //A partir de que registro se va a ver segun la pagina que estemos
 $pag_resultados = $pagina * 10;

@@ -65,7 +65,7 @@ display: none;
 
 foreach ($sql as $item => $value) {
     if ($value > 0) {
-        echo $item . ": " . $value . " [<a href='#' class='click_item' id='" . item2id($item) . "'>Usar</a>]<br>";
+        echo $item . ": " . $value . " [<a href='#' class='click_item' id='" . item2id($item) . "'>".  getString('company_item_use')."</a>]<br>";
     }
     
 }
@@ -167,7 +167,7 @@ echo "<h2>" . getString('Poner_ofertas_trabajo') . "</h2>";
 <h3>Puestos ofertados</h3>
 <table border="0">
     <tr>
-        <td>Salario</td><td>Cantidad</td>
+        <td><?echo getString('salario');?></td><td><?echo getString('cantidad');?></td>
     </tr>
 <?
 $cantidad = sql("SELECT COUNT(id_empresa) FROM mercado_trabajo WHERE id_empresa ='" . $_GET['id_empresa'] . "'");
@@ -212,10 +212,10 @@ elseif ($cantidad == 1)
 ?>
 <!--    </table>-->
 
-<h2>Economia</h2>
+<h2><? echo getString("economy");?></h2>
 <table border="0">
     <tr>
-        <td>Moneda</td><td>Cantidad</td>
+        <td><? echo getString("salary");?></td><td><? echo getString("cantidad");?></td>
     </tr>
 <?
 $sql = sql("SELECT * FROM empresas WHERE id_empresa = '$empresa->id_empresa'");

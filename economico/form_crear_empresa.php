@@ -11,9 +11,9 @@ foreach ($sql as $item){
 }
 ?>
             </select></label><br>
-        <input type="button" id="enviar" value="Enviar">
+            <input type="button" id="enviar" value="<?echo getString('company_create_send');?>">
     </form>
-    <p>Coste 10 <img src="/images/status_bar/gold.gif"/> golds</p>
+    <p>Coste 10 <img src="/images/status_bar/gold.gif"/> <?echo getString('golds');?></p>
 </div><!--form de creacion de empresas-->
 <script>
     $('#enviar').click(function() {

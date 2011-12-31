@@ -32,9 +32,9 @@
             sql("UPDATE empresas SET ". $moneda_local[$oferta['id_pais']] . " = ". $moneda_local[$oferta['id_pais']] ." + ". $oferta['precio']*$_POST['cantidad'] ." WHERE id_empresa = ". $oferta['id_empresa']);
             //Dar objeto al user
             sql("UPDATE inventario SET ". id2item($oferta['id_item']) . " = " . id2item($oferta['id_item']) . " + " . $_POST['cantidad'] ." WHERE id_usuario = ". $_SESSION['id_usuario']);
-            echo("compra realizada correctamente");
+            echo(getString('buy_succes'));
         }else{
-            die("No tienes suficiente dinero");
+            die(getString('not_enough_money'));
         }
         
         

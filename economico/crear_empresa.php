@@ -16,13 +16,13 @@ if (isset($_POST['tipo']) && $_POST['tipo'] != "" && strlen($_POST['tipo'])>0 &&
     $sql = sql("SELECT id_empresa FROM empresas WHERE nombre_empresa = '" . $nombre ."'");//Comprobamos que no este el nombre cogido.
     
     if($sql != false )
-        die("El nombre esta cogido");
+        die(getString('company_the_name_is_taken'));
     else
     {
         $gold = sql("SELECT gold FROM money WHERE id_usuario = " . $creador); //Vemos cuanto dinero tiene
     
     if ($gold < $precio_empresa[$tipo]) //Si tiene menos gold del que cuesta crearla
-        die("No hay sugus");
+        die(getString("not_enough_sugus"));
     else 
 	{
         sql("UPDATE money SET Gold = Gold - " . $precio_empresa[$tipo] . " WHERE id_usuario = " . $creador ); //Se quita el gold
@@ -30,11 +30,11 @@ if (isset($_POST['tipo']) && $_POST['tipo'] != "" && strlen($_POST['tipo'])>0 &&
         $sql = sql("SELECT id_empresa FROM empresas WHERE nombre_empresa = '".$nombre."'");
         sql("INSERT INTO inventario_empresas(id_empresa) VALUES ('$sql') "); //se crea el ivnentario
     
-        echo "Empresa creada con exito";
+        echo getString('created_succes');
         //echo "<script language='JavaScript'>window.location = '/{$_GET['lang']}/empresas'</script>";
         }
     }
 }
 else
-die("faltan datos");
+die(getString('not_enough_data'));
 ?>
