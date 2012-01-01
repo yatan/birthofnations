@@ -11,7 +11,11 @@ alert(e.message);
 });
 
 function cambiar_pais2(arg) {
- $("#regi").load("/usuarios/v_lista_regiones.php", {id_pais: arg});	
+ $("#regi").load("/usuarios/v_lista_regiones.php", {id_pais: arg},
+function(){
+    $("#enviar2").show();
+}
+);
 }
 </script>
 
@@ -30,7 +34,7 @@ Pais:
 </select>
 <a id="regi"></a>
 <br/>
-    <input type="button" value="Viajar" id="enviar2"/>
+    <input type="button" value="Viajar" id="enviar2" style="display: none;"/>
 </form>
 
 <script>

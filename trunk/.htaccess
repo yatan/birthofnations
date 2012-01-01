@@ -25,6 +25,9 @@ RewriteRule ^([a-z]+)/laws/([0-9]+)$ index.php?lang=$1&id_pais=$2&mod=laws [L]
 
 RewriteRule ^es/([a-z_]+) index.php?lang=es&mod=$1 [L]
 RewriteRule ^en/([a-z_]+) index.php?lang=en&mod=$1 [L]
+RewriteRule ^ca/([a-z_]+) index.php?lang=ca&mod=$1 [L]
+RewriteRule ^eu/([a-z_]+) index.php?lang=eu&mod=$1 [L]
+RewriteRule ^pt/([a-z_]+) index.php?lang=pt&mod=$1 [L]
 
 RewriteRule ^([a-z]+)/$ index.php?lang=$1 [L]
 
