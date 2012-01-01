@@ -23,8 +23,8 @@ RewriteRule ^([a-z]+)/guerras/([0-9]+)$ index.php?lang=$1&id_pais=$2&mod=lista_g
 RewriteRule ^([a-z]+)/laws/([0-9]+)$ index.php?lang=$1&id_pais=$2&mod=laws [L]
 
 
-RewriteRule ^es/$ index.php?lang=es [L]
-RewriteRule ^en/$ index.php?lang=en [L]
-
 RewriteRule ^es/([a-z_]+) index.php?lang=es&mod=$1 [L]
 RewriteRule ^en/([a-z_]+) index.php?lang=en&mod=$1 [L]
+
+RewriteRule ^([a-z]+)/$ index.php?lang=$1 [L]
+
