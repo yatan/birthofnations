@@ -7,7 +7,7 @@
 
 //sistema
 
-$lenguaje_principal="es";
+$lenguaje_principal = "es";
 
 //Modulo general
 
@@ -18,7 +18,7 @@ $min_travel_health = 10;
 
 $min_work_health = 10;
 
-$precio_empresa[10] = 10;//Entre [] el tipo
+$precio_empresa[10] = 10; //Entre [] el tipo
 $precio_empresa[1] = 10;
 $precio_empresa[2] = 10;
 $precio_empresa[3] = 10;
@@ -34,28 +34,22 @@ function formula_produccion($id) {
 $precio_partido = 40;
 
 //Numero de parametros de cada ley.
-function law_params($ley){
-    
-    switch($ley):
+function law_params($ley) {
+
+    switch ($ley):
         case 100:
-            $data = 1;
-            break;
         case 101:
-            $data = 1;
-            break;
         case 102:
+        case 105:
             $data = 1;
             break;
         case 103:
-            $data = 2;
-            break;
         case 104:
             $data = 2;
             break;
-        
     endswitch;
-    
-    
+
+
     return $data;
 }
 
