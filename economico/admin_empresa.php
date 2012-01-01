@@ -167,7 +167,7 @@ echo "<h2>" . getString('Poner_ofertas_trabajo') . "</h2>";
 <h3>Puestos ofertados</h3>
 <table border="0">
     <tr>
-        <td><?echo getString('salario');?></td><td><?echo getString('cantidad');?></td>
+        <td><?echo getString('salary');?></td><td><?echo getString('cantidad');?></td>
     </tr>
 <?
 $cantidad = sql("SELECT COUNT(id_empresa) FROM mercado_trabajo WHERE id_empresa ='" . $_GET['id_empresa'] . "'");
