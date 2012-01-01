@@ -752,8 +752,7 @@ function apply_law($vot) {
     $votacion = sql("SELECT * FROM votaciones WHERE id_votacion = " . $vot);
 
     $p = explode('.', $votacion['param1']);
-//    unset($p[count($p) - 1]);
-//P[0] Es siempre el id del pais    
+
 
     switch ($votacion['tipo_votacion']):
         case 100: //Cambio de nombre del pais        
@@ -803,8 +802,16 @@ function apply_law($vot) {
                 del_leader($p[0], $p[1]); //La funcion ya comprueba que lo tenga
             }
             break;
-
+        case 105://Cambio de bandera
+            $sql = sql("UPDATE country SET url_bandera = '" . $votacion['param1'] . "' WHERE idcountry = " . $votacion['id_pais']);
+            
+            break;
     endswitch;
+    
+    if($votacion['solved'] == 0){
+        sql("UPDATE votaciones SET solved = 1 WHERE id_votacion = ".$votacion['id_votacion']);
+        sql("UPDATE candidatos_elecciones SET solved = 1 WHERE id_votacion = " . $votacion['id_votacion']);
+    }
 }
 
 function rango($puntos) {
