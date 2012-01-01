@@ -9,7 +9,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/politico/objeto_pais.php");
 //Data -> info sobre la ley
 //P -> Parametros que se rellenan
 
-$_POST['id_pais'] = 2;
+
 $data = $_POST['data'];
 
 if (is_array($_POST['p'])) {
