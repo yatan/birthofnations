@@ -39,9 +39,9 @@ switch ($rest[0]):
         break;
     case 'V': //Votaciones chachis
         $time = time();
-        $time2 = $time + 1;
+        $time2 = $time + 86400;
         sql("INSERT INTO votaciones(tipo_votacion, id_pais, comienzo, fin, restricciones, param1, solved) 
-        VALUES('" . $data[0] . "','" . $_POST['id_pais'] . "','" . $time . "','" . $time2 . "','" . $data[1] . "','" . $p . "','0')");//Añadimos la votacion
+        VALUES('" . $data[0] . "','" . $_POST['id_pais'] . "','" . $time . "','" . $time2 . "','" . $rest[1] . "','" . $p . "','0')");//Añadimos la votacion
         $sql = sql("SELECT id_votacion FROM votaciones WHERE comienzo = " . $time . " AND fin = " . $time2 . " AND param1 = '" . $p . "'");
         sql("INSERT INTO candidatos_elecciones(id_votacion, id_candidato, tipo_elecciones, votos, solved) 
             VALUES ('".$sql."','-1','".$data[0]."','0','0')");//"Candidato si"

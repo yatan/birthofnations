@@ -29,7 +29,7 @@ foreach ($sql as $votacion) {
     echo proposal_text($votacion['tipo_votacion'], $votacion['id_votacion']);
 
     echo "<br>Si: " . $si;
-    echo " No: " . $no;
+    echo " No: " . $no . "<br>";
 }
 
 function proposal_text($tipo, $id) {
