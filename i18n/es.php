@@ -91,6 +91,7 @@ $i18n_array['add_friend'] = "quiere ser tu amigo. �Aceptas?";
 $i18n_array['stat_a'] = "Hambriento";
 $i18n_array['stat_b'] = "Necesita sexo";
 $i18n_array['stat_c'] = "Sobredosis de azucar";
+$i18n_array['stat_v'] = "Viajando";
 $i18n_array['stat_S'] = "Suicida";
 $i18n_array['no_stat'] = "Bien";
 

@@ -30,7 +30,10 @@ foreach ($a_estado as $estado2) {
             break;
         case "c":
             $i_estado = $i_estado."<img title='".getString('stat_c')."' src='/images/status_bar/status/4.png'/> ";
-            break;     
+            break;   
+        case "v":
+            $i_estado = $i_estado."<img title='".getString('stat_v')."' src='/images/status_bar/status/viaje.gif'/> ";
+            break;        
         case "S":
             $i_estado = $i_estado."<img title='".getString('stat_S')."' src='/images/status_bar/status/5.png'/> ";
             break;        
