@@ -6,13 +6,12 @@
  */
 include_once($_SERVER['DOCUMENT_ROOT']."/include/funciones.php");
 
-$falta_email = "<p>Sin email no se podra recuperar nada</p><center><img src='/images/menu/no.png'/></center>";
-$correo_ok = "<p>Se ha enviado el email con las instrucciones.</p><center><img src='/images/menu/si.png'/></center>";
+
 
 if(!isset($_POST['mail']))
-    echo $falta_email;
+    echo "<p>".getString('login_reset_password_no_mail')."</p><center><img src='/images/menu/no.png'/></center>";
 elseif(isset($_POST['mail']) && $_POST['mail']=="")
-    echo $falta_email;
+    echo "<p>".getString('login_reset_password_mail_sent')."</p><center><img src='/images/menu/si.png'/></center>";
 else
 {
     $correo = $_POST['mail'];
