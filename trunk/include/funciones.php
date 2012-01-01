@@ -280,8 +280,9 @@ function check_lang($lengua){
 
 function getString($text){
     if(!isset($i18n_array)){
-        include './i18n/'.$_SESSION['i18n_default'].".php";   
-        include'./i18n/'.$_SESSION['i18n'].".php";     
+        
+        include $_SERVER['DOCUMENT_ROOT'] .'/i18n/'.$_SESSION['i18n_default'].".php";   
+        include $_SERVER['DOCUMENT_ROOT'] .'/i18n/'.$_SESSION['i18n'].".php";     
     }
 
     return $i18n_array[$text];
