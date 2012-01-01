@@ -1,7 +1,7 @@
 <?php
 
 include("../include/funciones.php");
-select_lang();
+//select_lang();
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
