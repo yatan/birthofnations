@@ -70,7 +70,7 @@ if (!isset($_POST['f'])) {
 if (isset($_POST['f'])) {
     $ley = explode('-', $_POST['f']);
     ?>
-    <form id="ley" action="../politico/launcher.php?lang=es" method ="POST">
+    <form id="ley" action="../politico/launcher.php" method ="POST">
         <?
         echo "<input type='hidden' name='data' value='" . $ley[0] . "-" . $ley[1] . "'>";
         echo "<input type='hidden' name='country' value='" . $_GET['id_pais'] . "'>";
