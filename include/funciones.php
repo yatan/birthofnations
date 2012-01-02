@@ -814,6 +814,24 @@ function apply_law($vot) {
     }
 }
 
+function check_laws(){
+    $sql = sql2("SELECT id_votacion FROM votaciones WHERE solved = 0 AND is_cargo = 0 AND tipo_votacion >= 100");
+    
+    foreach($sql as $vot){
+        $si = sql("SELECT votos FROM candidatos_elecciones WHERE id_candidato = -1 AND id_votacion = ".$vot['id_votacion']);
+        $no = sql("SELECT votos FROM candidatos_elecciones WHERE id_candidato = -2 AND id_votacion = ".$vot['id_votacion']);
+        
+        //Aqui se podrian cambiar las normas para que segun no se que pollas la votacion se ganara o perdiera peeeeeeeeeero ya para mas tarde xD
+        
+        if($si >= $no){//De momento mayoria simple :yao:
+            apply_law($vot['id_votacion']);
+        }else{//Obviamente aqui va que no xD
+            apply_law($vot['id_votacion']);
+        }
+        
+    }
+}
+
 function rango($puntos) {
     global $txt;
     //De 0 a 14 puntos de combate
