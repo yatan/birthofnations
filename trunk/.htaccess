@@ -29,5 +29,7 @@ RewriteRule ^ca/([a-z_]+) index.php?lang=ca&mod=$1 [L]
 RewriteRule ^eu/([a-z_]+) index.php?lang=eu&mod=$1 [L]
 RewriteRule ^pt/([a-z_]+) index.php?lang=pt&mod=$1 [L]
 
-RewriteRule ^([a-z]+)/$ index.php?lang=$1 [L]
+RewriteRule ^es/$ index.php?lang=es [L]
+RewriteRule ^en/$ index.php?lang=en [L]
+
 
