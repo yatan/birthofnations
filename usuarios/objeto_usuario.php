@@ -15,6 +15,7 @@ class usuario
     public $id_region;
     public $id_nacionalidad;
     public $estoy_viajando;
+    public $status;
     
     public $n_pais;
     public $n_region;
@@ -131,13 +132,37 @@ class usuario
             $destino = sql("SELECT id_region_destino FROM viajes WHERE id_usuario='$this->id_usuario'");
             sql("UPDATE usuarios SET id_region = '$destino' WHERE id_usuario='$this->id_usuario'");
             sql("DELETE FROM viajes WHERE id_usuario='$this->id_usuario'");
+            $this->id_region = $destino;
+            $this->id_pais = sql("SELECT idcountry FROM region WHERE idregion = " . $this->id_region);
             return false;
         }
         elseif($tiempo > $time)
             return true;
         
     }
+    //Funcion para añadir al jugador un estado
+    function add_status($status)
+    {
+        //Primero despedazamos los estados actuales
+        $a_status = explode(",",$this->status);
+        //Si el status que queremos añadir no esta, lo añadimos, sino return false
+        if(in_array($status, $a_status) == false)
+            {
+                $a_status[] = "$status";
+                $f_status = implode(",", $a_status);
+                sql("UPDATE usuarios SET status ='$f_status' WHERE id_usuario = '$this->id_usuario'");
+                return true;
+            }
+        else
+            return false;
+                
+    }
     
+    //Funcion para quitar un estado alterado al jugador
+    function del_status($status)
+    {
+        
+    }
     
 
 }
