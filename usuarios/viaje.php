@@ -35,10 +35,10 @@ if (isset($_POST['region']) && $_POST['region'] != "" && strlen($_POST['region']
 
     if ($tickets >= $distancia && $origen['salud'] >= $min_travel_health) {//Si puede viajar
         //Quitar items y mierdas y actualizar el pais
-        sql("UPDATE usuarios SET salud = salud - 1, id_region = " . $destino . " WHERE id_usuario = " . $_SESSION['id_usuario']);
+        sql("UPDATE usuarios SET salud = salud - 1 WHERE id_usuario = " . $_SESSION['id_usuario']);
         sql("UPDATE inventario SET transporte = transporte - " . $distancia . " WHERE id_usuario = " . $_SESSION['id_usuario']);
         $tiempo = time() + (60 * $distancia);
-        sql("INSERT INTO viajes(id_usuario, hora_final) VALUES('" . $_SESSION['id_usuario'] . "','$tiempo')");
+        sql("INSERT INTO viajes(id_usuario, hora_final, id_region_destino) VALUES('" . $_SESSION['id_usuario'] . "','$tiempo','$destino')");
         echo"Empieza el viaje, durara $distancia minutos";
     } else {//Si no tiene objetos
         echo $txt['cant_travel'];

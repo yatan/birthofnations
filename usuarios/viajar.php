@@ -39,6 +39,7 @@ Pais:
 
 <script>
     $('#enviar2').click(function() {
+        $("#enviar2").hide();
   	$.post("/usuarios/viaje.php", $("#viajar2").serialize(),
         function(data){
                         alert(data);
