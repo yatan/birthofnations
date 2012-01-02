@@ -1,7 +1,10 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'] . "/include/funciones.php");
-
 include($_SERVER['DOCUMENT_ROOT'] . "/politico/launch_law.php");
+
+//De momento:
+check_laws();
+
 ?><h3><? echo getString('open_polls'); ?></h3><?
 $time = time();
 
