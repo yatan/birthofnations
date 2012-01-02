@@ -44,11 +44,11 @@ echo "<h3>Postulaciones p�blicas</h3>";
 foreach($cargos as $cargo){
     
     //Para cada cargo vemos si hay votacion abierta
-    $sql = sql("SELECT * FROM votaciones WHERE tipo_votacion = ". $cargo['id_cargo'] . " AND solved = 0");
+    $sql = sql("SELECT * FROM votaciones WHERE tipo_votacion = ". $cargo['id_cargo'] . " AND solved = 0 AND is_cargo = 1");
     $data = explode('-',$cargo['votacion']);
     $data2 = explode('.',$data[1]);
     if($sql == false){//Si no hay
-        echo "No hay postulaciones abiertas";
+        echo "No hay postulaciones abiertas. ";
         echo "Proximas elecciones el dia: " . next_elecciones($dia_actual, $data2[0], $data2[1]);
     }else{ //Si hay
     if ($dia_actual % $data2[1] == $data2[0]) { //Dia de elecciones 
