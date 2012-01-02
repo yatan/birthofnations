@@ -132,6 +132,7 @@ class usuario
             $destino = sql("SELECT id_region_destino FROM viajes WHERE id_usuario='$this->id_usuario'");
             sql("UPDATE usuarios SET id_region = '$destino' WHERE id_usuario='$this->id_usuario'");
             sql("DELETE FROM viajes WHERE id_usuario='$this->id_usuario'");
+            $this->del_status("v");
             $this->id_region = $destino;
             $this->id_pais = sql("SELECT idcountry FROM region WHERE idregion = " . $this->id_region);
             return false;
@@ -151,6 +152,7 @@ class usuario
                 $a_status[] = "$status";
                 $f_status = implode(",", $a_status);
                 sql("UPDATE usuarios SET status ='$f_status' WHERE id_usuario = '$this->id_usuario'");
+                $this->status=$a_status;
                 return true;
             }
         else
@@ -161,8 +163,30 @@ class usuario
     //Funcion para quitar un estado alterado al jugador
     function del_status($status)
     {
-        
+        //Primero despedazamos los estados actuales
+        $a_status = explode(",",$this->status);        
+        if(in_array($status, $a_status) == true)
+        {
+            unset($a_status[array_search($status, $a_status)]);
+            $f_status = implode(",", $a_status);
+            sql("UPDATE usuarios SET status ='$f_status' WHERE id_usuario = '$this->id_usuario'");
+            $this->status=$f_status;
+            return true;
+        }
+        else
+            return false;
     }
+    
+     //Funcion para comprobar un estado alterado al jugador
+    function check_status($status)
+    {
+        //Primero despedazamos los estados actuales
+        $a_status = explode(",",$this->status);        
+        if(in_array($status, $a_status) == true)
+            return true;
+        else
+            return false;
+    }   
     
 
 }
