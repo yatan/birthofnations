@@ -9,7 +9,7 @@ include_once($_SERVER['DOCUMENT_ROOT']."/include/funciones.php");
 
 
 
-echo"<h1>".  getString('company_my_companies')."/h1>";
+echo"<h1>".  getString('company_my_companies')."</h1>";
 
 //$cantidad_empresas = sql("SELECT COUNT(id_empresa) FROM empresas WHERE id_propietario='".$_SESSION['id_usuario']."'");
 
@@ -28,6 +28,6 @@ foreach ($sql as $empresa) {
 echo "</table>";
 ?>
 <br/>
-<a style=" background-color:#1E679A ; border: 1px solid #1E679A;" href="<? echo "/".$_GET['lang']."/crear_empresa"; ?>"><font color="#FFFFFF" face="arial, verdana, helvetica"><?echo getString('company_create_bussiness');?>></font></a>
+<a style=" background-color:#1E679A ; border: 1px solid #1E679A;" href="<? echo "/".$_GET['lang']."/crear_empresa"; ?>"><font color="#FFFFFF" face="arial, verdana, helvetica"><?echo getString('company_create_bussiness');?></font></a>
 <br/>
 <br/>
