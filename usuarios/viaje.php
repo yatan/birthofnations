@@ -3,6 +3,8 @@
 include_once($_SERVER['DOCUMENT_ROOT'] . "/politico/objeto_region.php");
 include_once($_SERVER['DOCUMENT_ROOT'] . "/include/funciones.php");
 include_once($_SERVER['DOCUMENT_ROOT'] . "/include/config_variables.php");
+require($_SERVER['DOCUMENT_ROOT'] . "usuarios/objeto_usuario.php");
+$objeto_usuario = new usuario($_SESSION['id_usuario']); 
 
 if (isset($_POST['region']) && $_POST['region'] != "" && strlen($_POST['region']) > 0) {
 
@@ -39,6 +41,7 @@ if (isset($_POST['region']) && $_POST['region'] != "" && strlen($_POST['region']
         sql("UPDATE inventario SET transporte = transporte - " . $distancia . " WHERE id_usuario = " . $_SESSION['id_usuario']);
         $tiempo = time() + (60 * $distancia);
         sql("INSERT INTO viajes(id_usuario, hora_final, id_region_destino) VALUES('" . $_SESSION['id_usuario'] . "','$tiempo','$destino')");
+        $objeto_usuario->add_status("v");
         echo"Empieza el viaje, durara $distancia minutos";
     } else {//Si no tiene objetos
         echo $txt['cant_travel'];
