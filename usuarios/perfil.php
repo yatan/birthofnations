@@ -31,7 +31,7 @@ else {
             <li><a href="#amigos">Perfil</a></li>		
     <?
     if ($usuario->soy_yo($_SESSION['id_usuario']) == true) {
-        echo "<li><a href='#economia'>Economia</a></li>";
+        //echo "<li><a href='#economia'>Economia</a></li>";
         echo "<li><a href='#inventario'>Inventario</a></li>";
         echo "<li><a href='#viajar'>Viajar</a></li>";
        // echo "<li><a href='#periodico'>Periodico</a></li>";
@@ -59,11 +59,17 @@ else {
             
             
             if ($usuario->soy_yo($_SESSION['id_usuario']) == true) {
-                echo "<div id='economia'>";
+                /*echo "<div id='economia'>";
                 include("mi_perfil.php");
-                echo "</div>";
+                echo "</div>";*/
                 echo "<div id='inventario'>";
-                include("inventario.php");
+                    echo "<div style='float:left;'>";
+                        echo "<h2>Inventario</h2>";
+                        include("inventario.php");
+                    echo "</div>";
+                    echo "<div style='float:right;'>";
+                        include("mi_perfil.php");
+                    echo "</div>";
                 echo "</div>";
                 echo "<div id='viajar'>";
                 include("viajar.php");
