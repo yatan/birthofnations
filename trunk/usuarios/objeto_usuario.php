@@ -115,8 +115,8 @@ class usuario
         sql("UPDATE usuarios SET level='$nuevo_lvl' WHERE id_usuario='$this->id_usuario'");
         $this->level = $nuevo_lvl;
         
-        //Aqui se envia un mensaje o alerta del nuevo lvl
-        
+        //Aqui se envia una alerta del nuevo lvl
+        sql("INSERT INTO alertas(id_receptor, tipo, r1) VALUES ('$this->id_usuario','3','$nuevo_lvl')");
     }
     
     //Funcion para comprobar si esta viajando, si el viaje ha terminado se pone a null el temporizador
