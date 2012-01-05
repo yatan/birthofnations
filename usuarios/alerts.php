@@ -20,22 +20,22 @@ foreach ($alertas as $alerta) {
         case "1":
             echo "<tr><td>Amigo</td><td>";
             echo id2nick($alerta['id_emisor'])." quiere ser tu amigo. <a href='../usuarios/add_friend.php?ac=".$alerta['id_emisor']."'>Aceptar</a></td>";
-            echo "<td><input type='checkbox' name='alertas[]' value='".$alerta['id_alerta']."'/></td></tr>";
-            
             break;
         case "2":
             echo "<tr><td>Trabajador</td><td>";
             echo id2nick($alerta['id_emisor'])." ahora trabaja en <b>".id2empresa($alerta['r1'])."</b></td>";
-            echo "<td><input type='checkbox' name='alertas[]' value='".$alerta['id_alerta']."'/></td></tr>";
-            
             break;           
-
+        case "3":
+            echo "<tr><td>Jugador</td>";
+            echo "<td>Felicidades has subido al level ".$alerta['r1']."</td>";
+            
+            break;  
 
         default:
             break;
     }
-    
-
+//El boton de eliminar alerta que aparece en cada alerta    
+echo "<td><input type='checkbox' name='alertas[]' value='".$alerta['id_alerta']."'/></td></tr>";
 }
 
 
