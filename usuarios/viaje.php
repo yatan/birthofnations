@@ -3,7 +3,7 @@
 include_once($_SERVER['DOCUMENT_ROOT'] . "/politico/objeto_region.php");
 include_once($_SERVER['DOCUMENT_ROOT'] . "/include/funciones.php");
 include_once($_SERVER['DOCUMENT_ROOT'] . "/include/config_variables.php");
-require($_SERVER['DOCUMENT_ROOT'] . "usuarios/objeto_usuario.php");
+require($_SERVER['DOCUMENT_ROOT'] . "/usuarios/objeto_usuario.php");
 $objeto_usuario = new usuario($_SESSION['id_usuario']); 
 
 if (isset($_POST['region']) && $_POST['region'] != "" && strlen($_POST['region']) > 0) {
@@ -44,7 +44,7 @@ if (isset($_POST['region']) && $_POST['region'] != "" && strlen($_POST['region']
         $objeto_usuario->add_status("v");
         echo"Empieza el viaje, durara $distancia minutos";
     } else {//Si no tiene objetos
-        echo $txt['cant_travel'];
+        echo getString('cant_travel');
     }
 } else {
     die("So quick...");
