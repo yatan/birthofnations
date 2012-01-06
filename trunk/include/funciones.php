@@ -816,7 +816,7 @@ function apply_law($vot) {
 
 function check_laws(){
     $time = time();
-    $sql = sql2("SELECT id_votacion FROM votaciones WHERE solved = 0 AND fin < ". $time ." AND is_cargo = 0 AND tipo_votacion >= 100");
+    $sql = sql2("SELECT id_votacion,tipo_votacion FROM votaciones WHERE solved = 0 AND fin < ". $time ." AND is_cargo = 0 AND tipo_votacion >= 100");
     
     foreach($sql as $vot){
         $si = sql("SELECT votos FROM candidatos_elecciones WHERE id_candidato = -1 AND id_votacion = ".$vot['id_votacion']);
