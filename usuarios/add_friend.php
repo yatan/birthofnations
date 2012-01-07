@@ -38,7 +38,7 @@ if (isset($_GET['id']) && $_GET['id'] != "" && strlen($_GET['id']) > 0) {
     }
 }
 
-
+$_GET['ac'] = 'si'; //Aunque ahora no sea posible rechazar, lo dejamos indicado por si algun dia hace falta.
 if (isset($_GET['ac']) && $_GET['ac'] != "" && strlen($_GET['ac']) > 0 && isset($_GET['ai'])) {
 
     $id1 = $_GET['ai']; //El que se supone que vamos a aceptar
@@ -60,6 +60,7 @@ if (isset($_GET['ac']) && $_GET['ac'] != "" && strlen($_GET['ac']) > 0 && isset(
         if ($_GET['ac'] == 'si') {//Aceptar
             sql("INSERT INTO friends (id_amigo1, id_amigo2, peticion, desde) VALUES (" . $id2 . "," . $id1 . ",1,Now()) ");
             sql("UPDATE friends SET peticion = 1, desde = Now() WHERE id_amigo1 = " . $id1 . " AND id_amigo2 = " . $id2);
+            echo "Amigo confirmado";
         } elseif ($_GET['ac'] == 'no') {//Rechazar
             sql("UPDATE friends SET peticion = 2, desde = Now() WHERE id_amigo1 = " . $id1 . " AND id_amigo2 = " . $id2);
         } else {
