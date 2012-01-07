@@ -19,7 +19,7 @@ foreach ($alertas as $alerta) {
     switch ($alerta['tipo']) {
         case "1":
             echo "<tr><td>Amigo</td><td>";
-            echo id2nick($alerta['id_emisor'])." quiere ser tu amigo. <a href='../usuarios/add_friend.php?ac=".$alerta['id_emisor']."'>Aceptar</a></td>";
+            echo id2nick($alerta['id_emisor'])." quiere ser tu amigo. <a href='../usuarios/add_friend.php?ai=".$alerta['id_emisor']."'>Aceptar</a></td>";
             break;
         case "2":
             echo "<tr><td>Trabajador</td><td>";
