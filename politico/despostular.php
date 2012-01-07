@@ -11,8 +11,8 @@ $sql = sql("SELECT * from candidatos_elecciones WHERE id_candidato = " . $_SESSI
 
 if ($sql != false) {//Si esta postulado
     sql("DELETE FROM candidatos_elecciones WHERE id_candidato = ". $_SESSION['id_usuario'] . " AND id_votacion = " . $_GET['v']);
-    echo "Has sido despostulado.";
+    echo getString("been_postulado");
 } else {
-    die("No estabas postulado");
+    die(getString("no_postulated"));
 }
 ?>

@@ -672,7 +672,7 @@ function del_leader($cargo, $id) {
 
 function list_laws($cargo) {
 
-    $sql = sql2("SELECT laws FROM country_leaders WHERE id_cargo = " . $cargo); //Sacamos la lista codificada
+    $sql = sql("SELECT laws FROM country_leaders WHERE id_cargo = " . $cargo); //Sacamos la lista codificada
 
 
     $sql = explode(',', $sql); //Separamos la info de cada ley

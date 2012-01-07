@@ -22,11 +22,11 @@ echo "<h1>$nombre_pais</h1><img alt='bandera' title='".$pais->nombre."' src='".$
 
 echo "Poblacion actual: " . $pais->population();
 
-echo "<h3>Líderes</h3>";
+echo "<h3>".getString("leaders")."</h3>";
 
 $cargos = $pais->list_cargos(); //Sacamos la lista de cargos del pais
 
-echo "<table><tr><th>Nick</th><th>Posicion</th></tr>";
+echo "<table><tr><th>".getString('nick')."</th><th>".getString("position")."</th></tr>";
 
 foreach ($cargos as $cargo) {//Para cada cargo
 
@@ -39,7 +39,7 @@ foreach ($cargos as $cargo) {//Para cada cargo
 
 echo "</table>";
 
-echo "<h3>Postulaciones p�blicas</h3>";
+echo "<h3>".getString("open_elections")."</h3>";
 
 foreach($cargos as $cargo){
     
@@ -55,7 +55,7 @@ foreach($cargos as $cargo){
     //Sacar id de la votacion
     $time = time();
     $sql = sql("SELECT id_votacion FROM votaciones WHERE tipo_votacion = ".$cargo['id_cargo']." AND is_cargo = 1 AND fin > " . $time . " AND solved = 0");
-    echo $cargo['nombre'] . '  <a href="/politico/lista_candidatos.php?id=' . $sql . '">Votar</a>';
+    echo $cargo['nombre'] . '  <a href="/politico/lista_candidatos.php?id=' . $sql . '">'.getString("vote").'</a>';
 } else{//Si no es el dia de la votacion es hora de postularse
     // Fecha + Postulacion
     echo "Proximas elecciones el dia: " . next_elecciones($dia_actual, $data2[0], $data2[1]);
@@ -64,17 +64,17 @@ foreach($cargos as $cargo){
     $sql = sql("SELECT * from candidatos_elecciones WHERE id_candidato = " . $_SESSION['id_usuario'] . " AND id_votacion = ".$vot);
 
     if ($sql == false) {//Si aun no esta postulado
-        echo "[<a href='/politico/postular.php?v=" . $vot . "'>Postulate</a>]";
+        echo "[<a href='/politico/postular.php?v=" . $vot . "'>".getString('postulate')."</a>]";
     } else {//Si ya esta postulado
-        echo "[<a href='/politico/despostular.php?v=" . $vot . "'>Despostulate</a>]";
+        echo "[<a href='/politico/despostular.php?v=" . $vot . "'>".getString('unpostulate')."</a>]";
     }
 }
     }
 }
 
-echo "<h3>Dineros</h3>";
+echo "<h3>".getString('money')."</h3>";
 
-echo "<table><tr><th>Moneda</th><th>Cantidad</th></tr>";
+echo "<table><tr><th>".getString('currency')."</th><th>".getString('amount')."</th></tr>";
 $gold = sql("SELECT Gold FROM money_pais WHERE idcountry ='" . $id_pais . "'");
 
 echo "<tr><td>" . getString('Gold') . "</td><td>" . $gold . "</td></tr>";
@@ -92,7 +92,7 @@ foreach ($sql as $moneda => $valor) {
 
 echo "</table>";
 
-echo "<h3>Regiones</h3>";
+echo "<h3>".getString('regions')."</h3>";
 
 $regiones = $pais->list_regions();
 
@@ -100,7 +100,7 @@ if ($regiones == false) {
     echo getString('no_regions');
 } else {
 
-    echo "<table><tr><th>Nombre</th></tr>";
+    echo "<table><tr><th>".getString('name')."</th></tr>";
 
     foreach ($regiones as $region) {
 

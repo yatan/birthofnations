@@ -15,6 +15,36 @@ $i18n_array['signup_submit'] = "Formulario de Registro";// No se usa??
 $i18n_array['signup_mail_send_form'] = "Enviar formulario";
 $i18n_array['signup_mail_error'] = "Se produjo un error al conectar con el servidor de mail.";
 
+                //GENERICAS
+
+$i18n_array['name_taken'] = "Ese nombre esta ocupado.";
+$i18n_array['not_enough_gold']= ' No tienes oro suficiente.';
+$i18n_array['already_affiliated'] = 'Ya estas en un partido.';
+$i18n_array['smth_failed'] = "Algo ocurrio.";
+
+                //PALABRAS SUELTAS
+$i18n_array['leaders'] = "Lideres";
+$i18n_array['nick'] = 'Nick';
+$i18n_array['name'] = 'Nombre';
+$i18n_array['position'] = 'Position';
+$i18n_array['votar'] = 'Votar';
+$i18n_array['votes'] = 'Votos';
+$i18n_array['postulate'] = "Postulate";
+$i18n_array['unpostulate'] = "Despostulate";
+$i18n_array['money'] = 'Dinero';
+$i18n_array['currency'] = 'Moneda';
+$i18n_array['amount'] = 'Cantidad';
+$i18n_array['regions'] = 'Regiones';
+$i18n_array['affiliate'] = 'Afiliarse';
+$i18n_array['unaffiliate'] = 'Desafiliarse';
+$i18n_array['owner'] = 'Propietario';
+$i18n_array['si'] = 'Si';
+$i18n_array['no'] = 'No';
+$i18n_array['candidate'] = 'Candidato: ';
+$i18n_array['you_cant'] = 'El amado lider te mira con desaprobacion. No cumples algun requisito.';
+$i18n_array['affiliate'] = 'Regiones';
+$i18n_array['affiliate'] = 'Regiones';
+
  		//LOGIN
 
 $i18n_array['login_texto'] = "Birth of Nations es un juego online libre de estrategia política; económica y social. El desarrollo del juego se realiza de forma comunitaria; y sus propios jugadores deciden cual es el rumbo que toma el proyecto.";
@@ -110,6 +140,21 @@ $i18n_array['already_voted'] = 'Ya has votado';
 $i18n_array['no_regions'] = "Este pais no posee ninguna region actualmente";
 $i18n_array['open_polls'] = "Votaciones abiertas";
 $i18n_array['closed_polls'] = "Votaciones cerradas";
+$i18n_array["been_unpostulated"] = "Has sido despostulado.";
+$i18n_array["no_postulated"] = "No estabas postulado.";
+$i18n_array['new_country'] = "Nuevo pais";
+$i18n_array['country_name'] = "Nombre del pais:";
+$i18n_array['currency_name'] = "Nombre de la moneda:";
+$i18n_array['new_party'] = "Nuevo partido";
+$i18n_array['party_name'] = "Nombre del partido";
+$i18n_array['min_days_to_vote'] = "Antiguedad necesaria para votar";
+$i18n_array['elections_frequency'] = "Frecuencia de las elecciones";
+$i18n_array['open_elections'] = "Elecciones abiertas";
+$i18n_array['vote_day'] = 'Dia de votar';
+$i18n_array['available_laws'] = 'Leyes disponibles: ';
+$i18n_array['next_elections'] = 'Proximas elecciones: ';
+$i18n_array['member_list'] = 'Lista de miembros';
+
 
 //Menu
 
