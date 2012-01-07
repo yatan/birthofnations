@@ -44,7 +44,7 @@ else {
             echo "<div style='height: 500px; width: 940px;'>";
             echo "<div style='float: left; width: 15em; height: 28.45em;'>";
             echo "<h2>Perfil de $usuario->nick </h2>";
-            echo "<img src='$usuario->avatar' style='max-height: 64px; max-width: 64px; overflow: hidden;'/><br>";
+            echo "<img src='$usuario->avatar' style='max-height: 128px; max-width: 128px; overflow: hidden;'/><br>";
             echo "<p style='font-size: 14px; text-align: left; margin: 10px;'>Pais: {$usuario->get_n_pais()}</p>";
             echo "<p style='font-size: 14px; text-align: left; margin: 10px;'>Region: {$usuario->get_n_region()}</p>";
             echo "<p style='font-size: 14px; text-align: left; margin: 10px;'>Nacionalidad: {$usuario->get_n_nacionalidad()}</p>";
@@ -59,6 +59,19 @@ else {
             
             
             if ($usuario->soy_yo($_SESSION['id_usuario']) == true) {
+                ?>
+        <div style="float:right; ">
+         <fieldset>
+        <legend>Preferencias:</legend>
+        <form  action="/usuarios/preferencias.php" method="post">
+            Url avatar: <input type="text" name="url"/>
+            <br>
+            <p>Maximo recomendado 64x64</p>
+            <input type="submit" value="Actualizar"/>
+        </form>
+         </fieldset>
+        </div>
+                 <?
                 /*echo "<div id='economia'>";
                 include("mi_perfil.php");
                 echo "</div>";*/
@@ -85,7 +98,12 @@ else {
                 echo "</div>";
             }
             //Zona tanto publica como privada
-            echo "<div id='amigos' style='float: right; height: 26.45em; width: 34em;'>";
+            //Maquetacion
+            if ($usuario->soy_yo($_SESSION['id_usuario']) == true)
+                echo "<div id='amigos' style='width:200px; float: right; height: 26.45em;'>";
+            else
+                echo "<div id='amigos' style='float: right; height: 26.45em; width: 34em;'>";
+            
             include("friends.php");
             echo "</div>";
         }
