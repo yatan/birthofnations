@@ -11,21 +11,21 @@ $id_usuario = base64_decode($_POST['tokken']);
 $pais_destino = $_POST['pais'];
 
 if(!isset($_POST['region']) || $_POST=="0")
-    die("Selecciona una region!");
+    die(getString("choose_a_region"));
 else
     $region_destino = $_POST['region'];
 
 $pais_actual = sql("SELECT id_region FROM usuarios WHERE id_usuario='$id_usuario'");
 
 if($pais_actual != null)
-    die("Ya estas en un pais !!!");
+    die(getString('you_are_in_a_country'));
 
 //Se actualiza el pais
 $sql = sql("UPDATE usuarios SET id_nacionalidad='$pais_destino', id_region='$region_destino' WHERE id_usuario='$id_usuario'");
 
 if($sql==false)
-    die("error");
+    die(getString("generic_error"));
 else
-    echo "Has viajado correctamente";
+    echo getString("moved_ok");
 
 ?>
