@@ -37,6 +37,10 @@ $i18n_array['first_login_travel'] = "Seleccionar pais destino:";
 $i18n_array['login_recovery_title'] = "Recuperar password";
 $i18n_array['login_recovery_email'] = "E-mail";
 $i18n_array['login_reset_password'] = "Resetear password";
+$i18n_array['login_reset_password_no_mail'] = "Sin email no se podrá recuperar la cuenta";
+$i18n_array['login_reset_password_mail_sent'] = "Se ha enviado el email con las instrucciones";
+
+
 
 $i18n_array['code_error'] = "Error en el codigo";
 $i18n_array['referer_title'] = "Alguien te ha invitado a Birth of Nations";
@@ -157,6 +161,7 @@ $i18n_array['guerras_login'] = 'Últimas guerras';
 
 //ERRORES
 
+$i18n_array['generic_error'] = "Error";
 $i18n_array['conection_fail_1'] = 'Hay un fallo en los servidores. Intentalo mas tarde';
 //PIE
 
@@ -215,6 +220,27 @@ $i18n_array['company_not_enough_raw'] = "Faltan las materias necesarias para pro
 $i18n_array['company_exp'] = "Has ganado 1 punto de experiencia";
 $i18n_array['company_you_have_produced'] = "Has producido ";
 $i18n_array['company_come_again_tomorrow'] = "Vuelve mañana";
+
+
+// VIAJES
+
+$i18n_array['moved_ok'] = "Has viajado correctamente";
+$i18n_array['you_are_in_a_country'] = "¡¡Ya estás en un país!!";
+$i18n_array['choose_a_region'] = "Selecciona una región";
+
+
+// VALIDATION_SIGNUP
+
+$i18n_array['no_user'] = "Falta usuario";
+$i18n_array['no_password'] = "Falta password";
+$i18n_array['no_re_password'] = "Falta validación de password";
+$i18n_array['no_mail'] = "Falta e-mail";
+$i18n_array['no_referer'] = "Falta referer";
+$i18n_array['error_re_password'] = "Error al validad password";
+$i18n_array['user_again'] = "Ya existe un usuario con ese nick";
+$i18n_array['mail_again'] = "Ya existe un e-mail igual registrado";
+$i18n_array['ok'] = "ok";
+
 
 
 ?>
