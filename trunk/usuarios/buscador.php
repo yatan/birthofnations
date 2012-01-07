@@ -1,14 +1,38 @@
-<h1>Usuarios</h1>
-
 <?
-    $pos = 1;
-    $nick = ""; //$_GET['nick'];
-    $resultado=sql("SELECT * FROM usuarios WHERE nick LIKE '%$nick%' ORDER BY exp DESC LIMIT 25");
+
+if( isset( $_POST['nick'] ) )
+{
+    header( 'location: /'.$_GET['lang'].'/buscador/' . $_POST['nick'] . '/0' );
+    exit();
+}
+
+
+
+$pos = 1;
+    
+if(isset($_GET['nick']))
+{
+    $nick = $_GET['nick']; 
+    echo "<h1>Usuarios</h1>";
+}
+else
+{    
+    $nick="";
+    echo "<h1>Top 10</h1>";
+}
+
+if(isset($_GET['pag']))
+    $pagina = $_GET['pag']; 
+else
+    $pagina=0;
+
+    $pag_resultados = $pagina * 10;
+    $resultado=sql2("SELECT * FROM usuarios WHERE nick LIKE '%$nick%' ORDER BY exp DESC LIMIT $pag_resultados, 10");
 ?>
 
 <table width="75%" border="0" align="center" style="text-align:center;" >
   <tr style="font-size:20px; color:#930;">
-    <td>Pos.<hr noshade></td>
+    <!--<td>Pos.<hr noshade></td>-->
      <td>Avatar<hr noshade></td>
     <td>Nick<hr noshade></td>
     <td>Nivel<hr noshade></td>
@@ -21,11 +45,11 @@ foreach ($resultado as $jugador)
     {
 
 echo("<tr>");
+//echo "<td>$pos</td>";
 echo("
-<td>$pos</td>
 <td><a href='/es/perfil/".$jugador['id_usuario']."'><img src='".$jugador['avatar']."' /></a></td>
 <td><a href='/es/perfil/".$jugador['id_usuario']."'>".$jugador['nick']."</a></td>
-<td>1</td>
+<td>".$jugador['level']."</td>
 <td>".$jugador['exp']."</td>
 </tr>
 <tr>
@@ -41,3 +65,16 @@ echo("
 
 
 
+<?
+
+if(isset($_GET['nick']))
+{
+    $max_paginas = sql("SELECT COUNT(*) FROM usuarios WHERE nick LIKE '%$nick%'")/10+1;
+    for($i=1;$i<=$max_paginas;$i++)
+    {   
+        $pag = $i-1;
+        echo "<a href='/".$_GET['lang']."/buscador/".$nick."/".$pag."'>$i </a>";
+    }
+}
+
+?>
