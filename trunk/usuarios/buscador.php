@@ -39,7 +39,7 @@ foreach ($resultado as $jugador)
 echo("<tr>");
 //echo "<td>$pos</td>";
 echo("
-<td><a href='/es/perfil/".$jugador['id_usuario']."'><img src='".$jugador['avatar']."' /></a></td>
+<td><a href='/es/perfil/".$jugador['id_usuario']."'><img src='".$jugador['avatar']."' style='max-height: 64px; max-width: 64px; overflow: hidden;' /></a></td>
 <td><a href='/es/perfil/".$jugador['id_usuario']."'>".$jugador['nick']."</a></td>
 <td>".$jugador['level']."</td>
 <td>".$jugador['exp']."</td>
