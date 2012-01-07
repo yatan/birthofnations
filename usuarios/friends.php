@@ -13,7 +13,7 @@ echo "<h2>Amigos</h2>";
 $cantidad = sql("SELECT COUNT(*) FROM friends WHERE id_amigo1='$id_usuario' AND peticion=1");
 
 if($cantidad==0)
-    echo $txt['no_friends'];
+    echo getString('no_friends');
 elseif($cantidad==1)
 {
     $sql = sql("SELECT id_amigo2 FROM friends WHERE id_amigo1='$id_usuario' AND peticion=1");

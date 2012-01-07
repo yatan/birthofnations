@@ -44,7 +44,7 @@ else {
             echo "<div style='height: 500px; width: 940px;'>";
             echo "<div style='float: left; width: 15em; height: 28.45em;'>";
             echo "<h2>Perfil de $usuario->nick </h2>";
-            echo "<img src='$usuario->avatar'/><br>";
+            echo "<img src='$usuario->avatar' style='max-height: 64px; max-width: 64px; overflow: hidden;'/><br>";
             echo "<p style='font-size: 14px; text-align: left; margin: 10px;'>Pais: {$usuario->get_n_pais()}</p>";
             echo "<p style='font-size: 14px; text-align: left; margin: 10px;'>Region: {$usuario->get_n_region()}</p>";
             echo "<p style='font-size: 14px; text-align: left; margin: 10px;'>Nacionalidad: {$usuario->get_n_nacionalidad()}</p>";
@@ -79,7 +79,7 @@ else {
                 echo "</div>";*/
             } else {
                 //Zona publica
-                echo "<div style='background-color:red;'>";
+                echo "<div>";
                 if ($usuario->somos_amigos($_SESSION['id_usuario']) == false)
                     echo "<a href='../../usuarios/add_friend.php?id=$usuario->id_usuario'><img src='/images/friend.png'/>Añadir amigo</a>";
                 echo "</div>";
@@ -93,4 +93,4 @@ else {
         ?>
 </div>
 
-
+<br>
