@@ -1,13 +1,5 @@
 <?
 
-if( isset( $_POST['nick'] ) )
-{
-    header( 'location: /'.$_GET['lang'].'/buscador/' . $_POST['nick'] . '/0' );
-    exit();
-}
-
-
-
 $pos = 1;
     
 if(isset($_GET['nick']))
