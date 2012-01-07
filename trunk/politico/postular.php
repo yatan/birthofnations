@@ -9,6 +9,6 @@ if(puedo_postularme($_SESSION['id_usuario'],$cargo,$_GET['v']) == true){
      sql("INSERT INTO candidatos_elecciones(id_votacion,id_candidato,tipo_elecciones,votos) VALUES ('".$_GET['v']."','" . $_SESSION['id_usuario'] . "','".$cargo."','0')");
     
 }else{
-    die("El amado lider te mira con desaprobacion. No cumples algun requisito.");
+    die(getString('you_cant'));
 }
 ?>

@@ -16,8 +16,8 @@ $country = new pais($country);
 
 $cargos = $country->list_cargos();//Sacamos la lista de cargos del pais
 
-?><h2> Lideres: </h2>
-<table><tr><th>Posicion</th><th>Nick</th></tr>
+?><h2> <? getString('leaders');?> </h2>
+<table><tr><th><?getString('position');?></th><th><?getString('nick');?></th></tr>
 <?
 foreach($cargos as $cargo){//Para cada cargo
     
@@ -40,19 +40,19 @@ EOT;
 echo "</table>";
 
 
-?><h2> Poderes de cada cargo: </h2>
+?><h2> <?php getString('available_laws');?> </h2>
 <table><tr><th>Posicion</th><th>Ley</th><th>Detalles</th></tr>
     
     
 <?
-list_laws(200);
+
 foreach($cargos as $cargo){
     $laws = list_laws($cargo['id_cargo']);//Sacamos los datos de las leyes que puede lanzar
     $cargo_name = $cargo['nombre'];
     
     foreach($laws as $law){
         
-        $law_name = $txt['law_'.$law[0]];
+        $law_name = getString('law_'.$law[0]);
         
 echo <<<EOT
    <tr><td> $cargo_name </td><td>$law_name</td><td>TBD</td></tr>     

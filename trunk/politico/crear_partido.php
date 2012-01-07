@@ -12,14 +12,14 @@ if (isset($_POST['nombre']) && $_POST['nombre'] != "" && strlen($_POST['nombre']
 
     $sql = sql("SELECT id_partido FROM partidos WHERE nombre_partido = '" . $nombre . "'"); //Comprobamos que no este el nombre cogido.
     if ($sql != false)
-        die("El nombre esta cogido");
+        die(getString("name_taken"));
     else
         $gold = sql("SELECT gold FROM money WHERE id_usuario = " . $creador); //Vemos cuanto dinero tiene
         $user = sql("SELECT id_partido FROM usuarios WHERE id_usuario = " . $creador);
     if ($gold < $precio_partido) { //Si tiene menos gold del que cuesta crearla
-        die("No hay sugus");
+        die(getString("not_enough_gold"));
     } elseif ($user['id_partido'] != 0) {
-        die("Estas afiliado a otro partido");
+        die(get_String("already_affiliated"));
     } else {
         sql("UPDATE money SET gold = gold - " . $precio_partido . " WHERE id_usuario = " . $creador); //Se quita el gold
         $id_pais = sql("SELECT id_nacionalidad FROM usuarios WHERE id_usuario = " . $creador);
@@ -33,5 +33,5 @@ if (isset($_POST['nombre']) && $_POST['nombre'] != "" && strlen($_POST['nombre']
     }
 }
 else
-    die("faltan datos");
+    die(getString("smth_failed"));
 ?>
