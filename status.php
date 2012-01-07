@@ -77,6 +77,13 @@ echo "<a style='padding-left: 3em; text-align:right;'>Dia: $dia</a>";
 
 ?>
 
+<div id="buscador" style="float:right;">
+    <? 
+    include("/usuarios/form_buscador.php");
+    ?>
+</div>
+
+
 <div id="barra_derecha" style="position: absolute; left:100%; top:50%; margin-left: -35px;">
     <img id="flecha" src="/images/side/flecha.gif"/>
     <div id="monedas_barra" style="background-color: #1c94c4; position:absolute; display: none; top:50%; left:100%;margin-top: -60px; margin-left: -45px;">

@@ -21,6 +21,7 @@ RewriteRule ^([a-z]+)/partidos/([0-9]+)$ index.php?lang=$1&id_pais=$2&mod=lista_
 RewriteRule ^([a-z]+)/war/([0-9]+)$ index.php?lang=$1&id_guerra=$2&mod=guerra [L]
 RewriteRule ^([a-z]+)/guerras/([0-9]+)$ index.php?lang=$1&id_pais=$2&mod=lista_guerras [L]
 RewriteRule ^([a-z]+)/laws/([0-9]+)$ index.php?lang=$1&id_pais=$2&mod=laws [L]
+RewriteRule ^([a-z]+)/buscador/([a-z_]+)/([0-9]+)$ index.php?lang=$1&nick=$2&mod=buscador&pag=$3 [L,QSA]
 
 
 RewriteRule ^es/([a-z_]+) index.php?lang=es&mod=$1 [L]
