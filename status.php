@@ -79,7 +79,7 @@ echo "<a style='padding-left: 3em; text-align:right;'>Dia: $dia</a>";
 
 <div id="buscador" style="float:right;">
     <? 
-    include("/usuarios/form_buscador.php");
+    include("usuarios/form_buscador.php");
     ?>
 </div>
 
