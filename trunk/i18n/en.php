@@ -58,4 +58,15 @@ $i18n_array['foot_status_mysql_user'] = "users online ";
 $i18n_array['foot_status_mysql_status'] = "mysql status: ";
 
 
+//Menu
+
+$i18n_array['economico'] = "Economics";
+$i18n_array['militar'] = "Military";
+$i18n_array['mercados'] = "Market";
+$i18n_array['pais'] = "Country";
+$i18n_array['soporte'] = "Support";
+$i18n_array['trabajar'] = "Work";
+$i18n_array['mis_empresas'] = "My Companies";
+
+
 ?>

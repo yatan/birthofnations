@@ -27,6 +27,19 @@
                         </form>
                         <a href="/login/recuperar.php"><?echo getString("login_recovery");?></a>
                     </div><!--login-->
+                    <div id="publi" style="position: absolute; left: 50%; margin-left: -364px; top: 50%; margin-top: 150px;">
+                        <script type="text/javascript">
+                            <!-- 
+                        google_ad_client = "ca-pub-3976033733199023";
+                        /* birthofn login */
+                        google_ad_slot = "1937910781";
+                        google_ad_width = 728;
+                        google_ad_height = 90;
+                        //-->
+                        </script>
+                        <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+                        </script>
+                    </div>
                     <?php include("pie.php");?>
                 </div><!-- contenido -->
     </body>
