@@ -13,7 +13,7 @@ $id_empresa = $_GET['id_empresa'];
 //El objeto empresa ya esta declarado ya que este script se llama con include
 $empresa = new empresa($id_empresa);
 
-echo "<br>".getString ("company").": ".$empresa->nombre_empresa . " (" . $empresa->get_tipo() . ")";
+echo "<br>".getString ("company").": ".$empresa->nombre_empresa . " (" . getString('empresa_tipo'. $empresa->get_tipo() ) . ")";
 
 echo <<<EOT
 <form id="cambiar_nombre_empresa" action="/economico/cambiar_nombre_empresa.php"  method="POST">
@@ -178,7 +178,7 @@ if ($cantidad > 1) {
         echo "<tr><td>" . $oferta['salario'] . "</td><td>" . $oferta['cantidad'] . '</td><td>[<a href="/economico/quitar_oferta.php?id_oferta=' . $oferta['id_oferta'] . '">Quitar</a>]</td></tr>';
     }
 } elseif ($cantidad == 0)
-    echo "<p>" . $txt['no_ofertas_trabajo'] . "</p>";
+    echo "<p>" . getString('no_job_offers') . "</p>";
 elseif ($cantidad == 1)
     echo "<tr><td>" . $sql['salario'] . "</td><td>" . $sql['cantidad'] . '</td><td>[<a href="/economico/quitar_oferta.php?id_oferta=' . $sql['id_oferta'] . '">Quitar</a>]</td></tr>';
 ?>

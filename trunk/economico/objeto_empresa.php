@@ -55,19 +55,8 @@ class empresa
     
     function get_tipo()
     {
-        global $txt;
-        switch ($this->tipo) {
-            case 1:
-                return $txt['empresa_tipo1'];
-                break;
-            case 2:
-                return $txt['empresa_tipo2'];
-                break;
-
-            default:
-                return false;
-                break;
-        }
+        $tipo = sql("SELECT tipo FROM empresas WHERE id_empresa = " . $this->id_empresa );
+        return $tipo;
     }
     
 }
