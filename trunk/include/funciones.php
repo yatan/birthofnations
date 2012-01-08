@@ -837,10 +837,10 @@ function rango($puntos) {
     global $txt;
     //De 0 a 14 puntos de combate
     if ($puntos >= 0 && $puntos < 15)
-        return $txt["rango_0"];
+        return getString("rango_0");
     //A partir de 15 puntos de combate
     elseif ($puntos >= 15)
-        return $txt["rango_1"];
+        return getString("rango_1");
 }
 
 function item2img($item) {
