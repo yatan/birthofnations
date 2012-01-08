@@ -286,6 +286,22 @@ $i18n_array['user_again'] = "Ya existe un usuario con ese nick";
 $i18n_array['mail_again'] = "Ya existe un e-mail igual registrado";
 $i18n_array['ok'] = "ok";
 
+//MILITAR
+$i18n_array['military_strength'] = 'Fuerza: ';
+$i18n_array['military_range'] = 'Rango: ';
+$i18n_array['military_points'] = 'Puntos de combate: ';
+$i18n_array['military_you_have_trained'] = 'Hoy ya has entrenado, vuelve mañana: ';
+$i18n_array['military_train'] = 'Entrenar ';
+$i18n_array['military_accept'] = 'Aceptar ';
+$i18n_array['more_strenght'] = 'Tu fuerza ha aumentado ';
+$i18n_array['more_exp'] = 'Tus puntos de experiencia han aumentado ';
+
+
+//QUESTs
+
+$i18n_array['quest_valle'] = 'En busca de los lobos enfadados ';
+$i18n_array['quest_valle_text'] = 'Ve al bosque Willon y mata 10 lobos. ';
+$i18n_array['quest_valle_recompensa'] = '12 de Experiencia y 2 pociones';
 
 
 ?>

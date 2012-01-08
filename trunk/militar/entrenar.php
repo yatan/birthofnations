@@ -13,27 +13,27 @@ $fuerza = $militar['fuerza'];
 $rango = $militar['rango'];
 $p_combat = $militar['p_combat'];
 
-echo "<p>Fuerza: $fuerza</p>";
-echo "<p>Rango: " . rango($p_combat) . "</p>";
-echo "<p>Puntos de combate: $p_combat</p>";
+echo "<p>".getString('military_strength')." $fuerza</p>";
+echo "<p>".getString('military_range').($p_combat) . "</p>";
+echo "<p>".getString('military_points')."$p_combat</p>";
 
 echo "<br>";
 
 //Comprobaciones del user
 
 if ($entrenado == 1)
-    echo "<p>Hoy ya has entrenado, vuelve mañana</p>";
+    echo "<p>".getString('military_you_have_trained')."</p>";
 elseif ($objeto_usuario->salud < $min_train_health)
     echo $txt['no_train_health'];
 else
-    echo "<button id='entrenar'>Entrenar</button>";
+    echo "<button id='entrenar'>".getString('military_train')."</button>";
 ?>
 
 <script>
     $(function() {
         $( "#dialog" ).dialog({draggable: false, resizable: false, autoOpen: false, buttons: [
                 {
-                    text: "Aceptar",
+                    text: "<?echo getString('military_accept');?>",
                     click: function() { $(this).dialog("close"); window.location.reload(); }
                 }
             ]
@@ -41,7 +41,7 @@ else
     });
 </script>
 
-<div id="dialog" title="Entrenar">
+<div id="dialog" title="<? echo getString('military_train');?>">
 </div>
 
 <script>
