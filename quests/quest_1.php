@@ -1,5 +1,5 @@
 <?php
-
+include_once($_SERVER['DOCUMENT_ROOT'] . "/include/config_variables.php");
 /*
  * Quest 1
  * En busca de los lobos enfadados
@@ -17,9 +17,9 @@ class quest_1
     
     private $id_quest = 1;
     
-    public $nombre_quest = "En busca de los lobos enfadados";
-    public $texto_quest = "Ve al bosque Willon y mata 10 lobos.";
-    public $recompensa = "12 de Experiencia y 2 pociones";
+    public $nombre_quest = getString('quest_valle');
+    public $texto_quest = getString('quest_valle_text');
+    public $recompensa = getString('quest_valle_recompensa');
     
     //Recompensas
     
