@@ -45,6 +45,10 @@ function proposal_text($tipo, $id) {
             $sql = sql("SELECT param1 FROM votaciones WHERE id_votacion = " . $id);
             $txt = getString('1prop_105') . " <img src='" . $sql . "'>";
             break;
+        case 106:
+            $sql = sql("SELECT param1 FROM votaciones WHERE id_votacion = " . $id);
+            $txt = getString('1prop_106'). ": " . $sql;
+            break;
     endswitch;
     return $txt;
 }

@@ -142,8 +142,6 @@ function sql2($sql) {
     return $table;
 }
 
-
-
 function enviar_mail($destino, $nick) {
 
     global $mail_activation;
@@ -259,51 +257,47 @@ function checkban($id) {
     }
 }
 
-function check_lang($lengua){    
+function check_lang($lengua) {
 
-    $lengua_defecto="es";  
+    $lengua_defecto = "es";
 
-    $fichero = "./i18n/".$lengua.".php";
+    $fichero = "./i18n/" . $lengua . ".php";
 
-    if(! file_exists($fichero)){
+    if (!file_exists($fichero)) {
         $lengua = $lengua_defecto;
-        
-    }   
-    
-   
-    
+    }
+
+
+
     $_SESSION['i18n'] = $lengua;
     $_SESSION['i18n_default'] = $lengua_defecto;
-   
-    
 }
 
-function getString($text){
-    if(!isset($i18n_array)){
-        
-        include $_SERVER['DOCUMENT_ROOT'] .'/i18n/'.$_SESSION['i18n_default'].".php";   
-        include $_SERVER['DOCUMENT_ROOT'] .'/i18n/'.$_SESSION['i18n'].".php";     
+function getString($text) {
+    if (!isset($i18n_array)) {
+
+        include $_SERVER['DOCUMENT_ROOT'] . '/i18n/' . $_SESSION['i18n_default'] . ".php";
+        include $_SERVER['DOCUMENT_ROOT'] . '/i18n/' . $_SESSION['i18n'] . ".php";
     }
 
     return $i18n_array[$text];
-    
 }
 
 function select_lang() {
-    /*global $mail_activation;
-    global $signup_form;
-    global $login_form;
-    global $txt;*/
+    /* global $mail_activation;
+      global $signup_form;
+      global $login_form;
+      global $txt; */
     //Cualquier metodo que vaya aqui para elegir el idioma Y cargar el archivo. De momento solo hay español
-    
-    if(isset ($_GET['lang']))
-        check_lang($_GET['lang']);  
+
+    if (isset($_GET['lang']))
+        check_lang($_GET['lang']);
     else
-        check_lang("es");  
-    
-    
-    
-    
+        check_lang("es");
+
+
+
+
     //include_once($_SERVER['DOCUMENT_ROOT'] . "/i18n/es_ES.php");
 }
 
@@ -804,32 +798,50 @@ function apply_law($vot) {
             break;
         case 105://Cambio de bandera
             $sql = sql("UPDATE country SET url_bandera = '" . $votacion['param1'] . "' WHERE idcountry = " . $votacion['id_pais']);
+
+            break;
+        case 106:
+            $monedas = sql("SELECT moneda FROM country");
+
+            $flag = true;
+            $p[0] = strtoupper($p[0]);
             
+            foreach ($monedas as $coin) {
+                if ($p[0] == $coin['moneda']) {//Su nombre es el de alguna moneda
+                    $flag = false;
+                }
+            }
+
+            if ($flag == true) {
+                sql("ALTER TABLE empresas CHANGE " . moneda_pais($votacion['id_pais']) . " " . $p[0] . " int (11)");
+                sql("ALTER TABLE money CHANGE " . moneda_pais($votacion['id_pais']) . " " . $p[0] . " int (11)");
+                sql("ALTER TABLE money_pais CHANGE " . moneda_pais($votacion['id_pais']) . " " . $p[0] . " int (11)");
+                sql("UPDATE country SET moneda = '" . $p[0] . "' WHERE idcountry = " . $votacion['id_pais']);
+            }
             break;
     endswitch;
-    
-    if($votacion['solved'] == 0){
-        sql("UPDATE votaciones SET solved = 1 WHERE id_votacion = ".$votacion['id_votacion']);
+
+    if ($votacion['solved'] == 0) {
+        sql("UPDATE votaciones SET solved = 1 WHERE id_votacion = " . $votacion['id_votacion']);
         sql("UPDATE candidatos_elecciones SET solved = 1 WHERE id_votacion = " . $votacion['id_votacion']);
     }
 }
 
-function check_laws(){
+function check_laws() {
     $time = time();
-    $sql = sql2("SELECT id_votacion,tipo_votacion FROM votaciones WHERE solved = 0 AND fin < ". $time ." AND is_cargo = 0 AND tipo_votacion >= 100");
-    
-    foreach($sql as $vot){
-        $si = sql("SELECT votos FROM candidatos_elecciones WHERE id_candidato = -1 AND id_votacion = ".$vot['id_votacion']);
-        $no = sql("SELECT votos FROM candidatos_elecciones WHERE id_candidato = -2 AND id_votacion = ".$vot['id_votacion']);
-        
+    $sql = sql2("SELECT id_votacion,tipo_votacion FROM votaciones WHERE solved = 0 AND fin < " . $time . " AND is_cargo = 0 AND tipo_votacion >= 100");
+
+    foreach ($sql as $vot) {
+        $si = sql("SELECT votos FROM candidatos_elecciones WHERE id_candidato = -1 AND id_votacion = " . $vot['id_votacion']);
+        $no = sql("SELECT votos FROM candidatos_elecciones WHERE id_candidato = -2 AND id_votacion = " . $vot['id_votacion']);
+
         //Aqui se podrian cambiar las normas para que segun no se que pollas la votacion se ganara o perdiera peeeeeeeeeero ya para mas tarde xD
-        
-        if($si >= $no){//De momento mayoria simple :yao:
+
+        if ($si >= $no) {//De momento mayoria simple :yao:
             apply_law($vot['id_votacion']);
-        }else{//Obviamente aqui va que no xD
+        } else {//Obviamente aqui va que no xD
             apply_law($vot['id_votacion']);
         }
-        
     }
 }
 
@@ -850,23 +862,21 @@ function item2img($item) {
             break;
         case 2:
             return "<img src='/images/items/grano.png' />";
-        break;    
+            break;
         case 3:
             return "<img src='/images/items/oil.png' />";
-        break;
+            break;
         case 4:
             return "<img src='/images/items/transporte.png' />";
-        break;    
-
+            break;
     }
 }
 
-
 function reset_mail($mail) {
     $pin = sql("SELECT pin FROM settings");
-    $token = md5($mail)+$pin;
-    $link = "http://birthofnations.com/usuarios/recuperar.php?token=".$token;
-    mail($mail,"Recuperacion password cuenta Birth of Nations","El siguiente link es para resetear: $link ");
+    $token = md5($mail) + $pin;
+    $link = "http://birthofnations.com/usuarios/recuperar.php?token=" . $token;
+    mail($mail, "Recuperacion password cuenta Birth of Nations", "El siguiente link es para resetear: $link ");
 }
 
 ?>
