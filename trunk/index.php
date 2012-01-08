@@ -121,7 +121,9 @@ include("index_head.php");
                             case "laws":
                                 include("politico/last_laws.php");
                                 break;
-                            
+                            case "addwar":
+                                include("militar/aniadir_guerra.php");
+                                break;
                             default :
                                 die($_GET['mod']); //Default por si se pone algo incorrecto. Al futuro hay que cambiarlo
                             }

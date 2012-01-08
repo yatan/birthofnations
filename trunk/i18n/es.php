@@ -42,8 +42,8 @@ $i18n_array['si'] = 'Si';
 $i18n_array['no'] = 'No';
 $i18n_array['candidate'] = 'Candidato: ';
 $i18n_array['you_cant'] = 'El amado lider te mira con desaprobacion. No cumples algun requisito.';
-$i18n_array['affiliate'] = 'Regiones';
-$i18n_array['affiliate'] = 'Regiones';
+$i18n_array['country'] = 'Pais';
+$i18n_array['region'] = 'Region';
 
  		//LOGIN
 
