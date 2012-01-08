@@ -55,9 +55,10 @@ else
     function regioninput(arg){
         document.getElementById('region').value=document.getElementById('region2').value;
     }
-</script>
+
 document.getElementById('hora_inicio1').value=((document.getElementById('datepicker').value)/1000)+((document.getElementById('datepicker').value)/1000);
-<div style="background-color: darkred; height: 1000px;">
+</script>
+    <div style="background-color: darkred; height: 1000px;">
 <div style="background-color: red;">
     <div style="width: 50%; float:left; text-align: center; background-color: darkorchid;  height: 60px;">
         <? getString('country'); ?><br><center>

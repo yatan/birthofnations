@@ -71,7 +71,7 @@ echo"<a style='none' href='/".$_GET['lang']."/alertas'>";
 if($alertas==0 || $alertas == false)
 echo "<img src='/images/status_bar/no_alert.png' alt='no_alert'> Alertas: 0";  
 elseif ($alertas>=1) 
-echo "<img alt='alert' src='/images/status_bar/alert.png'> Alertas nuevas: $alertas";  
+echo "<img alt='alert' src='/images/status_bar/alert.png'> Alertas : $alertas";  
 echo"</a>";
 echo "<a style='padding-left: 3em; text-align:right;'>Dia: $dia</a>";
 
