@@ -14,7 +14,7 @@ $rango = $militar['rango'];
 $p_combat = $militar['p_combat'];
 
 echo "<p>".getString('military_strength')." $fuerza</p>";
-echo "<p>".getString('military_range').($p_combat) . "</p>";
+echo "<p>".getString('military_range'). rango($p_combat) . "</p>";
 echo "<p>".getString('military_points')."$p_combat</p>";
 
 echo "<br>";
