@@ -41,6 +41,7 @@ function law_params($ley) {
         case 101:
         case 102:
         case 105:
+        case 106:
             $data = 1;
             break;
         case 103:

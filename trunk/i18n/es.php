@@ -197,6 +197,8 @@ $i18n_array['law_103'] = 'Dar cargo';
 $i18n_array['law_104'] = 'Quitar cargo';
 $i18n_array['law_105'] = 'Cambiar bandera';
 $i18n_array['1prop_105'] = 'Nueva bandera del pais: ';
+$i18n_array['law_106'] = 'Cambiar nombre de la moneda';
+$i18n_array['1prop_106'] = 'Nuevo nombre de la moneda del pais';
 //Rangos Militares
 
 $i18n_array['rango_0'] = 'Soldado';
