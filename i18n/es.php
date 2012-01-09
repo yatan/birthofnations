@@ -270,6 +270,8 @@ $i18n_array['company_exp'] = "Has ganado 1 punto de experiencia";
 $i18n_array['company_you_have_produced'] = "Has producido ";
 $i18n_array['company_come_again_tomorrow'] = "Vuelve mañana";
 $i18n_array['no_job_offers'] = "No hay ofertas de trabajo.";
+$i18n_array['not_enough_stock'] = "No tienes suficiente stock para vender";
+$i18n_array['sell_for_zero'] = "El precio de venta no puede ser negativo";
 
 // VIAJES
 
