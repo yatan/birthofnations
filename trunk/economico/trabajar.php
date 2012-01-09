@@ -86,11 +86,17 @@ if ($empresa[$moneda_local[$datos['moneda']]] > $datos['salario']) { //Si hay su
             echo getString('company_exp');
         }
         else
+            {
             echo getString('company_not_enough_raw');
+            send_alert($objeto_usuario->id_usuario, $duenyo, 4, $datos['id_empresa']);
+            }
     }
     else
         echo getString('company_you_have_worked');
 }
 else
+    {
     echo getString('company_not_enough_salary');
+    send_alert($objeto_usuario->id_usuario, $duenyo, 5, $datos['id_empresa']);
+    }
 ?>
