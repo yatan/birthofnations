@@ -180,6 +180,7 @@ $i18n_array['foro'] = "Foro";
 $i18n_array['tickets'] = "Tickets de soporte";
 $i18n_array['bugs'] = "Reporte de bugs";
 $i18n_array['wiki'] = "Wiki";
+$i18n_array['laws'] = "Leyes";
 //Items
 
 $i18n_array['sugus'] = "Sugus";
