@@ -46,6 +46,7 @@ elseif($entrenado==0)
         <ul>
             <li><a href="<? echo "/".$_GET['lang']."/pais/".$objeto_usuario->id_pais; ?>"><? echo getString('mi_pais'); ?></a></li>
             <li><a href="<? echo "/".$_GET['lang']."/partidos/".$objeto_usuario->id_pais; ?>"><? echo getString('partidos_politicos'); ?></a></li>
+            <li><a href="<? echo "/".$_GET['lang']."/laws/".$objeto_usuario->id_pais; ?>"><? echo getString('laws'); ?></a></li>
             <!--<li><a href="#"><? echo getString('ranking'); ?></a></li>-->
         </ul>   
         </li>        
