@@ -879,4 +879,9 @@ function reset_mail($mail) {
     mail($mail, "Recuperacion password cuenta Birth of Nations", "El siguiente link es para resetear: $link ");
 }
 
+//Para enviar la alerta
+function send_alert($emisor, $receptor, $tipo, $r1) {
+    sql("INSERT INTO alertas(id_emisor,id_receptor,tipo,r1,fecha) VALUES ('".$emisor."','".$receptor."','".$tipo."','".$r1."','".time()."')"); 
+}
+
 ?>

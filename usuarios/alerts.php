@@ -28,8 +28,15 @@ foreach ($alertas as $alerta) {
         case "3":
             echo "<tr><td>Jugador</td>";
             echo "<td>Felicidades has subido al level ".$alerta['r1']."</td>";
-            
-            break;  
+            break;
+        case "4":
+            echo "<tr><td>Trabajador</td>";
+            echo "<td>El jugador ".id2nick($alerta['id_emisor'])." no puede trabajar en <b>".id2empresa($alerta['r1'])."</b> porque no hay raw suficiente</td>";
+            break;   
+        case "5":
+            echo "<tr><td>Trabajador</td>";
+            echo "<td>El jugador ".id2nick($alerta['id_emisor'])." no puede trabajar en <b>".id2empresa($alerta['r1'])."</b> porque no hay dinero suficiente</td>";
+            break;        
 
         default:
             break;
