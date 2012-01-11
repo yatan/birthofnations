@@ -875,8 +875,30 @@ function item2img($item) {
 function reset_mail($mail) {
     $pin = sql("SELECT pin FROM settings");
     $token = md5($mail) + $pin;
-    $link = "http://birthofnations.com/usuarios/recuperar.php?token=" . $token;
+    $link = "http://birthofnations.com/usuarios/recuperar.php?token=" . $token . "&mail=".$mail;
     mail($mail, "Recuperacion password cuenta Birth of Nations", "El siguiente link es para resetear: $link ");
+}
+
+function reset_pass($mail, $token) {
+    $pin = sql("SELECT pin FROM settings");
+    $token_bueno = md5($mail) + $pin;
+    
+    if($token!=$token_bueno)
+        return false;
+    elseif($token==$token_bueno)
+        return true;
+}
+
+function new_password($password1, $password2, $mail)
+{
+    if($password1!=$password2)
+        die("Password no coincide");
+    elseif($password1==$password2)
+        {
+        echo "password cambiado correctamente";
+        $nuevo_pass = md5($password1);
+        sql("UPDATE usuarios SET password = '$nuevo_pass' WHERE email = '$mail'");
+        }
 }
 
 //Para enviar la alerta
