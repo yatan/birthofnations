@@ -36,18 +36,20 @@ foreach ($sql as $votacion) {
 }
 
 function proposal_text($tipo, $id) {
+    $sql = sql("SELECT param1 FROM votaciones WHERE id_votacion = " . $id);
+    $p = explode(".",$sql);
     switch ($tipo):
         case 100:
-            $sql = sql("SELECT param1 FROM votaciones WHERE id_votacion = " . $id);
-            $txt = getString('1prop_100') . " " . $sql . " " . getString('2prop_100');
+            $txt = getString('1prop_100') . " " . $p[0] . " " . getString('2prop_100');
             break;
         case 105:
-            $sql = sql("SELECT param1 FROM votaciones WHERE id_votacion = " . $id);
             $txt = getString('1prop_105') . " <img src='" . $sql . "'>";
             break;
         case 106:
-            $sql = sql("SELECT param1 FROM votaciones WHERE id_votacion = " . $id);
-            $txt = getString('1prop_106'). ": " . $sql;
+            $txt = getString('1prop_106'). ": " . $p[0];
+            break;
+        case 201:
+            $txt = getString('1prop_201') . $p[0] . " " . strtoupper($p[1]) . getString('2prop_201') . id2nick($p[2]);
             break;
     endswitch;
     return $txt;

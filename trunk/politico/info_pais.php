@@ -47,7 +47,7 @@ foreach ($cargos as $cargo) {
     $data = explode('-', $cargo['votacion']);
     $data2 = explode('.', $data[1]);
     if ($sql == false) {//Si no hay
-        echo $cargo['nombre']. ": ".getString('next_elections'). next_elecciones($dia_actual, $data2[0], $data2[1]);
+        echo $cargo['nombre']. ": ".getString('next_elections'). next_elecciones($dia_actual, $data2[0], $data2[1]) . "<br>";
     } else { //Si hay
         if ($dia_actual % $data2[1] == $data2[0]) { //Dia de elecciones 
             //Sacar id de la votacion
@@ -56,15 +56,15 @@ foreach ($cargos as $cargo) {
             echo $cargo['nombre'] . '  <a href="/politico/lista_candidatos.php?id=' . $sql . '">[' . getString("vote") . ']</a><br>';
         } else {//Si no es el dia de la votacion es hora de postularse
             // Fecha + Postulacion
-            echo "Proximas elecciones el dia: " . next_elecciones($dia_actual, $data2[0], $data2[1]);
+            echo "Proximas elecciones el dia: " . next_elecciones($dia_actual, $data2[0], $data2[1]) . "<br>";
             $time = time();
             $vot = sql("SELECT id_votacion FROM votaciones WHERE tipo_votacion = " . $cargo['id_cargo'] . " AND fin > " . $time . " AND is_cargo = 1 AND solved = 0");
             $sql = sql("SELECT * from candidatos_elecciones WHERE id_candidato = " . $_SESSION['id_usuario'] . " AND id_votacion = " . $vot);
 
             if ($sql == false) {//Si aun no esta postulado
-                echo $cargo['nombre']. ": [<a href='/politico/postular.php?v=" . $vot . "'>" . getString('postulate') . "</a>]";
+                echo $cargo['nombre']. ": [<a href='/politico/postular.php?v=" . $vot . "'>" . getString('postulate') . "</a>]<br>";
             } else {//Si ya esta postulado
-                echo $cargo['nombre']. ": [<a href='/politico/despostular.php?v=" . $vot . "'>" . getString('unpostulate') . "</a>]";
+                echo $cargo['nombre']. ": [<a href='/politico/despostular.php?v=" . $vot . "'>" . getString('unpostulate') . "</a>]<br>";
             }
         }
     }
