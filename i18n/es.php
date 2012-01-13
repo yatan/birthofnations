@@ -21,6 +21,8 @@ $i18n_array['name_taken'] = "Ese nombre esta ocupado.";
 $i18n_array['not_enough_gold']= ' No tienes oro suficiente.';
 $i18n_array['already_affiliated'] = 'Ya estas en un partido.';
 $i18n_array['smth_failed'] = "Algo ocurrio.";
+$i18n_array['new_name'] = "Nuevo nombre";
+$i18n_array['new_flag'] = "Nueva bandera";
 
                 //PALABRAS SUELTAS
 $i18n_array['leaders'] = "Lideres";
@@ -45,6 +47,7 @@ $i18n_array['candidate'] = 'Candidato: ';
 $i18n_array['you_cant'] = 'El amado lider te mira con desaprobacion. No cumples algun requisito.';
 $i18n_array['country'] = 'Pais';
 $i18n_array['region'] = 'Region';
+$i18n_array['id_destiny'] = 'Id_Destinatario';
 
  		//LOGIN
 
@@ -200,6 +203,10 @@ $i18n_array['law_105'] = 'Cambiar bandera';
 $i18n_array['1prop_105'] = 'Nueva bandera del pais: ';
 $i18n_array['law_106'] = 'Cambiar nombre de la moneda';
 $i18n_array['1prop_106'] = 'Nuevo nombre de la moneda del pais';
+$i18n_array['law_201'] = 'Donar moneda';
+$i18n_array['1prop_201'] = 'Donar ';
+$i18n_array['2prop_201'] = ' a ';
+
 //Rangos Militares
 
 $i18n_array['rango_0'] = 'Soldado';

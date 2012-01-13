@@ -72,10 +72,11 @@ if (isset($_POST['f'])) {
     ?>
     <form id="ley" action="/politico/launcher.php" method ="POST">
         <?
+        $f = law_param_names($ley[0]);
         echo "<input type='hidden' name='data' value='" . $ley[0] . "-" . $ley[1] . "'>";
         echo "<input type='hidden' name='id_pais' value='" . $_GET['id_pais'] . "'>";
         for ($i = 0; $i < law_params($ley[0]); $i++) {
-            echo "<input name='p[" . $i . "]'><br>";
+            echo "<input name='p[" . $i . "]' value='". $f[$i] ."'><br>"; //Tiene ese nombre para que la siguiente pagina puedo leerlo como un array
         }
         ?>
 

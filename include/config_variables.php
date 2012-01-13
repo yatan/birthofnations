@@ -48,10 +48,30 @@ function law_params($ley) {
         case 104:
             $data = 2;
             break;
+        case 201:
+            $data = 3;
+            break;
     endswitch;
 
 
     return $data;
+}
+
+ //Nombre de los parametros de cada ley
+function law_param_names($ley){
+    switch($ley):
+        case 100:
+        case 106:
+            $f[0] = getString('new_name');
+            break;
+        case 105:
+            $f[0] = getString('new_flag');
+        case 201:
+            $f[0] = getString('amount');
+            $f[1] = getString('currency');
+            $f[2] = getString('id_destiny');
+    endswitch;
+    return $f;
 }
 
 //Modulo militar

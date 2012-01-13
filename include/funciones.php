@@ -819,6 +819,32 @@ function apply_law($vot) {
                 sql("UPDATE country SET moneda = '" . $p[0] . "' WHERE idcountry = " . $votacion['id_pais']);
             }
             break;
+        case 201:
+            //Sacamos la lista de nombres de monedas
+            $monedas = sql("SELECT moneda FROM country");
+
+            $flag = true;
+            $p[0] = strtoupper($p[0]);
+
+            foreach ($monedas as $coin) {
+                if ($p[0] == $coin['moneda']) {//Su nombre es el de alguna moneda
+                    $flag = false;
+                }
+            }
+            if ($flag == false) {//Si es el nombre de alguna moneda
+                //Sacamos cuanta moneda de esa tiene el pais
+                $p[1] = strtoupper($p[1]);
+                $money = sql("SELECT " . $p[1] . " FROM money_pais WHERE idcountry = " . $votacion['id_pais']);
+
+                //Si tienen tanta como quieren sacar
+                if ($money >= $p[0]) {
+                    //Se la quitamos al pais
+                    sql("UPDATE money_pais SET " . $p[1] . " = " . $p[1] . " - " . $p[0] . " WHERE idcountry = " . $votacion['id_pais']);
+                    //Se la ponemos al user
+                    sql("UPDATE money SET " . $p[1] . " = " . $p[1] . " + " . $p[0] . " WHERE id_usuario= " . $p[2]);
+                }
+            }
+            break;
     endswitch;
 
     if ($votacion['solved'] == 0) {
@@ -855,7 +881,7 @@ function rango($puntos) {
         return getString("rango_1");
 }
 
-function item2img($item) {
+function item2img($item) {//Ver Incidencia #19
     switch ($item) {
         case 1:
             return "<img src='/images/items/pan.png' />";
