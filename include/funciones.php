@@ -881,21 +881,9 @@ function rango($puntos) {
         return getString("rango_1");
 }
 
-function item2img($item) {//Ver Incidencia #19
-    switch ($item) {
-        case 1:
-            return "<img src='/images/items/pan.png' />";
-            break;
-        case 2:
-            return "<img src='/images/items/grano.png' />";
-            break;
-        case 3:
-            return "<img src='/images/items/oil.png' />";
-            break;
-        case 4:
-            return "<img src='/images/items/transporte.png' />";
-            break;
-    }
+function item2img($item) {//devuelve la imagen a partir de la id del item
+    $imagen = sql("SELECT url_imagen_grande FROM items WHERE id_item='$item'");
+    return "<img src='$imagen' />";
 }
 
 function reset_mail($mail) {
