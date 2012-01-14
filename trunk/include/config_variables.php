@@ -16,6 +16,8 @@ $min_travel_health = 10;
 
 //Modulo economico
 
+$currency_per_gold = 100;
+
 $min_work_health = 10;
 
 $precio_empresa[10] = 10; //Entre [] el tipo
@@ -42,6 +44,7 @@ function law_params($ley) {
         case 102:
         case 105:
         case 106:
+        case 200:
             $data = 1;
             break;
         case 103:
@@ -66,6 +69,9 @@ function law_param_names($ley){
             break;
         case 105:
             $f[0] = getString('new_flag');
+            break;
+        case 200:
+            $f[0] = getString('amount');
         case 201:
             $f[0] = getString('amount');
             $f[1] = getString('currency');
