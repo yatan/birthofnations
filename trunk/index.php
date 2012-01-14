@@ -36,7 +36,8 @@ if($objeto_usuario->estoy_viajando==true && !isset($_GET['mod']))
     header("Location: /es/viajando"); //<-- Redireccion a la pagina mientras se vuela (TEMPORAL)
 
 ?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html>
 <?php 
 include("index_head.php"); 
@@ -124,6 +125,9 @@ include("index_head.php");
                             case "addwar":
                                 include("militar/aniadir_guerra.php");
                                 break;
+                            case "mercado_economico":
+                                include("economico/mercado_economico.php");
+                                break;                            
                             default :
                                 die($_GET['mod']); //Default por si se pone algo incorrecto. Al futuro hay que cambiarlo
                             }
