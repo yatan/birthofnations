@@ -37,8 +37,9 @@ class usuario
         $this->id_region = $usuario['id_region'];
         $this->id_pais = sql("SELECT idcountry FROM region WHERE idregion = " . $this->id_region);
         $this->id_nacionalidad = $usuario['id_nacionalidad'];
+        $this->moneda = $usuario['moneda'];
         
-        if($usuario['avatar']==null)
+        if($usuario['avatar']==null || $usuario['avatar']=="")
         $this->avatar = "http://birthofnations.com/images/no_avatar.gif";
             else
         $this->avatar = $usuario['avatar'];
