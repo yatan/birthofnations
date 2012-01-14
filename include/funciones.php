@@ -819,6 +819,25 @@ function apply_law($vot) {
                 sql("UPDATE country SET moneda = '" . $p[0] . "' WHERE idcountry = " . $votacion['id_pais']);
             }
             break;
+        case 200:
+            
+            $currency_per_gold= 100; //De momento dejamos esto aqui, aunqueo ideal seria enlazarlo desde config_variables.php, pero no se porque no consigo que vaya ahora mismo.
+            
+            //Sacamos la cantidad de gold del pais;
+            $gold = sql("SELECT Gold FROM money_pais WHERE idcountry = " . $votacion['id_pais']);
+            $nombre_moneda = moneda_pais($votacion['id_pais']);
+            
+            //Vemos si tiene el Gold necesario para crearla:
+            
+            if($gold >= $p[0]/$currency_per_gold ){//Gold >= gold necesario [Esp / (Esp/Gold)]
+                //Quitar gold
+                sql("UPDATE money_pais SET Gold = Gold - " . $p[0]/$currency_per_gold . " WHERE idcountry = " . $votacion['id_pais']);
+                //Poner moneda local
+                sql("UPDATE money_pais SET ".$nombre_moneda." = ".$nombre_moneda." + " . $p[0] . " WHERE idcountry = " . $votacion['id_pais']);
+            }
+            
+            
+            break;
         case 201:
             //Sacamos la lista de nombres de monedas
             $monedas = sql("SELECT moneda FROM country");
