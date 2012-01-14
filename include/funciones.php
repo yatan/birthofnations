@@ -824,16 +824,16 @@ function apply_law($vot) {
             $monedas = sql("SELECT moneda FROM country");
 
             $flag = true;
-            $p[0] = strtoupper($p[0]);
+            $p[1] = strtoupper($p[1]);
 
             foreach ($monedas as $coin) {
-                if ($p[0] == $coin['moneda']) {//Su nombre es el de alguna moneda
+                if ($p[1] == $coin['moneda']) {//Su nombre es el de alguna moneda
                     $flag = false;
                 }
             }
+            
             if ($flag == false) {//Si es el nombre de alguna moneda
                 //Sacamos cuanta moneda de esa tiene el pais
-                $p[1] = strtoupper($p[1]);
                 $money = sql("SELECT " . $p[1] . " FROM money_pais WHERE idcountry = " . $votacion['id_pais']);
 
                 //Si tienen tanta como quieren sacar
