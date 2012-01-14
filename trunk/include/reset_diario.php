@@ -241,6 +241,16 @@ foreach($sql as $votacion){
 }
 
 
+/*
+ * Limpieza de la DB
+ */
+
+//Eliminar log_produccion de mas de 15 dias
+$dia = sql("SELECT day FROM settings") - 15;
+sql("DELETE FROM log_produccion WHERE dia < $dia");
+sql("DELETE FROM log_ventas WHERE dia < $dia");
+
+
 sql("UPDATE settings SET mantenimiento='0'");
 
 $time_end = microtime(true);
