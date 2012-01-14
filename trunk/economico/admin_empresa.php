@@ -321,5 +321,105 @@ if (isset($_POST['metodo'])) {
     });
 </script>
 
+
+<hr noshade>
+<h3 style="background-color:#396; text-align:center;">Historial de produccion</h3>
+
+<table width="75%" border="1" align="center" style="text-align:center;" >
+
+  <tr style="font-size:24px; background-color:#09C; color:#930;">
+    <td>Empleado</td>
+    <td><? echo($dia-3); ?></td>
+    <td><? echo($dia-2); ?></td>
+    <td><? echo($dia-1); ?></td>
+    <td><? echo($dia); ?></td>
+  </tr>
+
+<?
+
+
+
+  	$sql = mysql_query("SELECT u.id_usuario, u.nick
+							FROM usuarios u
+							 WHERE u.id_empresa='$empresa->id_empresa'");
+	while($listado=mysql_fetch_array($sql))
+	{
+	echo "<tr>";
+	$trabajador = $listado['nick'];
+	$id_trabajador = $listado['id_usuario'];
+	echo "<td>$trabajador</td>";	
+	
+	  	$result = mysql_query("SELECT l.producido
+							FROM log_produccion l
+							 WHERE l.id_usuario='$id_trabajador'  AND id_empresa='$empresa->id_empresa' AND l.dia=$dia-3");
+	$array=mysql_fetch_array($result);
+
+	if( $array == false )
+	echo("<td><img src='/images/mini_error.gif' /></td>");
+	else
+	{
+	$producido = $array['producido'];
+	echo "<td>$producido</td>";
+	}
+	
+	$result = mysql_query("SELECT l.producido
+							FROM log_produccion l
+							 WHERE l.id_usuario='$id_trabajador' AND id_empresa='$empresa->id_empresa' AND l.dia=$dia-2");
+	$array=mysql_fetch_array($result);
+	
+	if( $array == false )
+	echo("<td><img src='/images/mini_error.gif' /></td>");
+	else	
+	{
+	$producido = $array['producido'];
+	echo "<td>$producido</td>";
+	}
+	
+	
+	  	$result = mysql_query("SELECT l.producido
+							FROM log_produccion l
+							 WHERE l.id_usuario='$id_trabajador' AND id_empresa='$empresa->id_empresa' AND l.dia=$dia-1");
+	$array=mysql_fetch_array($result);
+	if( $array == false )
+	echo("<td><img src='/images/mini_error.gif' /></td>");
+	else
+	{
+	$producido = $array['producido'];
+	echo "<td>$producido</td>";
+	}
+	
+		  	$result = mysql_query("SELECT l.producido
+							FROM log_produccion l
+							 WHERE l.id_usuario='$id_trabajador' AND id_empresa='$empresa->id_empresa' AND l.dia=$dia");
+	$array=mysql_fetch_array($result);
+	if( $array == false )
+	echo("<td><img src='/images/mini_error.gif' /></td>");
+	else
+	{
+	$producido = $array['producido'];
+	echo "<td>$producido</td>";
+	}
+	
+		echo"</tr>";
+	}
+
+
+	?>
+ 
+</table>
+
+<hr noshade>
+<h3 style="background-color:#396; text-align:center;">Historial de ventas</h3>
+<?
+    $sql = mysql_query("SELECT * FROM log_ventas WHERE id_empresa='$empresa->id_empresa' ORDER BY dia DESC LIMIT 10");
+	while($listado=mysql_fetch_array($sql))
+	{
+		$cantidad = $listado['cantidad'];
+		$dia_v = $listado['dia'];
+		echo("<hr><p><b>Cantidad:</b> $cantidad - <b>Dia: </b>$dia_v</p>");
+	}
+
+?>
+
 </td>
 </table>
