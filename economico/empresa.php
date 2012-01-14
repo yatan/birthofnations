@@ -81,7 +81,7 @@ else
 //Aqui se mostrara publicamente a todo el mundo
     //var_dump($empresa);
     echo "<p>".  getString('company_owner').": ".$empresa->get_nick_propietario()."</p>";
-    echo "<p>".  getString('company_type').":".$empresa->get_tipo()."</p>";
-       
+    echo "<p>".  getString('company_type').":".getString('empresa_tipo'.$empresa->get_tipo() )."</p>";
+           
 }
 ?>
