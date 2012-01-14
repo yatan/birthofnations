@@ -829,7 +829,15 @@ function apply_law($vot) {
             foreach ($monedas as $coin) {
                 if ($p[1] == $coin['moneda']) {//Su nombre es el de alguna moneda
                     $flag = false;
+                    break;
                 }
+            }
+            
+            //Si no es ninguna moneda puede que sea gold
+            
+            if($flag == true && strtoupper($p[1]) == "GOLD"){
+                $p[1] = "Gold";
+                $flag = false;
             }
             
             if ($flag == false) {//Si es el nombre de alguna moneda
