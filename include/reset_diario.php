@@ -3,6 +3,9 @@ $time_start = microtime(true);
 //Archivo de reset diario
 
 include_once("/home/birthofn/public_html/include/config.php");
+include_once("/home/birthofn/public_html/include/funciones.php");
+
+sql("UPDATE settings SET mantenimiento='1'");
 
 function sql_error($sql) {
 
@@ -237,6 +240,8 @@ foreach($sql as $votacion){
 
 }
 
+
+sql("UPDATE settings SET mantenimiento='0'");
 
 $time_end = microtime(true);
 $time = $time_end - $time_start;
