@@ -10,7 +10,7 @@
 echo "<h1>Alertas</h1>";
 
 
-$alertas = sql2("SELECT * FROM alertas WHERE id_receptor='".$_SESSION['id_usuario']."' ORDER BY id_alerta DESC");
+$alertas = sql2("SELECT * FROM alertas WHERE id_receptor='".$_SESSION['id_usuario']."' AND tipo <> 0 ORDER BY id_alerta DESC");
 
 echo "<form id='borrar_alertas'><table style='text-align: center; width: 600px; margin-left: auto; margin-right: auto; padding: 5px;'><tr><th style='width: 100px'>Tipo</th><th style='width: 310px'>Alerta</th><th>Eliminar</th></tr>";
 
