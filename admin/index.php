@@ -1,10 +1,12 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT']."/include/funciones.php");
-include_once($_SERVER['DOCUMENT_ROOT']."/index_head.php");
+
 if(!isset($_SESSION['is_admin']))
     header("Location: ../");
 elseif($_SESSION['is_admin']!=1)
     header("Location: ../");
+
+include_once($_SERVER['DOCUMENT_ROOT']."/index_head.php");
 ?>
 <center><p style="font-size: 1.5em;"><a href="/" style="color: #F00;">Ir al juego</a></p></center>
 <script>
