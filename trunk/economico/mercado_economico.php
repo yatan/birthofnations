@@ -74,26 +74,44 @@ foreach ($sql as $moneda => $valor) {
 
 <?
 if(!isset($_POST['compra']))
-    $compra = Gold;
+    $compra = "Gold";
 else
     $compra = $_POST['compra'];
 
 
 if(!isset($_POST['venta']))
-    $compra = $objeto_usuario->moneda;
+    $venta = $objeto_usuario->moneda;
 else
-    $compra = $_POST['venta'];
+    $venta = $_POST['venta'];
 
+
+$id_moneda_compra = array_search($compra, $moneda_local);
+$id_moneda_venta = array_search($venta, $moneda_local);
 
 ?>
 
 <br> <br>
 
 <h2>Ofertas</h2>
-<br>
+
+<?
+
+
+$ofertas = sql2("SELECT * 
+    FROM mercado_monetario 
+    WHERE tipo_moneda_comprar = '$id_moneda_compra' AND tipo_moneda_vender = '$id_moneda_venta' ORDER BY id_oferta ASC");
+
+var_dump($ofertas);
+?>
+
+
 <table style="width:400px;">
     <tr><td>Vendedor</td><td>Cantidad</td><td>Ratio</td><td>Comprar</td></tr> 
-    <tr><td>yatan</td><td>432 Gold</td><td>1 Gold = 34 THK</td><td><input type="text" style="width:30px"/><input type="submit" /></td></tr>
+    <?
+    foreach ($ofertas as $oferta){
+        echo "<tr><td>{$oferta['id_vendedor']}</td><td>{$oferta['cantidad_moneda_comprar']} Gold</td><td>1 Gold = {$oferta['cantidad_moneda_vender']} THK</td><td><input type='text' style='width:30px'/><input type='submit'/></td></tr>";
+    }
+   ?>
 </table>
 
 
