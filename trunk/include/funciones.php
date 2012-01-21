@@ -321,6 +321,11 @@ function id2item($id) {
     return $sql;
 }
 
+function id2itemimg($id) {
+    $sql = sql("SELECT url_imagen_grande FROM items WHERE id_item = '$id'");
+    return $sql;
+}
+
 function next_elecciones($DA, $DE, $FE) {//Actual/Resto del dia de las elecciones/Frecuencia
     if ($DA % $FE > $DE) {
         $prox = $DA - $DA % $FE + $DE + $FE;
