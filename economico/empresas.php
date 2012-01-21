@@ -21,7 +21,8 @@ $sql = sql2("SELECT * FROM empresas WHERE id_propietario='".$_SESSION['id_usuari
 echo "<table><tr><th>Tipo</th><th>".  getString('company_list_name')."</th></tr>";
 
 foreach ($sql as $empresa) {
-    echo "<tr><td>".  id2item($empresa['tipo'])."</td><td><a href='/".$_GET['lang']."/empresa/".$empresa['id_empresa']."'>".$empresa['nombre_empresa']."</a></td></tr>";
+    echo '<tr><td><img width="33" height="33" src="..'.  id2itemimg($empresa['tipo']).'" title="'.  id2item($empresa['tipo']).'">';
+  echo "</td><td><a href='/".$_GET['lang']."/empresa/".$empresa['id_empresa']."'>".$empresa['nombre_empresa']."</a></td></tr>";
     }
 
 //}
