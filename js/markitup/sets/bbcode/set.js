@@ -31,6 +31,9 @@ mySettings = {
 		{name:'List item', openWith:'[*] '},
 		{separator:'---------------' },
 		{name:'Quotes', openWith:'[quote]', closeWith:'[/quote]'},
-		{name:'Code', openWith:'[code]', closeWith:'[/code]'}
+		{name:'Code', openWith:'[code]', closeWith:'[/code]'},
+		{separator:'---------------' },
+                {name:'Preview', className:"preview", call:'preview' }
+
 	]
 }

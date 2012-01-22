@@ -44,6 +44,7 @@ $i18n_array['owner'] = 'Propietario';
 $i18n_array['si'] = 'Si';
 $i18n_array['no'] = 'No';
 $i18n_array['candidate'] = 'Candidato: ';
+$i18n_array['aceptar'] = 'Aceptar';
 $i18n_array['you_cant'] = 'El amado lider te mira con desaprobacion. No cumples algun requisito.';
 $i18n_array['country'] = 'Pais';
 $i18n_array['region'] = 'Region';
@@ -139,6 +140,18 @@ $i18n_array['mantenimiento_2'] = "El juego se encuentra en mantenimiento.";
 $i18n_array['mantenimiento_3'] = "Para visitar el foro use el siguiente link:";
 $i18n_array['mantenimiento_4'] = "Acceder al foro";
 
+// Mediatico
+$i18n_array['periodico_publicado'] = 'Articulo publicado';
+$i18n_array['periodico_caracter_blanco'] = 'Te has dejado algun caracter en blanco';
+$i18n_array['periodico_articulo_noexiste'] = 'Este articulo no existe...';
+$i18n_array['periodico_no_recientes'] = 'No hay articulos de los ultimos 5 dias.';
+$i18n_array['periodico_ultimos'] = 'Ultimos artículos';
+$i18n_array['periodico_top'] = 'Top artículos';
+$i18n_array['has_votado_positivamente'] = 'Has votado positivamente';
+$i18n_array['has_votado_negativamente'] = 'Has votado negativamente';
+$i18n_array['has_borrado_voto'] = 'Has eliminado tu voto';
+$i18n_array['periodico_ya_has_votado'] = 'Ya has votado este articulo';
+$i18n_array['periodico_articulo_no_existe'] = 'Este articulo no existe!';
 //Politico
 $i18n_array['already_voted'] = 'Ya has votado';
 $i18n_array['no_regions'] = "Este pais no posee ninguna region actualmente";
@@ -195,7 +208,7 @@ $i18n_array['hierro'] = "Hierro";
 $i18n_array['law_100'] = 'Cambiar nombre al pais';
 $i18n_array['1prop_100'] = 'Llamar';
 $i18n_array['2prop_100'] = 'al pais';
-$i18n_array['law_101'] = 'A�adir cargo';
+$i18n_array['law_101'] = 'Añadir cargo';
 $i18n_array['law_102'] = 'Eliminar cargo';
 $i18n_array['law_103'] = 'Dar cargo';
 $i18n_array['law_104'] = 'Quitar cargo';

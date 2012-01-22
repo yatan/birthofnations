@@ -34,7 +34,7 @@ else {
         //echo "<li><a href='#economia'>Economia</a></li>";
         echo "<li><a href='#inventario'>Inventario</a></li>";
         echo "<li><a href='#viajar'>Viajar</a></li>";
-       // echo "<li><a href='#periodico'>Periodico</a></li>";
+        echo "<li><a href='#periodico'>Periodico</a></li>";
     }
     ?>
 
@@ -60,7 +60,7 @@ else {
             
             if ($usuario->soy_yo($_SESSION['id_usuario']) == true) {
                 ?>
-        <div style="float:right; ">
+        <div id="newavatar" style="float:right; ">
          <fieldset>
         <legend>Preferencias:</legend>
         <form  action="/usuarios/preferencias.php" method="post">
@@ -87,9 +87,9 @@ else {
                 echo "<div id='viajar'>";
                 include("viajar.php");
                 echo "</div>";
-                /*echo "<div id='periodico'>";
+                echo "<div id='periodico'>";
                 include("periodico/redactar.php");
-                echo "</div>";*/
+                echo "</div>";
             } else {
                 //Zona publica
                 echo "<div>";
