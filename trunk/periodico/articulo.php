@@ -1,5 +1,5 @@
 <?php
-include_once($_SERVER['DOCUMENT_ROOT']."/include/funciones.php");
+//include_once($_SERVER['DOCUMENT_ROOT']."/include/funciones.php");
 $id_usuario = $_SESSION['id_usuario'];
 
 if(!isset($_GET['id_articulo']))
@@ -14,13 +14,12 @@ $id_articulo = $_GET['id_articulo'];
     {
         $sql_autor = sql("SELECT * FROM usuarios WHERE id_usuario = '" . $sql['id_autor'] ."'");
         $fechapublicacion=date('Y-m-d G:i', $sql['fecha']);
-echo <<< HTML
-        <h2>$sql[titulo]</h2>$fechapublicacion by <a href="/es/perfil/$sql[id_autor]">$sql_autor[nick]</a><br>
-HTML;
+echo "<h2>".$sql['titulo']."</h2>$fechapublicacion by <a href='/es/perfil/".$sql['id_autor']."'>".$sql_autor['nick']."</a><br>";
+
 $megustavv = mysql_query("SELECT * FROM articulos_votos WHERE id_articulo=$id_articulo AND id_votador=$id_usuario");
 if(mysql_num_rows($megustavv)>0){
 $megustav = mysql_fetch_array($megustavv);
-if($megustav[tipo]==1){
+if($megustav['tipo']==1){
 ?>
 <script>
 	$(function() {
@@ -39,7 +38,7 @@ if($megustav[tipo]==1){
     $(document).ready(function() {
         $("#yanomegusta").button();
           $("#yanomegusta").click(function() {
-  	$.post("/periodico/gusta.php?doing=3&articulo_id=<?echo$sql[id_articulo];?>",
+  	$.post("/periodico/gusta.php?doing=3&articulo_id=<? echo $sql['id_articulo']; ?>",
         function(data){
         $("#dialog").empty();
         $("#dialog").append(data);
@@ -71,7 +70,7 @@ HTML;
     $(document).ready(function() {
         $("#yanonomegusta").button();
           $("#yanonomegusta").click(function() {
-  	$.post("/periodico/gusta.php?doing=3&articulo_id=<?echo$sql[id_articulo];?>",
+  	$.post("/periodico/gusta.php?doing=3&articulo_id=<? echo $sql['id_articulo']; ?>",
         function(data){
         $("#dialog").empty();
         $("#dialog").append(data);
@@ -104,7 +103,7 @@ HTML;
     $(document).ready(function() {
         $("#megusta").button();
           $("#megusta").click(function() {
-  	$.post("/periodico/gusta.php?doing=1&articulo_id=<?echo$sql[id_articulo];?>",
+  	$.post("/periodico/gusta.php?doing=1&articulo_id=<? echo $sql['id_articulo']; ?>",
         function(data){
         $("#dialogm").empty();
         $("#dialogm").append(data);
@@ -130,7 +129,7 @@ HTML;
     $(document).ready(function() {
         $("#nomegusta").button();
           $("#nomegusta").click(function() {
-  	$.post("/periodico/gusta.php?doing=2&articulo_id=<?echo$sql[id_articulo];?>",
+  	$.post("/periodico/gusta.php?doing=2&articulo_id=<? echo $sql['id_articulo']; ?>",
         function(data){
         $("#dialogn").empty();
         $("#dialogn").append(data);
