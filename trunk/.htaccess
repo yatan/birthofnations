@@ -11,6 +11,7 @@ RewriteRule ^/?$ es/ [R]
 RewriteRule ^logout$ login/logout.php [L]
 
 RewriteRule ^([a-z]+)/empresa/([0-9]+)$ index.php?lang=$1&id_empresa=$2&mod=empresa [L]
+RewriteRule ^([a-z]+)/articulo/([0-9]+)$ index.php?lang=$1&id_articulo=$2&mod=articulo [L]
 RewriteRule ^([a-z]+)/perfil/([0-9]+)$ index.php?lang=$1&id_usuario=$2&mod=perfil [L]
 RewriteRule ^([a-z]+)/mercado/([0-9]+)/([0-9]+)/([0-9]+)$ index.php?lang=$1&producto=$2&mod=mercado&pais=$3&pag=$4 [L]
 RewriteRule ^([a-z]+)/mercado_laboral/([0-9]+)/([0-9]+)/([0-9]+)$ index.php?lang=$1&producto=$2&mod=mercado_laboral&pais=$3&pag=$4 [L]

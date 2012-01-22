@@ -11,18 +11,22 @@
 
 
 
-    <form id="articulo">
-        <h2>Redactar articulo nuevo</h2>
+<input type="button" id="enviar" value="Publicar">
+    <form id="articulo" method="post" onSubmit="return false;">
         <label for="titulo">Titulo:<input tabindex="1" type="text" name="titulo"></label><br>
-        <label for="markItUp">Mensaje:<textarea id="markItUp" cols="10" rows="8" tabindex="1" name="msj"></textarea></label><br>
-        <input type="button" id="enviar" value="Enviar">
-    </form>
-
+        <label for="markItUp">Articulo:<textarea id="markItUp" cols="10" rows="8" tabindex="1" name="msj"></textarea></label><br>
+       </form>  
+   
 <script>
     $('#enviar').click(function() {
   	$.post("/periodico/crear_articulo.php", $("#articulo").serialize(),
         function(data){
-                        alert(data);
+            if(data==1){
+                alert("<?php echo getString("periodico_publicado");?>");
+                window.location="/es/";
+            } else{
+                alert("<?php echo getString("periodico_caracter_blanco");?>");
+            }
                       } );
    
     });

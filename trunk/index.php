@@ -71,6 +71,9 @@ include("index_head.php");
                             case "empresa":
                                 include("economico/empresa.php");
                                 break;
+                            case "articulo":
+                                include("periodico/articulo.php");
+                                break;  
                             case "perfil":
                                 include("usuarios/perfil.php");
                                 break;   
@@ -147,7 +150,74 @@ include("index_head.php");
                             </div><!-- columnas -->
                                 <div id="fila2" style="width: 59.6em; height: 14.5em;">
                                     <div id="periodicos_login" style="float: left; width: 29.5em; height: 14.5em;">
-                                        <h2>Periodicos</h2><p>Articulo misterioso</p>
+                                        <div style="float: left;">
+                                        <h2><? echo getString('periodico_ultimos'); ?></h2>
+                                            <? 
+$nuevosarticulosw = mysql_query("SELECT * FROM articulos ORDER by fecha DESC LIMIT 5");
+while($nuevosarticulos = mysql_fetch_array($nuevosarticulosw))  {
+echo <<< HTML
+    <br><a href="/es/articulo/$nuevosarticulos[id_articulo]">$nuevosarticulos[titulo]</a>
+HTML;
+}
+                                            ?>
+                                    </div>
+                                        <div style="float: right;">
+                                        <h2><? echo getString('periodico_top'); ?></h2>
+                                            <? 
+                                            $fechalimite=(time()-(((60*60)*24)*5));
+                                            $artivotos=array( 'articuloid' => array( ), 'numvotos' => array( ), 'nombre' => array( ));
+$nuevosarticulosw = mysql_query("SELECT * FROM articulos WHERE fecha>$fechalimite ORDER by fecha DESC");
+while($nuevosarticulos = mysql_fetch_array($nuevosarticulosw))  {
+$nuevosarticuloswv = mysql_query("SELECT * FROM articulos_votos WHERE id_articulo=$nuevosarticulos[id_articulo] AND tipo=1");
+array_push($artivotos['articuloid'], $nuevosarticulos[id_articulo]);
+array_push($artivotos['nombre'], $nuevosarticulos[titulo]);
+array_push($artivotos['numvotos'], mysql_num_rows($nuevosarticuloswv));
+}
+array_multisort($artivotos['articuloid'], $artivotos['numvotos'], $artivotos['nombre']);
+$artiarti0 = $artivotos['articuloid'][0];
+$artiarti1 = $artivotos['articuloid'][1];
+$artiarti2 = $artivotos['articuloid'][2];
+$artiarti3 = $artivotos['articuloid'][3];
+$artiarti4 = $artivotos['articuloid'][4];
+$artiarti5 = $artivotos['articuloid'][5];
+$artivot0 = $artivotos['numvotos'][0];
+$artivot1 = $artivotos['numvotos'][1];
+$artivot2 = $artivotos['numvotos'][2];
+$artivot3 = $artivotos['numvotos'][3];
+$artivot4 = $artivotos['numvotos'][4];
+$artivot5 = $artivotos['numvotos'][5];
+$artinom0 = $artivotos['nombre'][0];
+$artinom1 = $artivotos['nombre'][1];
+$artinom2 = $artivotos['nombre'][2];
+$artinom3 = $artivotos['nombre'][3];
+$artinom4 = $artivotos['nombre'][4];
+$artinom5 = $artivotos['nombre'][5];
+if($artiarti0!=NULL)
+echo <<< HTML
+        <a href="/es/articulo/$artiarti0">$artinom0 - $artivot0</a>
+HTML;
+if($artiarti1!=NULL)
+echo <<< HTML
+    <br><a href="/es/articulo/$artiarti1">$artinom1 - $artivot1</a>
+HTML;
+if($artiarti2!=NULL)
+echo <<< HTML
+    <br><a href="/es/articulo/$artiarti2">$artinom2 - $artivot2</a>
+HTML;
+if($artiarti3!=NULL)
+echo <<< HTML
+    <br><a href="/es/articulo/$artiarti3">$artinom3 - $artivot3</a>
+HTML;
+if($artiarti4!=NULL)
+echo <<< HTML
+    <br><a href="/es/articulo/$artiarti4">$artinom4 - $artivot4</a>
+HTML;
+if($artiarti5!=NULL)
+echo <<< HTML
+    <br><a href="/es/articulo/$artiarti5">$artinom5 - $artivot5</a>
+HTML;
+                                            ?>
+                                    </div>
                                     </div>
                                     <div id="guerras_login" style="float: right; width: 30em; height: 14.5em;">
                                         <h2>Ultimas guerras</h2><p>pais de las piruletas ha perdido contra pais del regaliz</p>

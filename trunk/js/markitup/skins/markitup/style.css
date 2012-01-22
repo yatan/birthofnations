@@ -12,7 +12,8 @@
 	text-decoration:none;
 }
 .markItUp  {
-	width:500px;
+        float:right;
+	width:600px;
         margin:5px 0 5px 0;
 	border:5px solid #F5F5F5;	
 }
@@ -26,8 +27,8 @@
 	font:12px 'Courier New', Courier, monospace;
 	padding:5px 5px 5px 35px;
 	border:3px solid #3C769D;
-	width:443px;
-	height:320px;
+	width:520px;
+	height:170px;
 	background:#FFF url(images/bg-editor.png) no-repeat;
 	clear:both;
 	line-height:18px;
@@ -37,8 +38,8 @@
 	overflow:auto;
 	background-color:#FFFFFF;
 	border:1px solid #3C769D;
-	width:99.9%;
-	height:300px;
+	width:99%;
+	height:100px;
 	margin:5px 0;
 }
 .markItUpFooter {
