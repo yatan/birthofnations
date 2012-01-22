@@ -168,7 +168,7 @@ HTML;
                                             $artivotos=array( 'articuloid' => array( ), 'numvotos' => array( ), 'nombre' => array( ));
 $nuevosarticulosw = mysql_query("SELECT * FROM articulos WHERE fecha>$fechalimite ORDER by fecha DESC");
 while($nuevosarticulos = mysql_fetch_array($nuevosarticulosw))  {
-$nuevosarticuloswv = mysql_query("SELECT * FROM articulos_votos WHERE id_articulo=$nuevosarticulos[id_articulo] AND tipo=1");
+$nuevosarticuloswv = mysql_query("SELECT * FROM articulos_votos WHERE id_articulo='".$nuevosarticulos['id_articulo']."' AND tipo=1");
 array_push($artivotos['articuloid'], $nuevosarticulos['id_articulo']);
 array_push($artivotos['nombre'], $nuevosarticulos['titulo']);
 array_push($artivotos['numvotos'], mysql_num_rows($nuevosarticuloswv));
