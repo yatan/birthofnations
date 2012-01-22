@@ -12,8 +12,8 @@ $id_articulo = $_GET['id_articulo'];
        echo getString('periodico_articulo_noexiste');
     else
     {
-        $sql_autor = sql("SELECT * FROM usuarios WHERE id_usuario = '" . $sql[id_autor] ."'");
-        $fechapublicacion=date('Y-m-d G:i', $sql[fecha]);
+        $sql_autor = sql("SELECT * FROM usuarios WHERE id_usuario = '" . $sql['id_autor'] ."'");
+        $fechapublicacion=date('Y-m-d G:i', $sql['fecha']);
 echo <<< HTML
         <h2>$sql[titulo]</h2>$fechapublicacion by <a href="/es/perfil/$sql[id_autor]">$sql_autor[nick]</a><br>
 HTML;
