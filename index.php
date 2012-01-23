@@ -173,48 +173,52 @@ array_push($artivotos['articuloid'], $nuevosarticulos['id_articulo']);
 array_push($artivotos['nombre'], $nuevosarticulos['titulo']);
 array_push($artivotos['numvotos'], mysql_num_rows($nuevosarticuloswv));
 }
-array_multisort($artivotos['articuloid'], $artivotos['numvotos'], $artivotos['nombre']);
+array_multisort($artivotos['numvotos'],SORT_DESC, $artivotos['articuloid'], $artivotos['nombre']);
+
+if(isset($artivotos['articuloid'][0])){
 $artiarti0 = $artivotos['articuloid'][0];
-$artiarti1 = $artivotos['articuloid'][1];
-$artiarti2 = $artivotos['articuloid'][2];
-$artiarti3 = $artivotos['articuloid'][3];
-$artiarti4 = $artivotos['articuloid'][4];
-$artiarti5 = $artivotos['articuloid'][5];
 $artivot0 = $artivotos['numvotos'][0];
-$artivot1 = $artivotos['numvotos'][1];
-$artivot2 = $artivotos['numvotos'][2];
-$artivot3 = $artivotos['numvotos'][3];
-$artivot4 = $artivotos['numvotos'][4];
-$artivot5 = $artivotos['numvotos'][5];
 $artinom0 = $artivotos['nombre'][0];
+}
+if(isset($artivotos['articuloid'][1])){
+$artiarti1 = $artivotos['articuloid'][1];
+$artivot1 = $artivotos['numvotos'][1];
 $artinom1 = $artivotos['nombre'][1];
+}
+if(isset($artivotos['articuloid'][2])){
+$artiarti2 = $artivotos['articuloid'][2];
+$artivot2 = $artivotos['numvotos'][2];
 $artinom2 = $artivotos['nombre'][2];
+}
+if(isset($artivotos['articuloid'][3])){
+$artiarti3 = $artivotos['articuloid'][3];
+$artivot3 = $artivotos['numvotos'][3];
 $artinom3 = $artivotos['nombre'][3];
+}
+if(isset($artivotos['articuloid'][4])){
+$artiarti4 = $artivotos['articuloid'][4];
+$artivot4 = $artivotos['numvotos'][4];
 $artinom4 = $artivotos['nombre'][4];
-$artinom5 = $artivotos['nombre'][5];
-if($artiarti0!=NULL)
+}
+if(isset($artiarti0))
 echo <<< HTML
         <a href="/es/articulo/$artiarti0">$artinom0 - $artivot0</a>
 HTML;
-if($artiarti1!=NULL)
+if(isset($artiarti1))
 echo <<< HTML
     <br><a href="/es/articulo/$artiarti1">$artinom1 - $artivot1</a>
 HTML;
-if($artiarti2!=NULL)
+if(isset($artiarti2))
 echo <<< HTML
     <br><a href="/es/articulo/$artiarti2">$artinom2 - $artivot2</a>
 HTML;
-if($artiarti3!=NULL)
+if(isset($artiarti3))
 echo <<< HTML
     <br><a href="/es/articulo/$artiarti3">$artinom3 - $artivot3</a>
 HTML;
-if($artiarti4!=NULL)
+if(isset($artiarti4))
 echo <<< HTML
     <br><a href="/es/articulo/$artiarti4">$artinom4 - $artivot4</a>
-HTML;
-if($artiarti5!=NULL)
-echo <<< HTML
-    <br><a href="/es/articulo/$artiarti5">$artinom5 - $artivot5</a>
 HTML;
                                             ?>
                                     </div>
