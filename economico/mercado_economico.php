@@ -80,7 +80,7 @@ else
 
 
 if(!isset($_POST['venta']))
-    $venta = $objeto_usuario->moneda;
+    $venta = $moneda_local[$objeto_usuario->moneda];
 else
     $venta = $_POST['venta'];
 
@@ -99,7 +99,7 @@ $id_moneda_venta = array_search($venta, $moneda_local);
 
 $ofertas = sql2("SELECT * 
     FROM mercado_monetario 
-    WHERE tipo_moneda_comprar = '$id_moneda_compra' AND tipo_moneda_vender = '$id_moneda_venta' ORDER BY id_oferta ASC");
+    WHERE tipo_moneda_comprar = '$id_moneda_compra' AND tipo_moneda_vender = '$id_moneda_venta' ORDER BY cantidad_moneda_vender ASC");
 
 var_dump($ofertas);
 ?>
@@ -109,7 +109,7 @@ var_dump($ofertas);
     <tr><td>Vendedor</td><td>Cantidad</td><td>Ratio</td><td>Comprar</td></tr> 
     <?
     foreach ($ofertas as $oferta){
-        echo "<tr><td>{$oferta['id_vendedor']}</td><td>{$oferta['cantidad_moneda_comprar']} Gold</td><td>1 Gold = {$oferta['cantidad_moneda_vender']} THK</td><td><input type='text' style='width:30px'/><input type='submit'/></td></tr>";
+        echo "<form action='/economico/comprar_moneda.php' method='post'><input type='hidden' name='id_oferta' value='{$oferta['id_oferta']}'><tr><td><a href='perfil/{$oferta['id_vendedor']}'>".id2nick($oferta['id_vendedor'])."</a></td><td>{$oferta['cantidad_moneda_comprar']} $compra</td><td>1 $compra = {$oferta['cantidad_moneda_vender']} $venta</td><td><input name='cantidad' type='text' style='width:30px'/><input type='submit'/></td></tr></form>";
     }
    ?>
 </table>
