@@ -13,8 +13,8 @@
 
 <input type="button" id="enviar" value="Publicar">
     <form id="articulo" method="post" onSubmit="return false;">
-        <label for="titulo">Titulo:<input tabindex="1" type="text" name="titulo"></label><br>
-        <label for="markItUp">Articulo:<textarea id="markItUp" cols="10" rows="8" tabindex="1" name="msj"></textarea></label><br>
+        <label for="titulo" style="color: black;">Titulo:<input tabindex="1" type="text" name="titulo"></label><br>
+        <label for="markItUp" style="color: black;">Articulo:<textarea id="markItUp" cols="10" rows="8" tabindex="1" name="msj"></textarea></label><br>
        </form>  
    
 <script>

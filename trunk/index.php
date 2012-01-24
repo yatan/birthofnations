@@ -156,7 +156,7 @@ include("index_head.php");
 $nuevosarticulosw = mysql_query("SELECT * FROM articulos ORDER by fecha DESC LIMIT 5");
 while($nuevosarticulos = mysql_fetch_array($nuevosarticulosw))  {
 echo <<< HTML
-    <br><a href="/es/articulo/$nuevosarticulos[id_articulo]">$nuevosarticulos[titulo]</a>
+    <a href="/es/articulo/$nuevosarticulos[id_articulo]">$nuevosarticulos[titulo]</a><br>
 HTML;
 }
                                             ?>
