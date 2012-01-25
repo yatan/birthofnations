@@ -188,6 +188,7 @@ $i18n_array['entrenamiento'] = "Entrenamiento";
 $i18n_array['guerras'] = "Guerras";
 $i18n_array['mercado_productos'] = "Mercado de productos";
 $i18n_array['mercado_laboral'] = "Mercado laboral";
+$i18n_array['mercado_economico'] = "Mercado monetario";
 $i18n_array['mercado_empresas'] = "Mercado de empresas";
 $i18n_array['mi_pais'] = "Mi País";
 $i18n_array['partidos_politicos'] = "Partidos politicos";

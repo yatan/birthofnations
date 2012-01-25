@@ -18,6 +18,8 @@ if(isset($_POST['id_oferta']) && $_POST['id_oferta']!="")
 else
     die("Error");
 
+if($cantidad<=0)
+    die("Error");
 
 
 $oferta = sql("SELECT * FROM mercado_monetario WHERE id_oferta=$id_oferta");
