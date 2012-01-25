@@ -22,12 +22,15 @@ else
 
 $oferta = sql("SELECT * FROM mercado_monetario WHERE id_oferta=$id_oferta");
 
-var_dump($oferta);
+//var_dump($oferta);
 
 if($cantidad > $oferta['cantidad_moneda_comprar'])
     die("La cantidad introducida se excede de la oferta");
 
 $mi_id = $_SESSION['id_usuario'];
+
+if($oferta['id_vendedor']==$mi_id)
+    die("No te puedes comprar a ti mismo");
 
 $moneda_vender = $moneda_local[$oferta['tipo_moneda_vender']];
 $mi_dinero = sql("SELECT $moneda_vender FROM money WHERE id_usuario='$mi_id'");
@@ -36,7 +39,16 @@ if($mi_dinero < ( $oferta['cantidad_moneda_vender'] * $cantidad ) )
     die("No tienes tanto dinero para comprar");
 
 
-echo "Vas a gastarte: ".$oferta['cantidad_moneda_vender'] * $cantidad ." ". $moneda_local[$oferta['tipo_moneda_vender']]. "<br>";
-echo "Vas a comprar: ". $cantidad ." ". $moneda_local[$oferta['tipo_moneda_comprar']]. "<br>";
+echo "Te has gastado: ".$oferta['cantidad_moneda_vender'] * $cantidad ." ". $moneda_local[$oferta['tipo_moneda_vender']]. "<br>";
+echo "Te has comprado: ". $cantidad ." ". $moneda_local[$oferta['tipo_moneda_comprar']]. "<br>";
+
+//Se resta la cantidad comprada de la oferta
+sql("UPDATE mercado_monetario SET cantidad_moneda_comprar = cantidad_moneda_comprar - $cantidad WHERE id_oferta=$id_oferta");
+//Se añade la moneda que compro
+sql("UPDATE money SET ".$moneda_local[$oferta['tipo_moneda_comprar']]." = ".$moneda_local[$oferta['tipo_moneda_comprar']]." + $cantidad WHERE id_usuario=$mi_id");
+//Se resta de mi dinero el dinero que cuesta la oferta
+sql("UPDATE money SET ".$moneda_local[$oferta['tipo_moneda_vender']]." = ".$moneda_local[$oferta['tipo_moneda_vender']]." - ". $cantidad * $oferta['cantidad_moneda_vender'] . " WHERE id_usuario=$mi_id");
+//Se le añade el dinero al vendedor
+sql("UPDATE money SET ".$moneda_local[$oferta['tipo_moneda_vender']]." = ".$moneda_local[$oferta['tipo_moneda_vender']]." + ". $cantidad * $oferta['cantidad_moneda_vender'] . " WHERE id_usuario=".$oferta['id_vendedor']);
 
 ?>

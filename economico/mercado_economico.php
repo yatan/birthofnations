@@ -101,7 +101,7 @@ $ofertas = sql2("SELECT *
     FROM mercado_monetario 
     WHERE tipo_moneda_comprar = '$id_moneda_compra' AND tipo_moneda_vender = '$id_moneda_venta' ORDER BY cantidad_moneda_vender ASC");
 
-var_dump($ofertas);
+//var_dump($ofertas);
 ?>
 
 
@@ -109,10 +109,41 @@ var_dump($ofertas);
     <tr><td>Vendedor</td><td>Cantidad</td><td>Ratio</td><td>Comprar</td></tr> 
     <?
     foreach ($ofertas as $oferta){
-        echo "<form action='/economico/comprar_moneda.php' method='post'><input type='hidden' name='id_oferta' value='{$oferta['id_oferta']}'><tr><td><a href='perfil/{$oferta['id_vendedor']}'>".id2nick($oferta['id_vendedor'])."</a></td><td>{$oferta['cantidad_moneda_comprar']} $compra</td><td>1 $compra = {$oferta['cantidad_moneda_vender']} $venta</td><td><input name='cantidad' type='text' style='width:30px'/><input type='submit'/></td></tr></form>";
+        echo "<form id='oferta_{$oferta['id_oferta']}' action='/economico/comprar_moneda.php' method='post'><input type='hidden' name='id_oferta' value='{$oferta['id_oferta']}'><tr><td><a href='perfil/{$oferta['id_vendedor']}'>".id2nick($oferta['id_vendedor'])."</a></td><td>{$oferta['cantidad_moneda_comprar']} $compra</td><td>1 $compra = {$oferta['cantidad_moneda_vender']} $venta</td><td><input name='cantidad' type='text' style='width:30px'/><input type='button' value='Ok' id='oferta_{$oferta['id_oferta']}' class='comprar'/></td></tr></form>";
     }
    ?>
 </table>
 
+
+<script type="text/javascript">
+    
+    
+    $('.comprar').click(function() {
+        var element = $(this);
+        var Id = element.attr("id");
+        
+         var notice = $.pnotify({
+        pnotify_title: "Compra",
+        pnotify_type: 'info',
+        pnotify_info_icon: 'picon picon-throbber',
+        pnotify_hide: false,
+        pnotify_sticker: false,
+        pnotify_width: "275px",
+        pnotify_text: "<center><img src='/images/loading.gif'/></center>"
+    });
+ 
+ 
+         $.post("/economico/comprar_moneda.php", $('#'+Id).serialize(),
+         function(data) {
+          var options = {
+                pnotify_text: data
+            };
+            notice.pnotify(options);
+         });
+ 
+ 
+    }); 
+    
+</script>    
 
 <br> <br>
