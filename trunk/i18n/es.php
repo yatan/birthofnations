@@ -159,6 +159,10 @@ $i18n_array['has_votado_negativamente'] = 'Has votado negativamente';
 $i18n_array['has_borrado_voto'] = 'Has eliminado tu voto';
 $i18n_array['periodico_ya_has_votado'] = 'Ya has votado este articulo';
 $i18n_array['periodico_articulo_no_existe'] = 'Este articulo no existe!';
+$i18n_array['publicar_comentario'] = 'Publicar comentario';
+$i18n_array['comentario_publicado'] = 'Comentario añadido correctamente';
+
+
 //Politico
 $i18n_array['already_voted'] = 'Ya has votado';
 $i18n_array['no_regions'] = "Este pais no posee ninguna region actualmente";

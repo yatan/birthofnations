@@ -149,4 +149,52 @@ echo <<< HTML
             $sql[msg]
 HTML;
     }
+    echo "<br><br><h2 style='color:black;'>Comentarios</h2>";
+    
+    $comentarios = sql2("SELECT * FROM comentarios_articulos WHERE id_articulo = $id_articulo ORDER BY fecha ASC");
+    foreach ($comentarios as $comentario) {
+        echo "<hr style='width:75%;'>";
+        echo $comentario['comentario']."<br>";
+        echo "<p>Autor: ".id2nick($comentario['id_autor'])."</p>";
+        if($objeto_usuario->id_usuario == $comentario['id_autor'])
+            echo "<a style='background:red; color:black;'>Borrar</a>";
+    }
 ?>
+<hr>
+<form id="form_comentario" action="/periodico/nuevo_comentario.php" method="post">
+    <div style="text-align: center; font-size: 15px; font-weight: bold; color: #111">Nuevo comentario:</div>
+    <textarea name="comentario" maxlength="1000" style="width:450px; height: 150px;"></textarea><br>
+    <input type="hidden" name="id_articulo" value="<? echo $id_articulo; ?>"/>
+    <input type="button" class="enviar_comentario" value="Enviar comentario">
+</form>
+
+<script type="text/javascript">
+    
+    $('.enviar_comentario').click(function() {
+        
+        var notice = $.pnotify({
+        pnotify_title: "<? echo getstring('publicar_comentario'); ?>",
+        pnotify_type: 'info',
+        pnotify_info_icon: 'picon picon-throbber',
+        pnotify_hide: false,
+        pnotify_sticker: false,
+        pnotify_width: "275px",
+        pnotify_text: "<center><img src='/images/loading.gif'/></center>"
+    });
+ 
+ 
+         $.post("/periodico/nuevo_comentario.php", $('#form_comentario').serialize(),
+         function(data) {
+          var options = {
+                pnotify_text: data
+            };
+            notice.pnotify(options);
+                setTimeout(function() { 
+                window.location.reload();
+                },750);
+         });
+ 
+ 
+    }); 
+    
+</script>    
