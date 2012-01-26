@@ -7,9 +7,9 @@
 </style>
 
 
-<h1>Mercado Economico</h1>
-<?php
 
+<?php
+echo "<h1>".getString('mercado_economico')."</h1>";
 /*
  * Code started by: yatan
  * Batamanta Team
@@ -37,7 +37,7 @@ $(document).ready(function() {
 <div id="cuadro1">
     
 <form name="mercado_economico" id="mercado_economico" method="post" action="">
-Comprar:
+<? echo getstring('comprar'); ?>:
 <select name="compra" id="compra">
     <?
     echo "<option>Gold</option>";
@@ -49,7 +49,7 @@ foreach ($sql as $moneda => $valor) {
 }
 ?>
 </select>
-Vender:
+<? echo getstring('vender'); ?>:
 <select name="venta" id="venta">
     <?
     echo "<option>Gold</option>";
@@ -66,8 +66,8 @@ foreach ($sql as $moneda => $valor) {
 ?>
 </select>
 <br/>
-<input type="button" value="Alternar Monedas" id="alternar"/>
-<input type="submit" value="Buscar Ofertas"/>
+<input type="button" value="<? echo getstring('alternate_money'); ?>" id="alternar"/>
+<input type="submit" value="<? echo getstring('search_offers'); ?>"/>
 </form>
     
 </div>
@@ -92,7 +92,7 @@ $id_moneda_venta = array_search($venta, $moneda_local);
 
 <br> <br>
 
-<h2>Ofertas</h2>
+<h2><? echo getString('Ofertas'); ?></h2>
 
 <?
 
@@ -106,8 +106,9 @@ $ofertas = sql2("SELECT *
 
 
 <table style="width:400px;">
-    <tr><td>Vendedor</td><td>Cantidad</td><td>Ratio</td><td>Comprar</td></tr> 
     <?
+    echo "<tr><td>".getstring('seller')."</td><td>".getstring('cantidad')."</td><td>Ratio</td><td>".getstring('comprar')."</td></tr>";
+    
     foreach ($ofertas as $oferta){
         echo "<form id='oferta_{$oferta['id_oferta']}' action='/economico/comprar_moneda.php' method='post'><input type='hidden' name='id_oferta' value='{$oferta['id_oferta']}'><tr><td><a href='perfil/{$oferta['id_vendedor']}'>".id2nick($oferta['id_vendedor'])."</a></td><td>{$oferta['cantidad_moneda_comprar']} $compra</td><td>1 $compra = {$oferta['cantidad_moneda_vender']} $venta</td><td><input name='cantidad' type='text' style='width:30px'/><input type='button' value='Ok' id='oferta_{$oferta['id_oferta']}' class='comprar'/></td></tr></form>";
     }
@@ -123,7 +124,7 @@ $ofertas = sql2("SELECT *
         var Id = element.attr("id");
         
          var notice = $.pnotify({
-        pnotify_title: "Compra",
+        pnotify_title: "<? echo getstring('comprar'); ?>",
         pnotify_type: 'info',
         pnotify_info_icon: 'picon picon-throbber',
         pnotify_hide: false,
