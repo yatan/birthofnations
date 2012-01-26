@@ -49,6 +49,13 @@ $i18n_array['you_cant'] = 'El amado lider te mira con desaprobacion. No cumples 
 $i18n_array['country'] = 'Pais';
 $i18n_array['region'] = 'Region';
 $i18n_array['id_destiny'] = 'Id_Destinatario';
+$i18n_array['Ofertas'] = 'Ofertas';
+$i18n_array['comprar'] = 'Comprar';
+$i18n_array['vender'] = 'Vender';
+$i18n_array['seller'] = 'Vendedor';
+$i18n_array['alternate_money'] = 'Alternar monedas';
+$i18n_array['search_offers'] = 'Buscar ofertas';
+
 
  		//LOGIN
 
