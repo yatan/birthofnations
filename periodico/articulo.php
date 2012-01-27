@@ -1,3 +1,12 @@
+<style type="text/css">
+    .comentario
+    {
+        border: 1px solid #781351;
+        width:600px;
+        margin:5px;
+        min-height:100px;
+    }
+</style>
 <?php
 //include_once($_SERVER['DOCUMENT_ROOT']."/include/funciones.php");
 $id_usuario = $_SESSION['id_usuario'];
@@ -153,14 +162,19 @@ HTML;
     
     $comentarios = sql2("SELECT * FROM comentarios_articulos WHERE id_articulo = $id_articulo ORDER BY fecha ASC");
     foreach ($comentarios as $comentario) {
-        echo "<hr style='width:75%;'>";
-        echo $comentario['comentario']."<br>";
-        echo "<p>Autor: ".id2nick($comentario['id_autor'])."</p>";
+        
+        echo "<div class='comentario'>";
+        
+        echo "<div style='margin-left:10px; float:left;'><a href='/".$_GET['lang']."/perfil/".$comentario['id_autor']."'>Autor: ".id2nick($comentario['id_autor'])."<br><br>";
+        echo "<img style='height:42px; width:42px;' src='".sql("SELECT avatar FROM usuarios WHERE id_usuario='{$comentario['id_autor']}'")."'/></a></div>";
+        echo "<div style='text-align:left; margin-left:150px;'>".$comentario['comentario']."</div>";
+        
         if($objeto_usuario->id_usuario == $comentario['id_autor'])
-            echo "<a style='background:red; color:black;'>Borrar</a>";
+            echo "<div style='float:right;'><a style='background:red; color:black;'>Borrar</a></div>";
+        echo "</div>";
     }
 ?>
-<hr>
+<br><hr><br>
 <form id="form_comentario" action="/periodico/nuevo_comentario.php" method="post">
     <div style="text-align: center; font-size: 15px; font-weight: bold; color: #111">Nuevo comentario:</div>
     <textarea name="comentario" maxlength="1000" style="width:450px; height: 150px;"></textarea><br>
