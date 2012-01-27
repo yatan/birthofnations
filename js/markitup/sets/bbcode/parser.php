@@ -54,7 +54,8 @@ $text=htmlentities($text, ENT_QUOTES | ENT_IGNORE, "UTF-8");
 					 ':o',
 					 ':p',
 					 ':(',
-					 ';)'
+					 ';)',
+                                         ':visful:'
 	);
 	// And replace them by...
 	$out = array(	 '<img alt=":)" src="'.EMOTICONS_DIR.'emoticon-happy.png" />',
@@ -62,7 +63,8 @@ $text=htmlentities($text, ENT_QUOTES | ENT_IGNORE, "UTF-8");
 					 '<img alt=":o" src="'.EMOTICONS_DIR.'emoticon-surprised.png" />',
 					 '<img alt=":p" src="'.EMOTICONS_DIR.'emoticon-tongue.png" />',
 					 '<img alt=":(" src="'.EMOTICONS_DIR.'emoticon-unhappy.png" />',
-					 '<img alt=";)" src="'.EMOTICONS_DIR.'emoticon-wink.png" />'
+					 '<img alt=";)" src="'.EMOTICONS_DIR.'emoticon-wink.png" />',
+                                         '<img alt=";)" src="'.EMOTICONS_DIR.'visful.jpg" />'
 	);
 	$text = str_replace($in, $out, $text);
 	
