@@ -165,12 +165,12 @@ HTML;
         
         echo "<div class='comentario'>";
         
-        echo "<div style='margin-left:10px; float:left;'><a href='/".$_GET['lang']."/perfil/".$comentario['id_autor']."'>Autor: ".id2nick($comentario['id_autor'])."<br><br>";
+        echo "<div style='height:100%; width:100px; margin-left:10px; float:left;'><a href='/".$_GET['lang']."/perfil/".$comentario['id_autor']."'>".id2nick($comentario['id_autor'])."<br><br>";
         echo "<img style='height:42px; width:42px;' src='".sql("SELECT avatar FROM usuarios WHERE id_usuario='{$comentario['id_autor']}'")."'/></a></div>";
-        echo "<div style='text-align:left; margin-left:150px;'>".$comentario['comentario']."</div>";
+        echo "<div style='width:300px; text-align:left; margin-left:150px;'>".$comentario['comentario']."</div>";
         
         if($objeto_usuario->id_usuario == $comentario['id_autor'])
-            echo "<div style='float:right;'><a style='background:red; color:black;'>Borrar</a></div>";
+            echo "<div style='static:right;'><p><a style='background:red; color:black;'>Borrar</a></p></div>";
         echo "</div>";
     }
 ?>
