@@ -70,3 +70,15 @@ body {
 a:link, a:visited{
     color: chartreuse;
 }
+
+.ultimos_articulos{
+    background-color: gainsboro;
+    color: #09C;
+    font-size: 16px;
+    border-top-left-radius:1em;
+    border-top-right-radius:1em;
+}
+.ultimos_articulos a{
+    color:black;
+    
+}

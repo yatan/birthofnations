@@ -150,8 +150,8 @@ include("index_head.php");
                             </div><!-- columnas -->
                                 <div id="fila2" style="width: 59.6em; height: 14.5em;">
                                     <div id="periodicos_login" style="float: left; width: 29.5em; height: 14.5em;">
-                                        <div style="float: left;">
-                                        <h2><? echo getString('periodico_ultimos'); ?></h2>
+                                        <div class="ultimos_articulos" style="float: left;">
+                                        <h2><li><? echo getString('periodico_ultimos'); ?></li></h2>
                                             <? 
 $nuevosarticulosw = mysql_query("SELECT * FROM articulos ORDER by fecha DESC LIMIT 5");
 while($nuevosarticulos = mysql_fetch_array($nuevosarticulosw))  {
@@ -161,8 +161,8 @@ HTML;
 }
                                             ?>
                                     </div>
-                                        <div style="float: right;">
-                                        <h2><? echo getString('periodico_top'); ?></h2>
+                                        <div class="ultimos_articulos" style="float: right;">
+                                        <h2><li><? echo getString('periodico_top'); ?></li></h2>
                                             <? 
                                             $fechalimite=(time()-(((60*60)*24)*5));
                                             $artivotos=array( 'articuloid' => array( ), 'numvotos' => array( ), 'nombre' => array( ));
