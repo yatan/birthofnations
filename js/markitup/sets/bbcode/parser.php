@@ -49,7 +49,7 @@ $text=htmlentities($text, ENT_QUOTES | ENT_IGNORE, "UTF-8");
 	$text = preg_replace_callback('/\[code\](.*?)\[\/code\]/ms', "escape", $text);
 
 	// Smileys to find...
-	$in = array( 	 ':)', 	
+	$in = array(                     ':)', 	
 					 ':D',
 					 ':o',
 					 ':p',
@@ -64,7 +64,7 @@ $text=htmlentities($text, ENT_QUOTES | ENT_IGNORE, "UTF-8");
 					 '<img alt=":p" src="'.EMOTICONS_DIR.'emoticon-tongue.png" />',
 					 '<img alt=":(" src="'.EMOTICONS_DIR.'emoticon-unhappy.png" />',
 					 '<img alt=";)" src="'.EMOTICONS_DIR.'emoticon-wink.png" />',
-                                         '<img alt=";)" src="'.EMOTICONS_DIR.'visful.jpg" />'
+                                         '<img alt=":visful:" src="'.EMOTICONS_DIR.'visful.gif" />'
 	);
 	$text = str_replace($in, $out, $text);
 	

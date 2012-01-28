@@ -1,4 +1,33 @@
 <?
+// ----------------------------------------------------------------------------
+// markItUp! BBCode Parser
+// v 1.0.6
+// Dual licensed under the MIT and GPL licenses.
+// ----------------------------------------------------------------------------
+// Copyright (C) 2009 Jay Salvat
+// http://www.jaysalvat.com/
+// http://markitup.jaysalvat.com/
+// ----------------------------------------------------------------------------
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+// 
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+// ----------------------------------------------------------------------------
+// Thanks to Arialdo Martini, Mustafa Dindar for feedbacks.
+// ----------------------------------------------------------------------------
 include_once($_SERVER['DOCUMENT_ROOT']."/include/funciones.php");
 $id_usuario = $_SESSION['id_usuario'];
 if($_POST['titulo']&&$_POST['msj']){
@@ -28,7 +57,8 @@ function BBCode2Html($text) {
 					 ':o',
 					 ':p',
 					 ':(',
-					 ';)'
+					 ';)',
+                                         ':visful:'
 	);
 	// And replace them by...
 	$out = array(	 '<img alt=":)" src="'.EMOTICONS_DIR.'emoticon-happy.png" />',
@@ -36,7 +66,8 @@ function BBCode2Html($text) {
 					 '<img alt=":o" src="'.EMOTICONS_DIR.'emoticon-surprised.png" />',
 					 '<img alt=":p" src="'.EMOTICONS_DIR.'emoticon-tongue.png" />',
 					 '<img alt=":(" src="'.EMOTICONS_DIR.'emoticon-unhappy.png" />',
-					 '<img alt=";)" src="'.EMOTICONS_DIR.'emoticon-wink.png" />'
+					 '<img alt=";)" src="'.EMOTICONS_DIR.'emoticon-wink.png" />',
+                                         '<img alt=":visful:" src="'.EMOTICONS_DIR.'visful.gif" />'
 	);
 	$text = str_replace($in, $out, $text);
 	
