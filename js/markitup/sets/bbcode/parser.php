@@ -28,7 +28,7 @@
 // ----------------------------------------------------------------------------
 // Thanks to Arialdo Martini, Mustafa Dindar for feedbacks.
 // ----------------------------------------------------------------------------
-
+include_once($_SERVER['DOCUMENT_ROOT']."/include/funciones.php");
 define ("EMOTICONS_DIR", "/images/emoticons/");
 function BBCode2Html($text) {
 $text=htmlentities($text, ENT_QUOTES | ENT_IGNORE, "UTF-8");  
@@ -47,26 +47,22 @@ $text=htmlentities($text, ENT_QUOTES | ENT_IGNORE, "UTF-8");
 		}	
 	}
 	$text = preg_replace_callback('/\[code\](.*?)\[\/code\]/ms', "escape", $text);
-
-	// Smileys to find...
-	$in = array(                     ':)', 	
-					 ':D',
-					 ':o',
-					 ':p',
-					 ':(',
-					 ';)',
-                                         ':visful:'
-	);
+        
+        // Smileys to find...
+        $in = sql("SELECT smiley FROM articulos_smileys ORDER BY id_smiley ASC");
+        foreach ($in as $smiley) {
+            $in2[]=$smiley['smiley'];
+        }
+	
 	// And replace them by...
-	$out = array(	 '<img alt=":)" src="'.EMOTICONS_DIR.'emoticon-happy.png" />',
-					 '<img alt=":D" src="'.EMOTICONS_DIR.'emoticon-smile.png" />',
-					 '<img alt=":o" src="'.EMOTICONS_DIR.'emoticon-surprised.png" />',
-					 '<img alt=":p" src="'.EMOTICONS_DIR.'emoticon-tongue.png" />',
-					 '<img alt=":(" src="'.EMOTICONS_DIR.'emoticon-unhappy.png" />',
-					 '<img alt=";)" src="'.EMOTICONS_DIR.'emoticon-wink.png" />',
-                                         '<img alt=":visful:" src="'.EMOTICONS_DIR.'visful.gif" />'
-	);
-	$text = str_replace($in, $out, $text);
+        $out = sql("SELECT smiley, url_smiley FROM articulos_smileys ORDER BY id_smiley ASC");
+        
+        foreach ($out as $smiley) {
+            $out2[] = "<img alt=\"".$smiley['smiley']."\" src=\"".EMOTICONS_DIR.$smiley['url_smiley']."\" />";
+        }
+        
+
+	$text = str_replace($in2, $out2, $text);
 	
 	// BBCode to find...
 	$in = array( 	 '/\[b\](.*?)\[\/b\]/ms',	
