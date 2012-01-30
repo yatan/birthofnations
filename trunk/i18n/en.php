@@ -40,6 +40,7 @@ $i18n_array['login_nomatch2'] = "You have typed an incorrect nick or pass [0x02]
 $i18n_array['login_recovery'] = "Recovery password"; 
     
     
+
         //PORTADA
     
 $i18n_array['periodicos_login'] = 'Newspapers';
@@ -68,5 +69,25 @@ $i18n_array['soporte'] = "Support";
 $i18n_array['trabajar'] = "Work";
 $i18n_array['mis_empresas'] = "My Companies";
 
+//PIE 
+
+$i18n_array['online_users'] = "online users. Mysql stat: ";
+$i18n_array['copyright'] = "Copyright 2011 Batamanta Team ";
+
+
+//MENU.PHP
+
+$i18n_array['work'] = "Work";
+$i18n_array['logout'] = "Logout";
+
+
+// INDEX.PHP
+
+$i18n_array['last_wars'] = "Latest wars";
+
+//FORM_REFERER.PHP
+
+$i18n_array['mail_server_error'] = "The mailserver is down";
+$i18n_array['enviar_invitacion'] = "Invite";
 
 ?>
