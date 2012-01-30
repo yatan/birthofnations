@@ -8,8 +8,8 @@
      Email: <input type="text" name="mail" /><br/>
     <?
     if(smtp_online()==true)
-     echo "<input type='submit' value='Enviar invitacion' />";
+     echo "<input type='submit' value='".  getString('enviar_invitacion')."' />";
     else
-     echo "<p>El servidor de correo no esta disponible actualmente</p>";
+     echo "<p>".  getString('mail_server_error')."</p>";
     ?>
 </form>

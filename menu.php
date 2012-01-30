@@ -22,7 +22,7 @@ elseif($entrenado==0)
         <?
         $id_empresa = $objeto_usuario->id_empresa;
         if($id_empresa != "0")
-            echo "<li><a href='/".$_GET['lang']."/empresa/".$id_empresa."'>Trabajar $trabajado</a></li>";
+            echo "<li><a href='/".$_GET['lang']."/empresa/".$id_empresa."'>".getString('work')."$trabajado</a></li>";
         ?>
         <li><a href="<? echo "/".$_GET['lang']."/empresas"; ?>"><? echo getString('mis_empresas'); ?></a></li>
         <!--<li><a href="<? echo "/".$_GET['lang']."/perfil/".$_SESSION['id_usuario']; ?>"><? echo getString('perfil'); ?></a></li>-->
@@ -59,6 +59,6 @@ elseif($entrenado==0)
             <li><a target="Wiki" href="/wiki"><? echo getString('wiki'); ?></a></li>
         </ul>
         </li>
-                <li><a href="/logout">Logout</a></li>
+        <li><a href="/logout"><?echo getString('logout');?></a></li>
         </ul>
 </div>

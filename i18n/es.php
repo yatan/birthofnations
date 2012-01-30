@@ -345,4 +345,26 @@ $i18n_array['quest_valle_text'] = 'Ve al bosque Willon y mata 10 lobos. ';
 $i18n_array['quest_valle_recompensa'] = '12 de Experiencia y 2 pociones';
 
 
+//PIE 
+
+$i18n_array['online_users'] = "usuarios online Estado mysql: ";
+$i18n_array['copyright'] = "Copyright 2011 Batamanta Team ";
+
+
+//MENU.PHP
+
+$i18n_array['work'] = "Trabajar";
+$i18n_array['logout'] = "Logout";
+
+
+// INDEX.PHP
+
+$i18n_array['last_wars'] = "Últimas guerras";
+
+
+//FORM_REFERER.PHP
+
+$i18n_array['mail_server_error'] = "El servidor de correo no esta disponible actualmente";
+$i18n_array['enviar_invitacion'] = "Enviar invitación";
+
 ?>

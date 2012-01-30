@@ -224,7 +224,7 @@ HTML;
                                     </div>
                                     </div>
                                     <div id="guerras_login" style="float: right; width: 30em; height: 14.5em;">
-                                        <h2>Ultimas guerras</h2><p>pais de las piruletas ha perdido contra pais del regaliz</p>
+                                        <h2><?echo getString('last_wars');?></h2><p>pais de las piruletas ha perdido contra pais del regaliz</p>
                                     </div>
                                 </div>
                              
