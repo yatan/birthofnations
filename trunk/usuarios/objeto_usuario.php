@@ -107,7 +107,9 @@ class usuario
         elseif($this->exp >= 32 && $this->exp <64)
             return 3;
         elseif($this->exp >= 64 && $this->exp <128)
-            return 4;        
+            return 4;   
+        elseif($this->exp >= 128 )//&& $this->exp <256 <-- Para cuando hayan mas lvls
+            return 5;         
     }
     
     function set_lvl()
