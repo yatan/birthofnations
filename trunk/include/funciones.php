@@ -335,7 +335,12 @@ function next_elecciones($DA, $DE, $FE) {//Actual/Resto del dia de las eleccione
     return $prox;
 }
 
-function puedo_votar($id_usuario, $tipo, $id_votacion) {//Determina si puedes votar o no, segun el tipo de votacion
+function puedo_votar($id_usuario, $tipo, $id_votacion){//Determina si puedes votar o no, segun el tipo de votacion
+    
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/usuarios/objeto_usuario.php");
+    
+    $objeto_usuario = new usuario($_SESSION['id_usuario']);
+    
     $sql3 = sql("SELECT * FROM log_votos WHERE id_votacion = " . $id_votacion . " AND id_usuario = " . $id_usuario); //Si ya ha votado
     if ($sql3 != false) { //Si ya ha votado
         return false;
@@ -368,14 +373,12 @@ function puedo_votar($id_usuario, $tipo, $id_votacion) {//Determina si puedes vo
         foreach ($rest2 as $condicion) {//Comprobamos cada una de ellas
             switch ($condicion[0]):
                 case "C": //Ciudadania
-                    $cs = sql("SELECT id_nacionalidad FROM usuarios WHERE id_usuario = " . $_SESSION['id_usuario']);
-                    if ($cs != $condicion[1]) {
+                    if ($objeto_usuario->id_nacionalidad != $condicion[1]) {
                         $ret = false;
                     }
                     break;
                 case "E": //Puntos de experiencia
-                    $exp = sql("SELECT exp FROM usuarios WHERE id_usuario = " . $_SESSION['id_usuario']);
-                    if ($exp < $condicion[1]) {
+                    if ($objeto_usuario->exp < $condicion[1]) {
                         $ret = false;
                     }
                     break;
@@ -395,6 +398,10 @@ function puedo_votar($id_usuario, $tipo, $id_votacion) {//Determina si puedes vo
 }
 
 function puedo_postularme($id_usuario, $tipo, $id_votacion) {//Determina si puedes postularte o no, segun el tipo de votacion
+    
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/usuarios/objeto_usuario.php");
+    $objeto_usuario = new usuario($_SESSION['id_usuario']);
+    
     $sql3 = sql("SELECT * FROM candidatos_elecciones WHERE id_votacion = " . $id_votacion . " AND id_candidato = " . $id_usuario); //Si ya esta postulado
     if ($sql3 != false) { //Si ya esta postulado.
         return false;
@@ -421,14 +428,12 @@ function puedo_postularme($id_usuario, $tipo, $id_votacion) {//Determina si pued
         foreach ($rest2 as $condicion) {//Comprobamos cada una de ellas
             switch ($condicion[0]):
                 case "C": //Ciudadania
-                    $cs = sql("SELECT id_nacionalidad FROM usuarios WHERE id_usuario = " . $id_usuario);
-                    if ($cs != $condicion[1]) {
+                    if ($objeto_usuario->id_nacionalidad != $condicion[1]) {
                         return false;
                     }
                     break;
                 case "E": //Puntos de experiencia
-                    $exp = sql("SELECT exp FROM usuarios WHERE id_usuario = " . $id_usuario);
-                    if ($exp < $condicion[1]) {
+                    if ($objeto_usuario->exp < $condicion[1]) {
                         return false;
                     }
                     break;
