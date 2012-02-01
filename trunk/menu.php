@@ -40,7 +40,7 @@ elseif($entrenado==0)
             <li><a href="<? echo "/".$_GET['lang']."/mercado"; ?>"><? echo getString('mercado_productos'); ?></a></li>
             <li><a href="<? echo "/".$_GET['lang']."/mercado_laboral"; ?>"><? echo getString('mercado_laboral'); ?></a></li>
             <li><a href="<? echo "/".$_GET['lang']."/mercado_economico"; ?>"><? echo getString('mercado_economico'); ?></a></li>
-            <!--<li><a href="#"><? echo getString('mercado_empresas'); ?></a></li>-->
+            <li><a href="<? echo "/".$_GET['lang']."/mercado_empresas"; ?>"><? echo getString('mercado_empresas'); ?></a></li>
         </ul>   
         </li>     
         <li><a href="#"><? echo getString('pais'); ?></a>

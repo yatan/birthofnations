@@ -9,15 +9,18 @@ if (!isset($_GET['tipo'])) {
 }
 
 if (!isset($_GET['pais'])) {
-    $country = 2;
+    $country = $objeto_usuario->id_nacionalidad;
+}else{
+    $country=$_GET['pais'];
 }
+
+var_dump($_GET['tipo']);
+var_dump($_GET['pais']);
 
 
 $empresas = sql2("SELECT empresas.id_empresa, tipo, nombre_empresa, mercado_empresas.precio FROM mercado_empresas  LEFT JOIN empresas ON empresas.id_empresa=mercado_empresas.id_empresa WHERE pais=" . $country . " AND tipo = " . $tipo . " ORDER BY precio ASC");
 
 //Elegimos las empresas que esten en el mercado cuyo pais sea el elegido (ohh el elegido).
-
-var_dump($empresas);
 
 if ($empresas == null) {
     echo getString("no_selling_companies");

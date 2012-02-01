@@ -80,6 +80,9 @@ include("index_head.php");
                             case "mercado_laboral":
                                 include("economico/mercado_trabajo.php");
                                 break;  
+                            case "mercado_empresas":
+                                include("economico/mercado_empresas.php");
+                                break;  
                              case "empresas":
                                 include("economico/empresas.php");
                                 break;
