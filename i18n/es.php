@@ -53,8 +53,10 @@ $i18n_array['Ofertas'] = 'Ofertas';
 $i18n_array['comprar'] = 'Comprar';
 $i18n_array['vender'] = 'Vender';
 $i18n_array['seller'] = 'Vendedor';
+$i18n_array['precio'] = 'Precio';
 $i18n_array['alternate_money'] = 'Alternar monedas';
 $i18n_array['search_offers'] = 'Buscar ofertas';
+$i18n_array['type'] = 'Tipo';
 
 
  		//LOGIN
@@ -305,6 +307,7 @@ $i18n_array['company_exp'] = "Has ganado 1 punto de experiencia";
 $i18n_array['company_you_have_produced'] = "Has producido ";
 $i18n_array['company_come_again_tomorrow'] = "Vuelve mañana";
 $i18n_array['no_job_offers'] = "No hay ofertas de trabajo.";
+$i18n_array['no_selling_companies'] = "No hay empresas a la vente.";
 $i18n_array['not_enough_stock'] = "No tienes suficiente stock para vender";
 $i18n_array['sell_for_zero'] = "El precio de venta no puede ser negativo";
 

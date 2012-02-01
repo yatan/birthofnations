@@ -308,8 +308,9 @@ if (isset($_POST['metodo'])) {
 <button id="vender_empresa"><?echo getString("vender_empresa");?></button>
 
 <div id="vender_empresa2" style="display: none">
-    <form action="vender_empresa.php" method="POST">
-        <?  getString("precio_empresa")?>:<input type="text" name="precio" value="<? echo $empresa->precio_empresa; ?>" style="text-align:right;"/>
+    <form action="../../economico/vender_empresa.php" method="POST">
+        <?  echo getString("precio_empresa")?>:<input type="text" name="precio" value="<? echo $empresa->precio_empresa; ?>" style="text-align:right;"/>
+        <input type="hidden" name="id" value="<? echo $empresa->id_empresa; ?>">
         <input type="submit" value="Vender"/>
     </form>            
 </div>
