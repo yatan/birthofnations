@@ -79,7 +79,7 @@ $pag_resultados = $pagina * 10;
 
 $ofertas = sql2("SELECT * FROM mercado_objetos WHERE id_pais = " . $pais . " AND id_item = '". $objeto['id_item'] ."' ORDER BY precio ASC LIMIT $pag_resultados, 10");
 
-echo "<table><tr><th>Tipo</th><th>Empresa</th><th>Precio</th><th>Cantidad</th><th>Comprar</th></tr>";
+echo "<table><tr><th>".getString("type")."</th><th>".getString("name")."</th><th>".getString("precio")."</th><th>".getString("amount")."</th><th>".getString("comprar")."</th></tr>";
 
 foreach ($ofertas as $oferta){
     
