@@ -525,7 +525,7 @@ function parse_raw($tipo) {
 
 function nombre_item($tipo) {
     return sql("SELECT nombre FROM items WHERE id_item='$tipo'");
-}
+}//Eta tb deberia estar obsoleta
 
 function obj_to_id($obj) {
     return sql("SELECT id_item FROM items WHERE nombre='$obj'");
