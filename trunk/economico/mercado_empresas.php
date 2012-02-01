@@ -2,21 +2,16 @@
 
 include_once($_SERVER['DOCUMENT_ROOT'] . "/include/funciones.php");
 
-if (!isset($_GET['tipo'])) {
+
+if(isset($_GET['pais']))
+    $country = $_GET['pais']; 
+else
+    $country = $objeto_usuario->id_pais;
+
+if(isset($_GET['producto']))
+    $tipo = $_GET['producto']; 
+else
     $tipo = 1;
-} else {
-    $tipo = $_GET['tipo'];
-}
-
-if (!isset($_GET['pais'])) {
-    $country = $objeto_usuario->id_nacionalidad;
-}else{
-    $country=$_GET['pais'];
-}
-
-var_dump($_GET['tipo']);
-var_dump($_GET['pais']);
-
 
 $empresas = sql2("SELECT empresas.id_empresa, tipo, nombre_empresa, mercado_empresas.precio FROM mercado_empresas  LEFT JOIN empresas ON empresas.id_empresa=mercado_empresas.id_empresa WHERE pais=" . $country . " AND tipo = " . $tipo . " ORDER BY precio ASC");
 
