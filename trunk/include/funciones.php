@@ -314,7 +314,7 @@ function item2id($item) {
 
     $sql = sql("SELECT id_item FROM items WHERE nombre = '" . $item . "'");
     return $sql;
-}
+}//Esto deberia estar obsoleto
 
 function id2item($id) {
     $sql = sql("SELECT nombre FROM items WHERE id_item = '$id'");
