@@ -370,4 +370,7 @@ $i18n_array['last_wars'] = "Últimas guerras";
 $i18n_array['mail_server_error'] = "El servidor de correo no esta disponible actualmente";
 $i18n_array['enviar_invitacion'] = "Enviar invitación";
 
+//mercado_economico.php
+$i18n_array['post_offer'] = "Publicar oferta";
+
 ?>
