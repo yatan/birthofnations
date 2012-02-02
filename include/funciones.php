@@ -803,7 +803,7 @@ function apply_law($vot) {
             $sql = sql("UPDATE country SET url_bandera = '" . $votacion['param1'] . "' WHERE idcountry = " . $votacion['id_pais']);
 
             break;
-        case 106:
+        case 106://Cambio nombre moneda
             $monedas = sql("SELECT moneda FROM country");
 
             $flag = true;
