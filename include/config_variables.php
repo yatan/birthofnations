@@ -26,12 +26,6 @@ $precio_empresa[2] = 10;
 $precio_empresa[3] = 10;
 $precio_empresa[4] = 10;
 
-function formula_produccion($id) {
-    //Whatever formulica...
-
-    return 1;
-}
-
 //Modulo político
 $precio_partido = 40;
 
