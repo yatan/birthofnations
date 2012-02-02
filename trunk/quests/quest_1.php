@@ -1,4 +1,4 @@
-<?php
+<?
 include_once($_SERVER['DOCUMENT_ROOT'] . "/include/config_variables.php");
 /*
  * Quest 1
@@ -10,8 +10,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/include/config_variables.php");
 include_once($_SERVER['DOCUMENT_ROOT']."/include/funciones.php");
 include("../index_head.php");
 
-class quest_1
-{
+class quest_1 {
     
     //Detalles mision
     
@@ -52,7 +51,7 @@ class quest_1
         if($this->lobos_muertos >= $this->lobos_necesarios)
         {
             echo "Ya has hecho esta mision<br>";
-            exit();
+            die();
         }
         $this->lobos_muertos++;
         $this->guardar();
@@ -103,14 +102,10 @@ class quest_1
             if($this->lobos_muertos >= $this->lobos_necesarios)
                 {
                 echo "Ya has hecho esta mision<br>";
-                exit();
+                die();
                 }
         }
     }
-
-    
-    
-    
 }
 
 $mision = new quest_1();
@@ -121,8 +116,8 @@ $mision ->matar_lobo();
 
 */
 
-
 ?>
+
 
 <div id="juego">
 <div id="mapa" style="height: 600px; width: 600px; background-color: green; margin-top: 50px;">
@@ -143,7 +138,7 @@ $mision ->matar_lobo();
     <ul>
 <?
 $mision->info();
-$mision ->matar_lobo();
+$mision->matar_lobo();
 ?>
     </ul>
 </div>

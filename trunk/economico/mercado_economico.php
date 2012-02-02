@@ -4,10 +4,23 @@
         border: 1px solid #781351;
         width:270px;
     }
+    .base_economico
+    {
+        width:60%;
+        float: left;
+        
+    }
+    .base_nueva_oferta
+    {
+        float:right;
+        
+    }
 </style>
 
 
-
+<table>
+    <tr>
+        <td style="width:65%;" valign="top" align="center">
 <?php
 echo "<h1>".getString('mercado_economico')."</h1>";
 /*
@@ -30,8 +43,27 @@ $(document).ready(function() {
                 $("#compra").val( $("#venta").val() );
                 $("#venta").val( temp );
         });
+        
+        $("#alternar2").click(function() { 
+                var temp = $("#compra2").val();
+                $("#compra2").val( $("#venta2").val() );
+                  $("#moneda_compra").text($("#venta2").val());
+                  $("#moneda_compra2").text($("#venta2").val());
+                $("#venta2").val( temp );
+                
+
+                $("#moneda_venta").text(temp);
+        });
 
 }); 
+
+function cambiar_compra(arg) {
+    $("#moneda_compra").text(arg);
+    $("#moneda_compra2").text(arg);
+}
+function cambiar_venta(arg) {
+    $("#moneda_venta").text(arg);
+}
 </script>
 
 <div id="cuadro1">
@@ -91,7 +123,7 @@ $id_moneda_venta = array_search($venta, $moneda_local);
 ?>
 
 <br> <br>
-
+    
 <h2><? echo getString('Ofertas'); ?></h2>
 
 <?
@@ -116,8 +148,67 @@ $ofertas = sql2("SELECT *
 </table>
 
 
-<script type="text/javascript">
+</td><td style="width:35%;" valign="top" align="center">
+
+    <h2>Mis ofertas</h2>
     
+    <div id="cuadro1">
+    
+<form name="mercado_economico" id="mercado_economico" method="post" action="">
+<? echo getstring('comprar'); ?>:
+<select name="compra" id="compra2" onchange="cambiar_compra(this.value)">
+    <?
+    echo "<option>Gold</option>";
+foreach ($sql as $moneda => $valor) {
+    if(isset($_POST['compra']) && $moneda == $_POST['compra'])
+        echo "<option selected='selected'>".$moneda."</option>"; 
+    elseif($moneda!="id_usuario" && $moneda!="Gold")// <--- !!! que cojones id_usuario ?
+        echo "<option>".$moneda."</option>";
+}
+?>
+</select>
+<? echo getstring('vender'); ?>:
+<select name="venta" id="venta2"  onchange="cambiar_venta(this.value)">
+    <?
+    echo "<option>Gold</option>";
+foreach ($sql as $moneda => $valor) {
+    if($moneda!="id_usuario" && $moneda!="Gold")
+        if($moneda == $moneda_local[$objeto_usuario->moneda] && !isset($_POST['venta']))
+            echo "<option selected='selected'>".$moneda."</option>";
+        elseif(isset($_POST['venta']) && $moneda == $_POST['venta'])
+            echo "<option selected='selected'>".$moneda."</option>";         
+        else
+            echo "<option>".$moneda."</option>";
+    
+}
+?>
+</select>
+<br/>
+<input type="button" value="<? echo getstring('alternate_money'); ?>" id="alternar2"/>
+
+<p>Offer <input type="text" style="width: 30px;" value="0.00"/> <a id="moneda_compra"></a> at rate</p>
+<p>1 <a id="moneda_compra2"></a> = <input type="text" style="width: 30px;" value="0.00"/> <a id="moneda_venta"></a></p>
+<input type="submit" value="<? echo getstring('post_offer'); ?>"/>
+</form>
+   
+   
+    </div><!-- Fin cuadro mis ventas -->
+
+<table>
+    <tr>
+        <td>Cantidad</td><td>Ratio</td><td>Cancelar</td>
+    </tr>
+</table>     
+
+<br>
+<script type="text/javascript">
+$(document).ready(function() {
+    var compra = $("#compra2").val();
+    var venta = $("#venta2").val();
+    $("#moneda_compra").text(compra);
+    $("#moneda_compra2").text(compra);
+    $("#moneda_venta").text(venta);
+});
     
     $('.comprar').click(function() {
         var element = $(this);
@@ -146,5 +237,10 @@ $ofertas = sql2("SELECT *
     }); 
     
 </script>    
+
+
+</td>
+    </tr>
+</table>
 
 <br> <br>
