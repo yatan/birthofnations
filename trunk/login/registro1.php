@@ -47,6 +47,7 @@ $mi_id=sql("SELECT id_usuario FROM usuarios WHERE nick='$user'");
 sql("INSERT INTO money(id_usuario) VALUES ('$mi_id') "); //A�adir a la tabla de dinero
 sql("INSERT INTO diario(id_usuario) VALUES ('$mi_id') "); //A�adir a la tabla de diarios
 sql("INSERT INTO inventario(id_usuario) VALUES ('$mi_id') "); //Añadir a la tabla de inventario
+sql("INSERT INTO skills(id_usuario) VALUES ('$mi_id') "); //Añadir a la tabla de skills
 //
 //Registrar usuario al foro <-ULTIMO PASO BD->
 anadir_foro($user,$pass1,$email);
