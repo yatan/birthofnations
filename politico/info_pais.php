@@ -18,9 +18,11 @@ $pais = new pais($id_pais);
 
 
 $nombre_pais = $pais->nombre;
-echo "<h1>$nombre_pais</h1><img alt='bandera' title='" . $pais->nombre . "' src='" . $pais->bandera . "'/>";
+echo "<h1>$nombre_pais</h1><img alt='bandera' title='" . $pais->nombre . "' src='" . $pais->bandera . "'/></br>";
 
-echo "Poblacion actual: " . $pais->population();
+echo getString("exp") . $pais->exp . "</br>";
+
+echo getString("population") . $pais->population();
 
 echo "<h3>" . getString("leaders") . "</h3>";
 
