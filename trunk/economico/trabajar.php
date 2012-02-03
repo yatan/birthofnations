@@ -21,7 +21,7 @@ $duenyo = sql("SELECT id_propietario FROM empresas WHERE id_empresa = {$datos['i
 
 $list_items = list_items();
 
-$producido = formula_produccion($_SESSION['id_usuario'],$empresa['tipo'],$item['is_raw']); // Numero de items que va a producir
+$producido = formula_produccion($_SESSION['id_usuario'],$empresa['tipo']); // Numero de items que va a producir
 //Condiciones que ha de cumplir el trabajador
 
 if ($objeto_usuario->salud < $min_work_health) {
