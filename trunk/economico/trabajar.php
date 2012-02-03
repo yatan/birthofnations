@@ -76,7 +76,7 @@ if ($empresa[$moneda_local[$datos['moneda']]] > $datos['salario']) { //Si hay su
             //Poner que has trabajado
             sql("UPDATE diario SET work = 1 WHERE id_usuario = " . $_SESSION['id_usuario']);
             //Dar +1 exp por trabajar
-            sql("UPDATE usuarios SET exp = exp+1 WHERE id_usuario = " . $_SESSION['id_usuario']);
+            dar_esp($_SESSION['usuario'],1);
             //Subir skill
             $aumento = aumento_work_skill($objeto_usuario->id_usuario);
             sql("UPDATE skills SET work = work + " .  $aumento . " WHERE id_usuario = ".$objeto_usuario->id_usuario);

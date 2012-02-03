@@ -10,11 +10,15 @@ class pais {
     public $nombre;
     public $id;
     public $bandera;
+    public $exp;
     
     function pais($id) {
-        $this->nombre = sql("SELECT name FROM country WHERE idcountry = " . $id);
+        $sql = sql("SELECT name, url_bandera, exp FROM country WHERE idcountry = " . $id);
+        $this->nombre = $sql['name'];
         $this->id = $id;
-        $this->bandera = sql("SELECT url_bandera FROM country WHERE idcountry = " . $this->id);
+        $this->bandera = $sql['url_bandera'];
+        $this->exp = $sql['exp'];
+        
     }
     function list_cargos(){
         $min = $this->id*100;

@@ -301,6 +301,15 @@ function select_lang() {
     //include_once($_SERVER['DOCUMENT_ROOT'] . "/i18n/es_ES.php");
 }
 
+function dar_exp($id,$cantidad){
+    //Subirsela al jugador
+    sql("UPDATE usuarios SET exp = exp + ".$cantidad." WHERE id_usuario = " . $id);
+    //Sacar la ciudadania la jugador
+    $cs = sql("SELECT id_nacionalidad FROM usuarios WHERE id_usuario = ".$id);
+    //Ponerla al pais
+    sql("UPDATE country SET exp = exp + ".$cantidad." WHERE idcountry = " . $cs);
+}
+
 function id2nick($id) {
     return sql("SELECT nick FROM usuarios WHERE id_usuario='$id'");
 }
@@ -314,7 +323,7 @@ function item2id($item) {
 
     $sql = sql("SELECT id_item FROM items WHERE nombre = '" . $item . "'");
     return $sql;
-}//Esto deberia estar obsoleto
+}
 
 function id2item($id) {
     $sql = sql("SELECT nombre FROM items WHERE id_item = '$id'");
