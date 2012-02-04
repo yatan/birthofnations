@@ -383,5 +383,6 @@ $i18n_array['offer'] = "Ofrecer";
 $i18n_array['monedas_iguales'] = "El tipo de moneda no puede ser el mismo";
 $i18n_array['offer_cancel'] = "Cancelar oferta";
 $i18n_array['offer_cancel_ok'] = "Oferta cancelada correctamente";
+$i18n_array['offer_lower_zero'] = "La cantidad introducida es menor que 0.01";
 
 ?>
