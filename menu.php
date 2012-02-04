@@ -17,8 +17,8 @@ elseif($entrenado==0)
 
 <div class="nav-container-outer">
     
-   <img src="../images/menu/nav-bg-l.jpg" alt="" class="float-left" />
-   <img src="../images/menu/nav-bg-r.jpg" alt="" class="float-right" />
+   <img src="/images/menu/nav-bg-l.jpg" alt="" class="float-left" />
+   <img src="/images/menu/nav-bg-r.jpg" alt="" class="float-right" />
   <ul id="nav-container" class="nav-container">
       <li><a href="/" >Home</a></li>
        <li><span class="divider divider-vert" ></span></li>
