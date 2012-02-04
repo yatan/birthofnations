@@ -2,7 +2,7 @@
 
 session_start();
 include_once("config.php");
-
+include_once('config_variables.php');
 select_lang();
 /*
 
@@ -302,7 +302,7 @@ function select_lang() {
 }
 
 function dar_exp($id, $cantidad) {
-    require_once('config_variables.php');
+    
     //Subirsela al jugador
     sql("UPDATE usuarios SET exp = exp + " . $cantidad . " WHERE id_usuario = " . $id);
     //Sacar la ciudadania la jugador
@@ -313,8 +313,12 @@ function dar_exp($id, $cantidad) {
     //Ahora comprobamos si entre en un nuevo tipo de gobierno
     //Exp del pais
     $country = sql("SELECT exp,tipo_gobierno FROM country WHERE idcountry = " . $cs);
+    
     global $gov_exp;
-    if (in_array($gov_exp,$country['exp'])) {//Si es un punto clave
+    
+    
+    
+    if (in_array($country['exp'],$gov_exp)) {//Si es un punto clave
         $country = sql("SELECT tipo_gobierno FROM country WHERE idcountry = " . $cs);
         $time = time();
         $fin = $time + 86400;
