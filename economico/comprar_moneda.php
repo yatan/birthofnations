@@ -9,7 +9,11 @@ include_once($_SERVER['DOCUMENT_ROOT']."/economico/moneda_local.php");
  */
 
 if(isset($_POST['cantidad']) && $_POST['cantidad']!="")
+{
     $cantidad = $_POST['cantidad'];
+    $cantidad = str_replace(",",".",$cantidad); //Comas por puntos
+    $cantidad = rfloor($cantidad, 2); // redondear
+}
 else
     die("Error");
 
