@@ -26,8 +26,15 @@ $precio_empresa[2] = 10;
 $precio_empresa[3] = 10;
 $precio_empresa[4] = 10;
 
+
+
 //Modulo político
 $precio_partido = 40;
+
+//Exp para cambiar de gobierno
+
+$gov_exp[0] = 20;
+$gov_exp[1] = 999999999999;
 
 //Numero de parametros de cada ley.
 function law_params($ley) {

@@ -301,13 +301,39 @@ function select_lang() {
     //include_once($_SERVER['DOCUMENT_ROOT'] . "/i18n/es_ES.php");
 }
 
-function dar_exp($id,$cantidad){
+function dar_exp($id, $cantidad) {
+    require('config_variables.php');
     //Subirsela al jugador
-    sql("UPDATE usuarios SET exp = exp + ".$cantidad." WHERE id_usuario = " . $id);
+    sql("UPDATE usuarios SET exp = exp + " . $cantidad . " WHERE id_usuario = " . $id);
     //Sacar la ciudadania la jugador
-    $cs = sql("SELECT id_nacionalidad FROM usuarios WHERE id_usuario = ".$id);
+    $cs = sql("SELECT id_nacionalidad FROM usuarios WHERE id_usuario = " . $id);
     //Ponerla al pais
-    sql("UPDATE country SET exp = exp + ".$cantidad." WHERE idcountry = " . $cs);
+    sql("UPDATE country SET exp = exp + " . $cantidad . " WHERE idcountry = " . $cs);
+
+    //Ahora comprobamos si entre en un nuevo tipo de gobierno
+    //Exp del pais
+    $country = sql("SELECT exp,tipo_gobierno FROM country WHERE idcountry = " . $cs);
+
+    if (in_array($country['exp'], $gov_exp)) {//Si es un punto clave
+        $country = sql("SELECT tipo_gobierno FROM country WHERE idcountry = " . $cs);
+        $time = time();
+        $fin = $time + 86400;
+        switch ($country):
+
+            case 1://Salimos de la anarquia
+                //Abrir votacion
+                sql("INSERT INTO votaciones (tipo_votacion,comienzo,fin,restricciones,solved,is_cargo,id_pais) VALUES (2," . $time . ",
+                    " . $fin . ",'C+" . $cs . "!E+10!S+1',0,0," . $cs . ")");
+                //Sacar id de la votacion
+                $id = sql("SELECT id_votacion FROM votaciones WHERE comienzo = " . $time . " AND id_pais = " . $cs);
+                //Introducir candidatos
+                sql("INSERT INTO candidatos_elecciones (id_votacion,id_candidato,tipo_elecciones,votos,solved) VALUES (" . $id . ",2,2,0,0) ");
+                sql("INSERT INTO candidatos_elecciones (id_votacion,id_candidato,tipo_elecciones,votos,solved) VALUES (" . $id . ",3,2,0,0) ");
+
+                break;
+
+        endswitch;
+    }
 }
 
 function id2nick($id) {
@@ -344,8 +370,7 @@ function next_elecciones($DA, $DE, $FE) {//Actual/Resto del dia de las eleccione
     return $prox;
 }
 
-function puedo_votar($id_usuario, $tipo, $id_votacion){//Determina si puedes votar o no, segun el tipo de votacion
-    
+function puedo_votar($id_usuario, $tipo, $id_votacion) {//Determina si puedes votar o no, segun el tipo de votacion
     $sql3 = sql("SELECT * FROM log_votos WHERE id_votacion = " . $id_votacion . " AND id_usuario = " . $id_usuario); //Si ya ha votado
     if ($sql3 != false) { //Si ya ha votado
         return false;
@@ -368,13 +393,18 @@ function puedo_votar($id_usuario, $tipo, $id_votacion){//Determina si puedes vot
             $ret = false;
             break;
     endswitch;
-    if ($tipo >= 100) {//Votaciones para cargos de un pais
+    if ($tipo >= 100 || $tipo == 2) {//Votaciones para cargos de un pais O cambio de gobierno
         $sql = sql("SELECT * FROM votaciones WHERE id_votacion = " . $id_votacion);
         $rest = explode("!", $sql['restricciones']); //Sacamos las restricciones para votar
         foreach ($rest as $res) {
             $rest2[] = explode("+", $res); //Separamos cada una de ellas
         }
         $ret = true; //En principio se podria votar
+        //objeto usuario
+        include_once($_SERVER['DOCUMENT_ROOT'] . "/usuarios/objeto_usuario.php");
+        
+        $objeto_usuario = new usuario($id_usuario);
+        
         foreach ($rest2 as $condicion) {//Comprobamos cada una de ellas
             switch ($condicion[0]):
                 case "C": //Ciudadania
@@ -389,8 +419,8 @@ function puedo_votar($id_usuario, $tipo, $id_votacion){//Determina si puedes vot
                     break;
                 case "G": //Gold, siempre debe ser la ultima
                     if ($ret == true) {//S�lo se paga si el resto de condiciones ya se han cumplido
-                        $gold = sql("SELECT Gold FROM money WHERE id_usuario = " . $_SESSION['id_usuario']);
-                        if ($gold >= $condicion[1]) {//Si tiene gold suficiente
+                        
+                        if ($objeto_usuario->gold >= $condicion[1]) {//Si tiene gold suficiente
                             sql("UPDATE money SET gold = gold - " . $condicion[1] . " WHERE id_usuario = " . $_SESSION['id_usuario']);
                         } else {//Si no tiene dinero suficiente
                             $ret = false;
@@ -403,7 +433,6 @@ function puedo_votar($id_usuario, $tipo, $id_votacion){//Determina si puedes vot
 }
 
 function puedo_postularme($id_usuario, $tipo, $id_votacion) {//Determina si puedes postularte o no, segun el tipo de votacion
-    
     $sql3 = sql("SELECT * FROM candidatos_elecciones WHERE id_votacion = " . $id_votacion . " AND id_candidato = " . $id_usuario); //Si ya esta postulado
     if ($sql3 != false) { //Si ya esta postulado.
         return false;
@@ -534,7 +563,9 @@ function parse_raw($tipo) {
 
 function nombre_item($tipo) {
     return sql("SELECT nombre FROM items WHERE id_item='$tipo'");
-}//Eta tb deberia estar obsoleta
+}
+
+//Eta tb deberia estar obsoleta
 
 function obj_to_id($obj) {
     return sql("SELECT id_item FROM items WHERE nombre='$obj'");
@@ -817,7 +848,7 @@ function apply_law($vot) {
 
             $flag = true;
             $p[0] = strtoupper($p[0]);
-            
+
             foreach ($monedas as $coin) {
                 if ($p[0] == $coin['moneda']) {//Su nombre es el de alguna moneda
                     $flag = false;
@@ -832,23 +863,22 @@ function apply_law($vot) {
             }
             break;
         case 200:
-            
-            $currency_per_gold= 100; //De momento dejamos esto aqui, aunqueo ideal seria enlazarlo desde config_variables.php, pero no se porque no consigo que vaya ahora mismo.
-            
+
+            $currency_per_gold = 100; //De momento dejamos esto aqui, aunqueo ideal seria enlazarlo desde config_variables.php, pero no se porque no consigo que vaya ahora mismo.
             //Sacamos la cantidad de gold del pais;
             $gold = sql("SELECT Gold FROM money_pais WHERE idcountry = " . $votacion['id_pais']);
             $nombre_moneda = moneda_pais($votacion['id_pais']);
-            
+
             //Vemos si tiene el Gold necesario para crearla:
-            
-            if($gold >= $p[0]/$currency_per_gold ){//Gold >= gold necesario [Esp / (Esp/Gold)]
+
+            if ($gold >= $p[0] / $currency_per_gold) {//Gold >= gold necesario [Esp / (Esp/Gold)]
                 //Quitar gold
-                sql("UPDATE money_pais SET Gold = Gold - " . $p[0]/$currency_per_gold . " WHERE idcountry = " . $votacion['id_pais']);
+                sql("UPDATE money_pais SET Gold = Gold - " . $p[0] / $currency_per_gold . " WHERE idcountry = " . $votacion['id_pais']);
                 //Poner moneda local
-                sql("UPDATE money_pais SET ".$nombre_moneda." = ".$nombre_moneda." + " . $p[0] . " WHERE idcountry = " . $votacion['id_pais']);
+                sql("UPDATE money_pais SET " . $nombre_moneda . " = " . $nombre_moneda . " + " . $p[0] . " WHERE idcountry = " . $votacion['id_pais']);
             }
-            
-            
+
+
             break;
         case 201:
             //Sacamos la lista de nombres de monedas
@@ -863,14 +893,14 @@ function apply_law($vot) {
                     break;
                 }
             }
-            
+
             //Si no es ninguna moneda puede que sea gold
-            
-            if($flag == true && strtoupper($p[1]) == "GOLD"){
+
+            if ($flag == true && strtoupper($p[1]) == "GOLD") {
                 $p[1] = "Gold";
                 $flag = false;
             }
-            
+
             if ($flag == false) {//Si es el nombre de alguna moneda
                 //Sacamos cuanta moneda de esa tiene el pais
                 $money = sql("SELECT " . $p[1] . " FROM money_pais WHERE idcountry = " . $votacion['id_pais']);
@@ -928,35 +958,33 @@ function item2img($item) {//devuelve la imagen a partir de la id del item
 function reset_mail($mail) {
     $pin = sql("SELECT pin FROM settings");
     $token = md5($mail) + $pin;
-    $link = "http://birthofnations.com/usuarios/recuperar.php?token=" . $token . "&mail=".$mail;
+    $link = "http://birthofnations.com/usuarios/recuperar.php?token=" . $token . "&mail=" . $mail;
     mail($mail, "Recuperacion password cuenta Birth of Nations", "El siguiente link es para resetear: $link ");
 }
 
 function reset_pass($mail, $token) {
     $pin = sql("SELECT pin FROM settings");
     $token_bueno = md5($mail) + $pin;
-    
-    if($token!=$token_bueno)
+
+    if ($token != $token_bueno)
         return false;
-    elseif($token==$token_bueno)
+    elseif ($token == $token_bueno)
         return true;
 }
 
-function new_password($password1, $password2, $mail)
-{
-    if($password1!=$password2)
+function new_password($password1, $password2, $mail) {
+    if ($password1 != $password2)
         die("Password no coincide");
-    elseif($password1==$password2)
-        {
+    elseif ($password1 == $password2) {
         echo "password cambiado correctamente";
         $nuevo_pass = md5($password1);
         sql("UPDATE usuarios SET password = '$nuevo_pass' WHERE email = '$mail'");
-        }
+    }
 }
 
 //Para enviar la alerta
 function send_alert($emisor, $receptor, $tipo, $r1) {
-    sql("INSERT INTO alertas(id_emisor,id_receptor,tipo,r1,fecha) VALUES ('".$emisor."','".$receptor."','".$tipo."','".$r1."','".time()."')"); 
+    sql("INSERT INTO alertas(id_emisor,id_receptor,tipo,r1,fecha) VALUES ('" . $emisor . "','" . $receptor . "','" . $tipo . "','" . $r1 . "','" . time() . "')");
 }
 
 ?>

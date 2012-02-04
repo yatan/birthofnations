@@ -23,6 +23,7 @@ $i18n_array['already_affiliated'] = 'Ya estas en un partido.';
 $i18n_array['smth_failed'] = "Algo ocurrio.";
 $i18n_array['new_name'] = "Nuevo nombre";
 $i18n_array['new_flag'] = "Nueva bandera";
+$i18n_array['see_results'] = "Ver resultados";
 
                 //PALABRAS SUELTAS
 $i18n_array['leaders'] = "Lideres";
@@ -187,6 +188,9 @@ $i18n_array['vote_day'] = 'Dia de votar';
 $i18n_array['available_laws'] = 'Leyes disponibles: ';
 $i18n_array['next_elections'] = 'Proximas elecciones: ';
 $i18n_array['member_list'] = 'Lista de miembros';
+$i18n_array['gov_type_1'] = 'Anarquía';
+$i18n_array['gov_type_2'] = 'Consejo de Guerreros';
+$i18n_array['gov_type_3'] = 'Consejo de Sabios';
 
 
 //Menu
@@ -221,6 +225,7 @@ $i18n_array['armas'] = "Armas";
 $i18n_array['hierro'] = "Hierro";
 //Leyes
 
+$i18n_array['1prop_2'] = 'Cambiar tipo de gobierno'; 
 $i18n_array['law_100'] = 'Cambiar nombre al pais';
 $i18n_array['1prop_100'] = 'Llamar';
 $i18n_array['2prop_100'] = 'al pais';

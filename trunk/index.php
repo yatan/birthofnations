@@ -134,6 +134,9 @@ include("index_head.php");
                             case "mercado_economico":
                                 include("economico/mercado_economico.php");
                                 break;                            
+                            case "candidatos":
+                                include("politico/lista_candidatos.php");
+                                break;                            
                             default :
                                 die($_GET['mod']); //Default por si se pone algo incorrecto. Al futuro hay que cambiarlo
                             }
