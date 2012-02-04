@@ -62,10 +62,10 @@ elseif($entrenado==0)
        <li><span class="divider divider-vert" ></span></li>
       <li><a class="item-primary" href="" target="_self"><? echo getString('soporte'); ?></a>
          <ul style="width:150px;">
-            <li><a href="/forum" title="Foro" target="_self" ><? echo getString('foro'); ?></a></li>
-            <li><a href="/support" title="Soporte" target="_self" ><? echo getString('soporte'); ?></a></li>
-            <li><a href="/bugs" title="Bugs" target="_self" ><? echo getString('bugs'); ?></a></li>
-            <li><a href="/wiki" title="Wiki" target="_self" ><? echo getString('wiki'); ?></a></li>
+            <li><a href="/forum" title="Foro" target="_blank" ><? echo getString('foro'); ?></a></li>
+            <li><a href="/support" title="Soporte" target="_blank" ><? echo getString('soporte'); ?></a></li>
+            <li><a href="/bugs" title="Bugs" target="_blank" ><? echo getString('bugs'); ?></a></li>
+            <li><a href="/wiki" title="Wiki" target="_blank" ><? echo getString('wiki'); ?></a></li>
          </ul>
 	   </li>
        <li><span class="divider divider-vert" ></span></li>
