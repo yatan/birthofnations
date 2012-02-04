@@ -131,7 +131,7 @@ $id_moneda_venta = array_search($venta, $moneda_local);
 
 $ofertas = sql2("SELECT * 
     FROM mercado_monetario 
-    WHERE tipo_moneda_comprar = '$id_moneda_compra' AND tipo_moneda_vender = '$id_moneda_venta' ORDER BY cantidad_moneda_vender ASC");
+    WHERE tipo_moneda_comprar = '$id_moneda_compra' AND tipo_moneda_vender = '$id_moneda_venta' AND cantidad_moneda_comprar>0 ORDER BY cantidad_moneda_vender ASC");
 
 //var_dump($ofertas);
 ?>

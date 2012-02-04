@@ -12,7 +12,7 @@ if (isset($_GET['id_oferta']) && $_GET['id_oferta'] != "" && strlen($_GET['id_of
 
     //Poner en el inventario de la empresa
 
-    sql("UPDATE inventario_empresas SET " . $list_items[$sql['id_item']] . " = " . $list_items[$sql['id_item']] . " + " . $sql['cantidad']);
+    sql("UPDATE inventario_empresas SET " . $list_items[$sql['id_item']] . " = " . $list_items[$sql['id_item']] . " + " . $sql['cantidad']." WHERE id_empresa='".$sql['id_empresa']."'");
 
 //Mecanismo de quitar oferta
     sql("DELETE FROM mercado_objetos WHERE id_oferta = '" . $_GET['id_oferta'] . "'");
