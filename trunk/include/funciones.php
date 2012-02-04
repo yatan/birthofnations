@@ -313,7 +313,7 @@ function dar_exp($id, $cantidad) {
     //Ahora comprobamos si entre en un nuevo tipo de gobierno
     //Exp del pais
     $country = sql("SELECT exp,tipo_gobierno FROM country WHERE idcountry = " . $cs);
-global $gov_exp;
+    global $gov_exp;
     if (in_array($country['exp'], $gov_exp)) {//Si es un punto clave
         $country = sql("SELECT tipo_gobierno FROM country WHERE idcountry = " . $cs);
         $time = time();
@@ -371,10 +371,18 @@ function next_elecciones($DA, $DE, $FE) {//Actual/Resto del dia de las eleccione
 }
 
 function puedo_votar($id_usuario, $tipo, $id_votacion) {//Determina si puedes votar o no, segun el tipo de votacion
+    //Si la votacion ya esta cerrada pues nada
+    $time = time();
+    $fin = sql("SELECT fin FROM votaciones WHERE id_votacion = " . $id_votacion);
+    if ($fin < $time) {
+        return false;
+    }
     $sql3 = sql("SELECT * FROM log_votos WHERE id_votacion = " . $id_votacion . " AND id_usuario = " . $id_usuario); //Si ya ha votado
+
     if ($sql3 != false) { //Si ya ha votado
         return false;
     }
+
 
     switch ($tipo):
         case 1://Presi de partido
@@ -418,7 +426,7 @@ function puedo_votar($id_usuario, $tipo, $id_votacion) {//Determina si puedes vo
                     }
                     break;
                 case "R"://Rango
-                    if (check_leader($condicion[1],$objeto_usuario->id_usuario)){
+                    if (check_leader($condicion[1], $objeto_usuario->id_usuario)) {
                         $ret = false;
                     }
                     break;
@@ -473,7 +481,7 @@ function puedo_postularme($id_usuario, $tipo, $id_votacion) {//Determina si pued
                     }
                     break;
                 case "R"://Rango
-if (check_leader($condicion[1],$objeto_usuario->id_usuario)){
+                    if (check_leader($condicion[1], $objeto_usuario->id_usuario)) {
                         $ret = false;
                     }
                     break;
@@ -802,31 +810,17 @@ function apply_law($vot) {
     switch ($votacion['tipo_votacion']):
         case 2:
             //Ver que sistema ha ganado
-            $sql = sql2("SELECT votos FROM candidatos_elecciones WHERE id_votacion = " . $vot);
+            $sql = sql2("SELECT votos, id_candidato FROM candidatos_elecciones WHERE id_votacion = " . $vot);
 
-            $winner[0]['id'] = 0;
-            $winner[0]['votos'] = -1;
+            $winner = array('id' => 0, 'votos' => -1);
+            
             foreach ($sql as $cand) {//Ver quien es el ganador
-                if ($cand['votos'] >= $winner[0]['votos']) {//Comparamos los votos con los del ganador
-                    $winner[0]['id'] = $cand['id_candidato'];
-                    $winner[0]['votos'] = $cand['votos'];
-                } elseif ($cand['votos'] == $winner['votos']) {//Si empatan los añadimos al array de winner
-                    $winner[]['id'] = $cand['id_candidato'];
-                    $winner[]['votos'] = $cand['votos'];
+                if ($cand['votos'] > $winner['votos']) {//Comparamos los votos con los del ganador
+                    $winner['id'] = $cand['id_candidato'];
+                    $winner['votos'] = $cand['votos'];
+                } elseif ($cand['votos'] == $winner['votos']) {//Si empatan utilizamos los criterios de desempate (que no tenemos)
                 }
             }
-            //Tenemos el array de ganadores, veamos cuantos son:
-
-            if (count($winner) != 1) {
-                $winner = $winner[0]; //Si solo hay un ganador pues ese
-            } else {
-                $rnd = floor(rand(0, count($winner)));//Si hay empate elegimos uno al azar
-                if ($rnd == count($winner)) {//Por si las moscas
-                    $winner = count($winner) - 1;
-                }
-            }
-            
-            
 
             //Borrar el gobierno anterior
             $down = $votacion['id_pais'] * 100;
@@ -834,28 +828,28 @@ function apply_law($vot) {
 
             sql("DELETE FROM country_leaders WHERE id_cargo >= " . $down . " AND id_cargo <= " . $up);
             //Elegir quien va en los nuevos cargos
-            switch($winner):
+            switch ($winner['id']):
                 case 1://Anarquia
                     //Nadie
                     break;
                 case 2://Consejo de sabios
                     //Ponemos el puesto
-                    sql("INSERT INTO country_leaders(id_cargo,nombre,votacion,laws) VALUES (".$down.",".getString('cargo_2_1').",'A','100-V.R+".$down.",105-V.R+".$down."')");
-                    $gente = sql("SELECT id_usuario FROM usuarios WHERE id_nacionalidad = ". $votacion['id_pais'] ."ORDER BY exp DESC LIMIT 9");
-                    foreach($gente as $id){
-                    add_leader($cargos, $id);
+                    sql("INSERT INTO country_leaders(id_cargo,nombre,votacion,laws) VALUES (" . $down . ",'" . getString('cargo_2_1') . "','A','100-V.R+" . $down . ",105-V.R+" . $down . "')");
+                    $gente = sql("SELECT id_usuario FROM usuarios WHERE id_nacionalidad = " . $votacion['id_pais'] . " ORDER BY exp DESC LIMIT 9");
+                    foreach ($gente as $id) {
+                        add_leader($down, $id['id_usuario']);
                     }
                     break;
                 case 3://Consejo de guerreros
-                    $cargos = 100*$votacion['id_votacion'];
-                    sql("INSERT INTO country_leaders(id_cargo,nombre,votacion,laws) VALUES (".$down.",".getString('cargo_3_1').",'A','100-V.R+".$down.",105-V.R+".$down."')");
-                    $gente = sql("SELECT id_usuario FROM usuarios WHERE id_nacionalidad = ". $votacion['id_pais'] ."ORDER BY fuerza DESC LIMIT 9");
-                    foreach($gente as $id){
-                    add_leader($cargos, $id);
+                    $cargos = 100 * $votacion['id_votacion'];
+                    sql("INSERT INTO country_leaders(id_cargo,nombre,votacion,laws) VALUES (" . $down . "," . getString('cargo_3_1') . ",'A','100-V.R+" . $down . ",105-V.R+" . $down . "')");
+                    $gente = sql("SELECT id_usuario FROM usuarios WHERE id_nacionalidad = " . $votacion['id_pais'] . " ORDER BY fuerza DESC LIMIT 9");
+                    foreach ($gente as $id) {
+                        add_leader($cargos, $id['id_usuario']);
                     }
                     break;
-            endswitch;           
-           
+            endswitch;
+
             break;
         case 100: //Cambio de nombre del pais        
             sql("UPDATE country SET name = '" . $p[0] . "' WHERE idcountry = " . $votacion['id_pais']);
@@ -989,10 +983,10 @@ function apply_law($vot) {
 
 function check_laws() {
     $time = time();
-    $sql = sql2("SELECT id_votacion,tipo_votacion FROM votaciones WHERE solved = 0 AND fin < " . $time . " AND is_cargo = 0 AND tipo_votacion >= 100");
+    $sql = sql2("SELECT id_votacion,tipo_votacion FROM votaciones WHERE solved = 0 AND fin < " . $time . " AND is_cargo = 0 AND (tipo_votacion >= 100 OR tipo_votacion = 2)");
 
     foreach ($sql as $vot) {
-        if ($sql['tipo_votacion'] >= 100) {
+        if ($vot['tipo_votacion'] >= 100) {
             $si = sql("SELECT votos FROM candidatos_elecciones WHERE id_candidato = -1 AND id_votacion = " . $vot['id_votacion']);
             $no = sql("SELECT votos FROM candidatos_elecciones WHERE id_candidato = -2 AND id_votacion = " . $vot['id_votacion']);
 
@@ -1003,7 +997,7 @@ function check_laws() {
             } else {//Obviamente aqui va que no xD
                 apply_law($vot['id_votacion']);
             }
-        } elseif ($votacion['tipo_votacion'] == 2) {//Ejecutan automaticamente
+        } elseif ($vot['tipo_votacion'] == 2) {//Ejecutan automaticamente
             apply_law($vot['id_votacion']);
         }
     }
@@ -1057,8 +1051,8 @@ function send_alert($emisor, $receptor, $tipo, $r1) {
 }
 
 //rfloor(12.12946321,2); //12.12 -- drop everything after the number of decimal places
-function rfloor($real,$decimals = 2) {
-        return substr($real, 0,strrpos($real,'.',0) + (1 + $decimals));
-    }
+function rfloor($real, $decimals = 2) {
+    return substr($real, 0, strrpos($real, '.', 0) + (1 + $decimals));
+}
 
 ?>

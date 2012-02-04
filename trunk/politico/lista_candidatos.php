@@ -15,6 +15,7 @@ foreach ($candidatos as $cand) {
         echo getString('gov_type_'.$cand['id_candidato']) . "<br> " . getString('votes') . " " . $cand['votos'] . "<br>";
         if (puedo_votar($_SESSION['id_usuario'], $votacion, $_GET['id']) == true) {
             echo '<a href="../../politico/votar.php?idv=' . $_GET['id'] . '&vot=' . $cand['id_candidato'] . '"> ' . getString('votar') . '</a><br>';
+            var_dump((puedo_votar($_SESSION['id_usuario'], $votacion, $_GET['id'])));
         }
     }
 }

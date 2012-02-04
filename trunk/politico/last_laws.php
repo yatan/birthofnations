@@ -39,7 +39,7 @@ foreach ($sql as $votacion) {
         echo " " . getString('no') . ": " . $no . "<br>";
     } else {//Votaciones de ir a la pagina a votar
         echo proposal_text($votacion['tipo_votacion'], $votacion['id_votacion']) . "<br>";
-        echo "<a href='../../../politico/lista_candidatos.php?id=" . $votacion['id_votacion'] . "'>" . getString('see_results') . "</a><br>";
+        echo "<a href='../../" . $_GET['lang'] . "/candidatos/" . $votacion['id_votacion'] . "'>" . getString('see_results') . "</a><br>";
     }
 }
 
