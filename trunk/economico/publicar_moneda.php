@@ -23,7 +23,7 @@ if(isset($_POST['cantidad']) && $_POST['cantidad'] > 0)
 {
     $cantidad = $_POST['cantidad'];
     $cantidad = str_replace(",",".",$cantidad);
-    $cantidad = round($cantidad, 2, PHP_ROUND_HALF_DOWN); // redondear
+    $cantidad = rfloor($cantidad, 2); // redondear
 }
 else
     die(getString('generic_error'));
@@ -32,7 +32,7 @@ if(isset($_POST['ratio']) && $_POST['ratio'] > 0)
 {
     $ratio = $_POST['ratio'];
     $ratio = str_replace(",",".",$ratio);
-    $ratio = round($ratio, 2, PHP_ROUND_HALF_DOWN); // redondear
+    $ratio = rfloor($ratio, 2); // redondear
 }
 else
     die(getString('generic_error'));

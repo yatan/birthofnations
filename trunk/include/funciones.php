@@ -987,4 +987,9 @@ function send_alert($emisor, $receptor, $tipo, $r1) {
     sql("INSERT INTO alertas(id_emisor,id_receptor,tipo,r1,fecha) VALUES ('" . $emisor . "','" . $receptor . "','" . $tipo . "','" . $r1 . "','" . time() . "')");
 }
 
+//rfloor(12.12946321,2); //12.12 -- drop everything after the number of decimal places
+function rfloor($real,$decimals = 2) {
+        return substr($real, 0,strrpos($real,'.',0) + (1 + $decimals));
+    }
+
 ?>
