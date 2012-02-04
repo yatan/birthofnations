@@ -53,4 +53,6 @@ sql("UPDATE money SET ".$moneda_local[$oferta['tipo_moneda_vender']]." = ".$mone
 //Se le añade el dinero al vendedor
 sql("UPDATE money SET ".$moneda_local[$oferta['tipo_moneda_vender']]." = ".$moneda_local[$oferta['tipo_moneda_vender']]." + ". $cantidad * $oferta['cantidad_moneda_vender'] . " WHERE id_usuario=".$oferta['id_vendedor']);
 
+$datos = $cantidad.",".$oferta['tipo_moneda_comprar'].",".$oferta['tipo_moneda_vender'].",".$oferta['cantidad_moneda_vender'];
+sql("INSERT INTO alertas (id_emisor, id_receptor, tipo, r1) VALUES ('$mi_id','{$oferta['id_vendedor']}','6','$datos')");
 ?>
