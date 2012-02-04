@@ -71,7 +71,7 @@ if ($empresas == null) {
 } else {
     echo "<table><tr><th>" . getString("type") . "</th><th>" . getString("name") . "</th><th>" . getString("precio") . "</th><th>" . getString("comprar") . "</th></tr>";
     foreach ($empresas as $empresa) {
-        echo "<tr><td><img src='" . id2itemimg($tipo) . "'></td><td><a href='../../../empresa/".$empresa['id_empresa']."'>" . $empresa['nombre_empresa'] . "</a></td><td>" . $empresa['precio'] . "</td><td><a href='comprar_empresa.php?id=" . $empresa['id_empresa'] . "'>Comprar</a></td></tr>";
+        echo "<tr><td><img src='" . id2itemimg($tipo) . "'></td><td><a href='../../../empresa/".$empresa['id_empresa']."'>" . $empresa['nombre_empresa'] . "</a></td><td>" . $empresa['precio'] . "</td><td><a href='../../../../economico/comprar_empresa.php?id=" . $empresa['id_empresa'] . "'>Comprar</a></td></tr>";
     }
     echo "</table>";
 }
