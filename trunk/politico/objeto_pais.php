@@ -11,13 +11,15 @@ class pais {
     public $id;
     public $bandera;
     public $exp;
+    public $gov_type;
     
     function pais($id) {
-        $sql = sql("SELECT name, url_bandera, exp FROM country WHERE idcountry = " . $id);
+        $sql = sql("SELECT name, url_bandera, exp,tipo_gobierno FROM country WHERE idcountry = " . $id);
         $this->nombre = $sql['name'];
         $this->id = $id;
         $this->bandera = $sql['url_bandera'];
         $this->exp = $sql['exp'];
+        $this->gov_type = $sql['tipo_gobierno'];
         
     }
     function list_cargos(){
