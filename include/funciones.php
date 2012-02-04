@@ -1047,7 +1047,7 @@ function new_password($password1, $password2, $mail) {
 
 //Para enviar la alerta
 function send_alert($emisor, $receptor, $tipo, $r1) {
-    sql("INSERT INTO alertas(id_emisor,id_receptor,tipo,r1,fecha) VALUES ('" . $emisor . "','" . $receptor . "','" . $tipo . "','" . $r1 . "','" . Now() . "')");
+    sql("INSERT INTO alertas(id_emisor,id_receptor,tipo,r1,fecha) VALUES ('" . $emisor . "','" . $receptor . "','" . $tipo . "','" . $r1 . "','" . now() . "')");
 }
 
 //rfloor(12.12946321,2); //12.12 -- drop everything after the number of decimal places
