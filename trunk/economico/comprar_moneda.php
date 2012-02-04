@@ -13,6 +13,8 @@ if(isset($_POST['cantidad']) && $_POST['cantidad']!="")
     $cantidad = $_POST['cantidad'];
     $cantidad = str_replace(",",".",$cantidad); //Comas por puntos
     $cantidad = rfloor($cantidad, 2); // redondear
+        if($cantidad <= 0.00 )
+        die(getString('offer_lower_zero'));
 }
 else
     die("Error");
