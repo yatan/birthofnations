@@ -51,7 +51,7 @@ $mi_dinero = sql("SELECT $compra FROM money WHERE id_usuario='$mi_id'");
 if($mi_dinero<$cantidad)
     die(getString('not_enough_money'));
 else {
-    sql("UPDATE money SET $compra = $compra - $cantidad");
+    sql("UPDATE money SET $compra = $compra - $cantidad WHERE id_usuario='$mi_id'");
     sql("INSERT INTO mercado_monetario (id_vendedor, tipo_moneda_comprar, tipo_moneda_vender, cantidad_moneda_comprar, cantidad_moneda_vender) VALUES ('$mi_id', '$id_compra', '$id_venta', '$cantidad', '$ratio')");
     echo "Se ha vendido $cantidad de $compra al ratio de 1 $compra = $ratio $venta";
 }
