@@ -10,7 +10,7 @@ $id = $_POST['id'];
 
 $sql = sql("SELECT * FROM mercado_empresas WHERE id_empresa = " . $id);
 
-if ($sql == false) {//Si no esta
+if ($sql == null) {//Si no esta
     if ($precio >= 0) {
         sql("INSERT INTO mercado_empresas(id_empresa, precio) VALUES (" . $id . "," . $precio . ")");
     }
