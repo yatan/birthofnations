@@ -28,7 +28,7 @@ if ($objeto_usuario->salud < $min_work_health) {
     die($txt['cant_work']);
 }
 
-if ($empresa[$moneda_local[$datos['moneda']]] > $datos['salario']) { //Si hay sueldo suficiente
+if ($empresa[$moneda_local[$datos['moneda']]] >= $datos['salario']) { //Si hay sueldo suficiente
     if ($diario == 0) { //Si aun no ha trabajado
         $hay_raw = true;
         if ($item['is_raw'] != 1) { //Comprobamos que haya todo el raw necesario.
@@ -76,7 +76,7 @@ if ($empresa[$moneda_local[$datos['moneda']]] > $datos['salario']) { //Si hay su
             //Poner que has trabajado
             sql("UPDATE diario SET work = 1 WHERE id_usuario = " . $_SESSION['id_usuario']);
             //Dar +1 exp por trabajar
-            dar_esp($_SESSION['usuario'],1);
+            dar_exp($_SESSION['id_usuario'],1);
             //Subir skill
             $aumento = aumento_work_skill($objeto_usuario->id_usuario);
             sql("UPDATE skills SET work = work + " .  $aumento . " WHERE id_usuario = ".$objeto_usuario->id_usuario);

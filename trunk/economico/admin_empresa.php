@@ -283,7 +283,7 @@ if (isset($_POST['metodo'])) {
                 //Si el usuario dispone del suficiente dinero, se restara de su monedero y se ingresara en la empresa
                 sql("UPDATE money SET $nombre_moneda = $nombre_moneda-$cantidad WHERE id_usuario='" . $_SESSION['id_usuario'] . "'");
                 sql("UPDATE empresas SET $nombre_moneda = $nombre_moneda+$cantidad WHERE id_empresa=$empresa->id_empresa");
-                echo $txt['operacion_ok'];
+                echo getString('operacion_ok');
                 echo "<script type='text/javascript'>setTimeout('window.location=\"" . $_SERVER['REQUEST_URI'] . "\"',1000);</script>";
             }
             else
