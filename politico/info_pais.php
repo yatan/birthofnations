@@ -24,7 +24,7 @@ echo getString("exp") . $pais->exp . "</br>";
 
 echo getString("population") . $pais->population();
 
-echo "<h3>" . getString("leaders") . "</h3>";
+echo "<h3>" . getString("leaders") . " (".getString("gov_type_".$pais->gov_type).")</h3>";
 
 $cargos = $pais->list_cargos(); //Sacamos la lista de cargos del pais
 
