@@ -314,7 +314,7 @@ function dar_exp($id, $cantidad) {
     //Exp del pais
     $country = sql("SELECT exp,tipo_gobierno FROM country WHERE idcountry = " . $cs);
     global $gov_exp;
-    if (in_array($country['exp'], $gov_exp)) {//Si es un punto clave
+    if (in_array($gov_exp,$country['exp'])) {//Si es un punto clave
         $country = sql("SELECT tipo_gobierno FROM country WHERE idcountry = " . $cs);
         $time = time();
         $fin = $time + 86400;
