@@ -242,6 +242,10 @@ $i18n_array['1prop_200'] = 'Emitir ';
 $i18n_array['law_201'] = 'Donar moneda';
 $i18n_array['1prop_201'] = 'Donar ';
 $i18n_array['2prop_201'] = ' a ';
+//Cargos
+
+$i18narray['cargo_2_1'] = "Sabio";
+$i18narray['cargo_3_1'] = "Guerrero";
 
 //Rangos Militares
 

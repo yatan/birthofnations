@@ -402,9 +402,9 @@ function puedo_votar($id_usuario, $tipo, $id_votacion) {//Determina si puedes vo
         $ret = true; //En principio se podria votar
         //objeto usuario
         include_once($_SERVER['DOCUMENT_ROOT'] . "/usuarios/objeto_usuario.php");
-        
+
         $objeto_usuario = new usuario($id_usuario);
-        
+
         foreach ($rest2 as $condicion) {//Comprobamos cada una de ellas
             switch ($condicion[0]):
                 case "C": //Ciudadania
@@ -417,9 +417,13 @@ function puedo_votar($id_usuario, $tipo, $id_votacion) {//Determina si puedes vo
                         $ret = false;
                     }
                     break;
+                case "R"://Rango
+                    if (check_leader($condicion[1],$objeto_usuario->id_usuario)){
+                        $ret = false;
+                    }
+                    break;
                 case "G": //Gold, siempre debe ser la ultima
                     if ($ret == true) {//S�lo se paga si el resto de condiciones ya se han cumplido
-                        
                         if ($objeto_usuario->gold >= $condicion[1]) {//Si tiene gold suficiente
                             sql("UPDATE money SET gold = gold - " . $condicion[1] . " WHERE id_usuario = " . $_SESSION['id_usuario']);
                         } else {//Si no tiene dinero suficiente
@@ -466,6 +470,11 @@ function puedo_postularme($id_usuario, $tipo, $id_votacion) {//Determina si pued
                 case "E": //Puntos de experiencia
                     if ($objeto_usuario->exp < $condicion[1]) {
                         return false;
+                    }
+                    break;
+                case "R"://Rango
+if (check_leader($condicion[1],$objeto_usuario->id_usuario)){
+                        $ret = false;
                     }
                     break;
                 case "G": //Gold, siempre debe ser la ultima
@@ -735,8 +744,7 @@ function list_laws_raw($cargo) {
     return($sql);
 }
 
-function check_law($cargo, $tochecklaw) {
-
+function check_law($cargo, $tochecklaw) {//Dado un carho dice si peude usar una ley o no
     $laws = list_laws($cargo);
     $flag = false;
 
@@ -792,6 +800,63 @@ function apply_law($vot) {
 
 
     switch ($votacion['tipo_votacion']):
+        case 2:
+            //Ver que sistema ha ganado
+            $sql = sql2("SELECT votos FROM candidatos_elecciones WHERE id_votacion = " . $vot);
+
+            $winner[0]['id'] = 0;
+            $winner[0]['votos'] = -1;
+            foreach ($sql as $cand) {//Ver quien es el ganador
+                if ($cand['votos'] >= $winner[0]['votos']) {//Comparamos los votos con los del ganador
+                    $winner[0]['id'] = $cand['id_candidato'];
+                    $winner[0]['votos'] = $cand['votos'];
+                } elseif ($cand['votos'] == $winner['votos']) {//Si empatan los añadimos al array de winner
+                    $winner[]['id'] = $cand['id_candidato'];
+                    $winner[]['votos'] = $cand['votos'];
+                }
+            }
+            //Tenemos el array de ganadores, veamos cuantos son:
+
+            if (count($winner) != 1) {
+                $winner = $winner[0]; //Si solo hay un ganador pues ese
+            } else {
+                $rnd = floor(rand(0, count($winner)));//Si hay empate elegimos uno al azar
+                if ($rnd == count($winner)) {//Por si las moscas
+                    $winner = count($winner) - 1;
+                }
+            }
+            
+            
+
+            //Borrar el gobierno anterior
+            $down = $votacion['id_pais'] * 100;
+            $up = $down + 99;
+
+            sql("DELETE FROM country_leaders WHERE id_cargo >= " . $down . " AND id_cargo <= " . $up);
+            //Elegir quien va en los nuevos cargos
+            switch($winner):
+                case 1://Anarquia
+                    //Nadie
+                    break;
+                case 2://Consejo de sabios
+                    //Ponemos el puesto
+                    sql("INSERT INTO country_leaders(id_cargo,nombre,votacion,laws) VALUES (".$down.",".getString('cargo_2_1').",'A','100-V.R+".$down.",105-V.R+".$down."')");
+                    $gente = sql("SELECT id_usuario FROM usuarios WHERE id_nacionalidad = ". $votacion['id_pais'] ."ORDER BY exp DESC LIMIT 9");
+                    foreach($gente as $id){
+                    add_leader($cargos, $id);
+                    }
+                    break;
+                case 3://Consejo de guerreros
+                    $cargos = 100*$votacion['id_votacion'];
+                    sql("INSERT INTO country_leaders(id_cargo,nombre,votacion,laws) VALUES (".$down.",".getString('cargo_3_1').",'A','100-V.R+".$down.",105-V.R+".$down."')");
+                    $gente = sql("SELECT id_usuario FROM usuarios WHERE id_nacionalidad = ". $votacion['id_pais'] ."ORDER BY fuerza DESC LIMIT 9");
+                    foreach($gente as $id){
+                    add_leader($cargos, $id);
+                    }
+                    break;
+            endswitch;           
+           
+            break;
         case 100: //Cambio de nombre del pais        
             sql("UPDATE country SET name = '" . $p[0] . "' WHERE idcountry = " . $votacion['id_pais']);
             break;
@@ -927,14 +992,18 @@ function check_laws() {
     $sql = sql2("SELECT id_votacion,tipo_votacion FROM votaciones WHERE solved = 0 AND fin < " . $time . " AND is_cargo = 0 AND tipo_votacion >= 100");
 
     foreach ($sql as $vot) {
-        $si = sql("SELECT votos FROM candidatos_elecciones WHERE id_candidato = -1 AND id_votacion = " . $vot['id_votacion']);
-        $no = sql("SELECT votos FROM candidatos_elecciones WHERE id_candidato = -2 AND id_votacion = " . $vot['id_votacion']);
+        if ($sql['tipo_votacion'] >= 100) {
+            $si = sql("SELECT votos FROM candidatos_elecciones WHERE id_candidato = -1 AND id_votacion = " . $vot['id_votacion']);
+            $no = sql("SELECT votos FROM candidatos_elecciones WHERE id_candidato = -2 AND id_votacion = " . $vot['id_votacion']);
 
-        //Aqui se podrian cambiar las normas para que segun no se que pollas la votacion se ganara o perdiera peeeeeeeeeero ya para mas tarde xD
+            //Aqui se podrian cambiar las normas para que segun no se que pollas la votacion se ganara o perdiera peeeeeeeeeero ya para mas tarde xD
 
-        if ($si >= $no) {//De momento mayoria simple :yao:
-            apply_law($vot['id_votacion']);
-        } else {//Obviamente aqui va que no xD
+            if ($si >= $no) {//De momento mayoria simple :yao:
+                apply_law($vot['id_votacion']);
+            } else {//Obviamente aqui va que no xD
+                apply_law($vot['id_votacion']);
+            }
+        } elseif ($votacion['tipo_votacion'] == 2) {//Ejecutan automaticamente
             apply_law($vot['id_votacion']);
         }
     }
