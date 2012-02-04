@@ -1,76 +1,177 @@
-.menu{
-	border:none;
-	border:0px;
-	margin:0px;
-	padding:0px;
-	font-family:verdana,geneva,arial,helvetica,sans-serif;
-	font-size:14px;
-	font-weight:bold;
-	color:#8e8e8e;
-	}
-.menu ul{
-	background:url(../images/menu/menu-bg.gif) top left repeat-x;
-	height:43px;
-	list-style:none;
-	margin:0;
-	padding:0;
-	}
-	.menu li{
-		float:left;
-		}
-	.menu li a{
-		color:#666666;
-		display:block;
-		font-weight:bold;
-		line-height:43px;
-		padding:0px 25px;
-		text-align:center;
-		text-decoration:none;
-		}
-		.menu li a:hover{
-			color:#000000;
-			text-decoration:none;
-			}
-	.menu li ul{
-		background:#e0e0e0;
-		border-left:2px solid #0079b2;
-		border-right:2px solid #0079b2;
-		border-bottom:2px solid #0079b2;
-		display:none;
-		height:auto;
-		filter:alpha(opacity=95);
-		opacity:0.95;
-		position:absolute;
-		width:225px;
-		z-index:200;
-		}
-	.menu li:hover ul{
-		display:block;
-		}
-	.menu li li {
-		display:block;
-		float:none;
-		width:225px;
-		}
-	.menu li ul a{
-		display:block;
-		font-size:12px;
-		font-style:normal;
-		padding:0px 10px 0px 15px;
-		text-align:left;
-		}
-		.menu li ul a:hover{
-			background:#949494;
-			color:#000000;
-			opacity:1.0;
-			filter:alpha(opacity=100);
-			}
-	.menu p{
-		clear:left;
-		}
-	.menu .current{
-		background:url(../images/menu/current-bg.gif) top left repeat-x;
-		color:#ffffff;
-		}
+@charset "utf-8";
+/* CSS Document */
 
-		
+/*^'^ Navigation Structure ^'^*/
+.nav-container-outer{
+background: #990000;
+padding: 0px;
+height: 74px;
+background: url(../images/menu/nav-bg.jpg);
+width: 99%;
+}
+.float-left{
+float: left;
+}
+.float-right{
+float: right;
+position:relative;
+left: 10em;
+}
+.nav-container .divider{
+display:block;
+font-size:1px;
+border-width:0px;
+border-style:solid;
+}
+.nav-container .divider-vert{
+float:left;
+width:0px;
+display: none;
+}
+.nav-container .item-secondary-title{
+display:block;
+cursor:default;
+white-space:nowrap;
+}
+.clear{
+font-size:1px;
+height:0px;
+width:0px;
+clear:left;
+line-height:0px;
+display:block;
+float:none;
+}
+.nav-container{
+position:relative;
+zoom:1;
+margin: 0 auto;
+}
+.nav-container a, .nav-container li{
+float:left;
+display:block;
+white-space:nowrap;
+}
+.nav-container div a, .nav-container ul a, .nav-container ul li{
+float:none;
+}
+.nav-container ul{
+left:-10000px;
+position:absolute;
+}
+.nav-container, .nav-container ul{
+list-style:none;
+padding:0px;
+margin:0px;
+}
+.nav-container li a{
+float:none
+}
+.nav-container li{
+position:relative;
+}
+.nav-container ul{
+z-index:10;
+}
+.nav-container ul ul{
+z-index:20;
+}
+.nav-container ul ul ul{
+z-index:30;
+}
+.nav-container ul ul ul ul{
+z-index:40;
+}
+.nav-container ul ul ul ul ul{
+z-index:50;
+}
+li:hover>ul{
+left:auto;
+}
+#nav-container ul {
+top:100%;
+}
+#nav-container ul li:hover>ul{
+top:0px;
+left:100%;
+}
+
+/*^'^ Primary Items ^'^*/	
+#nav-container a{	
+padding:7px 17px 7px 18px;
+margin: 10px 0px 0px 0px;
+color: #FFFFFF;
+font-family: Trebuchet MS, Arial, sans-serif, Helvetica;
+font-size:14px;
+text-decoration:none;
+font-weight: bold;
+background: url(../images/menu/item-primary-bg.gif);
+background-repeat: no-repeat;
+background-position: top;
+}
+
+#nav-container a:hover{
+color: #6C3600;
+background: url(../images/menu/item-primary-bg.gif);
+background-repeat: no-repeat;
+background-position: center;
+}
+
+/*^'^ Secondary Items Container ^'^*/	
+#nav-container div, #nav-container ul{	
+padding:10px 4px 10px 4px;
+margin:0px 0px 0px 0px;
+background: url(../images/menu/item-secondary-container-bg.jpg);
+background-repeat: repeat-x;
+background-color: #FF9900;
+border-bottom: 1px solid #CA6500;
+}
+
+/*^'^ Secondary Items ^'^*/	
+#nav-container div a, #nav-container ul a{	
+padding:3px 10px 3px 6px;
+background-color: #FFFFFF;
+background: url(../images/menu/item-secondary-bg.jpg);
+background-repeat: no-repeat;
+background-position: 0px 22px;
+font-size:11px;
+border-width:0px;
+border-style:none;
+margin: 0px 0px 0px 0px;
+width: 149px;
+}
+
+/*^'^ Secondary Items Hover State ^'^*/	
+#nav-container div a:hover, #nav-container ul a:hover{	
+background-color: #FFFFFF;
+background: url(../images/menu/item-secondary-bg.jpg);
+background-repeat: no-repeat;
+color:#CC0000;
+}
+
+/*^'^ Secondary Item Titles ^'^*/	
+#nav-container .item-secondary-title{	
+cursor:default;
+padding:4px 0px 3px 7px;
+color: #6C3600;
+font-family: Arial, Trebuchet MS, Arial, sans-serif, Helvetica;
+font-size:11px;
+/* background: url(../images/menu/item-secondary-title-bg.jpg); */
+background-repeat: no-repeat;
+font-weight:bold;
+}
+
+/*^'^ Horizontal Dividers ^'^*/	
+#nav-container .divider-horiz{	
+border-top-width:1px;
+margin:5px 5px;
+border-color: #C16100;
+}
+
+/*^'^ Vertical Dividers ^'^*/	
+#nav-container .divider-vert{	
+border-left-width:1px;
+height:15px;
+margin:4px 2px 0px 2px;
+border-color:#AAAAAA;
+}
