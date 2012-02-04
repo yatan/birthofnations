@@ -69,14 +69,27 @@ foreach ($sql as $votacion) {
     //Ver la lista de candidatos
     $candidatos = sql2("SELECT * FROM candidatos_elecciones WHERE id_votacion = " . $votacion['id_votacion']);
     if ($candidatos != false) {//Si hay candidatos
-        $winner = array('id' => 0, 'votos' => -1);
-        foreach ($candidatos as $cand) {//Ver quien es el ganador
-            if ($cand['votos'] > $winner['votos']) {//Comparamos los votos con los del ganador
-                $winner['id'] = $cand['id_candidato'];
-                $winner['votos'] = $cand['votos'];
-            } elseif ($cand['votos'] == $winner['votos']) {//Si empatan utilizamos los criterios de desempate (que no tenemos)
+        $winner[0]['id'] = 0;
+            $winner[0]['votos'] = -1;
+            foreach ($candidatos as $cand) {//Ver quien es el ganador
+                if ($cand['votos'] >= $winner[0]['votos']) {//Comparamos los votos con los del ganador
+                    $winner[0]['id'] = $cand['id_candidato'];
+                    $winner[0]['votos'] = $cand['votos'];
+                } elseif ($cand['votos'] == $winner['votos']) {//Si empatan los añadimos al array de winner
+                    $winner[]['id'] = $cand['id_candidato'];
+                    $winner[]['votos'] = $cand['votos'];
+                }
             }
-        }
+            //Tenemos el array de ganadores, veamos cuantos son:
+
+            if (count($winner) != 1) {
+                $winner = $winner[0]; //Si solo hay un ganador pues ese
+            } else {
+                $rnd = floor(rand(0, count($winner)));//Si hay empate elegimos uno al azar
+                if ($rnd == count($winner)) {//Por si las moscas
+                    $winner = count($winner) - 1;
+                }
+            }
 
         //Cambiar las casilla de lider
         sql("UPDATE partidos SET id_lider = " . $winner['id'] . " WHERE id_partido = " . $votacion['param1']);
