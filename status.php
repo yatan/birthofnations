@@ -45,7 +45,7 @@ foreach ($a_estado as $estado2) {
 else
 $i_estado = "<img src='/images/status_bar/status/1.png'/>";
 
-echo "$i_estado - <a href='/".$_GET['lang']."/perfil/".$_SESSION['id_usuario']."'>$nick</a>"
+echo "$i_estado - <a style='text-decoration:none;' href='/".$_GET['lang']."/perfil/".$_SESSION['id_usuario']."'><b>$nick</b></a>"
 ." - "
 ."Level: $objeto_usuario->level - Exp: $objeto_usuario->exp"
 ." - "
@@ -55,23 +55,23 @@ echo "$i_estado - <a href='/".$_GET['lang']."/perfil/".$_SESSION['id_usuario']."
 ." - "
 ."<img alt='gold' src='/images/status_bar/gold.gif'> $gold golds"
 ." - ";
-echo"<a style='none' href='/".$_GET['lang']."/mensajes'>";
+echo"<a style='text-decoration:none;' href='/".$_GET['lang']."/mensajes'>";
 if($mensajes==0 || $mensajes == false)
-echo "<img alt='no_mail' src='/images/status_bar/no_mail.gif' > No tienes mensajes nuevos";
+echo "<img alt='no_mail' src='/images/status_bar/no_mail.gif' > <b>0</b>";
 elseif ($mensajes==1) 
-echo "<img alt='mail' src='/images/status_bar/mail.gif' > Tienes un mensaje nuevo";    
+echo "<img alt='mail' src='/images/status_bar/mail.gif' > <b>1</b>";    
 elseif ($mensajes>1) 
-echo "<img alt='/mail' src='/images/status_bar/mail.gif' > Tienes mensajes nuevos";  
+echo "<img alt='/mail' src='/images/status_bar/mail.gif' > <b>$mensajes</b>";  
 echo"</a>";
 
 echo " - ";
 
 
-echo"<a style='none' href='/".$_GET['lang']."/alertas'>";
+echo"<a style='text-decoration:none;' href='/".$_GET['lang']."/alertas'>";
 if($alertas==0 || $alertas == false)
-echo "<img src='/images/status_bar/no_alert.png' alt='no_alert'> Alertas: 0";  
+echo "<img src='/images/status_bar/no_alert.png' alt='no_alert'> <b>0</b>";  
 elseif ($alertas>=1) 
-echo "<img alt='alert' src='/images/status_bar/alert.png'> Alertas : $alertas";  
+echo "<img alt='alert' src='/images/status_bar/alert.png'> <b>$alertas</b>";  
 echo"</a>";
 echo "<a style='padding-left: 3em; text-align:right;'>Dia: $dia</a>";
 
