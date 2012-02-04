@@ -1,7 +1,7 @@
 <?
 
 include_once($_SERVER['DOCUMENT_ROOT'] . "/include/funciones.php");
-include_once($_SERVER['DOCUMENT_ROOT'] . "/include/config_variables.php");
+//include_once($_SERVER['DOCUMENT_ROOT'] . "/include/config_variables.php");
 
 $diario = sql("SELECT train FROM diario WHERE id_usuario = " . $_SESSION['id_usuario']); //Sacar si ha entrenado
 
