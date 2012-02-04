@@ -154,8 +154,8 @@ $ofertas = sql2("SELECT *
     
     <div id="cuadro1">
     
-<form name="mercado_economico" id="mercado_economico" method="post" action="">
-<? echo getstring('comprar'); ?>:
+<form name="publicar_moneda" id="publicar_moneda" method="post" action="">
+<? echo getstring('offer'); ?>:
 <select name="compra" id="compra2" onchange="cambiar_compra(this.value)">
     <?
     echo "<option>Gold</option>";
@@ -167,7 +167,7 @@ foreach ($sql as $moneda => $valor) {
 }
 ?>
 </select>
-<? echo getstring('vender'); ?>:
+<? echo getstring('comprar'); ?>:
 <select name="venta" id="venta2"  onchange="cambiar_venta(this.value)">
     <?
     echo "<option>Gold</option>";
@@ -186,9 +186,9 @@ foreach ($sql as $moneda => $valor) {
 <br/>
 <input type="button" value="<? echo getstring('alternate_money'); ?>" id="alternar2"/>
 
-<p>Offer <input type="text" style="width: 30px;" value="0.00"/> <a id="moneda_compra"></a> at rate</p>
-<p>1 <a id="moneda_compra2"></a> = <input type="text" style="width: 30px;" value="0.00"/> <a id="moneda_venta"></a></p>
-<input type="submit" value="<? echo getstring('post_offer'); ?>"/>
+<p>Offer <input name="cantidad" type="text" style="width: 30px;" value="0.00"/> <a id="moneda_compra"></a> at rate</p>
+<p>1 <a id="moneda_compra2"></a> = <input name="ratio" type="text" style="width: 30px;" value="0.00"/> <a id="moneda_venta"></a></p>
+<input class="publicar" type="button" value="<? echo getstring('post_offer'); ?>"/>
 </form>
    
    
@@ -198,6 +198,16 @@ foreach ($sql as $moneda => $valor) {
     <tr>
         <td>Cantidad</td><td>Ratio</td><td>Cancelar</td>
     </tr>
+    <?
+    
+    $mis_ofertas = sql2("SELECT * FROM mercado_monetario WHERE id_vendedor = $objeto_usuario->id_usuario");
+    foreach ($mis_ofertas as $oferta) {
+        echo "<tr style='font-size:12px;'>";
+        echo "<td>{$oferta['cantidad_moneda_comprar']} {$moneda_local[$oferta['tipo_moneda_comprar']]}</td><td>1 {$moneda_local[$oferta['tipo_moneda_comprar']]} = {$oferta['cantidad_moneda_vender']} {$moneda_local[$oferta['tipo_moneda_vender']]}</td><td style='background:red; color:black;' id='{$oferta['id_oferta']}' class='cancelar_oferta'>CANCELAR</td>"; 
+        echo "</tr>";
+        
+        }
+    ?>
 </table>     
 
 <br>
@@ -209,6 +219,37 @@ $(document).ready(function() {
     $("#moneda_compra2").text(compra);
     $("#moneda_venta").text(venta);
 });
+    
+    $('.cancelar_oferta').click(function() {
+        var element = $(this);
+        var Id = element.attr("id");
+        
+        
+        var notice = $.pnotify({
+        pnotify_title: "<? echo getstring('offer_cancel'); ?>",
+        pnotify_type: 'info',
+        pnotify_info_icon: 'picon picon-throbber',
+        pnotify_hide: false,
+        pnotify_sticker: false,
+        pnotify_width: "275px",
+        pnotify_text: "<center><img src='/images/loading.gif'/></center>"
+    });
+ 
+ 
+         $.post("/economico/eliminar_oferta_monetaria.php", {id_oferta: Id},
+         function(data) {
+          var options = {
+                pnotify_text: data
+            };
+            notice.pnotify(options);
+            setTimeout(function() { 
+                window.location.reload();
+                },750);
+         });
+         
+         
+    });
+    
     
     $('.comprar').click(function() {
         var element = $(this);
@@ -236,6 +277,34 @@ $(document).ready(function() {
  
     }); 
     
+    
+    
+    $('.publicar').click(function() {
+       
+        var notice = $.pnotify({
+        pnotify_title: "<? echo getstring('comprar'); ?>",
+        pnotify_type: 'info',
+        pnotify_info_icon: 'picon picon-throbber',
+        pnotify_hide: false,
+        pnotify_sticker: false,
+        pnotify_width: "275px",
+        pnotify_text: "<center><img src='/images/loading.gif'/></center>"
+    });
+ 
+ 
+         $.post("/economico/publicar_moneda.php", $('#publicar_moneda').serialize(),
+         function(data) {
+          var options = {
+                pnotify_text: data
+            };
+            notice.pnotify(options);
+            setTimeout(function() { 
+                window.location.reload();
+                },750);
+         });
+ 
+ 
+    }); 
 </script>    
 
 

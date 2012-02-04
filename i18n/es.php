@@ -379,5 +379,9 @@ $i18n_array['enviar_invitacion'] = "Enviar invitación";
 
 //mercado_economico.php
 $i18n_array['post_offer'] = "Publicar oferta";
+$i18n_array['offer'] = "Ofrecer";
+$i18n_array['monedas_iguales'] = "El tipo de moneda no puede ser el mismo";
+$i18n_array['offer_cancel'] = "Cancelar oferta";
+$i18n_array['offer_cancel_ok'] = "Oferta cancelada correctamente";
 
 ?>
