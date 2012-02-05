@@ -7,6 +7,7 @@ body {
     max-width: 1000px;
 	background-image: url(../images/fondogrande.jpg);
 	background-repeat:repeat-x;
+        background-attachment:fixed;
 }
 #contenido {
     background-image: url("../images/fondocontenedor.png");
