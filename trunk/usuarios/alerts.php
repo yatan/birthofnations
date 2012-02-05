@@ -41,7 +41,11 @@ foreach ($alertas as $alerta) {
             echo "<tr><td>Economia</td>";
             $cosas = explode(",", $alerta['r1']);
             echo "<td>El jugador ".id2nick($alerta['id_emisor'])." ha comprado {$cosas['0']} {$cosas['1']} con ratio: 1 {$cosas['1']} = {$cosas['3']} {$cosas['2']} en el mercado economico.</td>";
-            break;        
+            break;   
+        case "7":
+            echo "<tr><td>Empresa</td>";
+            echo "<td>El jugador ".id2nick($alerta['id_emisor'])." te ha despedido de <b>".$alerta['r1']."</b>.</td>";
+            break;         
 
         default:
             break;
