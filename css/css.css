@@ -2,17 +2,17 @@
 /* CSS Document */
 /********** BASES *****************/
 body {
-	background-color:#FFF;
+    background-color:#FFF;
     margin: auto;
     max-width: 1000px;
-	background-image: url(../images/fondogrande.jpg);
-	background-repeat:repeat-x;
+    background-image: url(../images/fondogrande.jpg);
+    background-repeat:repeat-x;
         background-attachment:fixed;
 }
 #contenido {
     background-image: url("../images/fondocontenedor.png");
-    border: 7px solid #334261;
-    color: #E7E82F;
+    border: 7px solid #f9ba68;
+    /*color: #E7E82F;*/
     margin-top: 2em;
     padding: 0.5em 2ex;
 }
