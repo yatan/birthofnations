@@ -919,9 +919,9 @@ function apply_law($vot) {
             }
 
             if ($flag == true) {
-                sql("ALTER TABLE empresas CHANGE " . moneda_pais($votacion['id_pais']) . " " . $p[0] . " int (11)");
-                sql("ALTER TABLE money CHANGE " . moneda_pais($votacion['id_pais']) . " " . $p[0] . " int (11)");
-                sql("ALTER TABLE money_pais CHANGE " . moneda_pais($votacion['id_pais']) . " " . $p[0] . " int (11)");
+                sql("ALTER TABLE empresas CHANGE " . moneda_pais($votacion['id_pais']) . " " . $p[0] . " decimal (11,3) NOT NULL DEFAULT 0");
+                sql("ALTER TABLE money CHANGE " . moneda_pais($votacion['id_pais']) . " " . $p[0] . " decimal (11,3) NOT NULL DEFAULT 0");
+                sql("ALTER TABLE money_pais CHANGE " . moneda_pais($votacion['id_pais']) . " " . $p[0] . " decimal (11,3) NOT NULL DEFAULT 0");
                 sql("UPDATE country SET moneda = '" . $p[0] . "' WHERE idcountry = " . $votacion['id_pais']);
             }
             break;
