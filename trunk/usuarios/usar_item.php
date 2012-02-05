@@ -23,13 +23,15 @@ if (isset($_GET['id']) && $_GET['id'] != "" && strlen($_GET['id'])>0 ){
                     if($usuario->salud == 99){
                       sql("UPDATE usuarios SET salud = 100 WHERE id_usuario = " . $_SESSION['id_usuario']);
                       echo "Pan usado, se ha restaurado 1 punto de salud";
+                      echo "<script>$('.item_".$_GET['id']."').text('".$cantidad."');</script>";
                       //Quitar uno
-        sql("UPDATE inventario SET ". $nombre . " = " . $nombre ." - 1 WHERE id_usuario = ". $_SESSION['id_usuario']);
+                      sql("UPDATE inventario SET ". $nombre . " = " . $nombre ." - 1 WHERE id_usuario = ". $_SESSION['id_usuario']);
                     }elseif($usuario->salud==100){
-                      echo "No tienes salud que recuperar";
+                      echo "No tienes salud que recuperar";                      
                     }else{
                         sql("UPDATE usuarios SET salud = salud + 2 WHERE id_usuario = " . $_SESSION['id_usuario']);
                       echo "Pan usado, se han restaurado 2 puntos de salud";
+                      echo "<script>$('.item_".$_GET['id']."').text('".$cantidad."');</script>";
                       //Quitar uno
                       sql("UPDATE inventario SET ". $nombre . " = " . $nombre ." - 1 WHERE id_usuario = ". $_SESSION['id_usuario']);
                     }
@@ -41,5 +43,3 @@ if (isset($_GET['id']) && $_GET['id'] != "" && strlen($_GET['id'])>0 ){
 }
 
 ?>
-<br>
-<a href="javascript:history.back(1)">Volver</a>
