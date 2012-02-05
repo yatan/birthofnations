@@ -40,38 +40,48 @@ foreach ($cargos as $cargo) {//Para cada cargo
 
 echo "</table>";
 
-echo "<h3>" . getString("open_elections") . "</h3>";
+//Elecciones para cargos. 
+//Nos lo saltamos si el tipo de gobierno no admite ninguna:
+if ($pais->gov_type == 1) {
+    echo "<h3>" . getString("open_elections") . "</h3>";
 
-foreach ($cargos as $cargo) {
+    foreach ($cargos as $cargo) {
 
-    //Para cada cargo vemos si hay votacion abierta
-    $sql = sql("SELECT * FROM votaciones WHERE tipo_votacion = " . $cargo['id_cargo'] . " AND solved = 0 AND is_cargo = 1");
-    $data = explode('-', $cargo['votacion']);
-    $data2 = explode('.', $data[1]);
-    if ($sql == false) {//Si no hay
-        echo $cargo['nombre']. ": ".getString('next_elections'). next_elecciones($dia_actual, $data2[0], $data2[1]) . "<br>";
-    } else { //Si hay
-        if ($dia_actual % $data2[1] == $data2[0]) { //Dia de elecciones 
-            //Sacar id de la votacion
-            $time = time();
-            $sql = sql("SELECT id_votacion FROM votaciones WHERE tipo_votacion = " . $cargo['id_cargo'] . " AND is_cargo = 1 AND fin > " . $time . " AND solved = 0");
-            echo $cargo['nombre'] . '  <a href="/politico/lista_candidatos.php?id=' . $sql . '">[' . getString("vote") . ']</a><br>';
-        } else {//Si no es el dia de la votacion es hora de postularse
-            // Fecha + Postulacion
-            echo "Proximas elecciones el dia: " . next_elecciones($dia_actual, $data2[0], $data2[1]) . "<br>";
-            $time = time();
-            $vot = sql("SELECT id_votacion FROM votaciones WHERE tipo_votacion = " . $cargo['id_cargo'] . " AND fin > " . $time . " AND is_cargo = 1 AND solved = 0");
-            $sql = sql("SELECT * from candidatos_elecciones WHERE id_candidato = " . $_SESSION['id_usuario'] . " AND id_votacion = " . $vot);
+        //Para cada cargo vemos si hay votacion abierta
+        $sql = sql("SELECT * FROM votaciones WHERE tipo_votacion = " . $cargo['id_cargo'] . " AND solved = 0 AND is_cargo = 1");
+        $data = explode('-', $cargo['votacion']);
+        if (isset($data[1])) {
+            $data2 = explode('.', $data[1]);
+        }
+        if ($sql == false) {//Si no hay
+            //Miramos si el cargo es de votar
+            if ($data[0] == 'A') {
+                echo $cargo['nombre'] . ": " . getString('next_elections') . getString("nunca") . "<br>";
+            } elseif ($data[0] == "V") {
+                echo $cargo['nombre'] . ": " . getString('next_elections') . next_elecciones($dia_actual, $data2[0], $data2[1]) . "<br>";
+            }
+        } else { //Si hay
+            if ($dia_actual % $data2[1] == $data2[0]) { //Dia de elecciones 
+                //Sacar id de la votacion
+                $time = time();
+                $sql = sql("SELECT id_votacion FROM votaciones WHERE tipo_votacion = " . $cargo['id_cargo'] . " AND is_cargo = 1 AND fin > " . $time . " AND solved = 0");
+                echo $cargo['nombre'] . '  <a href="/politico/lista_candidatos.php?id=' . $sql . '">[' . getString("vote") . ']</a><br>';
+            } else {//Si no es el dia de la votacion es hora de postularse
+                // Fecha + Postulacion
+                echo "Proximas elecciones el dia: " . next_elecciones($dia_actual, $data2[0], $data2[1]) . "<br>";
+                $time = time();
+                $vot = sql("SELECT id_votacion FROM votaciones WHERE tipo_votacion = " . $cargo['id_cargo'] . " AND fin > " . $time . " AND is_cargo = 1 AND solved = 0");
+                $sql = sql("SELECT * from candidatos_elecciones WHERE id_candidato = " . $_SESSION['id_usuario'] . " AND id_votacion = " . $vot);
 
-            if ($sql == false) {//Si aun no esta postulado
-                echo $cargo['nombre']. ": [<a href='/politico/postular.php?v=" . $vot . "'>" . getString('postulate') . "</a>]<br>";
-            } else {//Si ya esta postulado
-                echo $cargo['nombre']. ": [<a href='/politico/despostular.php?v=" . $vot . "'>" . getString('unpostulate') . "</a>]<br>";
+                if ($sql == false) {//Si aun no esta postulado
+                    echo $cargo['nombre'] . ": [<a href='/politico/postular.php?v=" . $vot . "'>" . getString('postulate') . "</a>]<br>";
+                } else {//Si ya esta postulado
+                    echo $cargo['nombre'] . ": [<a href='/politico/despostular.php?v=" . $vot . "'>" . getString('unpostulate') . "</a>]<br>";
+                }
             }
         }
     }
 }
-
 echo "<h3>" . getString('money') . "</h3>";
 
 echo "<table><tr><th>" . getString('currency') . "</th><th>" . getString('amount') . "</th></tr>";

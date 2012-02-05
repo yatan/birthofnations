@@ -60,7 +60,7 @@ $i18n_array['precio'] = 'Precio';
 $i18n_array['alternate_money'] = 'Alternar monedas';
 $i18n_array['search_offers'] = 'Buscar ofertas';
 $i18n_array['type'] = 'Tipo';
-
+$i18n_array['nunca'] = ' Nunca';
 
  		//LOGIN
 
