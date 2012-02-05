@@ -20,9 +20,9 @@ elseif($entrenado==0)
    <img src="/images/menu/nav-bg-l.jpg" alt="" class="float-left" />
    <img src="/images/menu/nav-bg-r.jpg" alt="" class="float-right" />
   <ul id="nav-container" class="nav-container">
-      <li><a href="/" >Home</a></li>
+      <li><a href="/<? echo $_GET['lang']; ?>/" >Home</a></li>
        <li><span class="divider divider-vert" ></span></li>
-      <li><a class="item-primary" href="" target="_self"><? echo getString('economico'); ?></a>
+      <li><a class="item-primary" href="#" target="_self"><? echo getString('economico'); ?></a>
          <ul style="width:150px;">
         <?
         $id_empresa = $objeto_usuario->id_empresa;
@@ -35,14 +35,14 @@ elseif($entrenado==0)
          </ul>
 	   </li>
        <li><span class="divider divider-vert" ></span></li>
-      <li><a class="item-primary" href="" target="_self"><? echo getString('militar'); ?></a>
+      <li><a class="item-primary" href="#" target="_self"><? echo getString('militar'); ?></a>
          <ul style="width:150px;">
             <li><a href="<? echo "/".$_GET['lang']."/entrenar"; ?>" title="Entrenamiento" target="_self" ><? echo getString('entrenamiento'); ?></a></li>
             <!--<li><a href="#"><? echo getString('guerras'); ?></a></li>-->
          </ul>
 	   </li>
        <li><span class="divider divider-vert" ></span></li>
-      <li><a class="item-primary" href="" target="_self"><? echo getString('mercados'); ?></a>
+      <li><a class="item-primary" href="#" target="_self"><? echo getString('mercados'); ?></a>
          <ul style="width:150px;">
             <li><a href="<? echo "/".$_GET['lang']."/mercado"; ?>" title="Productos" target="_self" ><? echo getString('mercado_productos'); ?></a></li>
             <li><a href="<? echo "/".$_GET['lang']."/mercado_laboral"; ?>"><? echo getString('mercado_laboral'); ?></a></li>
@@ -51,7 +51,7 @@ elseif($entrenado==0)
          </ul>
 	   </li>
        <li><span class="divider divider-vert" ></span></li>
-      <li><a class="item-primary" href="" target="_self"><? echo getString('pais'); ?></a>
+      <li><a class="item-primary" href="#" target="_self"><? echo getString('pais'); ?></a>
          <ul style="width:150px;">
             <li><a href="<? echo "/".$_GET['lang']."/pais/".$objeto_usuario->id_pais; ?>" title="Mi país" target="_self" ><? echo getString('mi_pais'); ?></a></li>
             <li><a href="<? echo "/".$_GET['lang']."/partidos/".$objeto_usuario->id_pais; ?>" title="Partidos políticos" target="_self" ><? echo getString('partidos_politicos'); ?></a></li>
@@ -60,7 +60,7 @@ elseif($entrenado==0)
          </ul>
 	   </li>
        <li><span class="divider divider-vert" ></span></li>
-      <li><a class="item-primary" href="" target="_self"><? echo getString('soporte'); ?></a>
+      <li><a class="item-primary" href="#" target="_self"><? echo getString('soporte'); ?></a>
          <ul style="width:150px;">
             <li><a href="/forum" title="Foro" target="_blank" ><? echo getString('foro'); ?></a></li>
             <li><a href="/support" title="Soporte" target="_blank" ><? echo getString('soporte'); ?></a></li>
@@ -69,7 +69,7 @@ elseif($entrenado==0)
          </ul>
 	   </li>
        <li><span class="divider divider-vert" ></span></li>
-      <li><a class="item-primary" href="" target="_self"><?echo getString('logout');?></a>
+      <li><a class="item-primary" href="/logout" target="_self"><?echo getString('logout');?></a>
 	   </li>
        <li><span class="divider divider-vert" ></span></li>
       <li class="clear">&nbsp;</li>
