@@ -61,7 +61,7 @@ foreach($inventario as $item => $cantidad){
     }
     
     if($usable==true)
-        echo "<tr><td>" . item2img($id) . "</td><td> $cantidad  </td><td> [<a href='/usuarios/usar_item.php?id=$id '>Usar</a>] </td></tr>";
+        echo "<tr><td>" . item2img($id) . "</td><td class='item_$id'> $cantidad  </td><td> [<a class='usar' id='$id' href='#'>Usar</a>] </td></tr>";
     else
         echo "<tr><td>" . item2img($id) . "</td><td> $cantidad  </td><td>  </td></tr>";
 
@@ -71,3 +71,33 @@ foreach($inventario as $item => $cantidad){
 echo "</table>";
 
 ?>
+
+<script type="text/javascript">
+$('.usar').click(function() {
+        var element = $(this);
+        var Id = element.attr("id");
+        
+        
+        var notice = $.pnotify({
+        pnotify_title: "<? echo getstring('use_item'); ?>",
+        pnotify_type: 'info',
+        pnotify_info_icon: 'picon picon-throbber',
+        
+        pnotify_sticker: false,
+        pnotify_width: "275px",
+        pnotify_text: "<center><img src='/images/loading.gif'/></center>"
+    });
+ 
+ 
+         $.get("/usuarios/usar_item.php", {id: Id},
+         function(data) {
+          var options = {
+                pnotify_text: data
+            };
+            notice.pnotify(options);
+         });
+         
+         
+    });
+</script>
+    
