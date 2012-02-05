@@ -65,7 +65,9 @@ display: none;
 
 foreach ($sql as $item => $value) {
     if ($value > 0) {
-        echo $item . ": " . $value . " [<a href='#' class='click_item' id='" . item2id($item) . "'>".  getString('company_item_use')."</a>]<br>";
+        echo $item . ": " . $value . "<br>";
+        //Para cuando esten los objetos usables en las empresas
+        //echo $item . ": " . $value . " [<a href='#' class='click_item' id='" . item2id($item) . "'>".  getString('company_item_use')."</a>]<br>";
     }
     
 }
