@@ -62,4 +62,9 @@ sql("UPDATE money SET ".$moneda_local[$oferta['tipo_moneda_vender']]." = ".$mone
 $datos = $cantidad.",".$moneda_local[$oferta['tipo_moneda_comprar']].",".$moneda_local[$oferta['tipo_moneda_vender']].",".$oferta['cantidad_moneda_vender'];
 send_alert($mi_id, $oferta['id_vendedor'], "6", $datos);
 
+//Comprobar si la oferta ha quedado a 0
+$resultado = sql("SELECT cantidad_moneda_comprar FROM mercado_monetario WHERE id_oferta='$id_oferta'");
+if($resultado == 0)
+    sql("DELETE FROM mercado_monetario WHERE id_oferta='$id_oferta'");
+
 ?>

@@ -272,6 +272,9 @@ $(document).ready(function() {
                 pnotify_text: data
             };
             notice.pnotify(options);
+            setTimeout(function() { 
+                window.location.reload();
+                },750);
          });
  
  
