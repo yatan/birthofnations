@@ -189,8 +189,8 @@ $i18n_array['available_laws'] = 'Leyes disponibles: ';
 $i18n_array['next_elections'] = 'Proximas elecciones: ';
 $i18n_array['member_list'] = 'Lista de miembros';
 $i18n_array['gov_type_1'] = 'Anarquía';
-$i18n_array['gov_type_2'] = 'Consejo de Guerreros';
-$i18n_array['gov_type_3'] = 'Consejo de Sabios';
+$i18n_array['gov_type_2'] = 'Consejo de Sabios';
+$i18n_array['gov_type_3'] = 'Consejo de Guerreros';
 
 
 //Menu
