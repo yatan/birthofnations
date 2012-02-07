@@ -22,8 +22,10 @@ $empresa = $data['nombre_empresa'];
 
 if($id_usuario != $propietario)
 {
+    if($id_usuario != $objeto_usuario->id_usuario){
     incidencia($id_usuario, 1, "Intento de despedir a alguien");
     die("ERROR notificado a un administrador");
+    }
 }
 
 send_alert($id_usuario, $_GET['id_worker'], 7, $empresa);
