@@ -22,7 +22,7 @@ $empresa = $data['nombre_empresa'];
 
 if($id_usuario != $propietario)
 {
-    if($id_usuario != $objeto_usuario->id_usuario){
+    if($id_usuario != $_SESSION['id_usuario']){
     incidencia($id_usuario, 1, "Intento de despedir a alguien");
     die("ERROR notificado a un administrador");
     }
