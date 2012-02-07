@@ -9,7 +9,17 @@ $id_usuario = $_SESSION['id_usuario'];
 if (isset($_GET['id_worker']) && $_GET['id_worker'] != "" && strlen($_GET['id_worker'])>0 )
 {
 
-$empresa = sql("SELECT nombre_empresa FROM empresas WHERE id_empresa = (SELECT id_empresa FROM usuarios WHERE id_usuario  = ".$_GET['id_worker']." )");
+$data = sql("SELECT nombre_empresa, id_propietario FROM empresas WHERE id_empresa = (SELECT id_empresa FROM usuarios WHERE id_usuario  = ".$_GET['id_worker']." )");
+
+$propietario = $data['id_propietario'];
+$empresa = $data['empresa'];
+
+if($id_usuario != $propietario)
+{
+    incidencia($id_usuario, 1, "Intento de despedir a alguien");
+    die("ERROR notificado a un administrador");
+}
+
 send_alert($id_usuario, $_GET['id_worker'], 7, $empresa);
 
 //Mecanismo del despido

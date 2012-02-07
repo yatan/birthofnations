@@ -1059,4 +1059,9 @@ function rfloor($real, $decimals = 2) {
     return substr($real, 0, strrpos($real, '.', 0) + (1 + $decimals));
 }
 
+function incidencia($usuario, $tipo, $respuesta) {
+    sql("INSERT INTO incidencias(id_usuario, tipo, respuesta, hora) VALUES ('" . $usuario . "','" . $tipo . "','" . $respuesta . "', Now())");
+}
+    
+
 ?>
