@@ -14,7 +14,7 @@ $hoy = date("Y.n.j");
 
 $referal = sql_error("INSERT INTO referals(codigo, id_padrino, email, fecha) VALUES ('$codigo','$id','$email','$hoy')");
 
-$code = "http://birthofnations.com/login/registro.php?referer=".$codigo;
+$code = " http://birthofnations.com/login/registro.php?referer=".$codigo;
 
 
 $nick = sql("SELECT nick FROM usuarios WHERE id_usuario='$id'");
