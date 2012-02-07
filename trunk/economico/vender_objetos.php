@@ -4,8 +4,20 @@
     include_once("../include/funciones.php");
     include_once("../include/config_variables.php");
 	
-if (isset($_POST['cantidad']) && $_POST['cantidad'] != "" && is_numeric($_POST['cantidad']) && isset($_POST['precio']) && $_POST['precio'] != "" && is_numeric($_POST['precio']))
+if (isset($_POST['cantidad']) && $_POST['cantidad'] >= 1 && $_POST['cantidad'] != "" && is_numeric($_POST['cantidad']) && isset($_POST['precio']) && $_POST['precio'] != "" && is_numeric($_POST['precio']))
 {   
+    //Antes de nada comprobamos que el preco sea legal
+    
+    if($_POST['precio'] >= 0.01){
+        $_POST['precio'] = round($_POST['precio'], 2, PHP_ROUND_HALF_DOWN);
+    }else{
+        echo getString('company_ups_something_is_wrong');
+        die();
+    }
+    
+    //Y redondeamos la cantidad de items a vender
+    $_POST['cantidad'] = floor($_POST['cantidad']);
+    
     $list_items = list_items();
     
     //Sacar datos empresa
@@ -20,7 +32,7 @@ if (isset($_POST['cantidad']) && $_POST['cantidad'] != "" && is_numeric($_POST['
     
     $inventario = sql("SELECT * FROM inventario_empresas WHERE id_empresa = " . $_POST['id_empresa']);
     
-    if ($inventario[$nameitemavender] >= $_POST['cantidad'] && $_POST['precio'] >= 0)
+    if ($inventario[$nameitemavender] >= $_POST['cantidad'])
         {
     // Si tiene mas objetos de los que quiere vender Y el precio es mayor
     
