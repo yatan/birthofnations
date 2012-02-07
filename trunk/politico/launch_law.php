@@ -14,12 +14,12 @@ $pais = new pais($id_pais);
 //Buscamos los cargos que tiene en el pais seleccionado
 
 if (!isset($_POST['f'])) {
-    $cargos = $pais->list_cargos();
+    $cargos = $pais->list_cargos();//Sacamos la lista de cargos del pais
 
-    foreach ($cargos as $cargo) {
+    foreach ($cargos as $cargo) {//PAra cada uno de ellos
 
-        if (check_leader($cargo['id_cargo'], $_SESSION['id_usuario']) == true) {
-            $position[] = $cargo['id_cargo'];
+        if (check_leader($cargo['id_cargo'], $_SESSION['id_usuario']) == true) {//Si el usuario lo tiene
+            $position[] = $cargo['id_cargo'];//Lo añadimos a esta lista
         }
     }
 
@@ -56,7 +56,7 @@ if (!isset($_POST['f'])) {
                 <?
                 foreach ($leyes2 as $ley) {
 
-                    echo "<option value='" . $ley[0] . "-" . $ley[1] . "'>" . getString('law_' . $ley[0]) . " (" . $ley[1] . ")</option>";
+                    echo "<option value='" . $ley[0] . "-" . $ley[1] . "'>" . getString('law_' . $ley[0]) . "</option>";//" (" . $ley[1] . ")</option>";
                 }
                 ?>
             </select>

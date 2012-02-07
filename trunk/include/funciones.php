@@ -430,7 +430,7 @@ function puedo_votar($id_usuario, $tipo, $id_votacion) {//Determina si puedes vo
                     }
                     break;
                 case "R"://Rango
-                    if (check_leader($condicion[1], $objeto_usuario->id_usuario)) {
+                    if (!check_leader($condicion[1], $objeto_usuario->id_usuario)) {
                         $ret = false;
                     }
                     break;
@@ -751,8 +751,8 @@ function list_laws_raw($cargo) {
 
     $sql = explode(',', $sql); //Separamos la info de cada ley
 
-    unset($sql[count($sql) - 1]); //Eliminamos el ultimo que nos sale en blanco
-
+    //unset($sql[count($sql) - 1]); //Eliminamos el ultimo que nos sale en blanco
+    //Pues parece que ya no sale en blanco
     return($sql);
 }
 

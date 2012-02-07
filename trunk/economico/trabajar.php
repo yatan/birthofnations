@@ -21,7 +21,7 @@ $duenyo = sql("SELECT id_propietario FROM empresas WHERE id_empresa = {$datos['i
 
 $list_items = list_items();
 
-$producido = formula_produccion($_SESSION['id_usuario'],$empresa['tipo']); // Numero de items que va a producir
+$producido = formula_produccion($_SESSION['id_usuario'], $empresa['tipo']); // Numero de items que va a producir
 //Condiciones que ha de cumplir el trabajador
 
 if ($objeto_usuario->salud < $min_work_health) {
@@ -76,10 +76,10 @@ if ($empresa[$moneda_local[$datos['moneda']]] >= $datos['salario']) { //Si hay s
             //Poner que has trabajado
             sql("UPDATE diario SET work = 1 WHERE id_usuario = " . $_SESSION['id_usuario']);
             //Dar +1 exp por trabajar
-            dar_exp($_SESSION['id_usuario'],1);
+            dar_exp($_SESSION['id_usuario'], 1);
             //Subir skill
             $aumento = aumento_work_skill($objeto_usuario->id_usuario);
-            sql("UPDATE skills SET work = work + " .  $aumento . " WHERE id_usuario = ".$objeto_usuario->id_usuario);
+            sql("UPDATE skills SET work = work + " . $aumento . " WHERE id_usuario = " . $objeto_usuario->id_usuario);
             //Se guarda en el log de produccion
             $dia = sql("SELECT day FROM settings");
             sql("INSERT INTO log_produccion(id_usuario,id_empresa,producido,dia) VALUES('" . $_SESSION['id_usuario'] . "','" . $datos['id_empresa'] . "','$producido','$dia')");
