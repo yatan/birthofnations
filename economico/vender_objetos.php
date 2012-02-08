@@ -9,14 +9,14 @@ if (isset($_POST['cantidad']) && $_POST['cantidad'] >= 1 && $_POST['cantidad'] !
     //Antes de nada comprobamos que el preco sea legal
     
     if($_POST['precio'] >= 0.01){
-        $_POST['precio'] = round($_POST['precio'], 2, PHP_ROUND_HALF_DOWN);
+        $_POST['precio'] = rfloor($_POST['precio'], 2);
     }else{
         echo getString('company_ups_something_is_wrong');
         die();
     }
     
     //Y redondeamos la cantidad de items a vender
-    $_POST['cantidad'] = floor($_POST['cantidad']);
+    $_POST['cantidad'] = rfloor($_POST['cantidad'], 0);
     
     $list_items = list_items();
     
