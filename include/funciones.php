@@ -849,11 +849,11 @@ function apply_law($vot) {
                 case 3://Consejo de guerreros
                     //Cambiamos el sistema del pais
                     sql("UPDATE country SET tipo_gobierno = 3 WHERE idcountry = ".$votacion['id_pais']);
-                    $cargos = 100 * $votacion['id_votacion'];
+                    
                     sql("INSERT INTO country_leaders(id_cargo,nombre,votacion,laws) VALUES (" . $down . ",'" . getString('cargo_3_1') . "','A','100-V.R+" . $down . ",105-V.R+" . $down . "')");
                     $gente = sql("SELECT id_usuario FROM usuarios WHERE id_nacionalidad = " . $votacion['id_pais'] . " ORDER BY fuerza DESC LIMIT 9");
                     foreach ($gente as $id) {
-                        add_leader($cargos, $id['id_usuario']);
+                        add_leader($down, $id['id_usuario']);
                     }
                     break;
             endswitch;
