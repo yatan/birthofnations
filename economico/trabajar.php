@@ -89,6 +89,8 @@ if ($empresa[$moneda_local[$datos['moneda']]] >= $datos['salario']) { //Si hay s
         } else {
             echo getString('company_not_enough_raw');
             send_alert($objeto_usuario->id_usuario, $duenyo, 4, $datos['id_empresa']);
+            //Se eliminan las ofertas de trabajo de la empresa
+            sql("DELETE FROM mercado_trabajo WHERE id_empresa = '".$datos['id_empresa']."'");            
         }
     }
     else
@@ -97,5 +99,7 @@ if ($empresa[$moneda_local[$datos['moneda']]] >= $datos['salario']) { //Si hay s
 else {
     echo getString('company_not_enough_salary');
     send_alert($objeto_usuario->id_usuario, $duenyo, 5, $datos['id_empresa']);
+    //Se eliminan las ofertas de trabajo de la empresa
+    sql("DELETE FROM mercado_trabajo WHERE id_empresa = '".$datos['id_empresa']."'");
 }
 ?>
