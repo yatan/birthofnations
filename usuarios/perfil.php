@@ -27,7 +27,7 @@ if ($usuario->id_usuario == null)
 else {
     ?>
     <div id="tabs">
-        <ul>
+        <ul class="ui-tabs">
             <li><a href="#amigos">Perfil</a></li>		
     <?
     if ($usuario->soy_yo($_SESSION['id_usuario']) == true) {
