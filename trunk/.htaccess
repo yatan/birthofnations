@@ -26,6 +26,8 @@ RewriteRule ^([a-z]+)/addwar/([0-9]+)$ index.php?lang=$1&id_guerra=$2&mod=addwar
 RewriteRule ^([a-z]+)/guerras/([0-9]+)$ index.php?lang=$1&id_pais=$2&mod=lista_guerras [L]
 RewriteRule ^([a-z]+)/laws/([0-9]+)$ index.php?lang=$1&id_pais=$2&mod=laws [L]
 RewriteRule ^([a-z]+)/buscador/([a-z_]+)/([0-9]+)$ index.php?lang=$1&nick=$2&mod=buscador&pag=$3 [L,QSA]
+RewriteRule ^([a-z]+)/zona/([0-9]+)$ index.php?lang=$1&id_zona=$2&mod=zona [L]
+
 
 RewriteRule ^es/([a-z_]+) index.php?lang=es&mod=$1 [L]
 RewriteRule ^en/([a-z_]+) index.php?lang=en&mod=$1 [L]

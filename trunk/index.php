@@ -136,7 +136,13 @@ include("index_head.php");
                                 break;                            
                             case "candidatos":
                                 include("politico/lista_candidatos.php");
-                                break;                            
+                                break;       
+                            case "ayuntamiento":
+                                include("map/ayuntamiento.php");
+                                break;      
+                            case "zona":
+                                include("map/zona.php");
+                                break;                              
                             default :
                                 die($_GET['mod']); //Default por si se pone algo incorrecto. Al futuro hay que cambiarlo
                             }
