@@ -6,7 +6,7 @@
  */
 ?>
     <h1>Noticias</h1>
-    <div style="text-align: left;">
+    <div style="float:left; width:400px; text-align: left;">
         <ul>
     <?
     
@@ -17,5 +17,10 @@
     
     ?>
         </ul>
+    </div>
+    <div style="float:right; width: 225px;">
+        <?
+        include("usuarios/info.php");
+        ?>
     </div>
 
