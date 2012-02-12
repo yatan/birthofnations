@@ -20,7 +20,7 @@ if($data==NULL)
 $propietario = $data['id_propietario'];
 $empresa = $data['nombre_empresa'];
 
-if($id_usuario != $propietario)
+if($id_usuario != $propietario || !isset($_SESSION['id_usuario']) || $_SESSION['id_usuario']==0)
 {
     if($id_usuario != $_SESSION['id_usuario']){
     incidencia($id_usuario, 1, "Intento de despedir a alguien");
