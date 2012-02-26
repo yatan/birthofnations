@@ -24,6 +24,12 @@ sql("UPDATE diario SET work = 0, train = 0");
 
 //Actualizacion del dia
 sql("UPDATE settings SET day=day+1");
+//Tecnologias
+//Quitar un dia a todas
+
+for($i=1;$i<=2;$i++){
+    sql("UPDATE country_tech SET tech".$i." = tech".$i . " - 1");
+}
 
 //Politico
 

@@ -110,6 +110,9 @@ include("index_head.php");
                             case "info_partido":
                                 include("politico/info_partido.php");
                                 break;   
+                            case "tecnologia":
+                                include("politico/tecnologia_pais.php");
+                                break;   
                             case "lista_partidos":
                                 include("politico/list_party.php");
                                 break;                             

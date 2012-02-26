@@ -247,6 +247,10 @@ $i18n_array['2prop_201'] = ' a ';
 $i18n_array['cargo_2_1'] = "Sabio";
 $i18n_array['cargo_3_1'] = "Guerrero";
 
+//Tecnologias
+$i18n_array['tech_1'] = "Fertilizante";
+$i18n_array['tech_2'] = "Horno";
+
 //Rangos Militares
 
 $i18n_array['rango_0'] = 'Soldado';

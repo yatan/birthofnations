@@ -504,6 +504,22 @@ function puedo_postularme($id_usuario, $tipo, $id_votacion) {//Determina si pued
     return $ret;
 }
 
+function puedo_tech_upgrade($id,$tech){
+    return true;
+}
+
+function time_tech($tech){
+    
+    switch($tech):
+        case 1:
+        case 2:
+            $ret = 15;
+            break;
+    endswitch;
+    
+    return $ret;
+}
+
 function check_stat($stat, $id) {
 
     $sql = sql("SELECT status FROM usuarios WHERE id_usuario = " . $id);
@@ -840,7 +856,7 @@ function apply_law($vot) {
                 //Cambiamos el sistema del pais
                 sql("UPDATE country SET tipo_gobierno = 2 WHERE idcountry = ".$votacion['id_pais']);
                     //Ponemos el puesto
-                    sql("INSERT INTO country_leaders(id_cargo,nombre,votacion,laws) VALUES (" . $down . ",'" . getString('cargo_2_1') . "','A','100-V.R+" . $down . ",105-V.R+" . $down . "')");
+                    sql("INSERT INTO country_leaders(id_cargo,nombre,votacion,laws,tech_manager) VALUES (" . $down . ",'" . getString('cargo_2_1') . "','A','100-V.R+" . $down . ",105-V.R+" . $down . "',1)");
                     $gente = sql("SELECT id_usuario FROM usuarios WHERE id_nacionalidad = " . $votacion['id_pais'] . " ORDER BY exp DESC LIMIT 9");
                     foreach ($gente as $id) {
                         add_leader($down, $id['id_usuario']);
@@ -850,7 +866,7 @@ function apply_law($vot) {
                     //Cambiamos el sistema del pais
                     sql("UPDATE country SET tipo_gobierno = 3 WHERE idcountry = ".$votacion['id_pais']);
                     
-                    sql("INSERT INTO country_leaders(id_cargo,nombre,votacion,laws) VALUES (" . $down . ",'" . getString('cargo_3_1') . "','A','100-V.R+" . $down . ",105-V.R+" . $down . "')");
+                    sql("INSERT INTO country_leaders(id_cargo,nombre,votacion,laws,tech_manager) VALUES (" . $down . ",'" . getString('cargo_3_1') . "','A','100-V.R+" . $down . ",105-V.R+" . $down . "',1)");
                     $gente = sql("SELECT id_usuario FROM usuarios WHERE id_nacionalidad = " . $votacion['id_pais'] . " ORDER BY fuerza DESC LIMIT 9");
                     foreach ($gente as $id) {
                         add_leader($down, $id['id_usuario']);
