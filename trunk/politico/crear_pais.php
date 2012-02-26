@@ -24,6 +24,9 @@ if (isset($_POST['name']) && $_POST['name'] != "" && strlen($_POST['name']) != 0
             }
             if($flag == true){
     sql("INSERT INTO country(name, fundador, date_of_birth) VALUES ('$name', '$creador', Now() )"); 
+    $sql = sql("SELECT idcountry FROM country WHERE name = ".$name);
+    sql("INSERT INTO inventario_country(id_country) VALUES (".$sql.")");
+    sql("INSERT INTO country_tech(id_country) VALUES (".$sql.")");
     sql("ALTER TABLE money ADD COLUMN ". $_POST['moneda'] ." decimal(11, 3) NOT NULL DEFAULT 0");
     sql("ALTER TABLE empresas ADD COLUMN ". $_POST['moneda'] ." decimal(11, 3) NOT NULL DEFAULT 0");
     sql("ALTER TABLE money_pais ADD COLUMN ". $_POST['moneda'] ." decimal(11, 3) NOT NULL DEFAULT 0");
