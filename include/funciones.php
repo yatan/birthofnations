@@ -508,6 +508,11 @@ function puedo_tech_upgrade($id, $tech) {
     return true;
 }
 
+function precio_tech($tech,$country){
+    $sql = sql("SELECT precio".$tech." FROM country_tech WHERE id_country = ".$country);
+    return $sql;
+}
+
 function time_tech($tech) {
 
     switch ($tech):
