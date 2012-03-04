@@ -8,14 +8,13 @@
 include_once($_SERVER['DOCUMENT_ROOT'] . "/include/funciones.php");
 include_once($_SERVER['DOCUMENT_ROOT'] . "/politico/objeto_pais.php");
 
-$_GET['id_pais'] = 2;
+if (!isset($_GET['id_pais'])){
+    $id_pais = $objeto_usuario->id_nacionalidad;
+}else{
+    $id_pais = $_GET['id_pais'];
+}   
 
-if (!isset($_GET['id_pais']))
-    die("Error: id no valido"); //Substituir por error 404
-
-$id_pais = $_GET['id_pais'];
-
-$pais = new pais($_GET['id_pais']);
+$pais = new pais($id_pais);
 
 echo "<h3>Tecnologias</h3>";
 
