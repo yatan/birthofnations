@@ -44,6 +44,8 @@ if ($gold_pais >= $precio) {//Hay pasta
     } else {
         sql("UPDATE country_tech SET tech" . $tech . " = " . $time . " WHERE id_country = " . $pais);
     }
+    //Mensaje confirmando
+    echo "<img src='../images/rince.jpg'>Calma y tranquilidad compi. Todo va chachi, no tienes de que preocuparte.";
 } else {
     //No hay pasta
 }
