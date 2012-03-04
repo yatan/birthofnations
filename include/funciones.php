@@ -302,7 +302,7 @@ function select_lang() {
 }
 
 function dar_exp($id, $cantidad) {
-    
+
     //Subirsela al jugador
     sql("UPDATE usuarios SET exp = exp + " . $cantidad . " WHERE id_usuario = " . $id);
     //Sacar la ciudadania la jugador
@@ -313,12 +313,12 @@ function dar_exp($id, $cantidad) {
     //Ahora comprobamos si entre en un nuevo tipo de gobierno
     //Exp del pais
     $country = sql("SELECT exp,tipo_gobierno FROM country WHERE idcountry = " . $cs);
-    
+
     global $gov_exp;
-    
-    
-    
-    if (in_array($country['exp'],$gov_exp)) {//Si es un punto clave
+
+
+
+    if (in_array($country['exp'], $gov_exp)) {//Si es un punto clave
         $country = sql("SELECT tipo_gobierno FROM country WHERE idcountry = " . $cs);
         $time = time();
         $fin = $time + 86400;
@@ -504,19 +504,19 @@ function puedo_postularme($id_usuario, $tipo, $id_votacion) {//Determina si pued
     return $ret;
 }
 
-function puedo_tech_upgrade($id,$tech){
+function puedo_tech_upgrade($id, $tech) {
     return true;
 }
 
-function time_tech($tech){
-    
-    switch($tech):
+function time_tech($tech) {
+
+    switch ($tech):
         case 1:
         case 2:
             $ret = 15;
             break;
     endswitch;
-    
+
     return $ret;
 }
 
@@ -730,6 +730,31 @@ function list_leaders($cargo) {
     return $list;
 }
 
+function check_gov($id, $country) {
+    //Primero sacamos la lista cargos del pais
+
+    $down = $country * 100;
+    $up = $down + 99;
+
+    $sql = sql2("SELECT id_cargo FROM country_leaders WHERE id_cargo >= " . $down . " AND id_cargo <= " . $up);
+    
+    $ret = false;
+    
+    if(count($sql)==1){
+        $ret = check_leader($sql[0][0],$id);
+    }else{
+        foreach ($sql as $cargo) {
+        var_dump($cargo);
+        $ret = check_leader($cargo['id_cargo'], $id);
+        if ($ret == true) {
+            break;
+        }
+    }
+    }
+    
+    return $ret;
+}
+
 function del_leader($cargo, $id) {
     if (check_leader($cargo, $id) == true) {
         $list = list_leaders($cargo);
@@ -766,7 +791,6 @@ function list_laws_raw($cargo) {
 
 
     $sql = explode(',', $sql); //Separamos la info de cada ley
-
     //unset($sql[count($sql) - 1]); //Eliminamos el ultimo que nos sale en blanco
     //Pues parece que ya no sale en blanco
     return($sql);
@@ -833,7 +857,7 @@ function apply_law($vot) {
             $sql = sql2("SELECT votos, id_candidato FROM candidatos_elecciones WHERE id_votacion = " . $vot);
 
             $winner = array('id' => 0, 'votos' => -1);
-            
+
             foreach ($sql as $cand) {//Ver quien es el ganador
                 if ($cand['votos'] > $winner['votos']) {//Comparamos los votos con los del ganador
                     $winner['id'] = $cand['id_candidato'];
@@ -853,8 +877,8 @@ function apply_law($vot) {
                     //Nadie
                     break;
                 case 2://Consejo de sabios
-                //Cambiamos el sistema del pais
-                sql("UPDATE country SET tipo_gobierno = 2 WHERE idcountry = ".$votacion['id_pais']);
+                    //Cambiamos el sistema del pais
+                    sql("UPDATE country SET tipo_gobierno = 2 WHERE idcountry = " . $votacion['id_pais']);
                     //Ponemos el puesto
                     sql("INSERT INTO country_leaders(id_cargo,nombre,votacion,laws,tech_manager) VALUES (" . $down . ",'" . getString('cargo_2_1') . "','A','100-V.R+" . $down . ",105-V.R+" . $down . "',1)");
                     $gente = sql("SELECT id_usuario FROM usuarios WHERE id_nacionalidad = " . $votacion['id_pais'] . " ORDER BY exp DESC LIMIT 9");
@@ -864,8 +888,8 @@ function apply_law($vot) {
                     break;
                 case 3://Consejo de guerreros
                     //Cambiamos el sistema del pais
-                    sql("UPDATE country SET tipo_gobierno = 3 WHERE idcountry = ".$votacion['id_pais']);
-                    
+                    sql("UPDATE country SET tipo_gobierno = 3 WHERE idcountry = " . $votacion['id_pais']);
+
                     sql("INSERT INTO country_leaders(id_cargo,nombre,votacion,laws,tech_manager) VALUES (" . $down . ",'" . getString('cargo_3_1') . "','A','100-V.R+" . $down . ",105-V.R+" . $down . "',1)");
                     $gente = sql("SELECT id_usuario FROM usuarios WHERE id_nacionalidad = " . $votacion['id_pais'] . " ORDER BY fuerza DESC LIMIT 9");
                     foreach ($gente as $id) {
@@ -1082,6 +1106,5 @@ function rfloor($real, $decimals = 2) {
 function incidencia($usuario, $tipo, $respuesta) {
     sql("INSERT INTO incidencias(id_usuario, tipo, respuesta, hora) VALUES ('" . $usuario . "','" . $tipo . "','" . $respuesta . "', Now())");
 }
-    
 
 ?>
