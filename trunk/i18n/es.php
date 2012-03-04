@@ -61,7 +61,7 @@ $i18n_array['alternate_money'] = 'Alternar monedas';
 $i18n_array['search_offers'] = 'Buscar ofertas';
 $i18n_array['type'] = 'Tipo';
 $i18n_array['nunca'] = ' Nunca';
-
+$i18n_array['days'] = 'días';
  		//LOGIN
 
 $i18n_array['login_texto'] = "Birth of Nations es un juego online libre de estrategia política; económica y social. El desarrollo del juego se realiza de forma comunitaria; y sus propios jugadores deciden cual es el rumbo que toma el proyecto.";

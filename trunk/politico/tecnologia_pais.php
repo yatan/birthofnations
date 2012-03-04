@@ -18,10 +18,21 @@ $pais = new pais($id_pais);
 
 echo "<h3>Tecnologias</h3>";
 
+
+
 foreach($pais->list_tech() as $id=>$lvl){
-    echo getString("tech_".$id) . ": " . $lvl . " ";
-    if(puedo_tech_upgrade($objeto_usuario->id_usuario,$id) == true){echo "<a href='../../politico/tecnologia.php?tech=".$id."&pais=".$id_pais."'>".getString('comprar')."</a>";}
+    
+    if($lvl < 0){
+        $lvl = 0;
+    }
+    
+    $lvl = floor($lvl);
+    
+    echo getString("tech_".$id) .": ". $lvl . " " . getString("days");
+    if(puedo_tech_upgrade($objeto_usuario->id_usuario,$id) == true){
+        echo " <a href='../../politico/tecnologia.php?tech=".$id."&pais=".$id_pais."'>".getString('comprar')."(".precio_tech($id,$id_pais)."<img src='/images/status_bar/gold.gif'>)</a>";
+        }
     echo"<br>";
 }
-        
+
 ?>
