@@ -145,7 +145,10 @@ include("index_head.php");
                                 break;      
                             case "zona":
                                 include("map/zona.php");
-                                break;                              
+                                break;          
+                            case "ciudadania":
+                                include("usuarios/ciudadania.php");
+                                break;                             
                             default :
                                 die($_GET['mod']); //Default por si se pone algo incorrecto. Al futuro hay que cambiarlo
                             }
