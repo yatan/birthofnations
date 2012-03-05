@@ -42,7 +42,7 @@ Pais:
         
         
         var notice = $.pnotify({
-        pnotify_title: "<? echo getstring('offer_cancel'); ?>",
+        pnotify_title: "<? echo getstring('ciudadania'); ?>",
         pnotify_type: 'info',
         pnotify_info_icon: 'picon picon-throbber',
         pnotify_hide: false,
