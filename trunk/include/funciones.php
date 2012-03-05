@@ -184,12 +184,12 @@ function mail_referido($nick_padrino, $destino, $code) {
 }
 
 function mail_bienvenida($nick, $destino) {
-    global $txt;
+    
 
-    $titulo = $txt['mail_bienvenida_title'];
+    $titulo = getString('mail_bienvenida_title');
 
     // message
-    $mensaje = $txt['mail_bienvenida1'] . $nick . $txt['mail_bienvenida2'] . $code;
+    $mensaje = getString('mail_bienvenida1') . $nick . getString('mail_bienvenida2');
 
     // Para enviar un correo HTML mail, la cabecera Content-type debe fijarse
     $cabeceras = 'MIME-Version: 1.0' . "\r\n";
