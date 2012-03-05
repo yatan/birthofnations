@@ -393,4 +393,9 @@ $i18n_array['offer_cancel'] = "Cancelar oferta";
 $i18n_array['offer_cancel_ok'] = "Oferta cancelada correctamente";
 $i18n_array['offer_lower_zero'] = "La cantidad introducida es menor que 0.01";
 
+//Ciudadania
+$i18n_array['ciudadania'] = "Ciudadania";
+$i18n_array['pais_ciudadania'] = "Elige el pais donde quieres solicitar la ciudadania:";
+$i18n_array['solicitar'] = "Solicitar";
+
 ?>
