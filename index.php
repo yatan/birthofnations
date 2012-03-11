@@ -32,8 +32,12 @@ $objeto_usuario = new usuario($_SESSION['id_usuario']);
 if($objeto_usuario->id_region==null)
     header("Location: /login/primer_login.php"); //<-- Redireccion a la pagina del primer login
 
-if($objeto_usuario->estoy_viajando==true && !isset($_GET['mod']))
-    header("Location: /es/viajando"); //<-- Redireccion a la pagina mientras se vuela (TEMPORAL)
+if($objeto_usuario->check_travel() ==true)
+    if(!isset($_GET['mod']))
+        header("Location: /es/viajando"); //<-- Redireccion a la pagina mientras se vuela (TEMPORAL)
+    elseif($_GET['mod'] == 'entrenar' || $_GET['mod'] == 'empresa' ){
+        header("Location: /es/viajando");
+    }
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

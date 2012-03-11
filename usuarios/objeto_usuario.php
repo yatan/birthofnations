@@ -53,11 +53,7 @@ class usuario
         if($this->level != $this->check_lvl())
             $this->set_lvl();
         
-        //Se mira si esta viajando
-        if($this->check_travel() == true)
-            $this->estoy_viajando = true;
-        else
-            $this->estoy_viajando = false;
+        
         
     }
     
