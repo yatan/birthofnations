@@ -43,7 +43,7 @@ if (isset($_POST['region']) && $_POST['region'] != "" && strlen($_POST['region']
         sql("UPDATE usuarios SET salud = salud - 1 WHERE id_usuario = " . $_SESSION['id_usuario']);
         sql("UPDATE inventario SET transporte = transporte - " . $tickets_needed . " WHERE id_usuario = " . $_SESSION['id_usuario']);
         $travel_time = ceil($distancia/5);
-        $tiempo = time() + $travel_time;
+        $tiempo = time() + $travel_time*60;
         sql("INSERT INTO viajes(id_usuario, hora_final, id_region_destino) VALUES('" . $_SESSION['id_usuario'] . "','$tiempo','$destino')");
         $objeto_usuario->add_status("v");
         echo"Empieza el viaje, durara $travel_time minutos";
