@@ -1,17 +1,12 @@
 <?
 include_once($_SERVER['DOCUMENT_ROOT']."/include/funciones.php");
 
-if(isset($_GET['pais']))
-    $pais = $_GET['pais'];
+if(isset($_GET['id_pais']))
+    $pais = $_GET['id_pais'];
 else
     $pais = 1;
 
-if(isset($_GET['pag']))
-    $pagina = $_GET['pag'];
-else
-    $pagina=0;
 
-//$moneda = moneda_pais($pais);
 
 ?>
 
@@ -68,7 +63,7 @@ document.getElementById('hora_inicio1').value=((document.getElementById('datepic
         <?
                 foreach ($sql as $pais1) {
                     if($pais1['idcountry']!=$objeto_usuario->id_nacionalidad){ //para no atacar una region de tu propio pais
-                        if($pais1['idcountry']==$_GET['pais']){
+                        if($pais1['idcountry']==$pais){
                             $seleccionado = "selected='selected'";
                         }else{
                             $seleccionado = "";
@@ -101,7 +96,7 @@ document.getElementById('hora_inicio1').value=((document.getElementById('datepic
 </div>
 <div style="background-color: green;">
     <div id="datepicker" style="background-color: blue; width: 50%; float:left; text-align: center;   height: 300px;"></div>
-    <div  style="background-color: black; width: 50%; float:right;  height: 300px;">
+    <div  style="background: url('/images/war/pergamino.png') top left no-repeat; width: 400px; float:right;  height: 530px; padding-top: 100px;">
         <form name="battle" id="battle" action="">
             pais_atacante<input type="text" id="pais_atacante" name="pais_atacante" value="<?echo $objeto_usuario->id_nacionalidad?>"><br>
             pais_defensor<input type="text" id="pais_defensor" name="pais_defensor" value="<?echo $pais?>"><br>
@@ -109,7 +104,9 @@ document.getElementById('hora_inicio1').value=((document.getElementById('datepic
             tipo<input type="text" id="tipo" name="tipo" value="<?echo $objeto_usuario->id_nacionalidad?>"><br>
             hora_inicio<input type="text" id="hora_inicio" name="hora_inicio" value="<?echo (time()+(86400+86400)).' -- '.date('d/m/y',(time()+(86400+86400)));?>"><br>
             hora_inicio<input type="text" id="hora_inicio1" name="hora_inicio1" value=""><br>
+        <input type="image" src="/images/war/declarar.png"/>
         </form>
+        
     </div>
 </div>
 
