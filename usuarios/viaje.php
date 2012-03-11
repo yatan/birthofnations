@@ -31,18 +31,22 @@ if (isset($_POST['region']) && $_POST['region'] != "" && strlen($_POST['region']
 // [1][0] - [1][1] es la ruta
     $distancia = (int) $ruta[$destino]['distance'];
 
+    //Transportes necesario
+    $tickets_needed = ceil($distancia/10);
+    
 //Ahora comprobamos que tiene suficientes objetos necesarios para viajar, cuales sean, pa probar sugus
 
     $tickets = sql("SELECT transporte FROM inventario WHERE id_usuario = " . $_SESSION['id_usuario']); //Comentario temporal
 
-    if ($tickets >= $distancia && $origen['salud'] >= $min_travel_health) {//Si puede viajar
+    if ($tickets >= $tickets_needed && $origen['salud'] >= $min_travel_health) {//Si puede viajar
         //Quitar items y mierdas y actualizar el pais
         sql("UPDATE usuarios SET salud = salud - 1 WHERE id_usuario = " . $_SESSION['id_usuario']);
-        sql("UPDATE inventario SET transporte = transporte - " . $distancia . " WHERE id_usuario = " . $_SESSION['id_usuario']);
-        $tiempo = time() + (60 * $distancia);
+        sql("UPDATE inventario SET transporte = transporte - " . $tickets_needed . " WHERE id_usuario = " . $_SESSION['id_usuario']);
+        $travel_time = ceil($distancia/5);
+        $tiempo = time() + $travel_time;
         sql("INSERT INTO viajes(id_usuario, hora_final, id_region_destino) VALUES('" . $_SESSION['id_usuario'] . "','$tiempo','$destino')");
         $objeto_usuario->add_status("v");
-        echo"Empieza el viaje, durara $distancia minutos";
+        echo"Empieza el viaje, durara $travel_time minutos";
     } else {//Si no tiene objetos
         echo getString('cant_travel');
     }
