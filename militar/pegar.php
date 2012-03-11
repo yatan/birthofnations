@@ -4,4 +4,5 @@ $usuario = $_POST['id_usuario'];
 $hit = rand(0,100);
 
 sql("INSERT INTO log_hits(id_guerra, id_usuario, lado, hit) VALUES('1','$usuario','a','$hit')");
+sql("UPDATE wars SET total_atacantes = total_atacantes + $hit WHERE id_guerra='1'");
 ?>
