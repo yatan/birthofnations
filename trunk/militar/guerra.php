@@ -59,8 +59,16 @@
 
 
 <script type="text/javascript">
+
+    var id_ultimo_a = 0;
+    var latestDefenderId = 20530092;
+    var a_atacantes = [];
+    var defensores = [];
+    
+    
   $(document).ready(function() {
     $("#muro").progressbar({ value: 0 });
+    top(); //Se cargan los datos de la batalla al cargar la pagina
   });
 
 function golpes() {
@@ -70,16 +78,17 @@ function golpes() {
    function(data){
     hits = data;
     selector = "#atacantes";
-   
+   			
 			$(selector+" > div:last-child").fadeOut('300', function() {
 				$(selector+" > div:last-child").remove();
 				$(selector+" > div:nth-child(2)").before("<div style=\"height: 1px\"> </div>");
 				$(selector+" > div:nth-child(2)").animate({height:'100px'}, function() {
 					$(selector+" > div:nth-child(2)").append(hits.html);
 					$(selector+" > div:nth-child(2) > div").fadeIn('300');
-				});
-				
+                                        
+				});		
 			});   
+                                                    
    },"json")
    
    
@@ -87,6 +96,53 @@ function golpes() {
     
 }
 
+function atacantes(){
+var dataString = 'id_guerra=1';  
+
+$.ajax({  
+        type: "GET",
+        url: "/militar/historial.php",
+        data: dataString,
+        dataType: "json",
+        success: function(msg) {
+            id_ultimo_a = msg.last_a;
+            
+            /*if(a_atacantes[0] != msg.last_a)
+                {*/
+                    
+                  
+                      for (var i=0; i < 5; i++) {
+                        a_atacantes.push(msg['a_'+i]);
+                     }          
+                 //a_atacantes.push(msg.golpes);
+                //alert(a_atacantes.shift());
+                anadir_atacante(a_atacantes.shift());
+                
+               
+                //}
+        }
+});
+}
+
+
+
+
+
+function anadir_atacante(hits){
+
+    selector = "#atacantes";
+   			
+			$(selector+" > div:last-child").fadeOut('300', function() {
+				$(selector+" > div:last-child").remove();
+				$(selector+" > div:nth-child(2)").before("<div style=\"height: 1px\"> </div>");
+				$(selector+" > div:nth-child(2)").animate({height:'100px'}, function() {
+					$(selector+" > div:nth-child(2)").append(hits.html);
+					$(selector+" > div:nth-child(2) > div").fadeIn('300');
+                                        
+				});		
+			});   
+ 
+}
 
 function defensores() {
     var hits;
@@ -112,8 +168,7 @@ function defensores() {
 function top() {
 
 var dataString = 'id_guerra=1';  
-dataString += '&at=5841';
-dataString += '&ci=5';
+
 
 $.ajax({  
         type: "GET",
@@ -137,7 +192,7 @@ $('#pegar').click(function() {
 $.post("/militar/pegar.php", {id_usuario:"<? echo $_SESSION['id_usuario']; ?>"});
 });   
 
-setInterval(golpes,2000);
-setInterval(defensores,2000);
-setInterval(top,2000);
+setInterval(atacantes,2000);
+//setInterval(defensores,2000);
+setInterval(top,10000);
 </script>
