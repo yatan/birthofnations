@@ -28,6 +28,11 @@ else
 require("usuarios/objeto_usuario.php");
 $objeto_usuario = new usuario($_SESSION['id_usuario']);
 
+//Si existe el idioma normalmente en la url del tipo /es/ lo establece como
+//variable que se carga al principio '''$idioma'''
+if(isset($_GET['lang']))
+    $idioma = $_GET['lang'];
+
 //Se mira si es el primer login, por lo que no tendra ninguna ciudad asignada
 if($objeto_usuario->id_region==null)
     header("Location: /login/primer_login.php"); //<-- Redireccion a la pagina del primer login
@@ -172,15 +177,19 @@ include("index_head.php");
                             </div><!-- columnas -->
                                 <div id="fila2" style="width: 59.6em; height: 14.5em;">
                                     <div id="periodicos_login" style="float: left; width: 29.5em; height: 14.5em;">
-                                        <div class="ultimos_articulos" style="float: left;">
+                                        <div class="ultimos_articulos" style="float: left; width:300px;">
                                         <h2><li><? echo getString('periodico_ultimos'); ?></li></h2>
                                             <? 
 $nuevosarticulosw = mysql_query("SELECT * FROM articulos ORDER by fecha DESC LIMIT 5");
+echo "<div style='text-align: left; margin-left: 5px;'>";
 while($nuevosarticulos = mysql_fetch_array($nuevosarticulosw))  {
+    $autor= id2nick($nuevosarticulos['id_autor']);
+    $voto_articulo = sql("SELECT ((SELECT COUNT(*) FROM articulos_votos WHERE id_articulo = '".$nuevosarticulos['id_articulo']."' AND tipo=1) - (SELECT COUNT(*) FROM articulos_votos WHERE id_articulo = '".$nuevosarticulos['id_articulo']."' AND tipo=2))");
 echo <<< HTML
-    <a href="/es/articulo/$nuevosarticulos[id_articulo]">$nuevosarticulos[titulo]</a><br>
+    <div style='text-align: center; background: blue; color: white; width:25px; height: 25px; padding-top: 5px; float:left;'>$voto_articulo</div> <a style='margin-left:15px;' href="/es/articulo/$nuevosarticulos[id_articulo]">$nuevosarticulos[titulo]</a><br><a style='font-size:12px; margin-left:15px;'>By: $autor</a><br>
 HTML;
 }
+echo "</div>";
                                             ?>
                                     </div>
                                         <div class="ultimos_articulos" style="float: right;">

@@ -74,8 +74,8 @@ font-size: 24px;
                         <form action="/login/logear.php" method="POST">
                             <fieldset>
                                 <legend>Login</legend>
-                            <p><label for="nick">Nick:</label><input tabindex="1" type="text" name="nick"></p>
-                            <p><label for="pass">Password:</label><input tabindex="2" type="password" name="pass"></p>
+                            <p><label for="nick" style="color:#781351;">Nick:</label><input tabindex="1" type="text" name="nick"></p>
+                            <p><label for="pass" style="color:#781351;">Password:</label><input tabindex="2" type="password" name="pass"></p>
                             <p class="submit"><input type="submit" value="Login">
                             <a class="recover" href="/login/recuperar.php" style="text-align: center; color:black;"><?echo getString("login_recovery");?></a></p>
                             </fieldset>
