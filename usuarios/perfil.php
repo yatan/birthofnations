@@ -45,9 +45,9 @@ else {
             echo "<div style='float: left; width: 15em; height: 28.45em;'>";
             echo "<h2>Perfil de $usuario->nick </h2>";
             echo "<img src='$usuario->avatar' style='max-height: 128px; max-width: 128px; overflow: hidden;'/><br>";
-            echo "<p style='font-size: 14px; text-align: left; margin: 10px;'>Pais: {$usuario->get_n_pais()}</p>";
-            echo "<p style='font-size: 14px; text-align: left; margin: 10px;'>Region: {$usuario->get_n_region()}</p>";
-            echo "<p style='font-size: 14px; text-align: left; margin: 10px;'>Nacionalidad: {$usuario->get_n_nacionalidad()}";
+            echo "<p style='font-size: 14px; text-align: left; margin: 10px;'>Pais: <a href='/$idioma/pais/{$usuario->id_pais}'>{$usuario->get_n_pais()}</a></p>";
+            echo "<p style='font-size: 14px; text-align: left; margin: 10px;'>Region: <a href='/$idioma/region/{$usuario->id_region}'>{$usuario->get_n_region()}</a></p>";
+            echo "<p style='font-size: 14px; text-align: left; margin: 10px;'>Nacionalidad: <a href='/$idioma/pais/{$usuario->id_nacionalidad}'>{$usuario->get_n_nacionalidad()}</a>";
             if ($usuario->soy_yo($_SESSION['id_usuario']) == true)
                 echo "<a href='/{$_GET['lang']}/ciudadania' style='font-size: 14px; text-align: left; margin: 10px;'>(Cambiar)</a></p>";
             else
