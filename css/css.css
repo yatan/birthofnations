@@ -5,9 +5,14 @@ body {
     background-color:#FFF;
     margin: auto;
     max-width: 1000px;
-    background-image: url(../images/fondogrande.jpg);
-    background-repeat:repeat-x;
-        background-attachment:fixed;
+	background-image: url(../images/fondogrande.jpg);
+	background-repeat:no-repeat;
+	background-position:center center;
+	background-attachment:fixed;
+	-o-background-size: 100% 100%, auto;
+	-moz-background-size: 100% 100%, auto;
+	-webkit-background-size: 100% 100%, auto;
+	background-size: 100% 100%, auto;		
 }
 #contenido {
     background-image: url("../images/fondocontenedor.png");
@@ -15,6 +20,7 @@ body {
     /*color: #E7E82F;*/
     margin-top: 2em;
     padding: 0.5em 2ex;
+		
 }
 
 #contenido label{
@@ -27,7 +33,7 @@ body {
 	width: 498px;
 	height: 99px;
 	margin: auto;*/
-            background-image: url("../images/logo3.png");
+    background-image: url("../images/logo3.png");
     background-repeat: no-repeat;
     height: 100px;
     margin: auto;
@@ -37,7 +43,7 @@ body {
 }
 /********** DIV LOGIN *****************/
 #login{
-    left: 22em;
+    padding-left: 22em;
     min-height: 500px;
     position: relative;
 }
