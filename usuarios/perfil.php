@@ -35,6 +35,7 @@ else {
         echo "<li><a href='#inventario'>Inventario</a></li>";
         echo "<li><a href='#viajar'>Viajar</a></li>";
         echo "<li><a href='#periodico'>Periodico</a></li>";
+        echo "<li><a href='#invitar'>Invitar</a></li>";
     }
     ?>
 
@@ -94,6 +95,9 @@ else {
                 echo "<div id='periodico'>";
                 include("periodico/redactar.php");
                 echo "</div>";
+                echo "<div id='invitar'>";
+                include("form_referer.php");
+                echo "</div>";                
             } else {
                 //Zona publica
                 echo "<div>";
