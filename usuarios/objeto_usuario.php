@@ -187,6 +187,26 @@ class usuario
             return false;
     }   
     
+    function modificar_gold($cantidad)
+    {
+        if($cantidad == 0)
+            //Cantidad 0, no se hace nada
+            return true;
+        elseif($cantidad > 0)
+            sql("UPDATE money SET Gold = Gold + $cantidad WHERE id_usuario = '$this->id_usuario'");
+        elseif($cantidad < 0)
+        {
+            if($cantidad <= $this->gold)
+                sql("UPDATE money SET Gold = Gold - $cantidad WHERE id_usuario = '$this->id_usuario'");
+            else
+                //El usuario no dispone suficiente gold
+                return false; 
+            
+        }
+        //Transaccion correcta
+        return true;
+    }
+    
 
 }
 
