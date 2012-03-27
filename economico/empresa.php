@@ -20,7 +20,8 @@ $ya_trabaje = sql("SELECT work FROM diario WHERE id_usuario = " . $_SESSION['id_
 if($id_empresa==$donde_trabajo)
 {
     if($ya_trabaje != 1){echo "<button id='trabajar' style='background-color:#1E679A ; border: 1px solid #1E679A;' href='#'>Trabajar</button><br>";}
-    echo "<a id='despedir' href='../../economico/despedir.php?id_worker=".$_SESSION['id_usuario']."'>Dejar Empresa</a>";
+    echo "<button id='despedir' style='background-color:#1E679A ; border: 1px solid #1E679A;' href='#'>".getString('fire_worker')."</button><br>";
+    //echo "<a id='despedir' href='../../economico/despedir.php?id_worker=".$_SESSION['id_usuario']."'>Dejar Empresa</a>";
    ?>
     <style>
 
@@ -58,6 +59,20 @@ display: none;
 
     $('#trabajar').click(function() {
   	$.post("/economico/trabajar.php",
+        function(data){
+                        $("#dialog").append(data);
+                        $( "#dialog" ).dialog('open');
+                      } );
+   
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $("#despedir").button();
+    });
+
+    $('#despedir').click(function() {
+  	$.post("<?echo "../../economico/despedir.php?id_worker=".$_SESSION['id_usuario'];?>",
         function(data){
                         $("#dialog").append(data);
                         $( "#dialog" ).dialog('open');

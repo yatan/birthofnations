@@ -325,7 +325,8 @@ $i18n_array['no_job_offers'] = "No hay ofertas de trabajo.";
 $i18n_array['no_selling_companies'] = "No hay empresas a la venta.";
 $i18n_array['not_enough_stock'] = "No tienes suficiente stock para vender";
 $i18n_array['sell_for_zero'] = "El precio de venta no puede ser negativo";
-
+$i18n_array['fire_worker'] = "Despedir";
+$i18n_array['been_fired'] = ", has sido despedido";
 // VIAJES
 
 $i18n_array['moved_ok'] = "Has viajado correctamente";
