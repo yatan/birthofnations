@@ -32,7 +32,7 @@ send_alert($id_usuario, $_GET['id_worker'], 7, $empresa);
 
 //Mecanismo del despido
 sql("UPDATE usuarios SET id_empresa = 0, salario = 0 WHERE id_usuario = " . $_GET['id_worker']);
-
+echo id2nick($_GET['id_worker']) . getString("been_fired");
 }
 ?>
 <script>
