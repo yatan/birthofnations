@@ -46,7 +46,12 @@ foreach ($alertas as $alerta) {
             echo "<tr><td>Empresa</td>";
             echo "<td>El jugador ".id2nick($alerta['id_emisor'])." te ha despedido de <b>".$alerta['r1']."</b>.</td>";
             break;         
-
+        case "8":
+            echo "<tr><td>Jugador</td>";
+            echo "<td>Has ganado 2 gold <img src='/images/status_bar/gold.gif'/> por subir a nivel <b>".$alerta['r1']."</b>.</td>";
+            break; 
+        
+        
         default:
             break;
     }
