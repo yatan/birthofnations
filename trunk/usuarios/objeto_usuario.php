@@ -116,6 +116,19 @@ class usuario
         
         //Aqui se envia una alerta del nuevo lvl
         sql("INSERT INTO alertas(id_receptor, tipo, r1) VALUES ('$this->id_usuario','3','$nuevo_lvl')");
+        
+        //Para niveles 3 y 5 se regalan 2 golds
+        if($nuevo_lvl == 3)
+            {
+                $this->modificar_gold (2);
+                send_alert(0, $this->id_usuario, 8, $nuevo_lvl);
+            }
+        elseif ($nuevo_lvl == 5) 
+            {
+                $this->modificar_gold (2);
+                send_alert(0, $this->id_usuario, 8, $nuevo_lvl);
+            }
+        
     }
     
     //Funcion para comprobar si esta viajando, si el viaje ha terminado se pone a null el temporizador
