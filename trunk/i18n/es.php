@@ -242,6 +242,8 @@ $i18n_array['1prop_200'] = 'Emitir ';
 $i18n_array['law_201'] = 'Donar moneda';
 $i18n_array['1prop_201'] = 'Donar ';
 $i18n_array['2prop_201'] = ' a ';
+$i18n_array['law_300'] = 'Abrir guerra';
+$i18n_array['1prop_300'] = 'Abrir guerra con ';
 //Cargos
 
 $i18n_array['cargo_2_1'] = "Sabio";

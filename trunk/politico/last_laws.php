@@ -66,6 +66,9 @@ function proposal_text($tipo, $id) {
         case 201:
             $txt = getString('1prop_201') . $p[0] . " " . strtoupper($p[1]) . getString('2prop_201') . id2nick($p[2]);
             break;
+        case 300:
+            $sql = sql("SELECT name FROM country WHERE idcountry = ".$p[0]);
+            $txt = getString('1prop_300') . $sql;
     endswitch;
     return $txt;
 }

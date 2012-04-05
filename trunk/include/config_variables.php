@@ -46,6 +46,7 @@ function law_params($ley) {
         case 105:
         case 106:
         case 200:
+        case 300:
             $data = 1;
             break;
         case 103:
@@ -73,10 +74,15 @@ function law_param_names($ley){
             break;
         case 200:
             $f[0] = getString('amount');
+            break;
         case 201:
             $f[0] = getString('amount');
             $f[1] = getString('currency');
             $f[2] = getString('id_destiny');
+            break;
+        case 300:
+            $f[0] = getString('country');
+            break;
     endswitch;
     return $f;
 }

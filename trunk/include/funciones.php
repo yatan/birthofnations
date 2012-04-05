@@ -184,7 +184,7 @@ function mail_referido($nick_padrino, $destino, $code) {
 }
 
 function mail_bienvenida($nick, $destino) {
-    
+
 
     $titulo = getString('mail_bienvenida_title');
 
@@ -508,8 +508,8 @@ function puedo_tech_upgrade($id, $tech) {
     return true;
 }
 
-function precio_tech($tech,$country){
-    $sql = sql("SELECT precio".$tech." FROM country_tech WHERE id_country = ".$country);
+function precio_tech($tech, $country) {
+    $sql = sql("SELECT precio" . $tech . " FROM country_tech WHERE id_country = " . $country);
     return $sql;
 }
 
@@ -742,21 +742,21 @@ function check_gov($id, $country) {
     $up = $down + 99;
 
     $sql = sql2("SELECT id_cargo FROM country_leaders WHERE id_cargo >= " . $down . " AND id_cargo <= " . $up);
-    
+
     $ret = false;
-    
-    if(count($sql)==1){
-        $ret = check_leader($sql[0][0],$id);
-    }else{
+
+    if (count($sql) == 1) {
+        $ret = check_leader($sql[0][0], $id);
+    } else {
         foreach ($sql as $cargo) {
-        var_dump($cargo);
-        $ret = check_leader($cargo['id_cargo'], $id);
-        if ($ret == true) {
-            break;
+            var_dump($cargo);
+            $ret = check_leader($cargo['id_cargo'], $id);
+            if ($ret == true) {
+                break;
+            }
         }
     }
-    }
-    
+
     return $ret;
 }
 
@@ -857,7 +857,7 @@ function apply_law($vot) {
 
 
     switch ($votacion['tipo_votacion']):
-        case 2:
+        case 2: //Cambio de sistema politico
             //Ver que sistema ha ganado
             $sql = sql2("SELECT votos, id_candidato FROM candidatos_elecciones WHERE id_votacion = " . $vot);
 
@@ -901,8 +901,7 @@ function apply_law($vot) {
                         add_leader($down, $id['id_usuario']);
                     }
                     break;
-            endswitch;
-
+            endswitch; //Aqui acaba el cambio de sistema politico
             break;
         case 100: //Cambio de nombre del pais        
             sql("UPDATE country SET name = '" . $p[0] . "' WHERE idcountry = " . $votacion['id_pais']);
@@ -1025,6 +1024,12 @@ function apply_law($vot) {
                     sql("UPDATE money SET " . $p[1] . " = " . $p[1] . " + " . $p[0] . " WHERE id_usuario= " . $p[2]);
                 }
             }
+            break;
+        case 300:
+            //Añadir la guerra
+            $time = time();
+            sql("INSERT INTO wars(id_pais_atacante,id_pais_defensor,tipo,estado,hora_inicio) VALUES(".$votacion['id_pais'].",".$p[0].",0,1,".$time.")");
+            
             break;
     endswitch;
 
