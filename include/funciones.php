@@ -167,10 +167,10 @@ function mail_referido($nick_padrino, $destino, $code) {
     global $txt;
 
 // subject
-    $titulo = $txt['referer_title'];
+    $titulo = getString('referer_title');
 
 // message
-    $mensaje = $txt['referer_mail1'] . $nick_padrino . $txt['referer_mail2'] . $code;
+    $mensaje = getstring('referer_mail1') . $nick_padrino . getString('referer_mail2') . $code;
 
 // Para enviar un correo HTML mail, la cabecera Content-type debe fijarse
     $cabeceras = 'MIME-Version: 1.0' . "\r\n";
