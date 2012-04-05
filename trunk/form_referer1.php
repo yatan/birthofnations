@@ -19,4 +19,5 @@ $code = " http://birthofnations.com/login/registro.php?referer=".$codigo;
 
 $nick = sql("SELECT nick FROM usuarios WHERE id_usuario='$id'");
 mail_referido("$nick","$email","$code");
+echo "Email enviado correctamente.";
 ?>
