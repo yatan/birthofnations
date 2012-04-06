@@ -38,7 +38,7 @@ elseif($entrenado==0)
       <li><a class="item-primary" href="#" target="_self"><? echo getString('militar'); ?></a>
          <ul style="width:150px;">
             <li><a href="<? echo "/".$_GET['lang']."/entrenar"; ?>" title="Entrenamiento" target="_self" ><? echo getString('entrenamiento'); ?></a></li>
-            <!--<li><a href="#"><? echo getString('guerras'); ?></a></li>-->
+            <li><a href="<? echo "/".$_GET['lang']."/wars/".$objeto_usuario->id_nacionalidad;; ?>"><? echo getString('guerras'); ?></a></li>
          </ul>
 	   </li>
        <li><span class="divider divider-vert" ></span></li>
@@ -53,9 +53,9 @@ elseif($entrenado==0)
        <li><span class="divider divider-vert" ></span></li>
       <li><a class="item-primary" href="#" target="_self"><? echo getString('pais'); ?></a>
          <ul style="width:150px;">
-            <li><a href="<? echo "/".$_GET['lang']."/pais/".$objeto_usuario->id_pais; ?>" title="Mi país" target="_self" ><? echo getString('mi_pais'); ?></a></li>
-            <li><a href="<? echo "/".$_GET['lang']."/partidos/".$objeto_usuario->id_pais; ?>" title="Partidos políticos" target="_self" ><? echo getString('partidos_politicos'); ?></a></li>
-            <li><a href="<? echo "/".$_GET['lang']."/laws/".$objeto_usuario->id_pais; ?>" title="Leyes" target="_self" ><? echo getString('laws'); ?></a></li>
+            <li><a href="<? echo "/".$_GET['lang']."/pais/".$objeto_usuario->id_nacionalidad; ?>" title="Mi país" target="_self" ><? echo getString('mi_pais'); ?></a></li>
+            <li><a href="<? echo "/".$_GET['lang']."/partidos/".$objeto_usuario->id_nacionalidad; ?>" title="Partidos políticos" target="_self" ><? echo getString('partidos_politicos'); ?></a></li>
+            <li><a href="<? echo "/".$_GET['lang']."/laws/".$objeto_usuario->id_nacionalidad; ?>" title="Leyes" target="_self" ><? echo getString('laws'); ?></a></li>
             <!--<li><a href="#"><? echo getString('ranking'); ?></a></li>-->
          </ul>
 	   </li>

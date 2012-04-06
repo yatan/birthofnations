@@ -143,6 +143,9 @@ include("index_head.php");
                             case "addwar":
                                 include("militar/aniadir_guerra.php");
                                 break;
+                            case "lista_guerras":
+                                include("militar/lista_guerras.php");
+                                break;                        
                             case "mercado_economico":
                                 include("economico/mercado_economico.php");
                                 break;                            

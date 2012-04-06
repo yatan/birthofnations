@@ -24,7 +24,7 @@ RewriteRule ^([a-z]+)/candidatos/([0-9]+)$ index.php?lang=$1&id=$2&mod=candidato
 RewriteRule ^([a-z]+)/partidos/([0-9]+)$ index.php?lang=$1&id_pais=$2&mod=lista_partidos [L]
 RewriteRule ^([a-z]+)/war/([0-9]+)$ index.php?lang=$1&id_guerra=$2&mod=guerra [L]
 RewriteRule ^([a-z]+)/addwar/([0-9]+)$ index.php?lang=$1&id_pais=$2&mod=addwar [L]
-RewriteRule ^([a-z]+)/guerras/([0-9]+)$ index.php?lang=$1&id_pais=$2&mod=lista_guerras [L]
+RewriteRule ^([a-z]+)/wars/([0-9]+)$ index.php?lang=$1&id_pais=$2&mod=lista_guerras [L]
 RewriteRule ^([a-z]+)/laws/([0-9]+)$ index.php?lang=$1&id_pais=$2&mod=laws [L]
 RewriteRule ^([a-z]+)/buscador/([a-z_]+)/([0-9]+)$ index.php?lang=$1&nick=$2&mod=buscador&pag=$3 [L,QSA]
 RewriteRule ^([a-z]+)/zona/([0-9]+)$ index.php?lang=$1&id_zona=$2&mod=zona [L]
