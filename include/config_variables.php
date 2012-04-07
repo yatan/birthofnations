@@ -36,6 +36,9 @@ $precio_partido = 40;
 $gov_exp[0] = 20;
 $gov_exp[1] = 999999999999;
 
+//Militar
+$battle_lenght = 18*60*60; //18 horas
+
 //Numero de parametros de cada ley.
 function law_params($ley) {
 
@@ -51,6 +54,7 @@ function law_params($ley) {
             break;
         case 103:
         case 104:
+        case 301:
             $data = 2;
             break;
         case 201:
@@ -82,6 +86,10 @@ function law_param_names($ley){
             break;
         case 300:
             $f[0] = getString('country');
+            break;
+        case 301:
+            $f[0] = getString('id_attacking_region');
+            $f[1] = getString('id_defense_region');
             break;
     endswitch;
     return $f;
