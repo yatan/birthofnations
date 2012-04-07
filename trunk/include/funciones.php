@@ -365,6 +365,16 @@ function id2itemimg($id) {
     return $sql;
 }
 
+function region2country($region){
+    $sql = sql("SELECT idcountry FROM region WHERE idregion = ".$region);
+    return $sql;
+}
+
+function region2name($region){
+    $sql = sql("SELECT name FROM region WHERE idregion = .$region");
+    return $sql;
+}
+
 function next_elecciones($DA, $DE, $FE) {//Actual/Resto del dia de las elecciones/Frecuencia
     if ($DA % $FE > $DE) {
         $prox = $DA - $DA % $FE + $DE + $FE;
@@ -1028,8 +1038,21 @@ function apply_law($vot) {
         case 300:
             //Añadir la guerra
             $time = time();
-            sql("INSERT INTO wars(id_pais_atacante,id_pais_defensor,tipo,estado,hora_inicio) VALUES(".$votacion['id_pais'].",".$p[0].",0,1,".$time.")");
+            sql("INSERT INTO wars(id_pais_atacante,id_pais_defensor,tipo,estado,hora_inicio,hora_fin) VALUES(".$votacion['id_pais'].",".$p[0].",0,1,".$time.",0)");
             
+            break;
+        case 301: //Abrir batalla
+            $time = time();
+            global $battle_lenght;
+            $end_time = $time + $battle_lenght;
+            //Region atacante $p[0]
+            //Region defensora $p[1]
+            //Sacar que paises estan en guerra
+            $at_country = region2country($p[0]);
+            $def_country = region2country($p[1]);
+            //Ver id guerra
+            $id_war = sql("SELECT id_war FROM wars WHERE pais_atacante = ".$at_country." AND pais_defensor = ".$def_country ." AND hora_fin = 0");
+            sql("INSERT INTO battles(id_war,attacking_region,defending_region,hora_inicio,hora_fin,estado,tipo) VALUES (".$id_war.",".$p[0].",".$p[1].",".$time.",".$end_time.",1,1)");
             break;
     endswitch;
 

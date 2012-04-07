@@ -244,6 +244,9 @@ $i18n_array['1prop_201'] = 'Donar ';
 $i18n_array['2prop_201'] = ' a ';
 $i18n_array['law_300'] = 'Abrir guerra';
 $i18n_array['1prop_300'] = 'Abrir guerra con ';
+$i18n_array['law_301'] = 'Abrir batalla';
+$i18n_array['1prop_301'] = 'Atacar ';
+$i18n_array['2prop_301'] = ' desde ';
 //Cargos
 
 $i18n_array['cargo_2_1'] = "Sabio";
@@ -357,7 +360,8 @@ $i18n_array['military_train'] = 'Entrenar ';
 $i18n_array['military_accept'] = 'Aceptar ';
 $i18n_array['more_strenght'] = 'Tu fuerza ha aumentado ';
 $i18n_array['more_exp'] = 'Tus puntos de experiencia han aumentado ';
-
+$i18n_array['id_attacking_region'] = 'Id region atacante ';
+$i18n_array['id_defense_region'] = 'Id region a atacar ';
 
 //QUESTs
 

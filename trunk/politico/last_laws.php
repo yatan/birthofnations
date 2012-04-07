@@ -69,6 +69,10 @@ function proposal_text($tipo, $id) {
         case 300:
             $sql = sql("SELECT name FROM country WHERE idcountry = ".$p[0]);
             $txt = getString('1prop_300') . $sql;
+            break;
+        case 301:
+            $txt = getString('1prop_301') . region2name($p[0]) . getString('2prop_301') . region2name($p[1]);
+            break;
     endswitch;
     return $txt;
 }

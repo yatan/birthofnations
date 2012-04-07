@@ -22,6 +22,10 @@ $data = explode('-', $data);
 
 $rest = explode('.', $data[1]);
 
+//Sacados los datos aqui hay que comprobar si se puede lanzar la ley acualmente:
+
+
+
 //Si el modo es automatico (A), ponemos una votacion, que gane 1-0, cerrada y los efectos son inmediatos.
 
 switch ($rest[0]):
@@ -41,7 +45,7 @@ switch ($rest[0]):
         $time = time();
         $time2 = $time + 86400;
         sql("INSERT INTO votaciones(tipo_votacion, id_pais, comienzo, fin, restricciones, param1, solved) 
-        VALUES('" . $data[0] . "','" . $_POST['id_pais'] . "','" . $time . "','" . $time2 . "','" . $rest[1] . "','" . $p . "','0')");//Añadimos la votacion
+        VALUES('" . $data[0] . "','" . $_POST['id_pais'] . "','" . $time . "','" . $time2 . "','" . $rest[1] . "','" . $p . "','0')");//Aï¿½adimos la votacion
         $sql = sql("SELECT id_votacion FROM votaciones WHERE comienzo = " . $time . " AND fin = " . $time2 . " AND param1 = '" . $p . "'");
         sql("INSERT INTO candidatos_elecciones(id_votacion, id_candidato, tipo_elecciones, votos, solved) 
             VALUES ('".$sql."','-1','".$data[0]."','0','0')");//"Candidato si"
