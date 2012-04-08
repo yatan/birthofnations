@@ -15,8 +15,13 @@ if (isset($_POST['cantidad']) && $_POST['cantidad'] >= 1 && $_POST['cantidad'] !
         die();
     }
     
-    //Y redondeamos la cantidad de items a vender
-    $_POST['cantidad'] = rfloor($_POST['cantidad'], 0);
+    //Y redondeamos la cantidad de items a vender, antes se comprueba si hay decimales.
+    $hay_decimal = strpos($_POST['cantidad'], '.');
+    if ($hay_decimal === true) {
+        $_POST['cantidad'] = rfloor($_POST['cantidad'], 0);
+    } 
+    
+
     
     $list_items = list_items();
     
