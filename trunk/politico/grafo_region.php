@@ -8,7 +8,7 @@ require($_SERVER['DOCUMENT_ROOT'] . "/politico/clase_grafo.php");
 define('I', 1000);
 
 // Size of the matrix (Numero de regiones del juego)
-$matrixWidth = 6;
+$matrixWidth = 15;
 
 // $points is an array in the following format: (router1,router2,distance-between-them)
 

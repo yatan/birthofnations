@@ -9,7 +9,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/politico/objeto_region.php");
 
 echo "<h1>Batallas actuales</h1>";
 
-$batallas = sql2("SELECT * FROM battles");
+$batallas = sql2("SELECT * FROM battles WHERE estado = 1");
 
 echo "<table border='1' bordercolor='#009933' >";
 echo "<tr align='center'><td>Batalla</td><td>Ronda</td><td>Tipo</td><td>Estado</td><td>Ver</td><td>Inscripción</td></tr>";
@@ -19,7 +19,7 @@ foreach ($batallas as $batalla) {
     
     $pais_atacante = new pais($bandos['pais_atacante']);
     $pais_defensor = new pais($bandos['pais_defensor']);
-    $region_afectada = new region($batalla['region']);
+    $region_afectada = new region($batalla['defending_region']);
     
     echo "<tr align='center'>";
     echo "<td>".$pais_atacante->nombre." vs ".$pais_defensor->nombre." por la lucha de: ".$region_afectada->nombre."</td>";
