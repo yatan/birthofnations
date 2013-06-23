@@ -32,6 +32,11 @@ class region {
         $sql = sql("SELECT url_bandera FROM country WHERE idcountry = " . $sql);
         return $sql;
     }
+    
+    function zone_list(){
+        $sql = sql2("SELECT * FROM zona_data WHERE id_region = " . $this->id);
+        return $sql;
+    }
 
     function distance_to_all() {
         include_once($_SERVER['DOCUMENT_ROOT'] . "/politico/grafo_region.php"); //Cargar grafo de regiones
