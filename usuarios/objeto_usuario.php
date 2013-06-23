@@ -220,6 +220,10 @@ class usuario
         return true;
     }
     
+    function cambiar_moneda($cantidad,$moneda)
+    {
+        sql("UPDATE money SET ".$moneda." = " . $moneda . " + " . $cantidad . " WHERE id_usuario = " . $this->id_usuario );
+    }
 
 }
 

@@ -381,6 +381,13 @@ function region2name($region){
     return $sql;
 }
 
+function zona2country($zona)
+{
+    $id_region = sql("SELECT id_region FROM zona_data WHERE id_zona = $zona");
+    $id_country = region2country($id_region);
+    return $id_country;
+}
+
 function next_elecciones($DA, $DE, $FE) {//Actual/Resto del dia de las elecciones/Frecuencia
     if ($DA % $FE > $DE) {
         $prox = $DA - $DA % $FE + $DE + $FE;
