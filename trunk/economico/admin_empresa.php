@@ -25,7 +25,6 @@ EOT;
 echo "<table border='1' style='width=100%;'>";
 echo "<td style='width: 300px' valign='top' align='center'>";
 echo getString("company_inventory")."<br>";
-
 $sql = sql("SELECT * FROM inventario_empresas WHERE id_empresa = " . $empresa->id_empresa);
 unset($sql['id_empresa']);
 
