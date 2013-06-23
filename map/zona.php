@@ -42,7 +42,7 @@ var quien;
 	
 </script>
 
-    <center><h1>Mapa Zona <? echo sql("SELECT name FROM region WHERE idregion='$id_zona'"); ?></h1></center>
+    <center><h1>Mapa Zona <? echo sql("SELECT name FROM zona_data WHERE id_zona='$id_zona'"); ?></h1></center>
 <div class="menu_izq">
   <p>Menu</p>
   <p>Precio:</p>
@@ -57,37 +57,32 @@ $cuadros = sql("SELECT * FROM map_zonas WHERE id_zona='$id_zona'");
 $cantidad = sql("SELECT COUNT(*) FROM map_zonas WHERE id_zona='$id_zona'");
 
 
-for($y=0;$y<10;$y++)
+for($y=0;$y<11;$y++)
 {
-    for($x=0;$x<10;$x++)
+    for($x=0;$x<11;$x++)
     {
         //$cuadro = sql("SELECT tipo, propietario FROM map_zonas WHERE x='$x' AND y='$y' AND id_zona='1'");
-      $algo = false;  
        for($n=0;$n<$cantidad;$n++)     
        {
         if( $x == $cuadros[$n]['x'] && $y == $cuadros[$n]['y'] )
         {
         $tipo = $cuadros[$n]['tipo'];
-        $propietario = $cuadros[$n]['propietario'];
+        $id_prop = $cuadros[$n]['id_prop'];
         $n++;
         
         if($tipo==1)
-            echo "<img class='elemento1' propietario='".id2nick($propietario)."' src='/images/map/house.png'/>";
+            echo "<img src='/images/map/hierba.png'/>";
         elseif($tipo==2)
-            echo "<img class='elemento1' propietario='".id2nick($propietario)."' src='/images/map/car.png'/>";
+            echo "<img class='elemento1' propietario='".id2nick($id_prop)."' src='/images/map/house.png'/>";
         elseif($tipo==3)
+            echo "<img class='elemento1' propietario='".id2nick($id_prop)."' src='/images/map/car.png'/>";
+        elseif($tipo==0)
             echo "<a href='/es/ayuntamiento'><img class='elemento1' propietario='Pais' src='/images/map/ayuntamiento.jpg'/></a>";        
         elseif($tipo==4)
             echo "<img class='elemento1' propietario='En venta' src='/images/map/venta.png'/>";         
         
-        $algo = true;
         }
        }
-        if($algo==false)
-            echo "<img src='/images/map/hierba.png'/>";
-       
-        
-        
    }
    
     echo "<br/>";
