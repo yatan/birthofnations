@@ -13,7 +13,7 @@ $id_empresa = $_GET['id_empresa'];
 //El objeto empresa ya esta declarado ya que este script se llama con include
 $empresa = new empresa($id_empresa);
 
-echo "<br>".getString ("company").": ".$empresa->nombre_empresa . " (" . getString('empresa_tipo'. $empresa->get_tipo() ) . ")";
+//echo "<br>".getString ("company").": ".$empresa->nombre_empresa . " (" . getString('empresa_tipo'. $empresa->get_tipo() ) . ")";
 
 echo <<<EOT
 <form id="cambiar_nombre_empresa" action="/economico/cambiar_nombre_empresa.php"  method="POST">

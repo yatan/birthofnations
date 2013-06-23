@@ -12,7 +12,12 @@ $id_empresa = $_GET['id_empresa'];
 
 $empresa = new empresa($id_empresa);
 
-echo "<h1> {$empresa->nombre_empresa} </h1>";
+$foo = getString('empresa_tipo'. $empresa->get_tipo());
+echo "<h1> {$empresa->nombre_empresa} ($foo) </h1>";
+$foo = getString('country');
+$foo = country_name($empresa->pais);
+$foo1 = region2name($empresa->region);
+echo "<h3>  $foo - $foo1 </h3>";
 
 //Mostrar link para trabajar y despedirme si es en esta empresa donde trabajo
 $donde_trabajo = sql("SELECT id_empresa FROM usuarios WHERE id_usuario='".$_SESSION['id_usuario']."'");

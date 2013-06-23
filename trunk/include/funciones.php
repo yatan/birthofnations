@@ -365,13 +365,19 @@ function id2itemimg($id) {
     return $sql;
 }
 
+function country_name($id)
+{
+ $sql = sql("SELECT name FROM country WHERE idcountry = $id");
+ return $sql;
+}
+
 function region2country($region){
     $sql = sql("SELECT idcountry FROM region WHERE idregion = ".$region);
     return $sql;
 }
 
 function region2name($region){
-    $sql = sql("SELECT name FROM region WHERE idregion = .$region");
+    $sql = sql("SELECT name FROM region WHERE idregion = $region");
     return $sql;
 }
 
