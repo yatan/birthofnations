@@ -60,15 +60,15 @@ include("index_head.php");
                     <?php include("cabecera.php"); ?><br>
                     <div id="status">
                         <center>
-                            <? include("status.php"); ?>
+                            <?php include("status.php"); ?>
                         </center>
                     </div>
                     <div id="menu">
-                        <? include("menu.php"); ?>  
+                        <?php include("menu.php"); ?>  
                     </div><!--menu-->
                     <div id="cuerpo">
                         <center>
-                        <?
+                        <?php
                         
                         if(isset($_GET['mod']))
                         {    
@@ -171,18 +171,18 @@ include("index_head.php");
                             ?>
                             <div id="columnas" style="padding: 10px; width: 58.4em; height: 25em;">
                                 <div id="columna1" style="float: right; width: 41em; height: 25em;">
-                                   <? include("columna1.php"); ?>
+                                   <?php include("columna1.php"); ?>
                                 </div>
 
                                 <div id="columna2" style="float: left; height: 25em; width: 17em;">
-                                   <? include("columna2.php"); ?>
+                                   <?php include("columna2.php"); ?>
                                 </div>
                             </div><!-- columnas -->
                                 <div id="fila2" style="width: 59.6em; height: 14.5em;">
                                     <div id="periodicos_login" style="float: left; width: 29.5em; height: 14.5em;">
                                         <div class="ultimos_articulos" style="float: left; width:300px;">
-                                        <h2><li><? echo getString('periodico_ultimos'); ?></li></h2>
-                                            <? 
+                                        <h2><li><?php echo getString('periodico_ultimos'); ?></li></h2>
+                                            <?php 
 $nuevosarticulosw = mysql_query("SELECT * FROM articulos ORDER by fecha DESC LIMIT 5");
 echo "<div style='text-align: left; margin-left: 5px;'>";
 while($nuevosarticulos = mysql_fetch_array($nuevosarticulosw))  {
@@ -196,8 +196,8 @@ echo "</div>";
                                             ?>
                                     </div>
                                         <div class="ultimos_articulos" style="float: right;">
-                                        <h2><li><? echo getString('periodico_top'); ?></li></h2>
-                                            <? 
+                                        <h2><li><?php echo getString('periodico_top'); ?></li></h2>
+                                            <?php 
                                             $fechalimite=(time()-(((60*60)*24)*5));
                                             $artivotos=array( 'articuloid' => array( ), 'numvotos' => array( ), 'nombre' => array( ));
 $nuevosarticulosw = mysql_query("SELECT * FROM articulos WHERE fecha>$fechalimite ORDER by fecha DESC");
@@ -258,11 +258,11 @@ HTML;
                                     </div>
                                     </div>
                                     <div id="guerras_login" style="float: right; width: 30em; height: 14.5em;">
-                                        <h2><?echo getString('last_wars');?></h2><p>pais de las piruletas ha perdido contra pais del regaliz</p>
+                                        <h2><?php echo getString('last_wars');?></h2><p>pais de las piruletas ha perdido contra pais del regaliz</p>
                                     </div>
                                 </div>
                              
-                            <?
+                            <?php
                         }
                         ?>
                         </center>
@@ -272,6 +272,6 @@ HTML;
             </div><!-- shadow -->
         </div><!-- blur -->
 
-  <?
+  <?php
 }
 ?>

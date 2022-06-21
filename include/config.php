@@ -1,17 +1,11 @@
-<?
+<?php
+
+$server = "localhost"; /* Nuestro server mysql */
+$database = "bon"; /* Nuestra base de datos */
+$dbuser = "root"; /* Nuestro user mysql */
+$dbpass = ""; /*Nuestro password mysql */
 
 
-$server=""; /* Nuestro server mysql */
-$database=""; /* Nuestra base de datos */
-$dbpass=""; /*Nuestro password mysql */
-$dbuser=""; /* Nuestro user mysql */
+$link = mysqli_connect($server, $dbuser, $dbpass);
 
-
-$link=mysql_connect($server,$dbuser,$dbpass);
-
-mysql_select_db($database, $link);
-
-
-
-?>
-
+mysqli_select_db($link, $database);

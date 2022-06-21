@@ -1,4 +1,4 @@
-<?
+<?php
 
 session_start();
 include_once("config.php");
@@ -58,8 +58,8 @@ function mysql_online2() {
 }
 
 function sql_error($sql) {
-
-    $result = mysql_query($sql);
+    global $link;
+    $result = mysqli_query($link, $sql);
 
     if ($result == false) {
         //error_log("SQL error: ".mysql_error()."\n\nOriginal query: $sql\n");
@@ -81,17 +81,16 @@ function sql_data($result) {
 }
 
 function sql($sql) {
-
     $result = sql_error($sql);
 
     //Si no devuelve nada sale de la funcion
-    if ($result == 1)
+    if (!$result)
         return true;
 
-    if (mysql_num_rows($result) == 1) {
-        if (mysql_num_fields($result) == 1) {
+    if (mysqli_num_rows($result) == 1) {
+        if (mysqli_num_fields($result) == 1) {
 
-            $dato = mysql_fetch_row($result);
+            $dato = mysqli_fetch_row($result);
             return $dato[0];
         }
         else
@@ -100,13 +99,13 @@ function sql($sql) {
     else {
 
         $table = array();
-        if (mysql_num_rows($result) > 0) {
+        if (mysqli_num_rows($result) > 0) {
             $i = 0;
-            while ($table[$i] = mysql_fetch_assoc($result))
+            while ($table[$i] = mysqli_fetch_assoc($result))
                 $i++;
             unset($table[$i]);
         }
-        mysql_free_result($result);
+        mysqli_free_result($result);
     }
     return $table;
 }
@@ -276,8 +275,8 @@ function check_lang($lengua) {
 function getString($text) {
     if (!isset($i18n_array)) {
 
-        include $_SERVER['DOCUMENT_ROOT'] . '/i18n/' . $_SESSION['i18n_default'] . ".php";
-        include $_SERVER['DOCUMENT_ROOT'] . '/i18n/' . $_SESSION['i18n'] . ".php";
+        include $_SERVER['DOCUMENT_ROOT'] . '/birthofnations/i18n/' . $_SESSION['i18n_default'] . ".php";
+        include $_SERVER['DOCUMENT_ROOT'] . '/birthofnations/i18n/' . $_SESSION['i18n'] . ".php";
     }
 
     return $i18n_array[$text];
@@ -1152,5 +1151,3 @@ function rfloor($real, $decimals = 2) {
 function incidencia($usuario, $tipo, $respuesta) {
     sql("INSERT INTO incidencias(id_usuario, tipo, respuesta, hora) VALUES ('" . $usuario . "','" . $tipo . "','" . $respuesta . "', Now())");
 }
-
-?>
