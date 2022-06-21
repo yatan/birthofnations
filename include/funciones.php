@@ -20,7 +20,8 @@ select_lang();
 
  */
 
-function mysql_online() {
+function mysql_online()
+{
     $ip = "localhost";
     $puerto = 3306;
 
@@ -32,7 +33,8 @@ function mysql_online() {
     }
 }
 
-function smtp_online() {
+function smtp_online()
+{
     $ip = "localhost";
     $puerto = 26;
 
@@ -45,7 +47,8 @@ function smtp_online() {
 }
 
 //Funcion que devuelve true o false segun estado mysql
-function mysql_online2() {
+function mysql_online2()
+{
     $ip = "localhost";
     $puerto = 3306;
 
@@ -57,30 +60,33 @@ function mysql_online2() {
     }
 }
 
-function sql_error($sql) {
+function sql_error($sql)
+{
     global $link;
     $result = mysqli_query($link, $sql);
 
     if ($result == false) {
         //error_log("SQL error: ".mysql_error()."\n\nOriginal query: $sql\n");
         // Remove following line from production servers 
-        die("SQL error: " . mysql_error() . "\b<br>\n<br>Original query: $sql \n<br>\n<br>");
+        die("SQL error: " . mysqli_error($link) . "\b<br>\n<br>Original query: $sql \n<br>\n<br>");
     }
     return $result;
 }
 
-function sql_data($result) {
+function sql_data($result)
+{
 
     //$result = sql_error($sql);
 
-    if ($lst = mysql_fetch_assoc($result)) {
-        mysql_free_result($result);
+    if ($lst = mysqli_fetch_assoc($result)) {
+        mysqli_free_result($result);
         return $lst;
     }
     return false;
 }
 
-function sql($sql) {
+function sql($sql)
+{
     $result = sql_error($sql);
 
     //Si no devuelve nada sale de la funcion
@@ -92,11 +98,9 @@ function sql($sql) {
 
             $dato = mysqli_fetch_row($result);
             return $dato[0];
-        }
-        else
+        } else
             $table = sql_data($result);
-    }
-    else {
+    } else {
 
         $table = array();
         if (mysqli_num_rows($result) > 0) {
@@ -110,18 +114,19 @@ function sql($sql) {
     return $table;
 }
 
-function sql2($sql) {
+function sql2($sql)
+{
 
     $result = sql_error($sql);
 
     //Si no devuelve nada sale de la funcion
-    if ($result == 1)
+    if (!$result)
         return true;
 
-    if (mysql_num_rows($result) == 1) {
-        if (mysql_num_fields($result) == 1) {
+    if (mysqli_num_rows($result) == 1) {
+        if (mysqli_num_fields($result) == 1) {
             $dato = array();
-            $dato[0] = mysql_fetch_row($result);
+            $dato[0] = mysqli_fetch_row($result);
             return $dato;
         } else {
             $table = array();
@@ -130,61 +135,62 @@ function sql2($sql) {
     } else {
 
         $table = array();
-        if (mysql_num_rows($result) > 0) {
+        if (mysqli_num_rows($result) > 0) {
             $i = 0;
-            while ($table[$i] = mysql_fetch_assoc($result))
+            while ($table[$i] = mysqli_fetch_assoc($result))
                 $i++;
             unset($table[$i]);
         }
-        mysql_free_result($result);
+        mysqli_free_result($result);
     }
     return $table;
 }
 
-function enviar_mail($destino, $nick) {
+function enviar_mail($destino, $nick)
+{
 
     global $mail_activation;
-//var_dump($mail_activation);
-// subject
+    //var_dump($mail_activation);
+    // subject
     $titulo = $mail_activation['activacion_titulo'];
 
-// message
+    // message
     $mensaje = $mail_activation['activacion_mensaje_titulo'] . $mail_activation['activacion_mensaje_cuerpo'];
 
-// Para enviar un correo HTML mail, la cabecera Content-type debe fijarse
+    // Para enviar un correo HTML mail, la cabecera Content-type debe fijarse
     $cabeceras = 'MIME-Version: 1.0' . "\r\n";
     $cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
-// Cabeceras adicionales
+    // Cabeceras adicionales
     $cabeceras .= 'From: BirthofNations <admin@birthofnations.com>' . "\r\n";
 
-// Mail it
+    // Mail it
     mail($destino, $titulo, $mensaje, $cabeceras);
 }
 
-function mail_referido($nick_padrino, $destino, $code) {
+function mail_referido($nick_padrino, $destino, $code)
+{
     global $txt;
 
-// subject
+    // subject
     $titulo = getString('referer_title');
 
-// message
+    // message
     $mensaje = getstring('referer_mail1') . $nick_padrino . getString('referer_mail2') . $code;
 
-// Para enviar un correo HTML mail, la cabecera Content-type debe fijarse
+    // Para enviar un correo HTML mail, la cabecera Content-type debe fijarse
     $cabeceras = 'MIME-Version: 1.0' . "\r\n";
     $cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
-// Cabeceras adicionales
+    // Cabeceras adicionales
     $cabeceras .= 'From: BirthofNations <admin@birthofnations.com>' . "\r\n";
 
-// Mail it
+    // Mail it
     mail($destino, $titulo, $mensaje, $cabeceras);
 }
 
-function mail_bienvenida($nick, $destino) {
-
-
+function mail_bienvenida($nick, $destino)
+{
     $titulo = getString('mail_bienvenida_title');
 
     // message
@@ -201,50 +207,45 @@ function mail_bienvenida($nick, $destino) {
     mail($destino, $titulo, $mensaje, $cabeceras);
 }
 
-function anadir_foro($usuario, $password, $email) {
+function anadir_foro($usuario, $password, $email)
+{
 
     $server = $GLOBALS["server"];
-    $forouser = $GLOBALS["forouser"];
-    ; /* Usuario DB foro smf */
-    $foropass = $GLOBALS["foropass"];
-    ; /* Password DB foro smf */
-    $forodb = $GLOBALS["forodb"];
-    ; /* DB foro smf */
+    $forouser = $GLOBALS["forouser"];; /* Usuario DB foro smf */
+    $foropass = $GLOBALS["foropass"];; /* Password DB foro smf */
+    $forodb = $GLOBALS["forodb"];; /* DB foro smf */
 
-    $link2 = mysql_connect($server, $forouser, $foropass);
+    $link2 = mysqli_connect($server, $forouser, $foropass);
 
-    mysql_select_db($forodb, $link2);
+    mysqli_select_db($link2, $forodb);
 
 
     $salt = substr(md5(mt_rand()), 0, 4);
     $contrasena = sha1(strtolower($usuario) . $password);
     $hora = time();
 
-    mysql_query("INSERT INTO smf_members (member_name, date_registered, real_name, passwd, email_address, password_salt) VALUES ('$usuario', '$hora', '$usuario', '$contrasena', '$email', '$salt')");
+    mysqli_query($link2, "INSERT INTO smf_members (member_name, date_registered, real_name, passwd, email_address, password_salt) VALUES ('$usuario', '$hora', '$usuario', '$contrasena', '$email', '$salt')");
 }
 
-function anadir_bugs($usuario, $password, $email) {
-
+function anadir_bugs($usuario, $password, $email)
+{
     $server = $GLOBALS["server"];
-    $forouser = $GLOBALS["bugsuser"];
-    ; /* Usuario DB foro smf */
-    $foropass = $GLOBALS["bugspass"];
-    ; /* Password DB foro smf */
-    $forodb = $GLOBALS["bugsdb"];
-    ; /* DB foro smf */
+    $forouser = $GLOBALS["bugsuser"];; /* Usuario DB foro smf */
+    $foropass = $GLOBALS["bugspass"];; /* Password DB foro smf */
+    $forodb = $GLOBALS["bugsdb"];; /* DB foro smf */
 
-    $link3 = mysql_connect($server, $forouser, $foropass);
+    $link3 = mysqli_connect($server, $forouser, $foropass);
 
-    mysql_select_db($forodb, $link3);
+    mysqli_select_db($link3, $forodb);
 
     $hora = time();
     $contrasena = md5($password);
     $rand = rand();
-    mysql_query("INSERT INTO mantis_user_table (username, email, password, cookie_string, date_created, access_level) VALUES ('$usuario', '$email', '$contrasena','$rand', '$hora', '25')");
+    mysqli_query($link3, "INSERT INTO mantis_user_table (username, email, password, cookie_string, date_created, access_level) VALUES ('$usuario', '$email', '$contrasena','$rand', '$hora', '25')");
 }
 
-function checkban($id) {
-
+function checkban($id)
+{
     include("config.php");
 
     $sql = sql("SELECT * FROM bans WHERE ( is_perm = 1 OR fecha_fin > " . time() . " ) AND id_usuario = " . $id);
@@ -256,23 +257,21 @@ function checkban($id) {
     }
 }
 
-function check_lang($lengua) {
-
+function check_lang($lengua)
+{
     $lengua_defecto = "es";
-
     $fichero = "./i18n/" . $lengua . ".php";
 
     if (!file_exists($fichero)) {
         $lengua = $lengua_defecto;
     }
 
-
-
     $_SESSION['i18n'] = $lengua;
     $_SESSION['i18n_default'] = $lengua_defecto;
 }
 
-function getString($text) {
+function getString($text)
+{
     if (!isset($i18n_array)) {
 
         include $_SERVER['DOCUMENT_ROOT'] . '/birthofnations/i18n/' . $_SESSION['i18n_default'] . ".php";
@@ -282,26 +281,25 @@ function getString($text) {
     return $i18n_array[$text];
 }
 
-function select_lang() {
+function select_lang()
+{
     /* global $mail_activation;
       global $signup_form;
       global $login_form;
       global $txt; */
     //Cualquier metodo que vaya aqui para elegir el idioma Y cargar el archivo. De momento solo hay español
 
-    if (isset($_GET['lang']))
+    if (isset($_GET['lang'])) {
         check_lang($_GET['lang']);
-    else
+    } else {
         check_lang("es");
-
-
-
+    }
 
     //include_once($_SERVER['DOCUMENT_ROOT'] . "/i18n/es_ES.php");
 }
 
-function dar_exp($id, $cantidad) {
-
+function dar_exp($id, $cantidad)
+{
     //Subirsela al jugador
     sql("UPDATE usuarios SET exp = exp + " . $cantidad . " WHERE id_usuario = " . $id);
     //Sacar la ciudadania la jugador
@@ -315,15 +313,13 @@ function dar_exp($id, $cantidad) {
 
     global $gov_exp;
 
-
-
-    if (in_array($country['exp'], $gov_exp)) {//Si es un punto clave
+    if (in_array($country['exp'], $gov_exp)) { //Si es un punto clave
         $country = sql("SELECT tipo_gobierno FROM country WHERE idcountry = " . $cs);
         $time = time();
         $fin = $time + 86400;
         switch ($country):
 
-            case 1://Salimos de la anarquia
+            case 1: //Salimos de la anarquia
                 //Abrir votacion
                 sql("INSERT INTO votaciones (tipo_votacion,comienzo,fin,restricciones,solved,is_cargo,id_pais) VALUES (2," . $time . ",
                     " . $fin . ",'C+" . $cs . "!E+10!S+1',0,0," . $cs . ")");
@@ -339,43 +335,50 @@ function dar_exp($id, $cantidad) {
     }
 }
 
-function id2nick($id) {
+function id2nick($id)
+{
     return sql("SELECT nick FROM usuarios WHERE id_usuario='$id'");
 }
 
 //Devuelve el nombre de una empresa a partir de una id
-function id2empresa($id) {
+function id2empresa($id)
+{
     return sql("SELECT nombre_empresa FROM empresas WHERE id_empresa='$id'");
 }
 
-function item2id($item) {
+function item2id($item)
+{
 
     $sql = sql("SELECT id_item FROM items WHERE nombre = '" . $item . "'");
     return $sql;
 }
 
-function id2item($id) {
+function id2item($id)
+{
     $sql = sql("SELECT nombre FROM items WHERE id_item = '$id'");
     return $sql;
 }
 
-function id2itemimg($id) {
+function id2itemimg($id)
+{
     $sql = sql("SELECT url_imagen_grande FROM items WHERE id_item = '$id'");
     return $sql;
 }
 
 function country_name($id)
 {
- $sql = sql("SELECT name FROM country WHERE idcountry = $id");
- return $sql;
-}
-
-function region2country($region){
-    $sql = sql("SELECT idcountry FROM region WHERE idregion = ".$region);
+    $sql = sql("SELECT name FROM country WHERE idcountry = $id");
     return $sql;
 }
 
-function region2name($region){
+function region2country($region)
+{
+    $sql = sql("SELECT idcountry FROM region WHERE idregion = " . $region);
+    return $sql;
+}
+
+function region2name($region)
+{
     $sql = sql("SELECT name FROM region WHERE idregion = $region");
     return $sql;
 }
@@ -387,7 +390,8 @@ function zona2country($zona)
     return $id_country;
 }
 
-function next_elecciones($DA, $DE, $FE) {//Actual/Resto del dia de las elecciones/Frecuencia
+function next_elecciones($DA, $DE, $FE)
+{ //Actual/Resto del dia de las elecciones/Frecuencia
     if ($DA % $FE > $DE) {
         $prox = $DA - $DA % $FE + $DE + $FE;
     } else {
@@ -396,7 +400,8 @@ function next_elecciones($DA, $DE, $FE) {//Actual/Resto del dia de las eleccione
     return $prox;
 }
 
-function puedo_votar($id_usuario, $tipo, $id_votacion) {//Determina si puedes votar o no, segun el tipo de votacion
+function puedo_votar($id_usuario, $tipo, $id_votacion)
+{ //Determina si puedes votar o no, segun el tipo de votacion
     //Si la votacion ya esta cerrada pues nada
     $time = time();
     $fin = sql("SELECT fin FROM votaciones WHERE id_votacion = " . $id_votacion);
@@ -411,13 +416,13 @@ function puedo_votar($id_usuario, $tipo, $id_votacion) {//Determina si puedes vo
 
 
     switch ($tipo):
-        case 1://Presi de partido
+        case 1: //Presi de partido
             $sql = sql("SELECT id_partido, ant_partido FROM usuarios WHERE id_usuario = " . $id_usuario); //Su partido y antiguedad
             $sql2 = sql("SELECT param1 FROM votaciones WHERE id_votacion = " . $id_votacion); //El partido de la votacion
             $sql4 = sql("SELECT ant_votaciones FROM partidos WHERE id_partido = " . $sql2);
 
 
-            if ($sql['id_partido'] == $sql2 && $sql['ant_partido'] >= $sql4) {//Esta afiliado al partido Y tiene X antiguedad
+            if ($sql['id_partido'] == $sql2 && $sql['ant_partido'] >= $sql4) { //Esta afiliado al partido Y tiene X antiguedad
                 $ret = true;
             } else {
                 $ret = false;
@@ -427,7 +432,7 @@ function puedo_votar($id_usuario, $tipo, $id_votacion) {//Determina si puedes vo
             $ret = false;
             break;
     endswitch;
-    if ($tipo >= 100 || $tipo == 2) {//Votaciones para cargos de un pais O cambio de gobierno
+    if ($tipo >= 100 || $tipo == 2) { //Votaciones para cargos de un pais O cambio de gobierno
         $sql = sql("SELECT * FROM votaciones WHERE id_votacion = " . $id_votacion);
         $rest = explode("!", $sql['restricciones']); //Sacamos las restricciones para votar
         foreach ($rest as $res) {
@@ -435,11 +440,11 @@ function puedo_votar($id_usuario, $tipo, $id_votacion) {//Determina si puedes vo
         }
         $ret = true; //En principio se podria votar
         //objeto usuario
-        include_once($_SERVER['DOCUMENT_ROOT'] . "/usuarios/objeto_usuario.php");
+        include_once($_SERVER['DOCUMENT_ROOT'] . "/birthofnations/usuarios/objeto_usuario.php");
 
         $objeto_usuario = new usuario($id_usuario);
 
-        foreach ($rest2 as $condicion) {//Comprobamos cada una de ellas
+        foreach ($rest2 as $condicion) { //Comprobamos cada una de ellas
             switch ($condicion[0]):
                 case "C": //Ciudadania
                     if ($objeto_usuario->id_nacionalidad != $condicion[1]) {
@@ -451,16 +456,16 @@ function puedo_votar($id_usuario, $tipo, $id_votacion) {//Determina si puedes vo
                         $ret = false;
                     }
                     break;
-                case "R"://Rango
+                case "R": //Rango
                     if (!check_leader($condicion[1], $objeto_usuario->id_usuario)) {
                         $ret = false;
                     }
                     break;
                 case "G": //Gold, siempre debe ser la ultima
-                    if ($ret == true) {//S�lo se paga si el resto de condiciones ya se han cumplido
-                        if ($objeto_usuario->gold >= $condicion[1]) {//Si tiene gold suficiente
+                    if ($ret == true) { //S�lo se paga si el resto de condiciones ya se han cumplido
+                        if ($objeto_usuario->gold >= $condicion[1]) { //Si tiene gold suficiente
                             sql("UPDATE money SET gold = gold - " . $condicion[1] . " WHERE id_usuario = " . $_SESSION['id_usuario']);
-                        } else {//Si no tiene dinero suficiente
+                        } else { //Si no tiene dinero suficiente
                             $ret = false;
                         }
                     }
@@ -470,31 +475,38 @@ function puedo_votar($id_usuario, $tipo, $id_votacion) {//Determina si puedes vo
     return $ret;
 }
 
-function puedo_postularme($id_usuario, $tipo, $id_votacion) {//Determina si puedes postularte o no, segun el tipo de votacion
+function puedo_postularme($id_usuario, $tipo, $id_votacion)
+{
+    //Determina si puedes postularte o no, segun el tipo de votacion
     $sql3 = sql("SELECT * FROM candidatos_elecciones WHERE id_votacion = " . $id_votacion . " AND id_candidato = " . $id_usuario); //Si ya esta postulado
     if ($sql3 != false) { //Si ya esta postulado.
         return false;
     }
 
-    if ($tipo == 1) {//Presi de partido
+    if ($tipo == 1) { //Presi de partido
         $sql = sql("SELECT id_partido, ant_partido FROM usuarios WHERE id_usuario = " . $id_usuario); //Su partido y antiguedad
         $sql2 = sql("SELECT param1 FROM votaciones WHERE id_votacion = " . $id_votacion); //El partido de la votacion
         $sql4 = sql("SELECT ant_votaciones FROM partidos WHERE id_partido = " . $sql2);
 
 
-        if ($sql['id_partido'] == $sql2 && $sql['ant_partido'] >= $sql4) {//Esta afiliado al partido Y tiene X antiguedad
+        if ($sql['id_partido'] == $sql2 && $sql['ant_partido'] >= $sql4) { //Esta afiliado al partido Y tiene X antiguedad
             return true;
         } else {
             return false;
         }
-    } elseif ($tipo >= 100) {//Votaciones para cargos de un pais
+    } elseif ($tipo >= 100) { //Votaciones para cargos de un pais
         $sql = sql("SELECT * FROM votaciones WHERE id_votacion = " . $id_votacion);
         $rest = explode("!", $sql['restricciones']); //Sacamos las restricciones para postularse
         foreach ($rest as $res) {
             $rest2[] = explode("+", $res); //Separamos cada una de ellas
         }
         $ret = true; //En principio se podria postular
-        foreach ($rest2 as $condicion) {//Comprobamos cada una de ellas
+        
+        //objeto usuario
+        include_once($_SERVER['DOCUMENT_ROOT'] . "/birthofnations/usuarios/objeto_usuario.php");
+        $objeto_usuario = new usuario($id_usuario);
+
+        foreach ($rest2 as $condicion) { //Comprobamos cada una de ellas
             switch ($condicion[0]):
                 case "C": //Ciudadania
                     if ($objeto_usuario->id_nacionalidad != $condicion[1]) {
@@ -506,17 +518,17 @@ function puedo_postularme($id_usuario, $tipo, $id_votacion) {//Determina si pued
                         return false;
                     }
                     break;
-                case "R"://Rango
+                case "R": //Rango
                     if (check_leader($condicion[1], $objeto_usuario->id_usuario)) {
                         $ret = false;
                     }
                     break;
                 case "G": //Gold, siempre debe ser la ultima
-                    if ($ret == true) {//S�lo se paga si el resto de condiciones ya se han cumplido
+                    if ($ret == true) { //S�lo se paga si el resto de condiciones ya se han cumplido
                         $gold = sql("SELECT Gold FROM money WHERE id_usuario = " . $id_usuario);
-                        if ($gold >= $condicion[1]) {//Si tiene gold suficiente
+                        if ($gold >= $condicion[1]) { //Si tiene gold suficiente
                             sql("UPDATE money SET gold = gold - " . $condicion[1] . " WHERE id_usuario = " . $id_usuario);
-                        } else {//Si no tiene dinero suficiente
+                        } else { //Si no tiene dinero suficiente
                             return false;
                         }
                     }
@@ -526,16 +538,19 @@ function puedo_postularme($id_usuario, $tipo, $id_votacion) {//Determina si pued
     return $ret;
 }
 
-function puedo_tech_upgrade($id, $tech) {
+function puedo_tech_upgrade($id, $tech)
+{
     return true;
 }
 
-function precio_tech($tech, $country) {
+function precio_tech($tech, $country)
+{
     $sql = sql("SELECT precio" . $tech . " FROM country_tech WHERE id_country = " . $country);
     return $sql;
 }
 
-function time_tech($tech) {
+function time_tech($tech)
+{
 
     switch ($tech):
         case 1:
@@ -547,7 +562,8 @@ function time_tech($tech) {
     return $ret;
 }
 
-function check_stat($stat, $id) {
+function check_stat($stat, $id)
+{
 
     $sql = sql("SELECT status FROM usuarios WHERE id_usuario = " . $id);
     $sql = explode(',', $sql);
@@ -564,7 +580,8 @@ function check_stat($stat, $id) {
     return $flag;
 }
 
-function add_stat($stat, $id) {
+function add_stat($stat, $id)
+{
     if (check_stat($stat, $id) == false) {
         $sql = sql("SELECT status FROM usuarios WHERE id_usuario = " . $id);
         $sql .= $stat . ',';
@@ -576,7 +593,8 @@ function add_stat($stat, $id) {
     return $sql;
 }
 
-function list_stat($id) {
+function list_stat($id)
+{
 
     $sql = sql("SELECT status FROM usuarios WHERE id_usuario = " . $id);
     $sql = explode(',', $sql);
@@ -589,7 +607,8 @@ function list_stat($id) {
     return $list;
 }
 
-function del_stat($stat, $id) {
+function del_stat($stat, $id)
+{
     if (check_stat($stat, $id) == true) {
         $list = list_stat($id);
         $new_stat = "";
@@ -603,7 +622,8 @@ function del_stat($stat, $id) {
     return $new_stat;
 }
 
-function list_items() {//Genera un array $array[id_item] -> nombre item;
+function list_items()
+{ //Genera un array $array[id_item] -> nombre item;
     $sql = sql("SELECT id_item, nombre FROM items");
     foreach ($sql as $item) {
         $list[$item['id_item']] = $item['nombre'];
@@ -611,7 +631,8 @@ function list_items() {//Genera un array $array[id_item] -> nombre item;
     return $list;
 }
 
-function parse_raw($tipo) {
+function parse_raw($tipo)
+{
     //de la casilla de raw_needed a un array [idraw] -> cantidad necesaria
 
     $sql = sql("SELECT raw_needed FROM items WHERE id_item = " . $tipo);
@@ -625,21 +646,25 @@ function parse_raw($tipo) {
     return $raw2;
 }
 
-function nombre_item($tipo) {
+function nombre_item($tipo)
+{
     return sql("SELECT nombre FROM items WHERE id_item='$tipo'");
 }
 
 //Eta tb deberia estar obsoleta
 
-function obj_to_id($obj) {
+function obj_to_id($obj)
+{
     return sql("SELECT id_item FROM items WHERE nombre='$obj'");
 }
 
-function moneda_pais($pais) {
+function moneda_pais($pais)
+{
     return sql("SELECT moneda FROM country WHERE idcountry='$pais'");
 }
 
-function ventana_js($mensaje, $link="ventana", $titulo="", $tipo=1) {
+function ventana_js($mensaje, $link = "ventana", $titulo = "", $tipo = 1)
+{
 
     $id_ventana = rand();
     $id_link = rand();
@@ -715,7 +740,8 @@ $mensaje
 EOT;
 }
 
-function check_leader($cargo, $id) {
+function check_leader($cargo, $id)
+{
 
     $sql = sql("SELECT id_gente FROM country_leaders WHERE id_cargo = " . $cargo);
     $sql = explode(',', $sql);
@@ -732,7 +758,8 @@ function check_leader($cargo, $id) {
     return $flag;
 }
 
-function add_leader($cargo, $id) {
+function add_leader($cargo, $id)
+{
     if (check_leader($cargo, $id) == false) {
         $sql = sql("SELECT id_gente FROM country_leaders WHERE id_cargo = " . $cargo);
         $sql .= $id . ',';
@@ -744,7 +771,8 @@ function add_leader($cargo, $id) {
     return $sql;
 }
 
-function list_leaders($cargo) {
+function list_leaders($cargo)
+{
 
     $sql = sql("SELECT id_gente FROM country_leaders WHERE id_cargo = " . $cargo);
     $sql = explode(',', $sql);
@@ -757,7 +785,8 @@ function list_leaders($cargo) {
     return $list;
 }
 
-function check_gov($id, $country) {
+function check_gov($id, $country)
+{
     //Primero sacamos la lista cargos del pais
 
     $down = $country * 100;
@@ -782,7 +811,8 @@ function check_gov($id, $country) {
     return $ret;
 }
 
-function del_leader($cargo, $id) {
+function del_leader($cargo, $id)
+{
     if (check_leader($cargo, $id) == true) {
         $list = list_leaders($cargo);
         $new_stat = "";
@@ -796,7 +826,8 @@ function del_leader($cargo, $id) {
     return $new_stat;
 }
 
-function list_laws($cargo) {
+function list_laws($cargo)
+{
 
     $sql = sql("SELECT laws FROM country_leaders WHERE id_cargo = " . $cargo); //Sacamos la lista codificada
 
@@ -809,10 +840,11 @@ function list_laws($cargo) {
         $sql2[] = explode('-', $law); //Separamos la info de cada ley en trocitos
     }
 
-    return($sql2);
+    return ($sql2);
 }
 
-function list_laws_raw($cargo) {
+function list_laws_raw($cargo)
+{
 
     $sql = sql("SELECT laws FROM country_leaders WHERE id_cargo = " . $cargo); //Sacamos la lista codificada
 
@@ -820,10 +852,11 @@ function list_laws_raw($cargo) {
     $sql = explode(',', $sql); //Separamos la info de cada ley
     //unset($sql[count($sql) - 1]); //Eliminamos el ultimo que nos sale en blanco
     //Pues parece que ya no sale en blanco
-    return($sql);
+    return ($sql);
 }
 
-function check_law($cargo, $tochecklaw) {//Dado un carho dice si peude usar una ley o no
+function check_law($cargo, $tochecklaw)
+{ //Dado un carho dice si peude usar una ley o no
     $laws = list_laws($cargo);
     $flag = false;
 
@@ -837,7 +870,8 @@ function check_law($cargo, $tochecklaw) {//Dado un carho dice si peude usar una 
     return $flag;
 }
 
-function add_law($cargo, $id_ley, $vot, $p1 = 0) {
+function add_law($cargo, $id_ley, $vot, $p1 = 0)
+{
 
     $flag = check_law($cargo, $id_ley); //Comprobamos que no tenga el poder
     if ($flag == false) {
@@ -847,18 +881,19 @@ function add_law($cargo, $id_ley, $vot, $p1 = 0) {
         sql("UPDATE country_leaders SET laws = '" . $text . "' WHERE id_cargo = " . $cargo);
     }
 
-    return!$flag;
+    return !$flag;
 }
 
-function del_law($cargo, $id_ley) {
+function del_law($cargo, $id_ley)
+{
 
     $flag = check_law($cargo, $id_ley);
     if ($flag == true) { //Comprobamos que podia lanzar la ley
         $leyes = list_laws($cargo);
         $text = "";
 
-        foreach ($leyes as $ley) {//Vamos comprobando una por una
-            if ($ley[0] != $id_ley) {//Las que no sean las que queremos quitar
+        foreach ($leyes as $ley) { //Vamos comprobando una por una
+            if ($ley[0] != $id_ley) { //Las que no sean las que queremos quitar
                 $text .= $ley[0] . "-" . $ley[1] . ","; //Las vamos a�adiendo
             } else {
                 continue;
@@ -871,7 +906,8 @@ function del_law($cargo, $id_ley) {
     return $flag;
 }
 
-function apply_law($vot) {
+function apply_law($vot)
+{
 
     $votacion = sql("SELECT * FROM votaciones WHERE id_votacion = " . $vot);
 
@@ -885,11 +921,11 @@ function apply_law($vot) {
 
             $winner = array('id' => 0, 'votos' => -1);
 
-            foreach ($sql as $cand) {//Ver quien es el ganador
-                if ($cand['votos'] > $winner['votos']) {//Comparamos los votos con los del ganador
+            foreach ($sql as $cand) { //Ver quien es el ganador
+                if ($cand['votos'] > $winner['votos']) { //Comparamos los votos con los del ganador
                     $winner['id'] = $cand['id_candidato'];
                     $winner['votos'] = $cand['votos'];
-                } elseif ($cand['votos'] == $winner['votos']) {//Si empatan utilizamos los criterios de desempate (que no tenemos)
+                } elseif ($cand['votos'] == $winner['votos']) { //Si empatan utilizamos los criterios de desempate (que no tenemos)
                 }
             }
 
@@ -900,10 +936,10 @@ function apply_law($vot) {
             sql("DELETE FROM country_leaders WHERE id_cargo >= " . $down . " AND id_cargo <= " . $up);
             //Elegir quien va en los nuevos cargos
             switch ($winner['id']):
-                case 1://Anarquia
+                case 1: //Anarquia
                     //Nadie
                     break;
-                case 2://Consejo de sabios
+                case 2: //Consejo de sabios
                     //Cambiamos el sistema del pais
                     sql("UPDATE country SET tipo_gobierno = 2 WHERE idcountry = " . $votacion['id_pais']);
                     //Ponemos el puesto
@@ -913,7 +949,7 @@ function apply_law($vot) {
                         add_leader($down, $id['id_usuario']);
                     }
                     break;
-                case 3://Consejo de guerreros
+                case 3: //Consejo de guerreros
                     //Cambiamos el sistema del pais
                     sql("UPDATE country SET tipo_gobierno = 3 WHERE idcountry = " . $votacion['id_pais']);
 
@@ -928,7 +964,7 @@ function apply_law($vot) {
         case 100: //Cambio de nombre del pais        
             sql("UPDATE country SET name = '" . $p[0] . "' WHERE idcountry = " . $votacion['id_pais']);
             break;
-        case 101://A�adir cargo
+        case 101: //A�adir cargo
             //Lista de cargos
             $sql = sql2("SELECT id_cargo FROM country_leaders WHERE id_cargo >= " . $votacion['id_pais'] * 100 . " AND id_cargo <= " . ($votacion['id_pais'] * 100 + 99));
             //Reordenamos bajando un nivel
@@ -949,7 +985,7 @@ function apply_law($vot) {
                 sql("INSERT INTO country_leaders (id_cargo, nombre) VALUES ('$c','$p[0]')");
             }
             break;
-        case 102://Quitar cargo
+        case 102: //Quitar cargo
             if ($p[0] >= $votacion['id_pais'] * 100 && $p[0] < $votacion['id_pais'] * 100 + 100) {
                 sql("DELETE FROM country_leaders WHERE id_cargo = " . $p[0]);
             }
@@ -964,7 +1000,7 @@ function apply_law($vot) {
                 }
             }
             break;
-        case 104://1:id del cargo 2:id jugador //Quitar cargo 1 a usuario 2
+        case 104: //1:id del cargo 2:id jugador //Quitar cargo 1 a usuario 2
             //Comprobamos que el cargo pertenece al pais desde el cual se envia la ley
             if ($p[0] >= $votacion['id_pais'] * 100 && $p[0] < $votacion['id_pais'] * 100 + 100) {
                 //Comprobamos que ya tenga el cargo
@@ -972,18 +1008,18 @@ function apply_law($vot) {
                 del_leader($p[0], $p[1]); //La funcion ya comprueba que lo tenga
             }
             break;
-        case 105://Cambio de bandera
+        case 105: //Cambio de bandera
             $sql = sql("UPDATE country SET url_bandera = '" . $votacion['param1'] . "' WHERE idcountry = " . $votacion['id_pais']);
 
             break;
-        case 106://Cambio nombre moneda
+        case 106: //Cambio nombre moneda
             $monedas = sql("SELECT moneda FROM country");
 
             $flag = true;
             $p[0] = strtoupper($p[0]);
 
             foreach ($monedas as $coin) {
-                if ($p[0] == $coin['moneda']) {//Su nombre es el de alguna moneda
+                if ($p[0] == $coin['moneda']) { //Su nombre es el de alguna moneda
                     $flag = false;
                 }
             }
@@ -1004,7 +1040,7 @@ function apply_law($vot) {
 
             //Vemos si tiene el Gold necesario para crearla:
 
-            if ($gold >= $p[0] / $currency_per_gold) {//Gold >= gold necesario [Esp / (Esp/Gold)]
+            if ($gold >= $p[0] / $currency_per_gold) { //Gold >= gold necesario [Esp / (Esp/Gold)]
                 //Quitar gold
                 sql("UPDATE money_pais SET Gold = Gold - " . $p[0] / $currency_per_gold . " WHERE idcountry = " . $votacion['id_pais']);
                 //Poner moneda local
@@ -1021,7 +1057,7 @@ function apply_law($vot) {
             $p[1] = strtoupper($p[1]);
 
             foreach ($monedas as $coin) {
-                if ($p[1] == $coin['moneda']) {//Su nombre es el de alguna moneda
+                if ($p[1] == $coin['moneda']) { //Su nombre es el de alguna moneda
                     $flag = false;
                     break;
                 }
@@ -1034,7 +1070,7 @@ function apply_law($vot) {
                 $flag = false;
             }
 
-            if ($flag == false) {//Si es el nombre de alguna moneda
+            if ($flag == false) { //Si es el nombre de alguna moneda
                 //Sacamos cuanta moneda de esa tiene el pais
                 $money = sql("SELECT " . $p[1] . " FROM money_pais WHERE idcountry = " . $votacion['id_pais']);
 
@@ -1050,8 +1086,8 @@ function apply_law($vot) {
         case 300:
             //Añadir la guerra
             $time = time();
-            sql("INSERT INTO wars(id_pais_atacante,id_pais_defensor,tipo,estado,hora_inicio,hora_fin) VALUES(".$votacion['id_pais'].",".$p[0].",0,1,".$time.",0)");
-            
+            sql("INSERT INTO wars(id_pais_atacante,id_pais_defensor,tipo,estado,hora_inicio,hora_fin) VALUES(" . $votacion['id_pais'] . "," . $p[0] . ",0,1," . $time . ",0)");
+
             break;
         case 301: //Abrir batalla
             $time = time();
@@ -1063,8 +1099,8 @@ function apply_law($vot) {
             $at_country = region2country($p[0]);
             $def_country = region2country($p[1]);
             //Ver id guerra
-            $id_war = sql("SELECT id_war FROM wars WHERE pais_atacante = ".$at_country." AND pais_defensor = ".$def_country ." AND hora_fin = 0");
-            sql("INSERT INTO battles(id_war,attacking_region,defending_region,hora_inicio,hora_fin,estado,tipo) VALUES (".$id_war.",".$p[0].",".$p[1].",".$time.",".$end_time.",1,1)");
+            $id_war = sql("SELECT id_war FROM wars WHERE pais_atacante = " . $at_country . " AND pais_defensor = " . $def_country . " AND hora_fin = 0");
+            sql("INSERT INTO battles(id_war,attacking_region,defending_region,hora_inicio,hora_fin,estado,tipo) VALUES (" . $id_war . "," . $p[0] . "," . $p[1] . "," . $time . "," . $end_time . ",1,1)");
             break;
     endswitch;
 
@@ -1074,7 +1110,8 @@ function apply_law($vot) {
     }
 }
 
-function check_laws() {
+function check_laws()
+{
     $time = time();
     $sql = sql2("SELECT id_votacion,tipo_votacion FROM votaciones WHERE solved = 0 AND fin < " . $time . " AND is_cargo = 0 AND (tipo_votacion >= 100 OR tipo_votacion = 2)");
 
@@ -1085,18 +1122,19 @@ function check_laws() {
 
             //Aqui se podrian cambiar las normas para que segun no se que pollas la votacion se ganara o perdiera peeeeeeeeeero ya para mas tarde xD
 
-            if ($si >= $no) {//De momento mayoria simple :yao:
+            if ($si >= $no) { //De momento mayoria simple :yao:
                 apply_law($vot['id_votacion']);
-            } else {//Obviamente aqui va que no xD
+            } else { //Obviamente aqui va que no xD
                 apply_law($vot['id_votacion']);
             }
-        } elseif ($vot['tipo_votacion'] == 2) {//Ejecutan automaticamente
+        } elseif ($vot['tipo_votacion'] == 2) { //Ejecutan automaticamente
             apply_law($vot['id_votacion']);
         }
     }
 }
 
-function rango($puntos) {
+function rango($puntos)
+{
     global $txt;
     //De 0 a 14 puntos de combate
     if ($puntos >= 0 && $puntos < 15)
@@ -1106,19 +1144,22 @@ function rango($puntos) {
         return getString("rango_1");
 }
 
-function item2img($item) {//devuelve la imagen a partir de la id del item
+function item2img($item)
+{ //devuelve la imagen a partir de la id del item
     $imagen = sql("SELECT url_imagen_grande FROM items WHERE id_item='$item'");
     return "<img src='$imagen' />";
 }
 
-function reset_mail($mail) {
+function reset_mail($mail)
+{
     $pin = sql("SELECT pin FROM settings");
     $token = md5($mail) + $pin;
     $link = "http://birthofnations.com/usuarios/recuperar.php?token=" . $token . "&mail=" . $mail;
     mail($mail, "Recuperacion password cuenta Birth of Nations", "El siguiente link es para resetear: $link ");
 }
 
-function reset_pass($mail, $token) {
+function reset_pass($mail, $token)
+{
     $pin = sql("SELECT pin FROM settings");
     $token_bueno = md5($mail) + $pin;
 
@@ -1128,7 +1169,8 @@ function reset_pass($mail, $token) {
         return true;
 }
 
-function new_password($password1, $password2, $mail) {
+function new_password($password1, $password2, $mail)
+{
     if ($password1 != $password2)
         die("Password no coincide");
     elseif ($password1 == $password2) {
@@ -1139,15 +1181,18 @@ function new_password($password1, $password2, $mail) {
 }
 
 //Para enviar la alerta
-function send_alert($emisor, $receptor, $tipo, $r1) {
+function send_alert($emisor, $receptor, $tipo, $r1)
+{
     sql("INSERT INTO alertas(id_emisor,id_receptor,tipo,r1,fecha) VALUES ('" . $emisor . "','" . $receptor . "','" . $tipo . "','" . $r1 . "', Now())");
 }
 
 //rfloor(12.12946321,2); //12.12 -- drop everything after the number of decimal places
-function rfloor($real, $decimals = 2) {
+function rfloor($real, $decimals = 2)
+{
     return substr($real, 0, strrpos($real, '.', 0) + (1 + $decimals));
 }
 
-function incidencia($usuario, $tipo, $respuesta) {
+function incidencia($usuario, $tipo, $respuesta)
+{
     sql("INSERT INTO incidencias(id_usuario, tipo, respuesta, hora) VALUES ('" . $usuario . "','" . $tipo . "','" . $respuesta . "', Now())");
 }
