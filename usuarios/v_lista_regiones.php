@@ -1,5 +1,5 @@
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'] . "/birthofnations/include/funciones.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/include/funciones.php");
 $id_pais = $_POST['id_pais'];
 
 if ($id_pais == 0)

@@ -2,7 +2,7 @@
 
 include_once($_SERVER['DOCUMENT_ROOT'] . "/include/funciones.php");
 include_once($_SERVER['DOCUMENT_ROOT'] . "/include/config_variables.php");
-include_once($_SERVER['DOCUMENT_ROOT'] . "/include/produccion.php");
+//include_once($_SERVER['DOCUMENT_ROOT'] . "/include/produccion.php");
 include_once($_SERVER['DOCUMENT_ROOT'] . "/economico/moneda_local.php");
 include_once($_SERVER['DOCUMENT_ROOT'] . "/usuarios/objeto_usuario.php");
 
@@ -21,7 +21,7 @@ $duenyo = sql("SELECT id_propietario FROM empresas WHERE id_empresa = {$datos['i
 
 $list_items = list_items();
 
-$producido = formula_produccion($_SESSION['id_usuario'], $empresa['tipo'] ,$datos['id_empresa']); // Numero de items que va a producir
+$producido = formula_produccion($_SESSION['id_usuario'], $empresa['tipo'], $datos['id_empresa']); // Numero de items que va a producir
 //Condiciones que ha de cumplir el trabajador
 
 if ($objeto_usuario->salud < $min_work_health) {
@@ -43,9 +43,9 @@ if ($empresa[$moneda_local[$datos['moneda']]] >= $datos['salario']) { //Si hay s
             //Comprobamos si la empresa tiene los items necesarios para este trabajador.
             $hay_raw = true;
             foreach ($raw_needed as $item => $value) {
-//Acceso de los items raw al inventario empresa
-//$sql = sql("SELECT " . $list_items[$item] . " FROM inventario_empresas WHERE id_empresa = " . $datos['id_empresa']);
-//Acceso de los items raw desde el inventario del jugador
+                //Acceso de los items raw al inventario empresa
+                //$sql = sql("SELECT " . $list_items[$item] . " FROM inventario_empresas WHERE id_empresa = " . $datos['id_empresa']);
+                //Acceso de los items raw desde el inventario del jugador
                 $sql = sql("SELECT " . $list_items[$item] . " FROM inventario WHERE id_usuario = $duenyo");
                 if ($sql < $value) {
                     $hay_raw = false;
@@ -78,7 +78,8 @@ if ($empresa[$moneda_local[$datos['moneda']]] >= $datos['salario']) { //Si hay s
             //Dar +1 exp por trabajar
             dar_exp($_SESSION['id_usuario'], 1);
             //Subir skill
-            $aumento = aumento_work_skill($objeto_usuario->id_usuario);
+            // $aumento = aumento_work_skill($objeto_usuario->id_usuario);
+            $aumento = 1;
             sql("UPDATE skills SET work = work + " . $aumento . " WHERE id_usuario = " . $objeto_usuario->id_usuario);
             //Se guarda en el log de produccion
             $dia = sql("SELECT day FROM settings");
@@ -90,16 +91,13 @@ if ($empresa[$moneda_local[$datos['moneda']]] >= $datos['salario']) { //Si hay s
             echo getString('company_not_enough_raw');
             send_alert($objeto_usuario->id_usuario, $duenyo, 4, $datos['id_empresa']);
             //Se eliminan las ofertas de trabajo de la empresa
-            sql("DELETE FROM mercado_trabajo WHERE id_empresa = '".$datos['id_empresa']."'");            
+            sql("DELETE FROM mercado_trabajo WHERE id_empresa = '" . $datos['id_empresa'] . "'");
         }
-    }
-    else
+    } else
         echo getString('company_you_have_worked');
-}
-else {
+} else {
     echo getString('company_not_enough_salary');
     send_alert($objeto_usuario->id_usuario, $duenyo, 5, $datos['id_empresa']);
     //Se eliminan las ofertas de trabajo de la empresa
-    sql("DELETE FROM mercado_trabajo WHERE id_empresa = '".$datos['id_empresa']."'");
+    sql("DELETE FROM mercado_trabajo WHERE id_empresa = '" . $datos['id_empresa'] . "'");
 }
-?>

@@ -1,4 +1,4 @@
-<?
+<?php
 
 // Devuelve: $moneda_local[id_pais] = "Nombre de la moneda del pais"
 
@@ -15,5 +15,3 @@ foreach ($sql as $id => $name) {
 }
 $moneda_local[0] = "Gold";
 unset($moneda_local[-1]);
-
-?>

@@ -5,7 +5,7 @@
  * and open the template in the editor.
  */
 
-include_once($_SERVER['DOCUMENT_ROOT']."/include/funciones.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/include/funciones.php");
 select_lang();
 
 
@@ -27,12 +27,13 @@ class empresa
     public $Gold;
     public $ESP;
     public $FRF;
-    
-    function empresa($id){
+
+    public function __construct($id)
+    {
         $empresa = sql("SELECT * FROM empresas WHERE id_empresa='$id'");
-        if ($empresa==false)
+        if ($empresa == false)
             return false; //Si no existe la empresa devuelve false
-        
+
         $this->id_empresa = $id;
         $this->id_propietario = $empresa['id_propietario'];
         $this->nombre_empresa = $empresa['nombre_empresa'];
@@ -45,21 +46,17 @@ class empresa
         $this->pais = $empresa['pais'];
         $this->region = $empresa['region'];
         $this->precio_empresa = $empresa['precio_empresa'];
-        
     }
-    
+
     function get_nick_propietario()
     {
         $nick = sql("SELECT nick FROM usuarios WHERE id_usuario='$this->id_propietario'");
         return $nick;
     }
-    
+
     function get_tipo()
     {
-        $tipo = sql("SELECT tipo FROM empresas WHERE id_empresa = " . $this->id_empresa );
+        $tipo = sql("SELECT tipo FROM empresas WHERE id_empresa = " . $this->id_empresa);
         return $tipo;
     }
-    
 }
-
-?>

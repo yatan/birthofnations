@@ -37,10 +37,11 @@ $gov_exp[0] = 20;
 $gov_exp[1] = 999999999999;
 
 //Militar
-$battle_lenght = 18*60*60; //18 horas
+$battle_lenght = 18 * 60 * 60; //18 horas
 
 //Numero de parametros de cada ley.
-function law_params($ley) {
+function law_params($ley)
+{
 
     switch ($ley):
         case 100:
@@ -66,9 +67,10 @@ function law_params($ley) {
     return $data;
 }
 
- //Nombre de los parametros de cada ley
-function law_param_names($ley){
-    switch($ley):
+//Nombre de los parametros de cada ley
+function law_param_names($ley)
+{
+    switch ($ley):
         case 100:
         case 106:
             $f[0] = getString('new_name');
@@ -95,7 +97,12 @@ function law_param_names($ley){
     return $f;
 }
 
-//Modulo militar
+function formula_produccion($id)
+{
+    //Whatever formulica...
 
+    return 1;
+}
+
+//Modulo militar
 $min_train_health = 10;
-?>

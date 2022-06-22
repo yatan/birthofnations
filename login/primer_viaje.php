@@ -5,7 +5,7 @@
  * and open the template in the editor.
  */
 
-include_once($_SERVER['DOCUMENT_ROOT'] . "/birthofnations/include/funciones.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/include/funciones.php");
 
 $id_usuario = base64_decode($_POST['tokken']);
 $pais_destino = $_POST['pais'];

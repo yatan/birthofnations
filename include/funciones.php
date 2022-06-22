@@ -90,12 +90,11 @@ function sql($sql)
     $result = sql_error($sql);
 
     //Si no devuelve nada sale de la funcion
-    if (!$result)
+    if ($result === true)
         return true;
 
     if (mysqli_num_rows($result) == 1) {
         if (mysqli_num_fields($result) == 1) {
-
             $dato = mysqli_fetch_row($result);
             return $dato[0];
         } else
@@ -120,7 +119,7 @@ function sql2($sql)
     $result = sql_error($sql);
 
     //Si no devuelve nada sale de la funcion
-    if (!$result)
+    if ($result === true)
         return true;
 
     if (mysqli_num_rows($result) == 1) {
@@ -274,8 +273,8 @@ function getString($text)
 {
     if (!isset($i18n_array)) {
 
-        include $_SERVER['DOCUMENT_ROOT'] . '/birthofnations/i18n/' . $_SESSION['i18n_default'] . ".php";
-        include $_SERVER['DOCUMENT_ROOT'] . '/birthofnations/i18n/' . $_SESSION['i18n'] . ".php";
+        include $_SERVER['DOCUMENT_ROOT'] . '/i18n/' . $_SESSION['i18n_default'] . ".php";
+        include $_SERVER['DOCUMENT_ROOT'] . '/i18n/' . $_SESSION['i18n'] . ".php";
     }
 
     return $i18n_array[$text];
@@ -440,7 +439,7 @@ function puedo_votar($id_usuario, $tipo, $id_votacion)
         }
         $ret = true; //En principio se podria votar
         //objeto usuario
-        include_once($_SERVER['DOCUMENT_ROOT'] . "/birthofnations/usuarios/objeto_usuario.php");
+        include_once($_SERVER['DOCUMENT_ROOT'] . "/usuarios/objeto_usuario.php");
 
         $objeto_usuario = new usuario($id_usuario);
 
@@ -501,9 +500,9 @@ function puedo_postularme($id_usuario, $tipo, $id_votacion)
             $rest2[] = explode("+", $res); //Separamos cada una de ellas
         }
         $ret = true; //En principio se podria postular
-        
+
         //objeto usuario
-        include_once($_SERVER['DOCUMENT_ROOT'] . "/birthofnations/usuarios/objeto_usuario.php");
+        include_once($_SERVER['DOCUMENT_ROOT'] . "/usuarios/objeto_usuario.php");
         $objeto_usuario = new usuario($id_usuario);
 
         foreach ($rest2 as $condicion) { //Comprobamos cada una de ellas

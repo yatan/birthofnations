@@ -66,7 +66,7 @@ include_once("./include/funciones.php");
         </div>
 
         <div id="login">
-            <form action="/birthofnations/login/logear.php" method="POST">
+            <form action="/login/logear.php" method="POST">
                 <fieldset>
                     <legend>Login</legend>
                     <p><label for="nick" style="color:#781351;">Nick:</label><input tabindex="1" type="text" name="nick"></p>

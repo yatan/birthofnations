@@ -1,4 +1,4 @@
-<?
+<?php
 
 include_once($_SERVER['DOCUMENT_ROOT']."/include/funciones.php");
 
@@ -29,4 +29,3 @@ if (isset($_GET['oferta']) && $_GET['oferta'] != "" && strlen($_GET['oferta'])>0
     
     die(getString("company_ups_something_is_wrong"));
 }
-?>

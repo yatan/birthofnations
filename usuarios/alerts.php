@@ -87,7 +87,7 @@ echo "<td><input type='checkbox' name='alertas[]' value='".$alerta['id_alerta'].
 
     });  
 </script>
-<?
+<?php
 //Ponemos todas las alertas como leidas
 sql("UPDATE alertas SET leido='1' WHERE id_receptor='".$_SESSION['id_usuario']."'");
 ?>

@@ -1,6 +1,6 @@
 <?php
 
-include_once($_SERVER['DOCUMENT_ROOT'] . "/birthofnations/include/funciones.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/include/funciones.php");
 
 $pais_actual = sql("SELECT id_region FROM usuarios WHERE id_usuario='" . $_SESSION['id_usuario'] . "'");
 if ($pais_actual != null)
@@ -23,7 +23,7 @@ include("../index_head.php");
     });
 
     function cambiar_pais(arg) {
-        $("#regi").load("/birthofnations/usuarios/v_lista_regiones.php", {
+        $("#regi").load("/usuarios/v_lista_regiones.php", {
             id_pais: arg
         });
     }
