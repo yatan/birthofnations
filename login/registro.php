@@ -57,10 +57,10 @@ if ($datos == false) {
 			<input tabindex="5" name="email2" disabled id="email2" type="text" class="text" value="<?php echo $email; ?>" />
 			<div>
 				<?php
-				if (smtp_online() == true)
+				// if (smtp_online() == true)
 					echo "<input tabindex='6' name='send' id='send' type='submit' class='submit' value='" . getString('signup_mail_send_form') . "'/>";
-				else
-					echo "<h2>" . getString('signup_mail_error') . "</h2>";
+				/* else
+					echo "<h2>" . getString('signup_mail_error') . "</h2>"; */
 				?>
 			</div>
 		</form>

@@ -1,6 +1,5 @@
 <?php
 
-
 include_once("include/funciones.php");
 //Comprobacion del servidor mysql
 if (mysql_online2() == false)
@@ -17,8 +16,6 @@ if (!isset($_SESSION['id_usuario'])) {
     include("login/login.php");
     exit;
 } else {
-
-
     require("usuarios/objeto_usuario.php");
     $objeto_usuario = new usuario($_SESSION['id_usuario']);
 

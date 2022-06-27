@@ -71,7 +71,7 @@ echo "<a style='padding-left: 3em; text-align:right;'>Dia: $dia</a>";
 ?>
 
 <div id="buscador" style="float:right;">
-    <?
+    <?php
     include("usuarios/form_buscador.php");
     ?>
 </div>
@@ -80,7 +80,7 @@ echo "<a style='padding-left: 3em; text-align:right;'>Dia: $dia</a>";
 <div id="barra_derecha" style="position: absolute; left:100%; top:50%; margin-left: -35px;">
     <img id="flecha" src="/images/side/flecha.gif" />
     <div id="monedas_barra" style="z-index: 5; background-color: #1c94c4; position:absolute; display: none; top:50%; width:75px; left:100%;margin-top: 0px; margin-left: 0px;">
-        <? include("usuarios/dinero.php"); ?>
+        <?php include("usuarios/dinero.php"); ?>
     </div>
 </div>
 

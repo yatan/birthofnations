@@ -1,14 +1,9 @@
-<?
+<?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+include_once($_SERVER['DOCUMENT_ROOT'] . "/include/funciones.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/include/config_variables.php");
 
-include_once($_SERVER['DOCUMENT_ROOT']."/include/funciones.php");
-include_once($_SERVER['DOCUMENT_ROOT']."/include/config_variables.php");
-
-$inventario = sql("SELECT * FROM inventario WHERE id_usuario = ". $_SESSION['id_usuario']);
+$inventario = sql("SELECT * FROM inventario WHERE id_usuario = " . $_SESSION['id_usuario']);
 
 /*
 _________uu$$$$$$$$$$$$$$$$$uu__________
@@ -40,32 +35,32 @@ Sustituir el array de abajo cuando haya mas de 1 item usable
  */
 
 //$items_usables = sql("SELECT nombre FROM items WHERE usable='1'");
-$items_usables = array("0" => array('nombre'=>'pan'));
+$items_usables = array("0" => array('nombre' => 'pan'));
 
 
 echo "<table><tr><td>Objeto</td><td>Cantidad</td><td>Usar</td></tr>";
 unset($inventario['id_usuario']);
 
-foreach($inventario as $item => $cantidad){
+foreach ($inventario as $item => $cantidad) {
     //Suponemos que cada item no se puede usar, hasta comprobacion
     $usable = false;
 
-    if($cantidad == 0 ) { continue; }
-    
+    if ($cantidad == 0) {
+        continue;
+    }
+
     $id = obj_to_id($item);
-    
+
     //Recorremos los items que son usables y asignamos si se puede usar o no
     foreach ($items_usables as $usado) {
-        if($item == $usado['nombre'])
+        if ($item == $usado['nombre'])
             $usable = true;
     }
-    
-    if($usable==true)
+
+    if ($usable == true)
         echo "<tr><td>" . item2img($id) . "</td><td class='item_$id'> $cantidad  </td><td> [<a class='usar' id='$id' href='#'>Usar</a>] </td></tr>";
     else
         echo "<tr><td>" . item2img($id) . "</td><td> $cantidad  </td><td>  </td></tr>";
-
-    
 }
 
 echo "</table>";
@@ -73,31 +68,32 @@ echo "</table>";
 ?>
 
 <script type="text/javascript">
-$('.usar').click(function() {
+    $('.usar').click(function() {
         var element = $(this);
         var Id = element.attr("id");
-        
-        
+
+
         var notice = $.pnotify({
-        pnotify_title: "<? echo getstring('use_item'); ?>",
-        pnotify_type: 'info',
-        pnotify_info_icon: 'picon picon-throbber',
-        
-        pnotify_sticker: false,
-        pnotify_width: "275px",
-        pnotify_text: "<center><img src='/images/loading.gif'/></center>"
-    });
- 
- 
-         $.get("/usuarios/usar_item.php", {id: Id},
-         function(data) {
-          var options = {
-                pnotify_text: data
-            };
-            notice.pnotify(options);
-         });
-         
-         
+            pnotify_title: "<?php echo getstring('use_item'); ?>",
+            pnotify_type: 'info',
+            pnotify_info_icon: 'picon picon-throbber',
+
+            pnotify_sticker: false,
+            pnotify_width: "275px",
+            pnotify_text: "<center><img src='/images/loading.gif'/></center>"
+        });
+
+
+        $.get("/usuarios/usar_item.php", {
+                id: Id
+            },
+            function(data) {
+                var options = {
+                    pnotify_text: data
+                };
+                notice.pnotify(options);
+            });
+
+
     });
 </script>
-    
