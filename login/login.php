@@ -73,31 +73,28 @@ include_once("./include/funciones.php");
                     <p><label for="pass" style="color:#781351;">Password:</label><input tabindex="2" type="password" name="pass"></p>
                     <p class="submit"><input type="submit" value="Login">
                         <a class="recover" href="/login/recuperar.php" style="text-align: center; color:black;">
-                        <?php echo getString("login_recovery"); ?>
-                    </a>
+                            <?php echo getString("login_recovery"); ?>
+                        </a>
                     </p>
                 </fieldset>
             </form>
 
         </div>
         <!--login-->
-
-
-
-        <div id="publi" style="position: absolute; left: 50%; margin-left: -364px; top: 50%; margin-top: 150px;">
+        
+        <!--
+            <div id="publi" style="position: absolute; left: 50%; margin-left: -364px; top: 50%; margin-top: 150px;">
             <script type="text/javascript">
-                //<!-- 
                 google_ad_client = "ca-pub-3976033733199023";
                 /* birthofn login */
                 google_ad_slot = "1937910781";
                 google_ad_width = 728;
                 google_ad_height = 90;
-                //-->
             </script>
             <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
             </script>
         </div>
-
+        -->
 
         <?php include("pie.php"); ?>
     </div><!-- contenido -->
