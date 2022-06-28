@@ -169,8 +169,6 @@ function enviar_mail($destino, $nick)
 
 function mail_referido($nick_padrino, $destino, $code)
 {
-    global $txt;
-
     // subject
     $titulo = getString('referer_title');
 
@@ -243,17 +241,17 @@ function anadir_bugs($usuario, $password, $email)
     mysqli_query($link3, "INSERT INTO mantis_user_table (username, email, password, cookie_string, date_created, access_level) VALUES ('$usuario', '$email', '$contrasena','$rand', '$hora', '25')");
 }
 
-function checkban($id)
+function checkban($idUsuario)
 {
     include("config.php");
 
-    $sql = sql("SELECT * FROM bans WHERE ( is_perm = 1 OR fecha_fin > " . time() . " ) AND id_usuario = " . $id);
+    $sql = sql("SELECT * FROM bans WHERE ( is_perm = 1 OR fecha_fin > " . time() . " ) AND id_usuario = " . $idUsuario);
     // (es permanente O no ha caducado ) Y esta asignado a su id -> Sigue ban
-    if ($sql != false) { //Si ha devuelto algo es que esta ban
+    if ($sql != false) {
+        //Si ha devuelto algo es que esta ban
         return true;
-    } else {
-        return false;
     }
+    return false;
 }
 
 function check_lang($lengua)
@@ -334,15 +332,15 @@ function dar_exp($id, $cantidad)
     }
 }
 
-function id2nick($id)
+function id2nick($idUser)
 {
-    return sql("SELECT nick FROM usuarios WHERE id_usuario='$id'");
+    return sql("SELECT nick FROM usuarios WHERE id_usuario='" . $idUser . "'");
 }
 
 //Devuelve el nombre de una empresa a partir de una id
-function id2empresa($id)
+function id2empresa($idUser)
 {
-    return sql("SELECT nombre_empresa FROM empresas WHERE id_empresa='$id'");
+    return sql("SELECT nombre_empresa FROM empresas WHERE id_empresa='" . $idUser . "'");
 }
 
 function item2id($item)
@@ -352,21 +350,21 @@ function item2id($item)
     return $sql;
 }
 
-function id2item($id)
+function id2item($idItem)
 {
-    $sql = sql("SELECT nombre FROM items WHERE id_item = '$id'");
+    $sql = sql("SELECT nombre FROM items WHERE id_item = '" . $idItem . "'");
     return $sql;
 }
 
-function id2itemimg($id)
+function id2itemimg($idItemImg)
 {
-    $sql = sql("SELECT url_imagen_grande FROM items WHERE id_item = '$id'");
+    $sql = sql("SELECT url_imagen_grande FROM items WHERE id_item = '" . $idItemImg . "'");
     return $sql;
 }
 
-function country_name($id)
+function country_name($idCountry)
 {
-    $sql = sql("SELECT name FROM country WHERE idcountry = $id");
+    $sql = sql("SELECT name FROM country WHERE idcountry = $idCountry");
     return $sql;
 }
 
@@ -490,9 +488,8 @@ function puedo_postularme($id_usuario, $tipo, $id_votacion)
 
         if ($sql['id_partido'] == $sql2 && $sql['ant_partido'] >= $sql4) { //Esta afiliado al partido Y tiene X antiguedad
             return true;
-        } else {
-            return false;
         }
+        return false;
     } elseif ($tipo >= 100) { //Votaciones para cargos de un pais
         $sql = sql("SELECT * FROM votaciones WHERE id_votacion = " . $id_votacion);
         $rest = explode("!", $sql['restricciones']); //Sacamos las restricciones para postularse
@@ -606,17 +603,17 @@ function list_stat($id)
     return $list;
 }
 
-function del_stat($stat, $id)
+function del_stat($stat, $idUser)
 {
-    if (check_stat($stat, $id) == true) {
-        $list = list_stat($id);
+    if (check_stat($stat, $idUser) == true) {
+        $list = list_stat($idUser);
         $new_stat = "";
         foreach ($list as $status) {
             if ($status != $stat) {
                 $new_stat .= $status . ",";
             }
         }
-        sql("UPDATE usuarios SET status = '" . $new_stat . "' WHERE id_usuario = " . $id);
+        sql("UPDATE usuarios SET status = '" . $new_stat . "' WHERE id_usuario = " . $idUser);
     }
     return $new_stat;
 }
@@ -739,7 +736,7 @@ $mensaje
 EOT;
 }
 
-function check_leader($cargo, $id)
+function check_leader($cargo, $idCargo)
 {
 
     $sql = sql("SELECT id_gente FROM country_leaders WHERE id_cargo = " . $cargo);
@@ -748,7 +745,7 @@ function check_leader($cargo, $id)
     $flag = false;
 
     foreach ($sql as $persona) {
-        if ($persona == $id) {
+        if ($persona == $idCargo) {
             $flag = true;
             break;
         }
@@ -763,11 +760,10 @@ function add_leader($cargo, $id)
         $sql = sql("SELECT id_gente FROM country_leaders WHERE id_cargo = " . $cargo);
         $sql .= $id . ',';
         sql("UPDATE country_leaders SET id_gente = '" . $sql . "' WHERE id_cargo = " . $cargo);
-        $sql = true;
-    } else {
-        $sql = false;
+        return true;
     }
-    return $sql;
+    // return $sql;
+    return false;
 }
 
 function list_leaders($cargo)

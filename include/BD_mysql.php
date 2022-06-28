@@ -9,8 +9,6 @@ class BD
     private $conexion;
     private $resultSet;
 
-    private $arrayAux;
-
     // Conecta con un servidor de la base de datos
     public function conectar($host, $usuario, $contraseña)
     {
@@ -139,7 +137,7 @@ class BD
             . implode(', ', array_keys($values))
             . ') VALUES(';
 
-        foreach ($values as $key => $value) {
+        foreach ($values as $value) {
             if (is_numeric($value)) {
                 $consulta .= ', ' . $value;
             } else {
