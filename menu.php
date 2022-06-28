@@ -68,7 +68,7 @@ elseif($entrenado==0)
          </ul>
       </li>
       <li><span class="divider divider-vert"></span></li>
-      <li><a class="item-primary" href="/logout" target="_self"><? echo getString('logout'); ?></a>
+      <li><a class="item-primary" href="/logout" target="_self"><?php echo getString('logout'); ?></a>
       </li>
       <li><span class="divider divider-vert"></span></li>
       <li class="clear">&nbsp;</li>

@@ -1,4 +1,4 @@
-<?
+<?php
 
 /*
  * Hay que añadir la comprobacion de que las ids que llegan por
@@ -13,12 +13,10 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/include/funciones.php");
 $contador = 0;
 
 
-if (isset($_POST['alertas']))
-{
-foreach ($_POST['alertas'] as $alerta) {
-    sql("UPDATE alertas SET tipo='0' WHERE id_alerta='$alerta'");
-    $contador += 1;
+if (isset($_POST['alertas'])) {
+    foreach ($_POST['alertas'] as $alerta) {
+        sql("UPDATE alertas SET tipo='0' WHERE id_alerta='" . $alerta . "'");
+        $contador += 1;
+    }
 }
-}
-echo "Alertas eliminadas: $contador";
-?>
+echo "Alertas eliminadas: " . $contador;

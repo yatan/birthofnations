@@ -1,4 +1,4 @@
-<script src="http://widgets.twimg.com/j/2/widget.js" type="text/javascript"></script>
+<!-- <script src="http://widgets.twimg.com/j/2/widget.js" type="text/javascript"></script>
 <script type="text/javascript">
   new TWTR.Widget({
     version: 2,
@@ -31,4 +31,6 @@
       behavior: 'all'
     }
   }).render().start();
-</script>
+</script> -->
+
+<p>Texto test para columna 2 (derecha)</p>

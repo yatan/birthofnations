@@ -249,12 +249,18 @@ echo "<h2>" . getString('Poner_ofertas_trabajo') . "</h2>";
         <label for="moneda"><?php echo getString("coin"); ?></label>
         <select id="moneda" name="moneda">
             <?php
-            $sql = mysqli_query($link, "SELECT * FROM money");
-            for ($n = 1; $n < mysqli_num_fields($sql); $n++) {
-
-                $mon = mysqli_fetch_field($sql, $n);
-                echo "<option value='$n'> $mon </option>";
+            $n = 0;
+            foreach ($moneda_local as $moneda) {
+                echo "<option value='" . $n . "'>" . $moneda . "</option>";
+                $n++;
             }
+
+
+
+
+            // for ($n = 1; $n < mysqli_num_fields($sql); $n++) {
+            //     $mon = mysqli_fetch_column($sql, $n);
+            // }
             ?>
         </select></br>
         <input type="submit" name="metodo" id="retirar" value="<?php echo getString("retirar"); ?>" />
@@ -286,7 +292,7 @@ function(data){
         else {
             $cantidad = $_POST['cantidad'];
             $moneda = $_POST['moneda'];
-            $nombre_moneda = $moneda_local[$moneda - 1];
+            $nombre_moneda = $moneda_local[$moneda];
             if ($_POST['metodo'] == "Ingresar") {
                 if ($cantidad <= sql("SELECT $nombre_moneda FROM money WHERE id_usuario='" . $_SESSION['id_usuario'] . "'")) {
                     //Si el usuario dispone del suficiente dinero, se restara de su monedero y se ingresara en la empresa

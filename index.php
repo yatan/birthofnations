@@ -21,8 +21,9 @@ if (!isset($_SESSION['id_usuario'])) {
 
     //Si existe el idioma normalmente en la url del tipo /es/ lo establece como
     //variable que se carga al principio '''$idioma'''
-    if (isset($_GET['lang']))
+    if (isset($_GET['lang'])) {
         $idioma = $_GET['lang'];
+    }
 
     //Se mira si es el primer login, por lo que no tendra ninguna ciudad asignada
     if ($objeto_usuario->id_region == null)
@@ -41,7 +42,6 @@ if (!isset($_SESSION['id_usuario'])) {
     <html>
     <?php
     include("index_head.php");
-
     ?>
 
     <body>
@@ -158,11 +158,11 @@ if (!isset($_SESSION['id_usuario'])) {
                                 //Aqui va lo del centro de la pagina principal
                             ?>
                                 <div id="columnas" style="padding: 10px; width: 58.4em; height: 25em;">
-                                    <div id="columna1" style="float: right; width: 41em; height: 25em;">
+                                    <div id="columna1" style="float: left; width: 41em; height: 25em;">
                                         <?php include("columna1.php"); ?>
                                     </div>
 
-                                    <div id="columna2" style="float: left; height: 25em; width: 17em;">
+                                    <div id="columna2" style="float: right; height: 25em; width: 17em;">
                                         <?php include("columna2.php"); ?>
                                     </div>
                                 </div><!-- columnas -->

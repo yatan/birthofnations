@@ -1,22 +1,19 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 include_once($_SERVER['DOCUMENT_ROOT'] . "/include/funciones.php");
 include_once($_SERVER['DOCUMENT_ROOT'] . "/include/config_variables.php");
 
-class item {
+class item
+{
 
     public $nombre;
     public $is_raw;
     public $raw_needed;
 
-    function item($tipo) {
+    function __construct($tipo)
+    {
         $item = sql("SELECT * FROM items WHERE id_item = " . $tipo);
-        $this->nombre = $txt['item'.$tipo];
+        $this->nombre = $item['item' . $tipo];
         $this->is_raw = $item['is_raw'];
 
         $sql = explode(',', $item['raw_needed']);
@@ -24,7 +21,4 @@ class item {
             $this->raw_needed[] = explode('-', $i);
         }
     }
-
 }
-
-?>
