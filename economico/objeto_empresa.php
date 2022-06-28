@@ -17,11 +17,12 @@ class empresa
     public $precio_empresa;
     public $pais;
     public $region;
-    public $zona;
     public $raw;
-    public $Gold;
-    public $ESP;
-    public $FRF;
+
+    public $gold;
+
+    private $money;
+
 
     public function __construct($id)
     {
@@ -33,7 +34,7 @@ class empresa
         $this->id_propietario = $empresa['id_propietario'];
         $this->nombre_empresa = $empresa['nombre_empresa'];
         $this->tipo = $empresa['tipo'];
-        $this->Gold = $empresa['Gold'];
+        $this->gold = $empresa['Gold'];
         $this->stock = $empresa['stock'];
         $this->items_venta = $empresa['items_venta'];
         $this->precio_venta = $empresa['precio_venta'];
@@ -41,17 +42,31 @@ class empresa
         $this->pais = $empresa['pais'];
         $this->region = $empresa['region'];
         $this->precio_empresa = $empresa['precio_empresa'];
+
+        $this->setMoney();
     }
 
-    function get_nick_propietario()
+    public function get_nick_propietario()
     {
         $nick = sql("SELECT nick FROM usuarios WHERE id_usuario='$this->id_propietario'");
         return $nick;
     }
 
-    function get_tipo()
+    public function get_tipo()
     {
         $tipo = sql("SELECT tipo FROM empresas WHERE id_empresa = " . $this->id_empresa);
         return $tipo;
+    }
+
+    private function setMoney()
+    {
+        $this->money = [
+            'gold' => $this->gold
+        ];
+    }
+
+    public function getMoney()
+    {
+        return $this->money;
     }
 }
