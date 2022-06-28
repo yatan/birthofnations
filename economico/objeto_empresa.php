@@ -24,13 +24,13 @@ class empresa
     private $money;
 
 
-    public function __construct($id)
+    public function __construct($businessId)
     {
-        $empresa = sql("SELECT * FROM empresas WHERE id_empresa='$id'");
+        $empresa = sql("SELECT * FROM empresas WHERE id_empresa='" . $businessId . "'");
         if ($empresa == false)
             return false; //Si no existe la empresa devuelve false
 
-        $this->id_empresa = $id;
+        $this->id_empresa = $businessId;
         $this->id_propietario = $empresa['id_propietario'];
         $this->nombre_empresa = $empresa['nombre_empresa'];
         $this->tipo = $empresa['tipo'];

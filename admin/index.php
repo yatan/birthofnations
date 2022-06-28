@@ -1,17 +1,19 @@
 <?php
-include_once($_SERVER['DOCUMENT_ROOT']."/include/funciones.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/include/funciones.php");
 
-if(!isset($_SESSION['is_admin']))
-    header("Location: ../");
-elseif($_SESSION['is_admin']!=1)
-    header("Location: ../");
+if (!isset($_SESSION['is_admin']))
+	header("Location: ../");
+elseif ($_SESSION['is_admin'] != 1)
+	header("Location: ../");
 
-include_once($_SERVER['DOCUMENT_ROOT']."/index_head.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/index_head.php");
 ?>
-<center><p style="font-size: 1.5em;"><a href="/" style="color: #F00;">Ir al juego</a></p></center>
+<center>
+	<p style="font-size: 1.5em;"><a href="/" style="color: #F00;">Ir al juego</a></p>
+</center>
 <script>
 	$(function() {
-		$( "#tabs" ).tabs();
+		$("#tabs").tabs();
 	});
 </script>
 
@@ -29,8 +31,8 @@ include_once($_SERVER['DOCUMENT_ROOT']."/index_head.php");
 		<p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
 	</div>
 	<div id="tabs-3">
-		<?
-                include("noticias.php");
-                ?>
+		<?php
+		include("noticias.php");
+		?>
 	</div>
 </div>
