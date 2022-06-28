@@ -98,9 +98,7 @@ else {
                 });
             </script>
         <?php
-            echo <<< HTML
-<button id='yanonomegusta' style='background-color:#1E679A ; border: 1px solid #1E679A;' href='#'>Ya no no me gusta</button>
-HTML;
+            echo "<button id='yanonomegusta' style='background-color:#1E679A ; border: 1px solid #1E679A;' href='#'>Ya no no me gusta</button>";
         }
     } else {
         ?>
@@ -167,15 +165,11 @@ HTML;
             });
         </script>
 <?php
-        echo <<< HTML
-        <button id='megusta' style='background-color:#1E679A ; border: 1px solid #1E679A;' href='#'>Me gusta</button>
-        <button id='nomegusta' style='background-color:#1E679A ; border: 1px solid #1E679A;' href='#'>No me gusta</button>
-HTML;
+        echo "<button id='megusta' style='background-color:#1E679A ; border: 1px solid #1E679A;' href='#'>Me gusta</button>";
+        echo "<button id='nomegusta' style='background-color:#1E679A ; border: 1px solid #1E679A;' href='#'>No me gusta</button>";
     }
-    echo <<< HTML
-            <hr>
-            $sql[msg]
-HTML;
+    echo "<hr>";
+    echo $sql['msg'];
 }
 echo "<br><br><h2 style='color:black;'>Comentarios</h2>";
 
