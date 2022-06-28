@@ -1,4 +1,10 @@
 {
+    "name": "yatan/birthofnations",
+    "description": "Geopolitical Social Mutiplayer Game made with PHP and MySQL",
+    "type": "project",
+    "license": "proprietary",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "require": {
         "kreait/firebase-php": "^6.5"
     }
