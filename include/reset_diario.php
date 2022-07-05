@@ -2,8 +2,8 @@
 $time_start = microtime(true);
 //Archivo de reset diario
 
-include_once("/home/birthofn/public_html/include/config.php");
-include_once("/home/birthofn/public_html/include/funciones.php");
+include_once("include/config.php");
+include_once("include/funciones.php");
 
 sql("UPDATE settings SET mantenimiento='1'");
 
@@ -28,7 +28,7 @@ sql("UPDATE settings SET day=day+1");
 //Tecnologias
 //Quitar un dia a todas
 for ($i = 1; $i <= 2; $i++) {
-    sql("UPDATE country_tech SET tech" . $i . " = tech" . $i . " - 1");
+    // sql("UPDATE country_tech SET tech" . $i . " = tech" . $i . " - 1");
 }
 
 //Politico

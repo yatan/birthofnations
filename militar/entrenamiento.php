@@ -1,4 +1,4 @@
-<?
+<?php
 
 include_once($_SERVER['DOCUMENT_ROOT'] . "/include/funciones.php");
 //include_once($_SERVER['DOCUMENT_ROOT'] . "/include/config_variables.php");
@@ -18,4 +18,3 @@ if ($diario == 0) {
 }
 else
     echo getString('military_you_have_trained');
-?>

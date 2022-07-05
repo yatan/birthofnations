@@ -1,7 +1,7 @@
 <h1>Entrenamiento Militar</h1>
 
 
-<?
+<?php
 include_once($_SERVER['DOCUMENT_ROOT'] . "/usuarios/objeto_usuario.php");
 include_once($_SERVER['DOCUMENT_ROOT'] . "/include/config_variables.php");
 
@@ -13,51 +13,57 @@ $fuerza = $militar['fuerza'];
 $rango = $militar['rango'];
 $p_combat = $militar['p_combat'];
 
-echo "<p>".getString('military_strength')." $fuerza</p>";
-echo "<p>".getString('military_range'). rango($p_combat) . "</p>";
-echo "<p>".getString('military_points')."$p_combat</p>";
+echo "<p>" . getString('military_strength') . " $fuerza</p>";
+echo "<p>" . getString('military_range') . rango($p_combat) . "</p>";
+echo "<p>" . getString('military_points') . "$p_combat</p>";
 
 echo "<br>";
 
 //Comprobaciones del user
 
 if ($entrenado == 1)
-    echo "<p>".getString('military_you_have_trained')."</p>";
+    echo "<p>" . getString('military_you_have_trained') . "</p>";
 elseif ($objeto_usuario->salud < $min_train_health)
     echo $txt['no_train_health'];
 else
-    echo "<button id='entrenar'>".getString('military_train')."</button>";
+    echo "<button id='entrenar'>" . getString('military_train') . "</button>";
 ?>
 
 <script>
     $(function() {
-        $( "#dialog" ).dialog({draggable: false, resizable: false, autoOpen: false, buttons: [
-                {
-                    text: "<?echo getString('military_accept');?>",
-                    click: function() { $(this).dialog("close"); window.location.reload(); }
+        $("#dialog").dialog({
+            draggable: false,
+            resizable: false,
+            autoOpen: false,
+            buttons: [{
+                text: "<?php echo getString('military_accept'); ?>",
+                click: function() {
+                    $(this).dialog("close");
+                    window.location.reload();
                 }
-            ]
+            }]
         });
     });
 </script>
 
-<div id="dialog" title="<? echo getString('military_train');?>">
+<div id="dialog" title="<?php echo getString('military_train'); ?>">
 </div>
 
 <script>
-
     $(document).ready(function() {
-        $("#progressbar").progressbar({ value: 37 });
+        $("#progressbar").progressbar({
+            value: 37
+        });
         $("#entrenar").button();
     });
-  
-    $('#entrenar').click(function() {
-        
-        $.post("/militar/entrenamiento.php",
-        function(data){
-            $("#dialog").append(data);
-            $( "#dialog" ).dialog('open');
-        } );
 
-    });  
+    $('#entrenar').click(function() {
+
+        $.post("/militar/entrenamiento.php",
+            function(data) {
+                $("#dialog").append(data);
+                $("#dialog").dialog('open');
+            });
+
+    });
 </script>

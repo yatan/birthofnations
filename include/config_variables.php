@@ -6,7 +6,6 @@
  */
 
 //sistema
-
 $lenguaje_principal = "es";
 
 //Modulo general
@@ -97,10 +96,9 @@ function law_param_names($ley)
     return $f;
 }
 
-function formula_produccion($id)
+function formula_produccion()
 {
     //Whatever formulica...
-
     return 1;
 }
 

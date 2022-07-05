@@ -53,6 +53,9 @@ $text=htmlentities($text, ENT_QUOTES | ENT_IGNORE, "UTF-8");
         foreach ($in as $smiley) {
             $in2[]=$smiley['smiley'];
         }
+		if (!isset($in2)) {
+			$in2 = [];
+		}
 	
 	// And replace them by...
         $out = sql("SELECT smiley, url_smiley FROM articulos_smileys ORDER BY id_smiley ASC");
@@ -110,4 +113,3 @@ $text=htmlentities($text, ENT_QUOTES | ENT_IGNORE, "UTF-8");
 	
 	return $text;
 }
-?>
