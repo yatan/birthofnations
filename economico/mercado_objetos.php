@@ -34,11 +34,11 @@ $moneda = moneda_pais($pais);
     });
 
     function cambiar_pais(arg) {
-        window.location = '/<?php echo $_GET['lang'] . "/mercado/" . $objeto['id_item'] . "/"; ?>' + arg + '/<?php echo "0"; ?>';
+        window.location = '/<?php echo htmlentities($_GET['lang'], ENT_QUOTES) . "/mercado/" . $objeto['id_item'] . "/"; ?>' + arg + '/<?php echo "0"; ?>';
     }
 
     function cambiar_item(arg) {
-        window.location = '/<?php echo $_GET['lang'] . "/mercado/"; ?>' + arg + '/<?php echo "$pais/0"; ?>';
+        window.location = '/<?php echo htmlentities($_GET['lang'], ENT_QUOTES) . "/mercado/"; ?>' + arg + '/<?php echo "$pais/0"; ?>';
     }
 </script>
 
@@ -101,6 +101,6 @@ echo "</table>";
 $max_paginas = sql("SELECT COUNT(*) FROM mercado_objetos WHERE id_pais = " . $pais . " AND id_item = '" . $objeto['id_item'] . "'") / 10 + 1;
 for ($i = 1; $i <= $max_paginas; $i++) {
     $pag = $i - 1;
-    echo "<a href='/" . $_GET['lang'] . "/mercado/" . $objeto['id_item'] . "/$pais/" . $pag . "'>$i </a>";
+    echo "<a href='/" . htmlentities($_GET['lang'], ENT_QUOTES) . "/mercado/" . $objeto['id_item'] . "/$pais/" . $pag . "'>$i </a>";
 }
 ?>
